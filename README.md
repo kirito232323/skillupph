@@ -56,8 +56,25 @@ python manage.py seed_demo_accounts   # optional: demo applicants/employers/PESO
 python manage.py runserver
 ```
 
-Then open <http://127.0.0.1:8000/>. Seeded demo accounts use the address pattern
-shown by the command output; the login screen links the three portals.
+Then open <http://127.0.0.1:8000/>. `seed_demo_accounts` creates the demo logins
+listed below; the login screen links the three portals.
+
+## Demo accounts
+
+`python manage.py seed_demo_accounts` rebuilds these accounts. It is idempotent and
+only touches `demo.*@skillup.ph` users, so real accounts and jobs are never affected.
+
+| Role | Email | Password |
+| --- | --- | --- |
+| PESO Administrator | `demo.admin@skillup.ph` | `Demo@2026!` |
+| Employer (verified) | `demo.employer@skillup.ph` | `Demo@2026!` |
+| Applicant | `demo.applicant@skillup.ph` | `Demo@2026!` |
+| Applicant (empty profile, for the wizard) | `demo.applicant.fresh@skillup.ph` | `Demo@2026!` |
+| Employer (pending verification) | `demo.employer.pending@skillup.ph` | `Demo@2026!` |
+| Applicant pool (4 applicants) | `demo.pool.bianca@skillup.ph`, `demo.pool.paolo@skillup.ph`, `demo.pool.rafael@skillup.ph`, `demo.pool.chloe@skillup.ph` | `Demo@2026!` |
+
+These logins only exist after the seeding command runs. The password is placeholder
+demo data for local walkthroughs — replace it before putting anything real online.
 
 ## Configuration
 
