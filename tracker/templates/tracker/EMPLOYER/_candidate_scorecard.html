@@ -1,0 +1,48 @@
+{% comment %}
+Compact applicant score card used on the employer hiring tracker.
+Expects a `ref` (Referral) enriched by `hiring_tracker_employer`.
+{% endcomment %}
+<div class="mt-2 rounded-lg border border-slate-200 bg-slate-50/80 p-2">
+  <div class="flex items-center justify-between mb-1.5">
+    <span class="text-[9px] font-extrabold uppercase tracking-wider text-slate-500">Auto Score Card</span>
+    {% if ref.auto_scorecard %}
+    <button type="button" data-scorecard-url="{% url 'applicant_scorecard_employer' ref.id %}" data-scorecard-name="{{ ref.applicant.user.get_full_name }}" class="scorecard-btn text-[11px] font-extrabold text-blue-700 hover:underline cursor-pointer">
+      {{ ref.auto_scorecard.percentage }}% fit · {{ ref.auto_scorecard.fit_label }} →
+    </button>
+    {% else %}
+    <span class="text-[11px] font-extrabold {{ ref.overall_tone }}">{{ ref.overall_score }}% fit</span>
+    {% endif %}
+  </div>
+
+  {% if ref.auto_scorecard %}
+  <div class="flex items-center gap-3 text-[9px] font-semibold text-slate-600">
+    <span class="inline-flex items-center gap-0.5 text-emerald-700">
+      <span class="material-symbols-outlined text-[11px]">check_circle</span>
+      {{ ref.auto_scorecard.exact_count }} exact
+    </span>
+    <span class="inline-flex items-center gap-0.5 text-blue-700">
+      <span class="material-symbols-outlined text-[11px]">swap_horiz</span>
+      {{ ref.auto_scorecard.transferable_count }} transferable
+    </span>
+    <span class="inline-flex items-center gap-0.5 text-slate-500">
+      <span class="material-symbols-outlined text-[11px]">remove_circle</span>
+      {{ ref.auto_scorecard.none_count }} gap{{ ref.auto_scorecard.none_count|pluralize }}
+    </span>
+  </div>
+  <div class="mt-1.5 flex items-center justify-between text-[9px] font-semibold text-slate-500">
+    <span>{{ ref.auto_scorecard.total_display }} / {{ ref.auto_scorecard.max_points }} points</span>
+    <button type="button" data-scorecard-url="{% url 'applicant_scorecard_employer' ref.id %}" data-scorecard-name="{{ ref.applicant.user.get_full_name }}" class="scorecard-btn text-blue-700 font-bold hover:underline cursor-pointer">View full score card</button>
+  </div>
+  {% else %}
+  <div class="text-[9px] font-semibold text-slate-500 flex items-center gap-2">
+    <span class="inline-flex items-center gap-0.5">
+      <span class="material-symbols-outlined text-[11px] text-blue-600">verified</span>
+      {{ ref.matched_skills_count }}/{{ ref.total_skills_count }} required skills
+    </span>
+    <span class="inline-flex items-center gap-0.5">
+      <span class="material-symbols-outlined text-[11px] text-amber-600">workspace_premium</span>
+      {{ ref.certifications_count }} cert{{ ref.certifications_count|pluralize }}
+    </span>
+  </div>
+  {% endif %}
+</div>

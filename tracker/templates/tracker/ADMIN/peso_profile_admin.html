@@ -1,0 +1,412 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Settings | SKILLUP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#0051d5",
+                    "inverse-surface": "#213145",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "outline-variant": "#c6c6cd",
+                    "primary-fixed": "#dae2fd",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-container": "#7c839b",
+                    "primary-fixed-dim": "#bec6e0",
+                    "outline": "#76777d",
+                    "on-secondary-fixed": "#00174b",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-container": "#002113",
+                    "primary-container": "#131b2e",
+                    "tertiary": "#000000",
+                    "on-secondary-container": "#fefcff",
+                    "surface-dim": "#cbdbf5",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-background": "#0b1c30",
+                    "on-surface-variant": "#45464d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#002113",
+                    "inverse-on-surface": "#eaf1ff",
+                    "background": "#f8f9ff",
+                    "secondary-fixed": "#dbe1ff",
+                    "primary": "#000000",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#009668",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed": "#131b2e",
+                    "inverse-primary": "#bec6e0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .bento-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .bento-card:hover {
+            border-color: #0051d5;
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">SKILLUP</h1>
+</div>
+<div class="flex items-center gap-4">
+<a href="{% url 'admin_notifications' %}" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80" title="Notifications">notifications</a>
+<a href="{% url 'peso_profile_admin' %}" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80" title="Settings">settings</a>
+<a href="{% url 'peso_profile_admin' %}" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-secondary/15 flex items-center justify-center font-bold text-xs text-secondary shrink-0 hover:ring-2 hover:ring-secondary transition-all" title="{{ request.user.get_full_name }}">
+{% if request.user.profile.profile_picture %}
+<img alt="{{ request.user.get_full_name }}" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+{% else %}
+{{ request.user.first_name|slice:":1"|upper }}{{ request.user.last_name|slice:":1"|upper|default:"P" }}
+{% endif %}
+</a>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 pt-20 bg-surface-container-lowest dark:bg-primary-container border-r border-outline-variant dark:border-outline hidden md:flex flex-col p-4 gap-2 z-40">
+<div class="flex items-center gap-3 px-2 py-4 mb-4 border-b border-outline-variant/30">
+{% if request.user.profile.profile_picture %}
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant shrink-0">
+  <img alt="Office Logo" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+</div>
+{% else %}
+<div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-white font-black text-xl shrink-0">P</div>
+{% endif %}
+<div>
+<h2 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider whitespace-nowrap">SKILLUP Portal</h2>
+<p class="text-[10px] text-on-surface-variant opacity-70">Public Employment Service</p>
+</div>
+</div>
+<nav class="flex-grow flex flex-col gap-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_dashboard_admin' %}">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'applicant_monitoring_admin' %}">
+<span class="material-symbols-outlined">groups</span>
+<span>Talent Bench</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employer_management_admin' %}">
+<span class="material-symbols-outlined">domain</span>
+<span>Employers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'vacancy_management_admin' %}">
+<span class="material-symbols-outlined">work</span>
+<span>Vacancies</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employment_tracking_admin' %}">
+<span class="material-symbols-outlined">description</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'skill_monitoring_admin' %}">
+<span class="material-symbols-outlined">analytics</span>
+<span>Skill Gaps</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'training_monitoring_admin' %}">
+<span class="material-symbols-outlined">school</span>
+<span>Training Programs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'job_matching_analytics_admin' %}">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold rounded-lg scale-98 active:scale-95 duration-150 transition-all font-label-md text-label-md" href="{% url 'peso_profile_admin' %}">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'logout' %}">
+<span class="material-symbols-outlined">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-20 min-h-screen">
+<div class="p-margin-desktop space-y-gutter">
+<form method="POST" action="{% url 'peso_profile_admin' %}" enctype="multipart/form-data" id="profileSettingsForm">
+{% csrf_token %}
+<!-- Hidden File Input for Profile/Office Photo -->
+<input type="file" name="profile_picture" id="officePhotoInput" accept="image/*" class="hidden" onchange="previewOfficePhoto(this)">
+
+<!-- Header Section -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Settings</h2>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">Configure global employment service parameters, office identifiers, and system-wide talent management logic.</p>
+</div>
+<div class="flex gap-3">
+<button type="reset" class="px-6 py-2 border border-outline text-on-surface font-semibold rounded-lg hover:bg-surface-container transition-colors">Discard Changes</button>
+<button type="submit" class="px-6 py-2 bg-secondary text-white font-semibold rounded-lg hover:shadow-lg transition-all flex items-center gap-2">
+  <span class="material-symbols-outlined text-sm">save</span>
+  Save Settings
+</button>
+</div>
+</div>
+
+<!-- Bento Grid Settings Layout -->
+<div class="bento-grid">
+<!-- Primary Office Details (Full Width Card) -->
+<div class="bento-card col-span-12 p-6 flex flex-col md:flex-row gap-8 shadow-sm">
+<div class="flex-shrink-0">
+<div class="relative w-36 h-36 rounded-2xl bg-surface-container-highest overflow-hidden group cursor-pointer border-2 border-dashed border-outline-variant hover:border-secondary transition-all" onclick="document.getElementById('officePhotoInput').click()" title="Click to upload office/profile picture">
+{% if profile.profile_picture %}
+<img id="officePhotoPreview" class="w-full h-full object-cover" src="{{ profile.profile_picture.url }}" alt="Office Photo">
+{% else %}
+<img id="officePhotoPreview" class="w-full h-full object-cover" data-alt="Office Photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBea5w49Spg7MbFlWoJHbGEagggpOyyZBVgmk28Azt4uuyOP5X8n5bf2AZUyBTy1lcslNTi9Y8YBC1zQZ62xwVTInqn5ScyF6L6dtdceH6Fik78oB5dC90gf5t6hqJyclAuFF6EOQg4aYJMBk3sMw7t4faDfGSNKzF0K1Hbb_1Z-XfwgWd836cdECn0R3VsTDgpUZNXxwP84HrnIXflcbHABUz1RTkrKSlXm7S36odw7yUEj5Vq8slZ_ZQHD7MowZ_XNrE8G3Nxfr_K">
+{% endif %}
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity text-white text-xs font-semibold gap-1">
+<span class="material-symbols-outlined text-2xl">photo_camera</span>
+<span>Change Photo</span>
+</div>
+</div>
+<button type="button" onclick="document.getElementById('officePhotoInput').click()" class="mt-2 text-xs text-secondary font-bold flex items-center justify-center gap-1 w-full hover:underline">
+  <span class="material-symbols-outlined text-sm">upload</span>
+  Upload Image
+</button>
+</div>
+<div class="flex-1 space-y-4">
+<div class="space-y-4">
+<div class="space-y-1">
+<label class="text-label-sm text-on-surface-variant font-semibold">OFFICE NAME</label>
+<input name="office_name" class="w-full border border-outline-variant focus:border-secondary rounded px-3 py-2 text-body-md text-on-surface" type="text" value="{{ profile.company_name|default:'Regional PESO Headquarters - Central' }}">
+</div>
+<div class="space-y-1">
+<label class="text-label-sm text-on-surface-variant font-semibold">PRIMARY ADDRESS</label>
+<input name="address" class="w-full border border-outline-variant focus:border-secondary rounded px-3 py-2 text-body-md text-on-surface" type="text" value="{{ profile.address|default:'122 Government Plaza, Suite 400, Metro Manila' }}">
+</div>
+</div>
+<div class="pt-2">
+<span class="inline-flex items-center gap-1 text-tertiary-container bg-tertiary-fixed text-[10px] px-2 py-0.5 rounded uppercase font-bold tracking-wider">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                Verified Public Entity
+                            </span>
+</div>
+</div>
+</div>
+
+<!-- Global Parameters Configuration (Full Width Card) -->
+<div class="bento-card col-span-12 p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md">Service Parameters</h3>
+<span class="material-symbols-outlined text-on-surface-variant">tune</span>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+<div class="max-w-md">
+<p class="font-semibold text-body-md">AI-Driven Job Matching</p>
+<p class="text-body-sm text-on-surface-variant">Enable automated skill-matching algorithms for all registered applicants.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" name="ai_job_matching" id="aiJobMatchingInput" {% if system_settings.ai_job_matching %}checked{% endif %} class="sr-only peer">
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg border border-outline-variant/30">
+<div class="max-w-md">
+<p class="font-semibold text-body-md">Strict Skill Verification</p>
+<p class="text-body-sm text-on-surface-variant">Require documented proof or certification for specialized vocational skills.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" name="strict_skill_verification" id="strictSkillVerificationInput" {% if system_settings.strict_skill_verification %}checked{% endif %} class="sr-only peer">
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-label-sm text-on-surface-variant uppercase">Matching Sensitivity</label>
+<select name="matching_sensitivity" id="matchingSensitivityInput" class="w-full bg-surface-bright border-outline-variant rounded px-3 py-2 text-body-sm font-medium">
+<option value="strict" {% if system_settings.matching_sensitivity == 'strict' %}selected{% endif %}>Strict (90%+ Match)</option>
+<option value="balanced" {% if system_settings.matching_sensitivity == 'balanced' %}selected{% endif %}>Balanced (75%+ Match)</option>
+<option value="lenient" {% if system_settings.matching_sensitivity == 'lenient' %}selected{% endif %}>Lenient (50%+ Match)</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-sm text-on-surface-variant uppercase">Default Refresh Rate</label>
+<select name="refresh_rate" id="refreshRateInput" class="w-full bg-surface-bright border-outline-variant rounded px-3 py-2 text-body-sm font-medium">
+<option value="realtime" {% if system_settings.refresh_rate == 'realtime' %}selected{% endif %}>Real-time</option>
+<option value="daily" {% if system_settings.refresh_rate == 'daily' %}selected{% endif %}>Daily Batch</option>
+<option value="weekly" {% if system_settings.refresh_rate == 'weekly' %}selected{% endif %}>Weekly Sync</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- System-wide Audit Log Table (Full Width) -->
+<div class="bento-card col-span-12 overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<div>
+  <h3 class="font-headline-md text-headline-md">Admin Configuration Audit</h3>
+  <p class="text-body-sm text-on-surface-variant mt-0.5">Historical parameter commits and security-logged system configuration adjustments.</p>
+</div>
+<span class="text-label-sm text-on-surface-variant flex items-center gap-1 font-semibold">
+  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block"></span> Live Audit Active
+</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-label-sm text-on-surface-variant border-b border-outline-variant">
+<th class="px-6 py-3">TIMESTAMP</th>
+<th class="px-6 py-3">ADMINISTRATOR</th>
+<th class="px-6 py-3">PARAMETER CHANGED</th>
+<th class="px-6 py-3">OLD VALUE</th>
+<th class="px-6 py-3">NEW VALUE</th>
+<th class="px-6 py-3 text-right">STATUS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+{% for log in audit_logs %}
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4 font-label-md text-body-sm">{{ log.timestamp|date:"Y-m-d H:i" }}</td>
+<td class="px-6 py-4 font-semibold text-body-sm">{{ log.admin_user.get_full_name|default:log.admin_user.username|default:"System Administrator" }}</td>
+<td class="px-6 py-4 text-body-sm font-medium">{{ log.parameter_changed }}</td>
+<td class="px-6 py-4 font-label-sm opacity-60">{{ log.old_value }}</td>
+<td class="px-6 py-4 font-label-sm text-secondary font-semibold">{{ log.new_value }}</td>
+<td class="px-6 py-4 text-right">
+<span class="{% if log.status == 'COMMITTED' %}bg-tertiary-fixed text-on-tertiary-fixed{% else %}bg-surface-container-highest text-on-surface-variant{% endif %} px-2 py-0.5 rounded-full text-[10px] font-bold">{{ log.status }}</span>
+</td>
+</tr>
+{% empty %}
+<tr>
+  <td colspan="6" class="px-6 py-8 text-center text-on-surface-variant text-body-sm">
+    No parameter modifications logged yet. Changes will be audited here upon saving.
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+</main>
+<!-- Footer for Mobile/Quick Info -->
+<footer class="md:ml-64 px-margin-desktop py-6 border-t border-outline-variant bg-surface flex flex-col md:flex-row justify-between items-center text-label-sm text-on-surface-variant gap-4">
+<div>© 2023 SKILLUP • Enterprise Talent Infrastructure</div>
+<div class="flex gap-6">
+<a class="hover:text-secondary" href="#">Security Policy</a>
+<a class="hover:text-secondary" href="#">API Docs</a>
+<a class="hover:text-secondary" href="#">System Status</a>
+</div>
+</footer>
+
+<script>
+    function previewOfficePhoto(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('officePhotoPreview');
+                if (preview) {
+                    preview.src = e.target.result;
+                }
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // Hover effects for data table rows
+    document.querySelectorAll('tbody tr').forEach(row => {
+        row.addEventListener('mouseenter', () => {
+            row.classList.add('scale-[1.002]');
+        });
+        row.addEventListener('mouseleave', () => {
+            row.classList.remove('scale-[1.002]');
+        });
+    });
+</script>
+</body></html>

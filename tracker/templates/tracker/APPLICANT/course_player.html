@@ -1,0 +1,1490 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>{{ active_lesson.title|default:program.title }} | SKILLUP Learning Platform</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary": "#0051d5",
+            "secondary-dark": "#003ea8",
+            "on-secondary": "#ffffff",
+            "surface": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f8fafc",
+            "surface-container": "#f1f5f9",
+            "surface-container-high": "#e2e8f0",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#45464d",
+            "outline": "#76777d",
+            "outline-variant": "#e2e8f0",
+            "background": "#f8f9ff",
+            "error": "#ba1a1a",
+            "primary": "#000000"
+          },
+          fontFamily: {
+            "sans": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(203, 213, 225, 0.8); border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.9); }
+    .tonal-card {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface font-sans h-screen flex flex-col overflow-hidden selection:bg-secondary selection:text-white">
+
+  {% if is_admin_preview %}
+  <!-- Admin Preview Mode Banner -->
+  <div class="bg-secondary text-white py-2 px-6 flex items-center justify-between text-xs font-bold shrink-0 shadow-sm z-50">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-base">visibility</span>
+      <span>ADMIN LMS PREVIEW MODE: You are interactively previewing "{{ program.title }}" as an applicant.</span>
+    </div>
+    <a href="{% url 'training_curriculum_builder_admin' program.id %}" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded-lg transition-colors flex items-center gap-1 font-bold">
+      <span class="material-symbols-outlined text-sm">edit</span> Return to Curriculum Builder
+    </a>
+  </div>
+  {% endif %}
+
+  <!-- ================= TOP GLOBAL NAVIGATION BAR ================= -->
+  <header class="h-16 w-full bg-surface border-b border-outline-variant flex items-center justify-between px-6 md:px-12 lg:px-16 shrink-0 z-50 shadow-xs">
+    <div class="flex items-center gap-8">
+      <a href="{% if is_admin_preview %}{% url 'peso_dashboard_admin' %}{% else %}{% url 'applicant_dashboard' %}{% endif %}" class="text-2xl font-bold text-on-surface">SKILLUP</a>
+      <nav class="hidden md:flex items-center gap-6 h-16">
+        {% if is_admin_preview %}
+          <a class="text-base h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'peso_dashboard_admin' %}">Admin Dashboard</a>
+          <a class="text-base h-full flex items-center px-2 transition-colors duration-200 text-secondary font-semibold border-b-2 border-secondary" href="{% url 'training_monitoring_admin' %}">Training Programs</a>
+          <a class="text-base h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_monitoring_admin' %}">Talent Bench</a>
+        {% else %}
+          <a class="text-base h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_dashboard' %}">Dashboard</a>
+          <a class="text-base h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_applications_list' %}">My Applications</a>
+          <a class="text-base h-full flex items-center px-2 transition-colors duration-200 text-secondary font-semibold border-b-2 border-secondary" href="{% url 'training_recommendations' %}">My Learning</a>
+          <a class="text-base h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'job_search' %}">Job Board</a>
+          <a class="text-base h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_profile' %}">Profile</a>
+        {% endif %}
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
+        {% if is_admin_preview %}
+          <a href="{% url 'peso_profile_admin' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant" title="Admin Settings">
+            <span class="material-symbols-outlined">settings</span>
+          </a>
+        {% else %}
+          <a href="{% url 'applicant_notifications' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant relative block" title="Notifications">
+            <span class="material-symbols-outlined">notifications</span>
+            {% if unread_notifications_count %}<span class="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] font-black flex items-center justify-center">{{ unread_notifications_count }}</span>{% endif %}
+          </a>
+          <a href="{% url 'applicant_settings' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant" title="Settings">
+            <span class="material-symbols-outlined">settings</span>
+          </a>
+        {% endif %}
+        <a href="{% url 'logout' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant" title="Logout">
+          <span class="material-symbols-outlined">logout</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= COURSE SUB-HEADER / CONTROL BAR ================= -->
+  <div class="h-14 bg-surface-container-low border-b border-outline-variant flex items-center justify-between px-4 md:px-8 shrink-0 z-40">
+    <div class="flex items-center gap-4 min-w-0">
+      {% if is_admin_preview %}
+        <a href="{% url 'training_curriculum_builder_admin' program.id %}" class="flex items-center gap-1.5 text-secondary hover:text-blue-800 text-xs font-bold px-2.5 py-1.5 rounded-lg hover:bg-surface-container transition-all shrink-0">
+          <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+          <span class="hidden sm:inline font-bold">Back to Curriculum Builder</span>
+        </a>
+      {% else %}
+        <a href="{% url 'training_recommendations' %}" class="flex items-center gap-1.5 text-on-surface-variant hover:text-secondary text-xs font-semibold px-2.5 py-1.5 rounded-lg hover:bg-surface-container transition-all shrink-0">
+          <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+          <span class="hidden sm:inline font-bold">Back to Courses</span>
+        </a>
+      {% endif %}
+      <div class="h-5 w-px bg-outline-variant shrink-0"></div>
+      <div class="min-w-0 flex items-center gap-2">
+        <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider bg-blue-50 text-secondary border border-blue-200 shrink-0">
+          {{ program.provider }} Certified
+        </span>
+        <h2 class="text-xs md:text-sm font-bold text-on-surface truncate max-w-[220px] md:max-w-md lg:max-w-xl">
+          {{ program.title }}
+        </h2>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 md:gap-4 shrink-0">
+      <!-- Live Training Seat-Time HUD Tracker -->
+      <div class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border transition-all duration-300 shadow-2xs {% if is_time_requirement_met %}bg-emerald-50 border-emerald-200{% else %}bg-blue-50 border-blue-200{% endif %}"
+           id="seatTimeHud">
+        <div class="w-6 h-6 rounded-lg flex items-center justify-center shrink-0 {% if is_time_requirement_met %}bg-emerald-600 text-white{% else %}bg-blue-600 text-white{% endif %}" id="seatTimeIconBox">
+          <span class="material-symbols-outlined text-[15px]" id="seatTimeIcon">
+            {% if is_time_requirement_met %}check_circle{% else %}schedule{% endif %}
+          </span>
+        </div>
+        <div class="leading-tight">
+          <div class="flex items-center gap-1 text-[11px] font-extrabold text-on-surface">
+            <span id="seatTimeSpentDisplay">{{ formatted_time_spent }}</span>
+            <span class="text-on-surface-variant font-normal">/</span>
+            <span class="text-on-surface-variant" title="Required Time: {{ formatted_required_time }}">{{ formatted_required_time }}</span>
+          </div>
+          <p class="text-[9px] font-bold tracking-tight {% if is_time_requirement_met %}text-emerald-700{% else %}text-blue-700{% endif %}" id="seatTimeStatusText">
+            {% if is_time_requirement_met %}
+              ✓ Seat-Time Met
+            {% else %}
+              <span id="seatTimeRemainingDisplay">{{ formatted_time_remaining }}</span> left
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Course Overall Progress Indicator -->
+      <div class="hidden sm:flex items-center gap-3">
+        <div class="text-right">
+          <p class="text-[11px] font-bold text-on-surface">
+            <span id="topCompletedCount">{{ completed_count }}</span>/{{ total_lessons }} Completed
+          </p>
+          <p class="text-[10px] text-on-surface-variant font-medium" id="topProgressPercentText">{{ progress_pct }}% of Course</p>
+        </div>
+        <div class="w-24 bg-surface-container h-2.5 rounded-full overflow-hidden border border-outline-variant">
+          <div id="topProgressBar" class="h-full bg-secondary transition-all duration-500" style="--bar-width: {{ progress_pct }}%; width: var(--bar-width);"></div>
+        </div>
+      </div>
+
+      <!-- Certificate Download Trigger -->
+      <div id="certHeaderBtnContainer">
+        {% if can_claim_certificate %}
+          <a href="{% url 'applicant_download_certificate' enrollment.id %}" target="_blank"
+             class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm active:scale-95">
+            <span class="material-symbols-outlined text-[16px]">verified</span>
+            <span>View Certificate</span>
+          </a>
+        {% else %}
+          <button type="button" onclick="showLockedCertAlert()"
+                  id="certLockedBtn"
+                  class="flex items-center gap-1.5 px-3 py-1.5 bg-surface hover:bg-surface-container text-on-surface-variant rounded-lg text-xs font-semibold transition-all border border-outline-variant cursor-pointer">
+            <span class="material-symbols-outlined text-[16px] text-amber-600">lock</span>
+            <span class="hidden md:inline">
+              {% if not is_time_requirement_met %}
+                Certificate (<span id="certBtnRemainingText">{{ formatted_time_remaining }} left</span>)
+              {% else %}
+                Certificate (Exam Locked)
+              {% endif %}
+            </span>
+            <span class="md:hidden">Locked</span>
+          </button>
+        {% endif %}
+      </div>
+
+      <!-- Sidebar Toggle for Mobile -->
+      <button type="button" onclick="toggleCurriculumSidebar()" class="lg:hidden p-1.5 rounded-lg bg-surface hover:bg-surface-container text-on-surface-variant border border-outline-variant">
+        <span class="material-symbols-outlined text-[20px]">view_sidebar</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MAIN LMS WORKSPACE (Stage + Drawer) ================= -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- ================= LEFT: MAIN LESSON & ACTIVITY STAGE ================= -->
+    <main class="flex-1 flex flex-col overflow-y-auto custom-scrollbar bg-background">
+      
+      <!-- Stage Viewport Container -->
+      <div class="w-full bg-surface-container-lowest border-b border-outline-variant flex flex-col items-center justify-center relative p-4 md:p-8">
+        
+        {% if active_lesson.type == 'video' %}
+          <!-- Real Active Video Player (HTML5 / Embed / Aligned Tutorial) in Modern Slate Container -->
+          <div class="w-full max-w-4xl space-y-3">
+            <div class="w-full aspect-video bg-black rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden flex flex-col justify-between group">
+              <!-- Video Top Overlay Info -->
+              <div class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-black/80 via-black/30 to-transparent pointer-events-none transition-opacity duration-300 group-hover:opacity-100 opacity-90">
+                <span class="px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-bold text-blue-400 border border-blue-500/30 flex items-center gap-1.5 shadow-sm">
+                  <span class="w-2 h-2 rounded-full bg-blue-500 animate-ping"></span>
+                  Video Tutorial &bull; {{ active_lesson.content.video_duration_str|default:"HD Video" }}
+                </span>
+                <span class="px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] font-semibold text-slate-300 truncate max-w-xs md:max-w-md shadow-sm">
+                  {{ active_lesson.content.video_placeholder_title|default:active_lesson.title }}
+                </span>
+              </div>
+
+              <!-- Media Mount Container -->
+              <div id="realVideoMount" class="w-full h-full flex items-center justify-center bg-black">
+                <!-- Dynamically loaded by JavaScript below -->
+              </div>
+            </div>
+
+            <!-- Video Tutorial Metadata & YouTube Action Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                <span class="font-bold text-on-surface">Topic-Aligned Tutorial:</span>
+                <span class="text-on-surface-variant font-medium truncate max-w-xs md:max-w-sm">{{ active_lesson.content.video_placeholder_title|default:active_lesson.title }}</span>
+                {% if active_lesson.content.channel %}
+                  <span class="hidden sm:inline-block px-2 py-0.5 rounded bg-surface-container text-on-surface-variant text-[10px] font-bold border border-outline-variant/40">
+                    {{ active_lesson.content.channel }}
+                  </span>
+                {% endif %}
+              </div>
+              <div class="flex items-center gap-2">
+                <a id="btnWatchOnYt" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold shadow-2xs transition-colors">
+                  <span class="material-symbols-outlined text-sm">smart_display</span>
+                  <span>Watch on YouTube</span>
+                </a>
+                <a id="btnSearchMoreYt" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface rounded-lg text-xs font-bold transition-colors">
+                  <span class="material-symbols-outlined text-sm">search</span>
+                  <span class="hidden sm:inline">Search More</span> Tutorials
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              const mount = document.getElementById('realVideoMount');
+              let rawUrl = "{{ active_lesson.content.video_url|escapejs }}";
+              if (!rawUrl) {
+                rawUrl = "{{ active_lesson.content.embed_url|escapejs }}";
+              }
+              const lessonTitle = "{{ active_lesson.title|escapejs }}";
+              const courseTitle = "{{ curriculum.title|escapejs }}";
+              const searchQuery = `${courseTitle} ${lessonTitle} tutorial`.trim();
+              const encodedQuery = encodeURIComponent(searchQuery);
+
+              // Update action buttons
+              const btnWatch = document.getElementById('btnWatchOnYt');
+              const btnSearch = document.getElementById('btnSearchMoreYt');
+              if (btnSearch) btnSearch.href = `https://www.youtube.com/results?search_query=${encodedQuery}`;
+
+              if (btnWatch) {
+                if (rawUrl && (rawUrl.includes('youtube.com/watch') || rawUrl.includes('youtu.be/'))) {
+                  btnWatch.href = rawUrl;
+                } else {
+                  btnWatch.href = `https://www.youtube.com/results?search_query=${encodedQuery}`;
+                }
+              }
+
+              if (!mount) return;
+
+              let ytMatch = rawUrl ? rawUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i) : null;
+              const vimeoMatch = rawUrl ? rawUrl.match(/vimeo\.com\/(?:video\/)?([0-9]+)/i) : null;
+
+              // If no valid YouTube ID is detected (e.g. search query or empty), select a verified educational default
+              if (!ytMatch && !vimeoMatch) {
+                const fullLower = `${courseTitle} ${lessonTitle}`.toLowerCase();
+                const lessonLower = lessonTitle.toLowerCase();
+                const isMod2 = lessonLower.includes('2.1') || lessonLower.includes('workflow') || lessonLower.includes('operation') || lessonLower.includes('tooling');
+                const isMod4 = lessonLower.includes('4.1') || lessonLower.includes('troubleshoot') || lessonLower.includes('root cause') || lessonLower.includes('diagnostic');
+
+                let fallbackId = "BSCC4Bnkbfo"; // Default: Project Management Full Course
+                if (fullLower.includes("machine learning") || fullLower.includes("prompt") || fullLower.includes("artificial intelligence") || fullLower.includes(" ai ")) {
+                  fallbackId = isMod4 ? "aircAruvnKk" : (isMod2 ? "jC4v5AS4RIM" : "Gv9_4yMHFhI");
+                } else if (fullLower.includes("auto") || fullLower.includes("engine") || fullLower.includes("mechanic")) {
+                  fallbackId = isMod4 ? "lpenIb9Yfn4" : (isMod2 ? "6RQ9UabOIPg" : "ZQvfHyfgBtA");
+                } else if (fullLower.includes("weld")) {
+                  fallbackId = isMod4 ? "3UEn4FjeOx4" : (isMod2 ? "4MKuUICV6-c" : "Dybrlx-BTXk");
+                } else if (fullLower.includes("electric")) {
+                  fallbackId = isMod4 ? "LPuCicN4ahc" : (isMod2 ? "y4cSaZs7tU8" : "mc979OhitAg");
+                } else if (fullLower.includes("aircon") || fullLower.includes("hvac") || fullLower.includes("refrigerat")) {
+                  fallbackId = isMod4 ? "Yxt72aDjFgY" : (isMod2 ? "Uv3GfEQhtPE" : "SfuSzBja8QA");
+                } else if (fullLower.includes("solar")) {
+                  fallbackId = "Yxt72aDjFgY";
+                } else if (fullLower.includes("plumb")) {
+                  fallbackId = isMod2 ? "JyVbjDsric4" : "dD-Qem26i6s";
+                } else if (fullLower.includes("python") || fullLower.includes("code") || fullLower.includes("software")) {
+                  fallbackId = isMod4 ? "rfscVS0vtbw" : (isMod2 ? "r-uOLxNrNk8" : "_uQrJ0TkZlc");
+                } else if (fullLower.includes("react") || fullLower.includes("frontend") || fullLower.includes("web")) {
+                  fallbackId = isMod4 ? "V74l_zS1x8E" : (isMod2 ? "bMknfKXIFA8" : "W6NZfCO5SIk");
+                } else if (fullLower.includes("cloud") || fullLower.includes("aws") || fullLower.includes("linux")) {
+                  fallbackId = isMod4 ? "qiQR5rTSshw" : (isMod2 ? "ZtqBQ68cfJc" : "SOTamWNgDKc");
+                } else if (fullLower.includes("data") || fullLower.includes("analytics") || fullLower.includes("sql")) {
+                  fallbackId = isMod4 ? "_uQrJ0TkZlc" : (isMod2 ? "r-uOLxNrNk8" : "HXV3zeQKqGY");
+                } else if (fullLower.includes("account") || fullLower.includes("finance")) {
+                  fallbackId = "yYX4bvQSqbo";
+                } else if (fullLower.includes("cpr") || fullLower.includes("health") || fullLower.includes("care")) {
+                  fallbackId = isMod4 ? "lSp4qnTAuQQ" : (isMod2 ? "-NodDRTsV88" : "BVCmz9KnwWk");
+                } else {
+                  fallbackId = isMod4 ? "BVCmz9KnwWk" : (isMod2 ? "Wg7575ZVxxg" : "BSCC4Bnkbfo");
+                }
+                ytMatch = [null, fallbackId];
+              }
+
+              const currentOrigin = window.location.origin;
+
+              if (ytMatch && ytMatch[1]) {
+                mount.innerHTML = `<iframe class="w-full h-full border-0 rounded-2xl" src="https://www.youtube.com/embed/${ytMatch[1]}?enablejsapi=1&origin=${encodeURIComponent(currentOrigin)}" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+              } else if (vimeoMatch && vimeoMatch[1]) {
+                mount.innerHTML = `<iframe class="w-full h-full border-0 rounded-2xl" src="https://player.vimeo.com/video/${vimeoMatch[1]}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+              } else {
+                mount.innerHTML = `<video controls playsinline class="w-full h-full object-contain bg-black rounded-2xl" src="${rawUrl}">Your browser does not support HTML5 video.</video>`;
+              }
+            });
+          </script>
+        {% elif active_lesson.type == 'reading' %}
+          <!-- Structured Architecture / Concept Reading Canvas (Light Tonal Card) -->
+          <div class="w-full max-w-4xl tonal-card rounded-2xl p-6 md:p-8 shadow-sm">
+            <div class="flex items-center gap-2 mb-4 text-secondary font-bold text-xs">
+              <span class="material-symbols-outlined text-[18px]">menu_book</span>
+              <span>TECHNICAL READING & OPERATIONAL ARCHITECTURE</span>
+            </div>
+
+            {% if active_lesson.content.image_url %}
+              <!-- Lesson Illustration / Infographic -->
+              <div class="mb-6 rounded-2xl overflow-hidden border border-outline-variant bg-surface-container-low shadow-xs">
+                <div class="relative group cursor-pointer" onclick="openPhotoModal('{{ active_lesson.content.image_url|escapejs }}', '{{ active_lesson.content.image_caption|default:active_lesson.title|escapejs }}')">
+                  <img src="{{ active_lesson.content.image_url }}" alt="{{ active_lesson.content.image_caption|default:active_lesson.title }}" class="w-full max-h-[460px] object-cover hover:scale-[1.01] transition-transform duration-300">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs backdrop-blur-xs">
+                    <span class="material-symbols-outlined text-xl">zoom_in</span> Click to Enlarge Photo
+                  </div>
+                </div>
+                {% if active_lesson.content.image_caption %}
+                  <div class="p-3 bg-surface-container-lowest border-t border-outline-variant/60 text-center text-xs text-on-surface-variant font-medium flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm text-secondary">image</span>
+                    <span>{{ active_lesson.content.image_caption }}</span>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <h2 class="text-xl md:text-2xl font-bold text-on-surface mb-3">{{ active_lesson.content.heading|default:active_lesson.title }}</h2>
+            
+            {% if active_lesson.content.overview and active_lesson.content.overview != active_lesson.content.reading_content %}
+              <div class="text-on-surface-variant text-sm leading-relaxed mb-6 p-4 rounded-xl bg-surface-container-low/50 border border-outline-variant/60 flex items-start gap-3">
+                <span class="material-symbols-outlined text-secondary text-lg shrink-0 mt-0.5">info</span>
+                <p class="flex-1">{{ active_lesson.content.overview }}</p>
+              </div>
+            {% elif active_lesson.description and active_lesson.description != active_lesson.content.reading_content %}
+              <div class="text-on-surface-variant text-sm leading-relaxed mb-6 p-4 rounded-xl bg-surface-container-low/50 border border-outline-variant/60 flex items-start gap-3">
+                <span class="material-symbols-outlined text-secondary text-lg shrink-0 mt-0.5">info</span>
+                <p class="flex-1">{{ active_lesson.description }}</p>
+              </div>
+            {% endif %}
+
+            {% if active_lesson.content.reading_content_html %}
+              <div class="mb-6 p-6 rounded-xl bg-surface-container-lowest border border-outline-variant/80 shadow-2xs">
+                <p class="text-xs font-bold uppercase tracking-wider text-secondary mb-3 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">article</span>
+                  <span>Detailed Lesson Guide & Procedural Steps</span>
+                </p>
+                <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 prose max-w-none">
+                  {{ active_lesson.content.reading_content_html|safe }}
+                </div>
+              </div>
+            {% elif active_lesson.content.reading_content %}
+              <div class="mb-6 p-6 rounded-xl bg-surface-container-lowest border border-outline-variant/80 shadow-2xs">
+                <p class="text-xs font-bold uppercase tracking-wider text-secondary mb-3 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">article</span>
+                  <span>Detailed Lesson Guide & Procedural Steps</span>
+                </p>
+                <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 prose max-w-none">
+                  {{ active_lesson.content.reading_content|linebreaks }}
+                </div>
+              </div>
+            {% endif %}
+            
+            {% if active_lesson.content.key_points %}
+            <div class="p-5 bg-surface-container-low rounded-xl border border-outline-variant mb-6">
+              <p class="text-xs font-bold uppercase tracking-wider text-secondary mb-3 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm text-secondary">verified</span>
+                <span>Key Technical Competencies & Takeaways</span>
+              </p>
+              <ul class="space-y-2.5">
+                {% for pt in active_lesson.content.key_points %}
+                  <li class="flex items-start gap-2.5 text-xs text-on-surface">
+                    <span class="material-symbols-outlined text-emerald-600 text-[16px] shrink-0 mt-0.5">check_circle</span>
+                    <span class="leading-relaxed">{{ pt }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+
+        {% elif active_lesson.type == 'activity' %}
+          <!-- Interactive Sandbox & Diagnostic Checkpoint (Light Theme) -->
+          <div class="w-full max-w-4xl tonal-card rounded-2xl p-6 md:p-8 shadow-sm">
+            <div class="flex items-center gap-2 mb-3 text-amber-600 font-bold text-xs">
+              <span class="material-symbols-outlined text-[18px]">tune</span>
+              <span>INTERACTIVE CHECKPOINT & DIAGNOSTIC SANDBOX</span>
+            </div>
+            <h2 class="text-lg md:text-xl font-bold text-on-surface mb-2">{{ active_lesson.content.heading }}</h2>
+            <p class="text-on-surface-variant text-xs mb-6">{{ active_lesson.content.overview }}</p>
+
+            <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant space-y-4">
+              <p class="text-sm font-bold text-on-surface">{{ active_lesson.content.quiz_question }}</p>
+              
+              <div class="space-y-2.5" id="checkpointOptionsList">
+                {% for opt in active_lesson.content.options %}
+                  <label class="checkpoint-option flex items-center gap-3 p-3.5 rounded-xl border border-outline-variant hover:border-secondary bg-surface cursor-pointer transition-all text-xs text-on-surface shadow-xs"
+                         data-idx="{{ forloop.counter0 }}">
+                    <input type="radio" name="checkpoint_ans" value="{{ forloop.counter0 }}" class="w-4 h-4 text-secondary focus:ring-secondary border-outline-variant">
+                    <span class="flex-1 font-medium">{{ opt }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+
+              <div id="checkpointFeedback" class="hidden p-4 rounded-xl text-xs mt-4"></div>
+
+              <div class="pt-2 flex justify-end">
+                <button type="button" 
+                        data-correct-idx="{{ active_lesson.content.correct_option_index|default:0 }}"
+                        data-explanation="{{ active_lesson.content.explanation|default:'' }}"
+                        onclick="checkDiagnosticAnswer(parseInt(this.dataset.correctIdx, 10), this.dataset.explanation)"
+                        class="px-5 py-2.5 bg-secondary hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition-all shadow-sm">
+                  Verify Answer
+                </button>
+              </div>
+            </div>
+          </div>
+
+        {% elif active_lesson.type == 'assessment' %}
+          <!-- Module 5 Comprehensive Multi-Domain Capstone Exam (Light Theme) -->
+          <div class="w-full max-w-4xl tonal-card rounded-2xl p-6 md:p-8 shadow-sm">
+            <div class="flex items-center justify-between gap-4 mb-4 pb-4 border-b border-outline-variant">
+              <div class="flex items-center gap-2 text-emerald-700 font-bold text-xs">
+                <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+                <span>CAPSTONE CERTIFICATION EXAMINATION</span>
+              </div>
+              <span class="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-bold">
+                Passing Score: 70%
+              </span>
+            </div>
+
+            <h2 class="text-xl md:text-2xl font-bold text-on-surface mb-2">{{ active_lesson.content.heading }}</h2>
+            <p class="text-on-surface-variant text-xs md:text-sm leading-relaxed mb-6">{{ active_lesson.content.overview }}</p>
+
+            <!-- Seat-Time Requirement Status Banner -->
+            <div class="mb-6 p-4 rounded-2xl {% if is_time_requirement_met %}bg-emerald-50 border border-emerald-300 text-emerald-950{% else %}bg-amber-50 border border-amber-300 text-amber-950{% endif %} flex items-start gap-3.5 shadow-xs" id="examTimeRequirementBanner">
+              <div class="w-9 h-9 rounded-xl {% if is_time_requirement_met %}bg-emerald-600{% else %}bg-amber-500{% endif %} text-white flex items-center justify-center shrink-0 shadow-xs" id="examBannerIconBox">
+                <span class="material-symbols-outlined text-xl" id="examBannerIcon">{% if is_time_requirement_met %}check_circle{% else %}hourglass_top{% endif %}</span>
+              </div>
+              <div class="flex-1 text-xs">
+                <div class="flex items-center justify-between gap-2">
+                  <h4 class="font-bold text-sm {% if is_time_requirement_met %}text-emerald-950{% else %}text-amber-950{% endif %}" id="examBannerTitle">
+                    {% if is_time_requirement_met %}Mandatory Training Time Satisfied{% else %}Training Time Requirement in Progress{% endif %}
+                  </h4>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider {% if is_time_requirement_met %}bg-emerald-200/80 text-emerald-900{% else %}bg-amber-200/80 text-amber-900{% endif %}" id="examBannerBadge">
+                    {% if is_time_requirement_met %}Verified Ready{% else %}Time Pending{% endif %}
+                  </span>
+                </div>
+                <p class="leading-relaxed mt-1 {% if is_time_requirement_met %}text-emerald-800{% else %}text-amber-800{% endif %}" id="examBannerDesc">
+                  {% if is_time_requirement_met %}
+                    You have satisfied the required <strong>{{ formatted_required_time }}</strong> of active training (Total Recorded: <strong id="examBannerSpentText">{{ formatted_time_spent }}</strong>). Pass the assessment with 70%+ to claim your verified certificate!
+                  {% else %}
+                    You are required to complete at least <strong>{{ formatted_required_time }}</strong> of active training before your certificate is unlocked. You currently have <strong id="examBannerSpentText">{{ formatted_time_spent }}</strong> recorded (<strong class="text-amber-900" id="examBannerRemainingText">{{ formatted_time_remaining }}</strong> remaining).
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+
+            <!-- Domain Pill Breakdown -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+              {% for dom in active_lesson.content.domains %}
+                <div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant text-center">
+                  <span class="text-[10px] font-bold text-on-surface-variant block truncate">{{ dom }}</span>
+                  <span class="text-[11px] font-bold text-secondary">2 Questions</span>
+                </div>
+              {% endfor %}
+            </div>
+
+            <!-- Exam Questions List Form -->
+            <form id="capstoneExamForm" class="space-y-6">
+              {% for q in active_lesson.content.questions %}
+                <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-secondary bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">
+                      {{ q.domain }}
+                    </span>
+                    <span class="text-xs font-semibold text-outline">Question {{ forloop.counter }} of {{ active_lesson.content.questions|length }}</span>
+                  </div>
+                  <p class="text-sm font-bold text-on-surface leading-snug">{{ q.question }}</p>
+
+                  <div class="space-y-2 pt-1">
+                    {% for opt in q.options %}
+                      <label class="flex items-center gap-3 p-3.5 rounded-xl border border-outline-variant hover:border-secondary bg-surface cursor-pointer transition-all text-xs text-on-surface shadow-xs">
+                        <input type="radio" name="{{ q.id }}" value="{{ forloop.counter0 }}" required class="w-4 h-4 text-secondary focus:ring-secondary border-outline-variant">
+                        <span class="font-medium">{{ opt }}</span>
+                      </label>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+
+              <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-outline-variant">
+                <p class="text-xs text-on-surface-variant">Ensure all 8 questions are answered across all domains before submitting.</p>
+                <button type="button" onclick="submitCapstoneAssessment()" id="submitExamBtn"
+                        class="w-full sm:w-auto px-8 py-3 bg-secondary hover:bg-blue-700 text-white font-bold text-sm rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer active:scale-95">
+                  <span class="material-symbols-outlined text-[20px]">task_alt</span>
+                  Submit Exam for Certification
+                </button>
+              </div>
+            </form>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Action Navigation Toolbar Below Stage -->
+      <div class="px-6 py-4 bg-surface border-b border-outline-variant flex flex-wrap items-center justify-between gap-4 shrink-0 shadow-xs">
+        <div>
+          <h3 class="text-base font-bold text-on-surface flex items-center gap-2">
+            {{ active_lesson.title }}
+            {% if active_lesson.is_completed %}
+              <span class="material-symbols-outlined text-emerald-600 text-[18px]" style="font-variation-settings:'FILL' 1;" title="Lesson Completed">check_circle</span>
+            {% endif %}
+          </h3>
+          <p class="text-xs text-on-surface-variant mt-0.5">{{ active_lesson.description }}</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          {% if prev_lesson %}
+            <a href="?lesson={{ prev_lesson.id }}" class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold transition-all flex items-center gap-1 border border-outline-variant">
+              <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              Previous
+            </a>
+          {% endif %}
+
+          {% if active_lesson.type != 'assessment' %}
+            <button type="button" id="completeLessonBtn" onclick="markLessonComplete('{{ active_lesson.id }}')"
+                    class="px-5 py-2 rounded-xl {% if active_lesson.is_completed %}bg-emerald-50 text-emerald-800 border border-emerald-300{% else %}bg-secondary hover:bg-blue-700 text-white{% endif %} text-xs font-bold transition-all flex items-center gap-2 shadow-sm">
+              <span class="material-symbols-outlined text-[16px]">{% if active_lesson.is_completed %}check_circle{% else %}done_all{% endif %}</span>
+              <span id="completeBtnText">{% if active_lesson.is_completed %}Completed{% else %}Mark Complete & Next{% endif %}</span>
+            </button>
+          {% endif %}
+
+          {% if next_lesson %}
+            <a href="?lesson={{ next_lesson.id }}" class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold transition-all flex items-center gap-1 border border-outline-variant">
+              Next
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Tabbed Resources & Notes (Udemy / Cisco Benchmark) -->
+      <div class="p-6 md:p-8 max-w-5xl space-y-6">
+        <!-- Tab Navigation Header -->
+        <div class="flex items-center gap-6 border-b border-outline-variant pb-px">
+          <button type="button" id="tabBtnOverview" onclick="switchCourseTab('overview')"
+                  class="course-tab-btn text-sm font-bold text-secondary border-b-2 border-secondary pb-3 px-2 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[18px]">description</span>
+            Overview & Notes
+          </button>
+          <button type="button" id="tabBtnGuidelines" onclick="switchCourseTab('guidelines')"
+                  class="course-tab-btn text-sm font-semibold text-on-surface-variant hover:text-on-surface border-b-2 border-transparent pb-3 px-2 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[18px]">rule</span>
+            Course Guidelines
+          </button>
+          <button type="button" id="tabBtnAccreditation" onclick="switchCourseTab('accreditation')"
+                  class="course-tab-btn text-sm font-semibold text-on-surface-variant hover:text-on-surface border-b-2 border-transparent pb-3 px-2 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[18px]">verified</span>
+            Accreditation Info
+          </button>
+        </div>
+
+        <!-- Tab 1: Overview & Notes Panel -->
+        <div id="tabPanelOverview" class="course-tab-panel space-y-6">
+          <div class="tonal-card rounded-2xl p-6 shadow-sm">
+            <div class="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-outline-variant">
+              <div>
+                <span class="text-[10px] font-extrabold uppercase tracking-wider text-secondary">Lesson Curriculum Blueprint</span>
+                <h4 class="text-base font-bold text-on-surface">{{ active_lesson.title }}</h4>
+              </div>
+              <span class="text-xs font-semibold px-2.5 py-1 bg-surface-container rounded-md text-on-surface-variant">
+                {{ active_lesson.duration }} &bull; {{ active_lesson.type|capfirst }}
+              </span>
+            </div>
+
+            {% if active_lesson.content.image_url and active_lesson.type != 'reading' %}
+              <!-- Lesson Reference Visual / Diagram -->
+              <div class="mb-5 rounded-2xl overflow-hidden border border-outline-variant bg-surface-container-low shadow-xs">
+                <div class="relative group cursor-pointer" onclick="openPhotoModal('{{ active_lesson.content.image_url|escapejs }}', '{{ active_lesson.content.image_caption|default:active_lesson.title|escapejs }}')">
+                  <img src="{{ active_lesson.content.image_url }}" alt="{{ active_lesson.content.image_caption|default:active_lesson.title }}" class="w-full max-h-[380px] object-cover hover:scale-[1.01] transition-transform duration-300">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-bold text-xs backdrop-blur-xs">
+                    <span class="material-symbols-outlined text-xl">zoom_in</span> Click to Enlarge Visual
+                  </div>
+                </div>
+                {% if active_lesson.content.image_caption %}
+                  <div class="p-2.5 bg-surface-container-lowest border-t border-outline-variant/60 text-center text-xs text-on-surface-variant font-medium flex items-center justify-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm text-secondary">image</span>
+                    <span>{{ active_lesson.content.image_caption }}</span>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <h5 class="text-xs font-bold uppercase tracking-wider text-secondary mb-2">Detailed Syllabus & Operational Objectives</h5>
+            <div class="text-xs text-on-surface-variant leading-relaxed space-y-2">
+              {% if active_lesson.content.reading_content_html %}
+                {{ active_lesson.content.reading_content_html|safe }}
+              {% elif active_lesson.content.reading_content %}
+                {{ active_lesson.content.reading_content|linebreaks }}
+              {% else %}
+                {{ program.description|linebreaks }}
+              {% endif %}
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-outline-variant flex flex-wrap gap-4 text-xs text-on-surface-variant">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-secondary">school</span>
+                <span>Training Program: <strong>{{ program.title }}</strong></span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-secondary">domain</span>
+                <span>Provider: <strong>{{ program.provider }}</strong></span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-secondary">bolt</span>
+                <span>Target Skill: <strong>{{ program.skill_addressed.name }}</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Course Guidelines Panel -->
+        <div id="tabPanelGuidelines" class="course-tab-panel hidden space-y-6">
+          <div class="tonal-card rounded-2xl p-6 shadow-sm space-y-5">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-wider text-secondary">Academic & Certification Standards</span>
+              <h4 class="text-base font-bold text-on-surface mt-1">Course Guidelines & Completion Requirements</h4>
+              <p class="text-xs text-on-surface-variant mt-1">Follow these standards to ensure your progress is verified and your certificate is awarded.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+              <div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+                <div class="flex items-center gap-2 mb-2 text-secondary font-bold text-xs">
+                  <span class="material-symbols-outlined text-[18px]">checklist</span>
+                  <span>100% Lesson Attendance</span>
+                </div>
+                <p class="text-xs text-on-surface-variant leading-relaxed">Complete all interactive video lectures, technical readings, and concept checkpoints in Modules 1 through 4.</p>
+              </div>
+
+              <div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+                <div class="flex items-center gap-2 mb-2 text-emerald-700 font-bold text-xs">
+                  <span class="material-symbols-outlined text-[18px]">grade</span>
+                  <span>70% Passing Threshold</span>
+                </div>
+                <p class="text-xs text-on-surface-variant leading-relaxed">Achieve at least 70% on the multi-domain Capstone Certification Assessment in Module 5 to generate your certificate.</p>
+              </div>
+
+              <div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+                <div class="flex items-center gap-2 mb-2 text-blue-700 font-bold text-xs">
+                  <span class="material-symbols-outlined text-[18px]">timer</span>
+                  <span>Minimum Training Time: {{ formatted_required_time }}</span>
+                </div>
+                <p class="text-xs text-on-surface-variant leading-relaxed">Applicants must log at least <strong>{{ formatted_required_time }}</strong> of active learning seat-time before taking the capstone exam and unlocking the certificate.</p>
+              </div>
+
+              <div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+                <div class="flex items-center gap-2 mb-2 text-purple-700 font-bold text-xs">
+                  <span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+                  <span>Automatic Credential Sync</span>
+                </div>
+                <p class="text-xs text-on-surface-variant leading-relaxed">Once passed, your verifiable certificate code is generated and linked directly to your list of credentials for recruiters to see.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Accreditation Info Panel -->
+        <div id="tabPanelAccreditation" class="course-tab-panel hidden space-y-6">
+          <div class="tonal-card rounded-2xl p-6 shadow-sm space-y-5">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-wider text-secondary">Official Verification & Compliance</span>
+              <h4 class="text-base font-bold text-on-surface mt-1">National & Industry Accreditation</h4>
+              <p class="text-xs text-on-surface-variant mt-1">Authorized under national vocational and workforce development standards.</p>
+            </div>
+
+            <div class="p-5 bg-blue-50/60 rounded-xl border border-blue-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-secondary text-white flex items-center justify-center font-bold text-xl shadow-sm">
+                  <span class="material-symbols-outlined text-2xl">verified</span>
+                </div>
+                <div>
+                  <h5 class="text-sm font-bold text-on-surface">PESO & {{ program.provider }} Certified Course</h5>
+                  <p class="text-xs text-on-surface-variant">Official Accreditation Code: <strong class="font-mono text-secondary">SKILLUP-ACC-2026</strong></p>
+                </div>
+              </div>
+              {% if enrollment.certificate_code %}
+                <a href="{% url 'applicant_download_certificate' enrollment.id %}" target="_blank"
+                   class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm shrink-0">
+                  <span class="material-symbols-outlined text-[16px]">military_tech</span>
+                  View Credential
+                </a>
+              {% else %}
+                <span class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold border border-slate-300 shrink-0">
+                  Pending Course Completion
+                </span>
+              {% endif %}
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <h5 class="text-xs font-bold uppercase tracking-wider text-secondary">Verified Profile Benefits:</h5>
+              <ul class="space-y-2 text-xs text-on-surface-variant">
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-emerald-600 text-[16px]">check_circle</span>
+                  <span>Automated skill verification and credential endorsement on your public recruiter profile.</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-emerald-600 text-[16px]">check_circle</span>
+                  <span>Instant inclusion in the SKILLUP Public Verification Registry for prospective employers.</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-emerald-600 text-[16px]">check_circle</span>
+                  <span>High-resolution printable Certificate of Completion featuring anti-tamper QR code verification.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ================= RIGHT: ACCORDION CURRICULUM DRAWER (Cisco / Udemy) ================= -->
+    <aside id="curriculumDrawer" class="w-80 md:w-96 bg-surface border-l border-outline-variant flex flex-col shrink-0 transition-all duration-300 h-full overflow-hidden shadow-sm">
+      <!-- Drawer Header -->
+      <div class="p-4 border-b border-outline-variant flex items-center justify-between shrink-0 bg-surface">
+        <div>
+          <h2 class="text-xs font-bold text-on-surface uppercase tracking-wider">Course Content</h2>
+          <p class="text-[11px] text-on-surface-variant mt-0.5 font-medium">{{ curriculum.modules|length }} Modules &bull; {{ total_lessons }} Lessons</p>
+        </div>
+        <button type="button" onclick="toggleCurriculumSidebar()" class="lg:hidden p-1 text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Modules Accordion List -->
+      <div class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-3">
+        {% for mod in curriculum.modules %}
+          <div class="rounded-xl border border-outline-variant bg-surface-container-lowest overflow-hidden shadow-xs">
+            <!-- Module Header -->
+            <div class="p-3 bg-surface-container-low border-b border-outline-variant/60 flex items-center justify-between">
+              <div>
+                <p class="text-[10px] font-extrabold uppercase tracking-wider text-secondary">Module {{ mod.number }}</p>
+                <h3 class="text-xs font-bold text-on-surface truncate max-w-[200px]">{{ mod.title }}</h3>
+              </div>
+              <span class="text-[10px] font-bold {% if mod.is_all_completed %}text-emerald-700 bg-emerald-50 border border-emerald-200{% else %}text-on-surface-variant bg-surface-container{% endif %} px-2 py-0.5 rounded-full">
+                {{ mod.completed_lessons_count }}/{{ mod.total_lessons_count }}
+              </span>
+            </div>
+
+            <!-- Lessons in Module -->
+            <div class="divide-y divide-outline-variant/40">
+              {% for les in mod.lessons %}
+                <a href="?lesson={{ les.id }}"
+                   class="flex items-center gap-3 p-3 transition-all hover:bg-surface-container-low group {% if les.id == active_lesson.id %}bg-blue-50/80 border-l-4 border-secondary text-secondary font-bold{% else %}text-on-surface-variant{% endif %}">
+                  
+                  <!-- Status Icon -->
+                  <div class="shrink-0">
+                    {% if les.is_completed %}
+                      <span class="material-symbols-outlined text-emerald-600 text-[18px]" style="font-variation-settings:'FILL' 1;">check_circle</span>
+                    {% elif les.id == active_lesson.id %}
+                      <span class="material-symbols-outlined text-secondary text-[18px]">play_circle</span>
+                    {% else %}
+                      <span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+                    {% endif %}
+                  </div>
+
+                  <!-- Lesson Info -->
+                  <div class="min-w-0 flex-1">
+                    <p class="text-xs font-medium group-hover:text-secondary truncate {% if les.id == active_lesson.id %}text-secondary font-bold{% else %}text-on-surface{% endif %}">
+                      {{ les.title }}
+                    </p>
+                    <div class="flex items-center gap-2 mt-0.5 text-[10px] text-outline">
+                      <span class="flex items-center gap-0.5">
+                        <span class="material-symbols-outlined text-[12px]">
+                          {% if les.type == 'video' %}smart_display{% elif les.type == 'reading' %}article{% elif les.type == 'activity' %}tune{% else %}quiz{% endif %}
+                        </span>
+                        {{ les.type|capfirst }}
+                      </span>
+                      <span>&bull;</span>
+                      <span>{{ les.duration }}</span>
+                    </div>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ================= CAPSTONE ASSESSMENT RESULT MODAL ================= -->
+  <div id="examResultModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl space-y-6 text-center border border-outline-variant">
+      
+      <div id="examModalIconContainer" class="w-20 h-20 rounded-full mx-auto flex items-center justify-center text-4xl shadow-md"></div>
+      
+      <div>
+        <h3 id="examModalTitle" class="text-2xl font-black text-on-surface mb-1"></h3>
+        <p id="examModalSubtitle" class="text-xs text-on-surface-variant"></p>
+      </div>
+
+      <!-- Scorecard Box -->
+      <div class="p-5 bg-surface-container-low rounded-2xl border border-outline-variant space-y-4">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-3">
+          <span class="text-xs text-on-surface-variant font-bold uppercase">Overall Exam Score</span>
+          <span id="examScoreText" class="text-2xl font-black text-emerald-600"></span>
+        </div>
+
+        <!-- Domain Proficiency Breakdown -->
+        <div class="space-y-2 text-left" id="domainScoresList"></div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-3" id="examModalActions"></div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LMS CONTROLLER ================= -->
+  <script>
+    const enrollmentId = "{{ enrollment.id|default:'0' }}";
+    const csrfToken = "{{ csrf_token }}";
+    const isAdminPreview = "{{ is_admin_preview }}" === "True";
+    const nextLessonId = "{{ next_lesson.id|default:'' }}";
+
+    // Seat-Time Engine State
+    let totalTimeSpentSeconds = parseInt("{{ time_spent_seconds|default:0 }}", 10);
+    const requiredTimeSeconds = parseInt("{{ required_training_seconds|default:3600 }}", 10);
+    let isTimeRequirementMet = "{{ is_time_requirement_met }}" === "True";
+    let heartbeatTimer = null;
+    let liveTickerTimer = null;
+
+    function formatSeconds(sec) {
+      if (sec <= 0) return "0m 0s";
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      if (m >= 60) {
+        const h = Math.floor(m / 60);
+        const remM = m % 60;
+        return `${h}h ${remM}m ${s}s`;
+      }
+      return `${m}m ${s}s`;
+    }
+
+    function updateTimeUi() {
+      const spentEl = document.getElementById('seatTimeSpentDisplay');
+      const remEl = document.getElementById('seatTimeRemainingDisplay');
+      const statusEl = document.getElementById('seatTimeStatusText');
+      const iconEl = document.getElementById('seatTimeIcon');
+      const iconBox = document.getElementById('seatTimeIconBox');
+      const hud = document.getElementById('seatTimeHud');
+      const btnRemText = document.getElementById('certBtnRemainingText');
+
+      if (spentEl) spentEl.textContent = formatSeconds(totalTimeSpentSeconds);
+
+      // Update banner on exam if present
+      const bannerSpent = document.getElementById('examBannerSpentText');
+      const bannerRem = document.getElementById('examBannerRemainingText');
+      if (bannerSpent) bannerSpent.textContent = formatSeconds(totalTimeSpentSeconds);
+
+      const remainingSec = Math.max(0, requiredTimeSeconds - totalTimeSpentSeconds);
+
+      if (remainingSec <= 0 || isTimeRequirementMet) {
+        isTimeRequirementMet = true;
+        if (statusEl) statusEl.innerHTML = '<span class="text-emerald-700 font-bold">✓ Seat-Time Met</span>';
+        if (iconEl) iconEl.textContent = 'check_circle';
+        if (iconBox) {
+          iconBox.className = 'w-6 h-6 rounded-lg flex items-center justify-center shrink-0 bg-emerald-600 text-white';
+        }
+        if (hud) {
+          hud.style.background = '#f0fdf4';
+          hud.style.borderColor = '#bbf7d0';
+        }
+        if (btnRemText) {
+          btnRemText.textContent = 'Exam Locked';
+        }
+        if (bannerRem) {
+          bannerRem.textContent = '0m 0s';
+        }
+        const banner = document.getElementById('examTimeRequirementBanner');
+        const bannerTitle = document.getElementById('examBannerTitle');
+        const bannerBadge = document.getElementById('examBannerBadge');
+        const bannerBox = document.getElementById('examBannerIconBox');
+        const bannerIcon = document.getElementById('examBannerIcon');
+        const bannerDesc = document.getElementById('examBannerDesc');
+        if (banner) {
+          banner.className = 'mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-950 flex items-start gap-3.5 shadow-xs';
+        }
+        if (bannerTitle) bannerTitle.textContent = 'Mandatory Training Time Satisfied';
+        if (bannerBadge) {
+          bannerBadge.className = 'px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider bg-emerald-200/80 text-emerald-900';
+          bannerBadge.textContent = 'Verified Ready';
+        }
+        if (bannerBox) bannerBox.className = 'w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs';
+        if (bannerIcon) bannerIcon.textContent = 'check_circle';
+        if (bannerDesc) {
+          bannerDesc.className = 'leading-relaxed mt-1 text-emerald-800';
+          bannerDesc.innerHTML = `You have satisfied the required <strong>{{ formatted_required_time }}</strong> of active training (Total Recorded: <strong>${formatSeconds(totalTimeSpentSeconds)}</strong>). Pass the assessment with 70%+ to claim your verified certificate!`;
+        }
+
+        // If all lessons are also completed, unlock the certificate button immediately
+        const topCount = parseInt(document.getElementById('topCompletedCount')?.textContent || '0', 10);
+        const totalLes = parseInt("{{ total_lessons|default:0 }}", 10);
+        const certContainer = document.getElementById('certHeaderBtnContainer');
+        if (topCount >= totalLes && certContainer && !certContainer.querySelector('a')) {
+          certContainer.innerHTML = `
+            <a href="/applicant/certificate/${enrollmentId}/" target="_blank"
+               class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm active:scale-95 animate-bounce">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>View Certificate</span>
+            </a>
+          `;
+        }
+      } else {
+        if (remEl) remEl.textContent = formatSeconds(remainingSec);
+        if (btnRemText) btnRemText.textContent = `${formatSeconds(remainingSec)} left`;
+        if (bannerRem) bannerRem.textContent = formatSeconds(remainingSec);
+      }
+
+      // Also update modal texts if modal is open
+      const modalSpent = document.getElementById('modalSeatSpent');
+      const modalRem = document.getElementById('modalSeatRemaining');
+      if (modalSpent) modalSpent.textContent = formatSeconds(totalTimeSpentSeconds);
+      if (modalRem) modalRem.textContent = formatSeconds(remainingSec);
+    }
+
+    // 1-second active ticker
+    function startLiveTicker() {
+      if (liveTickerTimer) clearInterval(liveTickerTimer);
+      liveTickerTimer = setInterval(() => {
+        totalTimeSpentSeconds += 1;
+        updateTimeUi();
+      }, 1000);
+    }
+
+    // 10-second backend heartbeat synchronization
+    function startHeartbeat() {
+      if (isAdminPreview || enrollmentId === "0") return;
+      if (heartbeatTimer) clearInterval(heartbeatTimer);
+
+      heartbeatTimer = setInterval(async () => {
+        try {
+          const res = await fetch(`/applicant/course/${enrollmentId}/heartbeat/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ seconds: 10 })
+          });
+          const data = await res.json();
+          if (data.success) {
+            totalTimeSpentSeconds = data.time_spent_seconds;
+            isTimeRequirementMet = data.is_time_requirement_met;
+            updateTimeUi();
+          }
+        } catch (e) {
+          console.warn('Heartbeat background sync:', e);
+        }
+      }, 10000);
+    }
+
+    // Page Visibility Active Session Tracking
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (liveTickerTimer) clearInterval(liveTickerTimer);
+        if (heartbeatTimer) clearInterval(heartbeatTimer);
+      } else {
+        startLiveTicker();
+        startHeartbeat();
+      }
+    });
+
+    // Start tracking on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      updateTimeUi();
+      startLiveTicker();
+      startHeartbeat();
+    });
+
+    // Toggle Tab Panels
+    function switchCourseTab(tabName) {
+      const tabs = ['overview', 'guidelines', 'accreditation'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tabBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        const panel = document.getElementById(`tabPanel${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        
+        if (t === tabName) {
+          if (panel) panel.classList.remove('hidden');
+          if (btn) {
+            btn.className = 'course-tab-btn text-sm font-bold text-secondary border-b-2 border-secondary pb-3 px-2 flex items-center gap-1.5 transition-all';
+          }
+        } else {
+          if (panel) panel.classList.add('hidden');
+          if (btn) {
+            btn.className = 'course-tab-btn text-sm font-semibold text-on-surface-variant hover:text-on-surface border-b-2 border-transparent pb-3 px-2 flex items-center gap-1.5 transition-all';
+          }
+        }
+      });
+    }
+
+    // Toggle Curriculum Sidebar
+    function toggleCurriculumSidebar() {
+      const drawer = document.getElementById('curriculumDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    // Video Simulation
+    function simulateVideoPlay(el) {
+      el.innerHTML = `
+        <div class="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-lg animate-spin">
+          <span class="material-symbols-outlined text-3xl">refresh</span>
+        </div>
+        <p class="mt-3 text-sm font-bold text-emerald-400">Stream buffering: 100% active</p>
+      `;
+      setTimeout(() => {
+        el.innerHTML = `
+          <div class="w-16 h-16 rounded-full bg-slate-800 text-white flex items-center justify-center shadow-lg border border-slate-700">
+            <span class="material-symbols-outlined text-3xl">check</span>
+          </div>
+          <p class="mt-3 text-sm font-bold text-slate-200">Interactive Lecture Playing</p>
+        `;
+      }, 1200);
+    }
+
+    // Interactive Checkpoint Evaluation
+    function checkDiagnosticAnswer(correctIdx, explanation) {
+      const selected = document.querySelector('input[name="checkpoint_ans"]:checked');
+      const feedbackEl = document.getElementById('checkpointFeedback');
+      
+      if (!selected) {
+        alert('Please select an option first.');
+        return;
+      }
+
+      feedbackEl.classList.remove('hidden');
+      const userVal = parseInt(selected.value, 10);
+
+      if (userVal === correctIdx) {
+        feedbackEl.className = 'p-4 rounded-xl text-xs mt-4 bg-emerald-50 border border-emerald-300 text-emerald-800 font-medium';
+        feedbackEl.innerHTML = `<strong>Correct!</strong> ${explanation}`;
+        confetti({ particleCount: 50, spread: 60, origin: { y: 0.8 } });
+      } else {
+        feedbackEl.className = 'p-4 rounded-xl text-xs mt-4 bg-rose-50 border border-rose-300 text-rose-800 font-medium';
+        feedbackEl.innerHTML = `<strong>Incorrect.</strong> ${explanation}`;
+      }
+    }
+
+    // Mark Lesson Complete (AJAX / Preview Simulator)
+    async function markLessonComplete(lessonId) {
+      const btn = document.getElementById('completeLessonBtn');
+      const btnText = document.getElementById('completeBtnText');
+
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.textContent = 'Saving...';
+
+      if (isAdminPreview || enrollmentId === "0") {
+        if (btn) {
+          btn.className = 'px-5 py-2 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold transition-all flex items-center gap-2 shadow-sm';
+        }
+        if (btnText) btnText.textContent = 'Completed (Preview)';
+        confetti({ particleCount: 60, spread: 70, origin: { y: 0.7 } });
+        if (nextLessonId) {
+          setTimeout(() => {
+            window.location.href = "?lesson=" + nextLessonId;
+          }, 600);
+        }
+        return;
+      }
+
+      try {
+        const res = await fetch(`/applicant/course/${enrollmentId}/complete-lesson/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+          },
+          body: JSON.stringify({ lesson_id: lessonId })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          if (btn) {
+            btn.className = 'px-5 py-2 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold transition-all flex items-center gap-2 shadow-sm';
+          }
+          if (btnText) btnText.textContent = 'Completed';
+
+          // Update Progress bars
+          const bar = document.getElementById('topProgressBar');
+          if (bar) bar.style.width = `${data.progress_percentage}%`;
+          const countEl = document.getElementById('topCompletedCount');
+          if (countEl) countEl.textContent = data.completed_count;
+          const pctEl = document.getElementById('topProgressPercentText');
+          if (pctEl) pctEl.textContent = `${data.progress_percentage}% of Course`;
+
+          confetti({ particleCount: 60, spread: 70, origin: { y: 0.7 } });
+
+          // If there's a next lesson, prompt or navigate
+          if (nextLessonId) {
+            setTimeout(() => {
+              window.location.href = "?lesson=" + nextLessonId;
+            }, 800);
+          }
+        }
+      } catch (err) {
+        console.error('Error completing lesson:', err);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    // Submit Capstone Assessment (AJAX / Preview Simulator)
+    async function submitCapstoneAssessment() {
+      // Check mandatory seat-time requirement before attempting submission
+      if (!isAdminPreview && enrollmentId !== "0" && !isTimeRequirementMet) {
+        const rem = Math.max(0, requiredTimeSeconds - totalTimeSpentSeconds);
+        showTimeLockedExamAlert(rem);
+        return;
+      }
+
+      const form = document.getElementById('capstoneExamForm');
+      const formData = new FormData(form);
+      const answers = {};
+
+      for (let [key, value] of formData.entries()) {
+        answers[key] = value;
+      }
+
+      const answeredCount = Object.keys(answers).length;
+      if (answeredCount < 4) {
+        alert(`Please answer the questions across the domains before submitting. (Currently answered: ${answeredCount})`);
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitExamBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Evaluating Assessment...';
+
+      if (isAdminPreview || enrollmentId === "0") {
+        setTimeout(() => {
+          const modal = document.getElementById('examResultModal');
+          const titleEl = document.getElementById('examModalTitle');
+          const subEl = document.getElementById('examModalSubtitle');
+          const scoreEl = document.getElementById('examScoreText');
+          const iconEl = document.getElementById('examModalIcon');
+          const domainList = document.getElementById('domainScoresList');
+          const actionsEl = document.getElementById('examModalActions');
+
+          titleEl.textContent = 'Preview Exam Evaluated';
+          subEl.textContent = 'Capstone Assessment simulated successfully in Admin Preview Mode.';
+          scoreEl.textContent = '100%';
+          scoreEl.className = 'text-2xl font-black text-emerald-600';
+          iconEl.innerHTML = '<span class="material-symbols-outlined text-4xl text-emerald-600">verified</span>';
+          domainList.innerHTML = '<div class="p-2 rounded bg-surface border border-outline-variant text-xs text-on-surface font-semibold flex items-center justify-between"><span>All Domains</span><span class="text-emerald-700 font-bold">Passed (100%)</span></div>';
+          actionsEl.innerHTML = `
+            <button type="button" onclick="closeExamModal()" class="w-full py-2.5 rounded-xl bg-surface text-on-surface border border-outline-variant text-xs font-bold hover:bg-surface-container transition-all">
+              Continue Previewing
+            </button>
+          `;
+          modal.classList.remove('hidden');
+          confetti({ particleCount: 80, spread: 80, origin: { y: 0.6 } });
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Submit Final Capstone Assessment';
+        }, 600);
+        return;
+      }
+
+      try {
+        const res = await fetch(`/applicant/course/${enrollmentId}/submit-assessment/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+          },
+          body: JSON.stringify({ answers: answers })
+        });
+
+        const data = await res.json();
+        if (data.time_locked) {
+          showTimeLockedExamAlert(data.time_remaining_seconds);
+          return;
+        }
+
+        if (data.success) {
+          showExamResultModal(data);
+        } else {
+          alert(data.error || 'Failed to submit assessment.');
+        }
+      } catch (err) {
+        console.error('Assessment submit error:', err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">task_alt</span> Submit Exam for Certification';
+      }
+    }
+
+    // Display Assessment Modal Results & Certification Unlock
+    function showExamResultModal(data) {
+      const modal = document.getElementById('examResultModal');
+      const iconContainer = document.getElementById('examModalIconContainer');
+      const title = document.getElementById('examModalTitle');
+      const subtitle = document.getElementById('examModalSubtitle');
+      const scoreText = document.getElementById('examScoreText');
+      const domainsList = document.getElementById('domainScoresList');
+      const actions = document.getElementById('examModalActions');
+
+      scoreText.textContent = `${data.score}%`;
+      domainsList.innerHTML = '';
+
+      data.domain_breakdown.forEach(dom => {
+        domainsList.innerHTML += `
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-on-surface font-semibold">${dom.domain}</span>
+              <span class="font-bold ${dom.percentage >= 70 ? 'text-emerald-600' : 'text-amber-600'}">${dom.correct}/${dom.total} (${dom.percentage}%)</span>
+            </div>
+            <div class="h-1.5 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full ${dom.percentage >= 70 ? 'bg-emerald-500' : 'bg-amber-500'}" style="width: ${dom.percentage}%;"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      if (data.passed) {
+        iconContainer.className = 'w-20 h-20 rounded-full mx-auto flex items-center justify-center text-4xl shadow-md bg-emerald-50 text-emerald-600 border border-emerald-200';
+        iconContainer.innerHTML = '<span class="material-symbols-outlined text-4xl" style="font-variation-settings:\'FILL\' 1;">verified</span>';
+        title.textContent = 'Congratulations! Certification Earned';
+        subtitle.textContent = `You passed with ${data.score}% and unlocked your Official Certificate of Completion (${data.certificate_code}).`;
+
+        actions.innerHTML = `
+          <a href="${data.certificate_url}" target="_blank"
+             class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 block">
+            <span class="material-symbols-outlined text-[20px]">workspace_premium</span>
+            Download Official Certificate
+          </a>
+          <a href="{% url 'applicant_dashboard' %}"
+             class="w-full py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold text-xs rounded-xl transition-all block border border-outline-variant">
+            Return to Applicant Dashboard
+          </a>
+        `;
+
+        confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+      } else {
+        iconContainer.className = 'w-20 h-20 rounded-full mx-auto flex items-center justify-center text-4xl shadow-md bg-rose-50 text-rose-600 border border-rose-200';
+        iconContainer.innerHTML = '<span class="material-symbols-outlined text-4xl">priority_high</span>';
+        title.textContent = 'Assessment Not Passed';
+        subtitle.textContent = `You scored ${data.score}%. A score of 70% or higher is required to earn official certification. Review the modules and retake the exam.`;
+
+        actions.innerHTML = `
+          <button type="button" onclick="closeExamModal()"
+                  class="w-full py-3 bg-secondary hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition-all">
+            Review Modules & Retake
+          </button>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeExamModal() {
+      document.getElementById('examResultModal').classList.add('hidden');
+    }
+
+    // Modal: Certificate Requirements Inspection
+    function showLockedCertAlert() {
+      updateTimeUi();
+      const modal = document.getElementById('lockedCertModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeLockedCertModal() {
+      const modal = document.getElementById('lockedCertModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Modal: Exam Time Requirement Pending Alert
+    function showTimeLockedExamAlert(remSec) {
+      const modal = document.getElementById('timeLockedExamModal');
+      const remText = document.getElementById('examAlertRemainingText');
+      const spentText = document.getElementById('examAlertSpentText');
+      const rem = remSec || Math.max(0, requiredTimeSeconds - totalTimeSpentSeconds);
+      if (remText) remText.textContent = formatSeconds(rem);
+      if (spentText) spentText.textContent = formatSeconds(totalTimeSpentSeconds);
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeTimeLockedExamModal() {
+      const modal = document.getElementById('timeLockedExamModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Photo Lightbox Modal Controls
+    function openPhotoModal(url, caption) {
+      const modal = document.getElementById('photoLightboxModal');
+      const img = document.getElementById('photoModalImage');
+      const cap = document.getElementById('photoModalCaption');
+      if (img) img.src = url;
+      if (cap) cap.textContent = caption || 'Lesson Reference Visual';
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closePhotoModal() {
+      const modal = document.getElementById('photoLightboxModal');
+      if (modal) modal.classList.add('hidden');
+    }
+  </script>
+
+  <!-- ================= LOCKED CERTIFICATE REQUIREMENTS MODAL ================= -->
+  <div id="lockedCertModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl space-y-5 text-left border border-outline-variant relative">
+      <div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-2xl">workspace_premium</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-on-surface">Certificate Unlock Requirements</h3>
+            <p class="text-xs text-on-surface-variant truncate max-w-xs">{{ program.title }}</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeLockedCertModal()" class="p-1 rounded-full hover:bg-surface-container text-on-surface-variant">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <p class="text-xs text-on-surface-variant leading-relaxed">
+        Under vocational accreditation guidelines, all 3 requirements must be fulfilled before your verified Certificate of Competency can be issued:
+      </p>
+
+      <div class="space-y-3">
+        <!-- Req 1: Seat Time Requirement -->
+        <div class="p-3.5 rounded-xl border {% if is_time_requirement_met %}bg-emerald-50 border-emerald-300 text-emerald-950{% else %}bg-amber-50 border-amber-300 text-amber-950{% endif %} flex items-start gap-3">
+          <span class="material-symbols-outlined text-xl {% if is_time_requirement_met %}text-emerald-600{% else %}text-amber-600{% endif %} shrink-0 mt-0.5">
+            {% if is_time_requirement_met %}check_circle{% else %}timer{% endif %}
+          </span>
+          <div class="flex-1 text-xs">
+            <div class="flex items-center justify-between font-bold">
+              <span>1. Mandatory Seat-Time</span>
+              <span class="{% if is_time_requirement_met %}text-emerald-700{% else %}text-amber-700{% endif %} font-black">
+                {% if is_time_requirement_met %}SATISFIED{% else %}PENDING{% endif %}
+              </span>
+            </div>
+            <p class="text-[11px] text-on-surface-variant mt-1 leading-snug">
+              Required: <strong>{{ formatted_required_time }}</strong> &bull; Completed: <strong id="modalSeatSpent">{{ formatted_time_spent }}</strong>
+              {% if not is_time_requirement_met %}
+                &bull; Remaining: <strong class="text-amber-800" id="modalSeatRemaining">{{ formatted_time_remaining }}</strong>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+
+        <!-- Req 2: Curriculum Completion -->
+        <div class="p-3.5 rounded-xl border {% if progress_pct >= 100 %}bg-emerald-50 border-emerald-300 text-emerald-950{% else %}bg-slate-50 border-outline-variant text-on-surface{% endif %} flex items-start gap-3">
+          <span class="material-symbols-outlined text-xl {% if progress_pct >= 100 %}text-emerald-600{% else %}text-outline{% endif %} shrink-0 mt-0.5">
+            {% if progress_pct >= 100 %}check_circle{% else %}radio_button_unchecked{% endif %}
+          </span>
+          <div class="flex-1 text-xs">
+            <div class="flex items-center justify-between font-bold">
+              <span>2. Curriculum Modules 1–4</span>
+              <span class="{% if progress_pct >= 100 %}text-emerald-700{% else %}text-secondary{% endif %} font-black">
+                {{ completed_count }}/{{ total_lessons }}
+              </span>
+            </div>
+            <p class="text-[11px] text-on-surface-variant mt-1 leading-snug">
+              Complete all video lectures, architectural blueprints, and interactive concept checkpoints.
+            </p>
+          </div>
+        </div>
+
+        <!-- Req 3: Capstone Assessment -->
+        <div class="p-3.5 rounded-xl border {% if enrollment.assessment_results.passed %}bg-emerald-50 border-emerald-300 text-emerald-950{% else %}bg-slate-50 border-outline-variant text-on-surface{% endif %} flex items-start gap-3">
+          <span class="material-symbols-outlined text-xl {% if enrollment.assessment_results.passed %}text-emerald-600{% else %}text-outline{% endif %} shrink-0 mt-0.5">
+            {% if enrollment.assessment_results.passed %}check_circle{% else %}quiz{% endif %}
+          </span>
+          <div class="flex-1 text-xs">
+            <div class="flex items-center justify-between font-bold">
+              <span>3. Module 5 Capstone Exam</span>
+              <span class="{% if enrollment.assessment_results.passed %}text-emerald-700{% else %}text-outline{% endif %} font-black">
+                {% if enrollment.assessment_results.passed %}PASSED ({{ enrollment.assessment_score }}%){% else %}70% Required{% endif %}
+              </span>
+            </div>
+            <p class="text-[11px] text-on-surface-variant mt-1 leading-snug">
+              Achieve 70%+ once the training duration requirement has been satisfied.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <button type="button" onclick="closeLockedCertModal()" class="w-full py-2.5 rounded-xl bg-secondary hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-sm">
+          Continue Learning Modules
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TIME-LOCKED EXAM MODAL ================= -->
+  <div id="timeLockedExamModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 text-center border border-outline-variant">
+      <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 mx-auto flex items-center justify-center">
+        <span class="material-symbols-outlined text-3xl">hourglass_empty</span>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-on-surface">Training Seat-Time Not Finished</h3>
+        <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+          You must complete at least <strong>{{ formatted_required_time }}</strong> of active course learning before your assessment can be submitted for official certification.
+        </p>
+      </div>
+      <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-950 space-y-1">
+        <div class="flex justify-between font-semibold">
+          <span>Active Time Recorded:</span>
+          <strong id="examAlertSpentText">{{ formatted_time_spent }}</strong>
+        </div>
+        <div class="flex justify-between font-bold text-amber-900 border-t border-amber-200/80 pt-1.5 mt-1">
+          <span>Remaining Time Needed:</span>
+          <strong id="examAlertRemainingText">{{ formatted_time_remaining }}</strong>
+        </div>
+      </div>
+      <p class="text-[11px] text-on-surface-variant">
+        Please spend more time reviewing the lectures, architecture notes, and exercises in previous modules.
+      </p>
+      <div class="pt-2">
+        <button type="button" onclick="closeTimeLockedExamModal()" class="w-full py-2.5 rounded-xl bg-secondary hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-sm">
+          Review Course Modules
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PHOTO ENLARGE LIGHTBOX MODAL ================= -->
+  <div id="photoLightboxModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex flex-col items-center justify-center p-4 transition-all" onclick="closePhotoModal()">
+    <div class="relative max-w-5xl max-h-[92vh] w-full flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+      <div class="w-full flex items-center justify-between pb-3 text-white">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-emerald-400 text-lg">image</span>
+          <span id="photoModalCaption" class="text-xs font-bold truncate max-w-xl">Lesson Visual</span>
+        </div>
+        <button type="button" onclick="closePhotoModal()" class="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors" title="Close">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+      <div class="rounded-2xl overflow-hidden bg-black shadow-2xl border border-white/15 max-h-[82vh] flex items-center justify-center">
+        <img id="photoModalImage" src="" alt="Enlarged Visual" class="max-h-[82vh] w-auto max-w-full object-contain">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

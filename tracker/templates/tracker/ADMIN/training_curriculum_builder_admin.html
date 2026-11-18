@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Curriculum Builder — {{ program.title }} | SKILLUP</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary": "#0051d5",
+            "inverse-surface": "#213145",
+            "on-primary-fixed-variant": "#3f465c",
+            "outline-variant": "#c6c6cd",
+            "primary-fixed": "#dae2fd",
+            "on-error": "#ffffff",
+            "surface-container": "#e5eeff",
+            "on-tertiary": "#ffffff",
+            "surface-tint": "#565e74",
+            "on-tertiary-fixed-variant": "#005236",
+            "surface-container-low": "#eff4ff",
+            "on-surface": "#0b1c30",
+            "on-secondary-fixed-variant": "#003ea8",
+            "surface-bright": "#f8f9ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-primary-container": "#7c839b",
+            "primary-fixed-dim": "#bec6e0",
+            "outline": "#76777d",
+            "on-secondary-fixed": "#00174b",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#d3e4fe",
+            "tertiary-container": "#002113",
+            "primary-container": "#131b2e",
+            "tertiary": "#000000",
+            "on-secondary-container": "#fefcff",
+            "surface-dim": "#cbdbf5",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-background": "#0b1c30",
+            "on-surface-variant": "#45464d",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#002113",
+            "inverse-on-surface": "#eaf1ff",
+            "background": "#f8f9ff",
+            "secondary-fixed": "#dbe1ff",
+            "primary": "#000000",
+            "secondary-container": "#316bf3",
+            "on-tertiary-container": "#009668",
+            "surface-variant": "#d3e4fe",
+            "surface-container-high": "#dce9ff",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "surface": "#f8f9ff",
+            "secondary-fixed-dim": "#b4c5ff",
+            "on-primary-fixed": "#131b2e",
+            "inverse-primary": "#bec6e0"
+          },
+          fontFamily: {
+            "body-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "label-md": ["Inter"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "40px",
+            "container-max": "1440px",
+            "unit": "4px"
+          },
+          fontSize: {
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #F8FAFC; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+      vertical-align: middle;
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #F1F5F9; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+    .card-shadow { box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05); }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-desktop h-16 w-full">
+  <div class="flex items-center gap-8">
+    <h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">SKILLUP</h1>
+  </div>
+  <div class="flex items-center gap-4">
+    <a href="{% url 'admin_notifications' %}" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80" title="Notifications">notifications</a>
+    <button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80">settings</button>
+    <a href="{% url 'peso_profile_admin' %}" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-secondary/15 flex items-center justify-center font-bold text-xs text-secondary shrink-0 hover:ring-2 hover:ring-secondary transition-all" title="{{ request.user.get_full_name }}">
+      {% if request.user.profile.profile_picture %}
+        <img alt="{{ request.user.get_full_name }}" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+      {% else %}
+        {{ request.user.first_name|slice:":1"|upper }}{{ request.user.last_name|slice:":1"|upper|default:"P" }}
+      {% endif %}
+    </a>
+  </div>
+</header>
+
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 pt-20 bg-surface-container-lowest dark:bg-primary-container border-r border-outline-variant dark:border-outline hidden md:flex flex-col p-4 gap-2 z-40">
+  <div class="flex items-center gap-3 px-2 py-4 mb-4 border-b border-outline-variant/30">
+    {% if request.user.profile.profile_picture %}
+    <div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant shrink-0">
+      <img alt="Office Logo" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+    </div>
+    {% else %}
+    <div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-white font-black text-xl shrink-0">P</div>
+    {% endif %}
+    <div>
+      <h2 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider whitespace-nowrap">SKILLUP Portal</h2>
+      <p class="text-[10px] text-on-surface-variant opacity-70">Public Employment Service</p>
+    </div>
+  </div>
+
+  <nav class="flex-grow flex flex-col gap-1 overflow-y-auto custom-scrollbar">
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_dashboard_admin' %}">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span>Dashboard</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'applicant_monitoring_admin' %}">
+      <span class="material-symbols-outlined">groups</span>
+      <span>Talent Bench</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employer_management_admin' %}">
+      <span class="material-symbols-outlined">domain</span>
+      <span>Employers</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'vacancy_management_admin' %}">
+      <span class="material-symbols-outlined">work</span>
+      <span>Vacancies</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employment_tracking_admin' %}">
+      <span class="material-symbols-outlined">description</span>
+      <span>Reports</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'skill_monitoring_admin' %}">
+      <span class="material-symbols-outlined">analytics</span>
+      <span>Skill Gaps</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2 bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold rounded-lg scale-98 active:scale-95 duration-150 transition-all font-label-md text-label-md" href="{% url 'training_monitoring_admin' %}">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+      <span>Training Programs</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'job_matching_analytics_admin' %}">
+      <span class="material-symbols-outlined">monitoring</span>
+      <span>Analytics</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_profile_admin' %}">
+      <span class="material-symbols-outlined">settings</span>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+    <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'logout' %}">
+      <span class="material-symbols-outlined">logout</span>
+      <span>Log Out</span>
+    </a>
+  </div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="md:ml-64 pt-20 min-h-screen">
+  <div class="px-6 md:px-8 py-6 space-y-6">
+    <!-- Top Header Area -->
+    <div class="pb-5 border-b border-outline-variant/60 space-y-3">
+      <!-- Breadcrumb Bar -->
+      <nav class="flex items-center gap-2 text-xs text-on-surface-variant min-w-0 flex-wrap">
+        <a href="{% url 'training_monitoring_admin' %}" class="hover:text-secondary font-medium transition-colors">Training Programs</a>
+        <span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+        <a href="{% url 'training_program_detail_admin' program.id %}" class="hover:text-secondary font-medium truncate max-w-xs md:max-w-md transition-colors" title="{{ program.title }}">{{ program.title }}</a>
+        <span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+        <span class="font-bold text-secondary shrink-0">Curriculum Builder</span>
+      </nav>
+
+      <!-- Main Title + Status Badge + Actions Row -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div class="flex items-start sm:items-center gap-3.5 min-w-0">
+          <a href="{% url 'training_program_detail_admin' program.id %}" class="w-10 h-10 rounded-xl border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Back to Program Details">
+            <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+          </a>
+          <div class="min-w-0">
+            <div class="flex items-center gap-3 flex-wrap">
+              <h2 class="text-xl md:text-2xl lg:text-3xl font-extrabold text-on-surface tracking-tight">Inside Course Content & Modules</h2>
+              {% if is_customized %}
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-2xs whitespace-nowrap">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Customized Curriculum
+                </span>
+              {% else %}
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-300 shadow-2xs whitespace-nowrap">
+                  <span class="w-2 h-2 rounded-full bg-blue-500"></span> Standard Template
+                </span>
+              {% endif %}
+            </div>
+            <p class="text-xs text-on-surface-variant mt-0.5">Structure syllabus, learning modules, video lessons, reading material, and certification exams.</p>
+          </div>
+        </div>
+
+        <!-- Action Buttons Toolbar -->
+        <div class="flex items-center gap-2 shrink-0 flex-wrap sm:flex-nowrap">
+          <button type="button" onclick="openImportSyllabusModal()" class="px-3.5 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:opacity-95 font-bold text-xs rounded-xl shadow-xs flex items-center gap-1.5 transition-all cursor-pointer active:scale-95">
+            <span class="material-symbols-outlined text-base text-emerald-200">upload_file</span>
+            <span class="whitespace-nowrap">Import Syllabus (AI)</span>
+          </button>
+
+          <button type="button" onclick="openRawJsonModal()" class="px-3 py-2 border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-semibold text-xs rounded-xl shadow-2xs flex items-center gap-1.5 transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-base text-on-surface-variant">code</span>
+            <span class="whitespace-nowrap">JSON Editor</span>
+          </button>
+
+          <form method="POST" action="{% url 'training_curriculum_reset_admin' program.id %}" onsubmit="return confirm('Are you sure you want to reset this course curriculum to the default auto-generated template? All custom lessons and quizzes will be replaced.');" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="px-3 py-2 border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 font-semibold text-xs rounded-xl shadow-2xs flex items-center gap-1.5 transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-base">restart_alt</span>
+              <span class="whitespace-nowrap">Reset to Default</span>
+            </button>
+          </form>
+
+          <a href="{% url 'training_program_preview_admin' program.id %}" target="_blank" class="px-3 py-2 border border-secondary/30 bg-secondary/10 hover:bg-secondary/20 text-secondary font-bold text-xs rounded-xl shadow-2xs flex items-center gap-1.5 transition-all" title="Interactive preview of the course player">
+            <span class="material-symbols-outlined text-base">visibility</span>
+            <span class="whitespace-nowrap">Preview in LMS</span>
+          </a>
+
+          <button type="button" onclick="saveCurriculumToServer()" id="saveBtn" class="px-4 py-2 bg-secondary text-white hover:bg-blue-700 font-bold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-base">save</span>
+            <span class="whitespace-nowrap">Save Changes</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course Quick Overview Card -->
+    <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/80 card-shadow p-5 md:p-6 mb-6">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div class="space-y-3 min-w-0 flex-1">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-secondary bg-secondary/10 px-2 py-0.5 rounded border border-secondary/20">Course Overview</span>
+            <h3 class="font-extrabold text-lg md:text-xl text-on-surface mt-1.5 leading-snug">{{ program.title }}</h3>
+            <p class="text-xs text-on-surface-variant mt-1 flex items-center gap-2 flex-wrap">
+              <span>Provider: <strong class="text-on-surface">{{ program.provider }}</strong></span>
+              <span class="text-outline/40">•</span>
+              <span>Duration: <strong class="text-on-surface">{{ program.duration }}</strong></span>
+              <span class="text-outline/40">•</span>
+              <span>Location: <strong class="text-on-surface">{{ program.location|default:"PESO Training Center / Online" }}</strong></span>
+            </p>
+          </div>
+
+          <div class="inline-flex items-center gap-2 bg-amber-50/90 border border-amber-200 px-3.5 py-2 rounded-xl text-xs flex-wrap">
+            <span class="material-symbols-outlined text-amber-700 text-base">timer</span>
+            <span class="font-bold text-amber-950">Required Training Seat-Time:</span>
+            <input type="number" id="requiredTrainingMinutesInput" min="1" max="10000" value="{{ program.required_training_minutes|default:60 }}" 
+                   class="w-16 px-2 py-1 text-xs font-black text-on-surface bg-white border border-amber-300 rounded-lg shadow-2xs focus:ring-2 focus:ring-secondary focus:outline-none text-center">
+            <span class="text-amber-800 font-medium">minutes (min. active LMS time before certificate unlocks)</span>
+          </div>
+
+          <div class="flex items-center gap-1.5 flex-wrap pt-1">
+            <span class="text-xs text-on-surface-variant font-bold">Target Skills:</span>
+            {% for sk in program.all_skills %}
+              <span class="px-2.5 py-0.5 rounded-lg bg-surface-container text-on-surface font-semibold text-[11px] border border-outline-variant/60">{{ sk.name }}</span>
+            {% empty %}
+              <span class="text-xs italic text-outline">No skills attached</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0 self-start lg:self-center">
+          <div class="bg-surface-container-low px-4 py-3 rounded-2xl border border-outline-variant/60 text-center min-w-[80px]">
+            <span class="text-[10px] uppercase font-bold text-on-surface-variant block tracking-wider">Modules</span>
+            <span id="statModuleCount" class="text-2xl font-black text-secondary leading-tight">0</span>
+          </div>
+          <div class="bg-surface-container-low px-4 py-3 rounded-2xl border border-outline-variant/60 text-center min-w-[80px]">
+            <span class="text-[10px] uppercase font-bold text-on-surface-variant block tracking-wider">Lessons</span>
+            <span id="statLessonCount" class="text-2xl font-black text-on-surface leading-tight">0</span>
+          </div>
+          <button type="button" onclick="openAddModuleModal()" class="px-4 py-3.5 bg-secondary text-white hover:bg-blue-700 font-bold text-xs rounded-2xl shadow-xs flex items-center gap-2 transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-base">add_circle</span>
+            <span class="whitespace-nowrap">Add Module</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modules Interactive Canvas -->
+    <div id="modulesContainer" class="space-y-6">
+      <!-- Dynamically populated by JS from curriculum data -->
+    </div>
+
+    <!-- Empty State Prompt -->
+    <div id="noModulesState" class="hidden text-center py-16 bg-surface-container-lowest rounded-2xl border-2 border-dashed border-outline-variant">
+      <span class="material-symbols-outlined text-5xl text-outline mb-2">menu_book</span>
+      <h3 class="text-base font-bold text-on-surface">No Modules Found</h3>
+      <p class="text-xs text-on-surface-variant max-w-sm mx-auto mt-1 mb-4">You can add custom modules or reset to the standard curriculum template.</p>
+      <button onclick="openAddModuleModal()" class="px-4 py-2 bg-secondary text-white font-bold text-xs rounded-lg shadow-sm">
+        + Add First Module
+      </button>
+    </div>
+  </div>
+</main>
+
+<!-- ================= MODAL: ADD / EDIT MODULE ================= -->
+<div id="moduleModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-bright border border-outline-variant rounded-2xl max-w-lg w-full p-6 shadow-2xl">
+    <div class="flex justify-between items-center mb-4">
+      <h3 id="moduleModalTitle" class="font-headline-md text-lg font-bold text-on-surface flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary">folder_open</span>
+        <span>Module Details</span>
+      </h3>
+      <button onclick="closeModuleModal()" class="p-1 rounded hover:bg-surface-container-low text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <form id="moduleForm" onsubmit="handleModuleFormSubmit(event)" class="space-y-4">
+      <input type="hidden" id="editModuleIndex" value="-1">
+      <div>
+        <label for="moduleTitleInput" class="block text-xs font-bold text-on-surface mb-1">Module Title *</label>
+        <input type="text" id="moduleTitleInput" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="e.g., Module 1: Foundations & Core Principles">
+      </div>
+      <div>
+        <label for="moduleSummaryInput" class="block text-xs font-bold text-on-surface mb-1">Module Summary / Description</label>
+        <textarea id="moduleSummaryInput" rows="3" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Brief summary of what this module covers..."></textarea>
+      </div>
+      <div class="flex justify-end gap-2 pt-2 border-t border-outline-variant">
+        <button type="button" onclick="closeModuleModal()" class="px-4 py-2 border border-outline-variant rounded-lg text-xs font-semibold hover:bg-surface-container-low">Cancel</button>
+        <button type="submit" class="px-5 py-2 bg-secondary text-white font-bold text-xs rounded-lg hover:bg-blue-700">Save Module</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= MODAL: ADD / EDIT LESSON ================= -->
+<div id="lessonModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-bright border border-outline-variant rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+    <div class="flex justify-between items-center p-5 border-b border-outline-variant shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary text-2xl">edit_document</span>
+        <h3 id="lessonModalHeading" class="font-bold text-base text-on-surface">Edit Lesson Inside Training</h3>
+      </div>
+      <button onclick="closeLessonModal()" class="p-1 rounded hover:bg-surface-container-low text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <form id="lessonForm" onsubmit="handleLessonFormSubmit(event)" class="overflow-y-auto p-6 space-y-4 flex-1 custom-scrollbar">
+      <input type="hidden" id="lessonModIndex" value="-1">
+      <input type="hidden" id="lessonIndex" value="-1">
+
+      <!-- Lesson Type Selector -->
+      <div>
+        <label class="block text-xs font-bold text-on-surface mb-1.5">Lesson Type *</label>
+        <div class="grid grid-cols-4 gap-2">
+          <label class="cursor-pointer border border-outline-variant rounded-xl p-2.5 text-center flex flex-col items-center gap-1 hover:border-secondary transition-all type-option" data-type="video">
+            <input type="radio" name="lesson_type" value="video" onchange="onLessonTypeChange(this.value)" class="hidden" checked>
+            <span class="material-symbols-outlined text-secondary">videocam</span>
+            <span class="text-[11px] font-bold">Video</span>
+          </label>
+          <label class="cursor-pointer border border-outline-variant rounded-xl p-2.5 text-center flex flex-col items-center gap-1 hover:border-secondary transition-all type-option" data-type="reading">
+            <input type="radio" name="lesson_type" value="reading" onchange="onLessonTypeChange(this.value)" class="hidden">
+            <span class="material-symbols-outlined text-emerald-600">menu_book</span>
+            <span class="text-[11px] font-bold">Reading</span>
+          </label>
+          <label class="cursor-pointer border border-outline-variant rounded-xl p-2.5 text-center flex flex-col items-center gap-1 hover:border-secondary transition-all type-option" data-type="activity">
+            <input type="radio" name="lesson_type" value="activity" onchange="onLessonTypeChange(this.value)" class="hidden">
+            <span class="material-symbols-outlined text-amber-600">psychology</span>
+            <span class="text-[11px] font-bold">Quiz / Activity</span>
+          </label>
+          <label class="cursor-pointer border border-outline-variant rounded-xl p-2.5 text-center flex flex-col items-center gap-1 hover:border-secondary transition-all type-option" data-type="assessment">
+            <input type="radio" name="lesson_type" value="assessment" onchange="onLessonTypeChange(this.value)" class="hidden">
+            <span class="material-symbols-outlined text-purple-600">verified</span>
+            <span class="text-[11px] font-bold">Capstone Exam</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Basic Fields -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="md:col-span-2">
+          <label for="lessonTitleInput" class="block text-xs font-bold text-on-surface mb-1">Lesson Title *</label>
+          <input type="text" id="lessonTitleInput" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-secondary" placeholder="e.g., 1.1 Course Orientation & Enterprise Context">
+        </div>
+        <div>
+          <label for="lessonDurationInput" class="block text-xs font-bold text-on-surface mb-1">Estimated Duration *</label>
+          <input type="text" id="lessonDurationInput" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-secondary" placeholder="e.g., 20 min">
+        </div>
+      </div>
+
+      <div>
+        <label for="lessonDescInput" class="block text-xs font-bold text-on-surface mb-1">Lesson Summary / Goal</label>
+        <input type="text" id="lessonDescInput" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-secondary" placeholder="Brief 1-sentence synopsis...">
+      </div>
+
+      <!-- Dynamic Type Section: VIDEO -->
+      <div id="videoSection" class="p-4 rounded-xl bg-blue-50/50 border border-blue-200/80 space-y-3.5">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-secondary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base">videocam</span> Video Lecture Content
+          </span>
+          <span class="text-[10px] font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full border border-blue-200">
+            MP4, WebM, MOV, or YouTube/Vimeo
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div>
+            <label for="videoTitleInput" class="block text-xs font-bold text-on-surface mb-1">Video Display Title</label>
+            <input type="text" id="videoTitleInput" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-secondary" placeholder="e.g., Introduction to Practical Workflows">
+          </div>
+          <div>
+            <label for="videoDurationStrInput" class="block text-xs font-bold text-on-surface mb-1">Video Length Badge</label>
+            <input type="text" id="videoDurationStrInput" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-secondary" placeholder="e.g., 15:20 HD">
+          </div>
+        </div>
+
+        <!-- Video Source (File Upload or URL) -->
+        <div class="space-y-2 pt-2 border-t border-blue-200/60">
+          <label class="block text-xs font-bold text-on-surface">Upload Video File</label>
+          
+          <!-- Drop / Upload Area -->
+          <div id="videoDropZone" class="border-2 border-dashed border-blue-300 hover:border-secondary rounded-xl p-4 bg-surface-container-lowest text-center transition-all cursor-pointer relative group" onclick="document.getElementById('videoFileInput').click()">
+            <input type="file" id="videoFileInput" accept="video/mp4,video/webm,video/ogg,video/quicktime,video/*" class="hidden" onchange="handleVideoFileUpload(this)">
+            <div id="videoUploadPrompt" class="flex flex-col items-center justify-center gap-1.5 py-1">
+              <div class="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-2xl">cloud_upload</span>
+              </div>
+              <p class="text-xs font-bold text-on-surface"><span class="text-secondary underline underline-offset-2">Click to select video</span> or drag and drop here</p>
+              <p class="text-[10px] text-on-surface-variant">Supports MP4, WebM, MOV up to 250MB</p>
+            </div>
+            <!-- Uploading Spinner -->
+            <div id="videoUploadProgress" class="hidden flex flex-col items-center justify-center gap-2 py-2">
+              <span class="material-symbols-outlined text-2xl text-secondary animate-spin">progress_activity</span>
+              <p class="text-xs font-bold text-secondary">Uploading video file, please wait...</p>
+            </div>
+          </div>
+
+          <!-- Video Preview Card if URL/File exists -->
+          <div id="videoPreviewCard" class="hidden rounded-xl border border-blue-200 bg-white p-3 space-y-2 shadow-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-secondary flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base">play_circle</span>
+                <span>Active Video Attached</span>
+              </span>
+              <button type="button" onclick="clearLessonVideo()" class="text-[11px] font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 px-2 py-0.5 rounded hover:bg-rose-50 transition-colors">
+                <span class="material-symbols-outlined text-xs">delete</span> Remove Video
+              </button>
+            </div>
+            <!-- Video Player Preview Container -->
+            <div class="aspect-video bg-black rounded-lg overflow-hidden relative shadow-inner">
+              <video id="videoPreviewElement" controls playsinline class="w-full h-full object-contain hidden"></video>
+              <iframe id="videoPreviewIframe" class="w-full h-full hidden" allowfullscreen></iframe>
+            </div>
+            <p id="videoFileNameDisplay" class="text-[11px] font-mono text-on-surface-variant truncate bg-slate-50 p-1.5 rounded border border-slate-200"></p>
+          </div>
+
+          <!-- Or Enter Video URL Directly -->
+          <div class="pt-1">
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="videoUrlInput" class="block text-[11px] font-bold text-on-surface-variant">Video URL (YouTube, Vimeo, or direct video link):</label>
+              <button type="button" onclick="autoSuggestAlignedVideo()" id="btnAutoSuggestVideo" class="inline-flex items-center gap-1 px-2.5 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-lg text-[10px] font-bold shadow-2xs cursor-pointer active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[13px]">auto_awesome</span>
+                <span>✨ Auto-Suggest Aligned Video</span>
+              </button>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="relative flex-1">
+                <span class="material-symbols-outlined absolute left-2.5 top-2 text-sm text-outline">link</span>
+                <input type="text" id="videoUrlInput" oninput="onVideoUrlInputChange(this.value)" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-8 pr-3 py-1.5 text-xs focus:border-secondary" placeholder="https://www.youtube.com/watch?v=... or /media/.../video.mp4">
+              </div>
+              <button type="button" onclick="testPreviewVideoUrl()" class="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant rounded-lg text-xs font-bold text-on-surface shrink-0">Preview</button>
+            </div>
+            <!-- Video Alignment Info & Suggestions Container -->
+            <div id="videoSuggestionContainer" class="hidden mt-2 p-2.5 bg-purple-50/80 border border-purple-200 rounded-xl text-xs space-y-1.5">
+              <div class="flex items-center justify-between text-purple-950 font-bold text-[11px]">
+                <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm text-purple-600">smart_display</span> Aligned Vocational Tutorial</span>
+                <span id="videoSuggestionBadge" class="px-2 py-0.5 rounded-full bg-purple-200/80 text-[10px] text-purple-800 font-extrabold uppercase">Curated</span>
+              </div>
+              <p id="videoSuggestionTitle" class="font-semibold text-purple-900 text-xs truncate"></p>
+              <div id="videoAlternativesList" class="flex flex-wrap gap-1.5 pt-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO / DIAGRAM / INFOGRAPHIC ATTACHMENT SECTION (For all lessons) -->
+      <div id="imageSection" class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base text-emerald-600">image</span> Lesson Photo / Diagram / Infographic (Optional)
+          </span>
+          <span class="text-[10px] font-bold text-slate-500 bg-white px-2 py-0.5 rounded-full border border-slate-200">
+            JPG, PNG, WebP, GIF
+          </span>
+        </div>
+        <p class="text-[11px] text-on-surface-variant">Add a reference photo, technical schematic, equipment visual, or infographic banner.</p>
+
+        <!-- Image Upload Drop / Area -->
+        <div id="imageDropZone" class="border-2 border-dashed border-slate-300 hover:border-emerald-500 rounded-xl p-3.5 bg-surface-container-lowest text-center transition-all cursor-pointer relative group" onclick="document.getElementById('imageFileInput').click()">
+          <input type="file" id="imageFileInput" accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml" class="hidden" onchange="handleImageFileUpload(this)">
+          <div id="imageUploadPrompt" class="flex flex-col items-center justify-center gap-1 py-1">
+            <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-xl">add_photo_alternate</span>
+            </div>
+            <p class="text-xs font-bold text-on-surface"><span class="text-emerald-700 underline underline-offset-2">Click to select photo</span> or drag and drop</p>
+            <p class="text-[10px] text-on-surface-variant">PNG, JPG, WebP up to 25MB</p>
+          </div>
+          <!-- Uploading Spinner -->
+          <div id="imageUploadProgress" class="hidden flex flex-col items-center justify-center gap-2 py-1">
+            <span class="material-symbols-outlined text-xl text-emerald-600 animate-spin">progress_activity</span>
+            <p class="text-xs font-bold text-emerald-700">Uploading photo, please wait...</p>
+          </div>
+        </div>
+
+        <!-- Image Preview Card -->
+        <div id="imagePreviewCard" class="hidden rounded-xl border border-slate-200 bg-white p-3 space-y-2 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-emerald-700 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">visibility</span> Attached Lesson Photo
+            </span>
+            <button type="button" onclick="clearLessonImage()" class="text-[11px] font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 px-2 py-0.5 rounded hover:bg-rose-50 transition-colors">
+              <span class="material-symbols-outlined text-xs">delete</span> Remove Photo
+            </button>
+          </div>
+          <div class="max-h-52 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border border-slate-200">
+            <img id="imagePreviewElement" class="max-h-52 w-auto object-contain" src="" alt="Lesson Illustration">
+          </div>
+          <div>
+            <label for="imageCaptionInput" class="block text-[10px] font-bold uppercase tracking-wider text-on-surface-variant mb-0.5">Photo Caption / Subtitle</label>
+            <input type="text" id="imageCaptionInput" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-2.5 py-1.5 text-xs focus:border-secondary" placeholder="e.g., Figure 1.1: Component Diagram and Safety Blueprint">
+          </div>
+        </div>
+
+        <!-- Or Enter Image URL Directly -->
+        <div class="pt-1">
+          <label for="imageUrlInput" class="block text-[11px] font-bold text-on-surface-variant mb-1">Or paste Photo URL directly:</label>
+          <div class="flex items-center gap-2">
+            <div class="relative flex-1">
+              <span class="material-symbols-outlined absolute left-2.5 top-2 text-sm text-outline">link</span>
+              <input type="text" id="imageUrlInput" oninput="onImageUrlInputChange(this.value)" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-8 pr-3 py-1.5 text-xs focus:border-secondary" placeholder="https://example.com/diagram.png or /media/.../photo.jpg">
+            </div>
+            <button type="button" onclick="testPreviewImageUrl()" class="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant rounded-lg text-xs font-bold text-on-surface shrink-0">Preview</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Type Section: READING & OVERVIEW -->
+      <div id="readingSection" class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/80 space-y-3">
+        <span class="text-[11px] font-extrabold uppercase tracking-wider text-on-surface flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">article</span> Reading Material & Curriculum Text
+        </span>
+        <div>
+          <label for="overviewInput" class="block text-xs font-bold text-on-surface mb-1">Executive Overview</label>
+          <textarea id="overviewInput" rows="2" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm" placeholder="Detailed introduction to this lesson..."></textarea>
+        </div>
+        <div>
+          <label for="keyPointsInput" class="block text-xs font-bold text-on-surface mb-1">Key Takeaway Points (one per line)</label>
+          <textarea id="keyPointsInput" rows="3" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm font-mono text-xs" placeholder="Core rule 1&#10;Core rule 2&#10;Core rule 3"></textarea>
+        </div>
+        <div>
+          <label for="readingContentInput" class="block text-xs font-bold text-on-surface mb-1">Full Detailed Lesson Article (Markdown / Text)</label>
+          <textarea id="readingContentInput" rows="6" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm font-mono text-xs" placeholder="### Section Heading&#10;In-depth explanation and standard operating procedures..."></textarea>
+        </div>
+      </div>
+
+      <!-- Dynamic Type Section: INTERACTIVE CHECKPOINT / QUIZ -->
+      <div id="quizSection" class="p-4 rounded-xl bg-amber-50/60 border border-amber-200 space-y-3 hidden">
+        <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-800 flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">quiz</span> Interactive Diagnostic Question
+        </span>
+        <div>
+          <label for="quizQuestionInput" class="block text-xs font-bold text-on-surface mb-1">Question Prompt *</label>
+          <textarea id="quizQuestionInput" rows="2" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-sm" placeholder="What is the primary objective of..."></textarea>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-on-surface">Answer Choices (Select radio button for the correct answer)</label>
+          <div class="flex items-center gap-2">
+            <input type="radio" name="quiz_correct_choice" value="0" id="optRadio0" checked class="text-secondary focus:ring-secondary">
+            <input type="text" id="quizOption0" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-xs" placeholder="Choice 1">
+          </div>
+          <div class="flex items-center gap-2">
+            <input type="radio" name="quiz_correct_choice" value="1" id="optRadio1" class="text-secondary focus:ring-secondary">
+            <input type="text" id="quizOption1" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-xs" placeholder="Choice 2">
+          </div>
+          <div class="flex items-center gap-2">
+            <input type="radio" name="quiz_correct_choice" value="2" id="optRadio2" class="text-secondary focus:ring-secondary">
+            <input type="text" id="quizOption2" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-xs" placeholder="Choice 3">
+          </div>
+          <div class="flex items-center gap-2">
+            <input type="radio" name="quiz_correct_choice" value="3" id="optRadio3" class="text-secondary focus:ring-secondary">
+            <input type="text" id="quizOption3" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-xs" placeholder="Choice 4">
+          </div>
+        </div>
+
+        <div>
+          <label for="quizExplanationInput" class="block text-xs font-bold text-on-surface mb-1">Answer Explanation / Feedback</label>
+          <textarea id="quizExplanationInput" rows="2" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-xs" placeholder="Explanation displayed when applicant verifies their answer..."></textarea>
+        </div>
+      </div>
+
+      <!-- Dynamic Type Section: CAPSTONE ASSESSMENT QUESTIONS (Module 5) -->
+      <div id="assessmentSection" class="p-4 rounded-xl bg-purple-50/60 border border-purple-200 space-y-3 hidden">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-purple-800 flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">verified</span> Capstone Exam Question Bank
+          </span>
+          <button type="button" onclick="addAssessmentQuestionRow()" class="px-2.5 py-1 bg-purple-600 text-white font-bold text-[11px] rounded hover:bg-purple-700 flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">add</span> Add Exam Question
+          </button>
+        </div>
+        <div id="examQuestionsList" class="space-y-3 max-h-72 overflow-y-auto custom-scrollbar pr-1">
+          <!-- Dynamic exam question cards -->
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-4 border-t border-outline-variant">
+        <button type="button" onclick="closeLessonModal()" class="px-4 py-2 border border-outline-variant rounded-lg text-xs font-semibold hover:bg-surface-container-low">Cancel</button>
+        <button type="submit" class="px-5 py-2 bg-secondary text-white font-bold text-xs rounded-lg hover:bg-blue-700">Save Lesson Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= MODAL: RAW JSON IMPORT / EXPORT ================= -->
+<div id="jsonModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-bright border border-outline-variant rounded-2xl max-w-3xl w-full p-6 shadow-2xl flex flex-col max-h-[90vh]">
+    <div class="flex justify-between items-center mb-3">
+      <h3 class="font-bold text-base text-on-surface flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary">code</span>
+        <span>Curriculum JSON Data</span>
+      </h3>
+      <button onclick="closeRawJsonModal()" class="p-1 rounded hover:bg-surface-container-low text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <p class="text-xs text-on-surface-variant mb-2">You can directly copy this configuration or paste an edited JSON structure to update the entire course curriculum at once.</p>
+    <textarea id="rawJsonTextarea" rows="16" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3 text-xs font-mono focus:border-secondary custom-scrollbar"></textarea>
+    <div class="flex justify-between items-center gap-2 mt-4 pt-3 border-t border-outline-variant">
+      <button type="button" onclick="copyRawJsonToClipboard()" class="px-3.5 py-1.5 border border-outline-variant rounded-lg text-xs font-semibold hover:bg-surface-container-low flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">content_copy</span> Copy JSON
+      </button>
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="closeRawJsonModal()" class="px-4 py-1.5 border border-outline-variant rounded-lg text-xs font-semibold">Cancel</button>
+        <button type="button" onclick="applyRawJsonChanges()" class="px-5 py-1.5 bg-secondary text-white font-bold text-xs rounded-lg hover:bg-blue-700">Apply & Render</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="curriculum-json-data" type="application/json">{{ curriculum_json|safe }}</script>
+<script>
+  // Initial Curriculum Data passed from Django View
+  let curriculumData = JSON.parse(document.getElementById('curriculum-json-data').textContent || '{}');
+  const saveUrl = "{% url 'training_curriculum_save_admin' program.id %}";
+  const uploadMediaUrl = "{% url 'training_curriculum_upload_media_admin' program.id %}";
+  const csrfToken = "{{ csrf_token }}";
+
+  // Render initial curriculum on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    renderModules();
+  });
+
+  // Render Modules & Lessons
+  function renderModules() {
+    const container = document.getElementById('modulesContainer');
+    const emptyState = document.getElementById('noModulesState');
+    container.innerHTML = '';
+
+    const modules = curriculumData.modules || [];
+    let totalLessonsCount = 0;
+
+    if (modules.length === 0) {
+      emptyState.classList.remove('hidden');
+      document.getElementById('statModuleCount').textContent = '0';
+      document.getElementById('statLessonCount').textContent = '0';
+      return;
+    }
+    emptyState.classList.add('hidden');
+
+    modules.forEach((mod, modIdx) => {
+      totalLessonsCount += (mod.lessons || []).length;
+      const modCard = document.createElement('div');
+      modCard.className = "bg-surface-container-lowest rounded-2xl border border-outline-variant/80 card-shadow overflow-hidden transition-all";
+      const modSummary = mod.summary || mod.description || 'Core competency units and practical training lessons.';
+      
+      modCard.innerHTML = `
+        <div class="p-4 md:p-5 bg-surface-container-low/70 border-b border-outline-variant/80 flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div class="flex items-center gap-3.5 min-w-0">
+            <span class="w-9 h-9 rounded-xl bg-secondary text-white font-black text-sm flex items-center justify-center shrink-0 shadow-xs">
+              ${modIdx + 1}
+            </span>
+            <div class="min-w-0">
+              <h4 class="font-bold text-base text-on-surface truncate">${escapeHtml(mod.title || `Module ${modIdx + 1}`)}</h4>
+              <p class="text-xs text-on-surface-variant mt-0.5 line-clamp-1">${escapeHtml(modSummary)}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 shrink-0 self-end md:self-center">
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-surface-container text-on-surface-variant border border-outline-variant/60 whitespace-nowrap">
+              ${(mod.lessons || []).length} ${(mod.lessons || []).length === 1 ? 'Lesson' : 'Lessons'}
+            </span>
+            <button type="button" onclick="openAddLessonModal(${modIdx})" class="px-3.5 py-1.5 bg-secondary text-white font-bold text-xs rounded-xl shadow-xs hover:bg-blue-700 flex items-center gap-1.5 transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-xs">add</span> Add Lesson
+            </button>
+            <button type="button" onclick="openEditModuleModal(${modIdx})" class="p-1.5 border border-outline-variant bg-white rounded-xl text-on-surface-variant hover:text-secondary hover:bg-surface-container-low transition-all cursor-pointer" title="Edit Module Title/Summary">
+              <span class="material-symbols-outlined text-base">edit</span>
+            </button>
+            <button type="button" onclick="deleteModule(${modIdx})" class="p-1.5 border border-rose-200 bg-rose-50/60 text-rose-600 hover:bg-rose-100 rounded-xl transition-all cursor-pointer" title="Delete Module">
+              <span class="material-symbols-outlined text-base">delete</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-4 space-y-2.5">
+          ${(mod.lessons || []).length === 0 ? `
+            <div class="text-center py-8 border border-dashed border-outline-variant/70 rounded-xl text-xs text-outline italic">
+              No lessons in this module. Click "+ Add Lesson" above to insert video, reading, or quiz material.
+            </div>
+          ` : (mod.lessons || []).map((les, lesIdx) => {
+            const rawType = les.type || les.lesson_type || (les.content && les.content.video_url ? 'video' : (les.questions || (les.content && les.content.questions) ? 'assessment' : 'reading'));
+            const lesType = String(rawType || 'reading').toLowerCase();
+            const iconConfig = getLessonTypeMeta(lesType);
+            const hasVideo = lesType === 'video' || (les.content && les.content.video_url);
+            const hasImage = les.content && les.content.image_url;
+            const lessonSummary = les.summary || les.description || 'Practical learning guide and competency unit';
+            const lessonDuration = les.duration || '20 min';
+
+            return `
+              <div class="p-3.5 md:p-4 rounded-xl border border-outline-variant/80 hover:border-secondary/50 bg-surface-container-lowest hover:bg-surface-bright flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all group shadow-2xs">
+                <div class="flex items-center gap-3.5 min-w-0 flex-1">
+                  <span class="w-10 h-10 rounded-xl ${iconConfig.bg} ${iconConfig.color} flex items-center justify-center shrink-0 shadow-2xs">
+                    <span class="material-symbols-outlined text-xl">${iconConfig.icon}</span>
+                  </span>
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="font-bold text-sm text-on-surface group-hover:text-secondary transition-colors">${escapeHtml(les.title)}</span>
+                      <span class="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full ${iconConfig.bg} ${iconConfig.color} border border-current/20 whitespace-nowrap">${lesType}</span>
+                      ${hasVideo ? `
+                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200 flex items-center gap-0.5 whitespace-nowrap">
+                          <span class="material-symbols-outlined text-[12px]">play_circle</span> Video
+                        </span>
+                      ` : ''}
+                      ${hasImage ? `
+                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-0.5 whitespace-nowrap">
+                          <span class="material-symbols-outlined text-[12px]">image</span> Photo
+                        </span>
+                      ` : ''}
+                    </div>
+                    <div class="flex items-center gap-2 mt-1 text-xs text-on-surface-variant flex-wrap">
+                      <span class="inline-flex items-center gap-1 font-bold text-secondary text-xs">
+                        <span class="material-symbols-outlined text-[13px]">schedule</span>
+                        ${escapeHtml(lessonDuration)}
+                      </span>
+                      <span class="text-outline/40">•</span>
+                      <span class="truncate text-on-surface-variant max-w-xl">${escapeHtml(lessonSummary)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
+                  <div class="flex items-center bg-surface-container-low rounded-lg p-0.5 border border-outline-variant/60">
+                    <button type="button" onclick="moveLesson(${modIdx}, ${lesIdx}, -1)" class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container disabled:opacity-25 transition-all cursor-pointer" ${lesIdx === 0 ? 'disabled' : ''} title="Move Up">
+                      <span class="material-symbols-outlined text-base">arrow_upward</span>
+                    </button>
+                    <button type="button" onclick="moveLesson(${modIdx}, ${lesIdx}, 1)" class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container disabled:opacity-25 transition-all cursor-pointer" ${lesIdx === (mod.lessons.length - 1) ? 'disabled' : ''} title="Move Down">
+                      <span class="material-symbols-outlined text-base">arrow_downward</span>
+                    </button>
+                  </div>
+                  <button type="button" onclick="openEditLessonModal(${modIdx}, ${lesIdx})" class="px-3 py-1.5 bg-secondary/10 hover:bg-secondary text-secondary hover:text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                    <span class="material-symbols-outlined text-xs">edit</span> Edit
+                  </button>
+                  <button type="button" onclick="deleteLesson(${modIdx}, ${lesIdx})" class="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-xl transition-all cursor-pointer" title="Delete Lesson">
+                    <span class="material-symbols-outlined text-base">delete</span>
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+      container.appendChild(modCard);
+    });
+
+    document.getElementById('statModuleCount').textContent = modules.length;
+    document.getElementById('statLessonCount').textContent = totalLessonsCount;
+  }
+
+  function getLessonTypeMeta(type) {
+    switch (type) {
+      case 'video':
+        return { icon: 'videocam', color: 'text-blue-700', bg: 'bg-blue-100' };
+      case 'activity':
+        return { icon: 'psychology', color: 'text-amber-800', bg: 'bg-amber-100' };
+      case 'assessment':
+        return { icon: 'verified', color: 'text-purple-700', bg: 'bg-purple-100' };
+      case 'reading':
+      default:
+        return { icon: 'menu_book', color: 'text-emerald-700', bg: 'bg-emerald-100' };
+    }
+  }
+
+  // ================= MODULE ACTIONS =================
+  function openAddModuleModal() {
+    document.getElementById('editModuleIndex').value = "-1";
+    document.getElementById('moduleModalTitle').innerHTML = '<span class="material-symbols-outlined text-secondary">add_circle</span><span>Add New Module</span>';
+    const nextNum = (curriculumData.modules || []).length + 1;
+    document.getElementById('moduleTitleInput').value = `Module ${nextNum}: New Topic Title`;
+    document.getElementById('moduleSummaryInput').value = '';
+    document.getElementById('moduleModal').classList.remove('hidden');
+  }
+
+  function openEditModuleModal(modIdx) {
+    const mod = curriculumData.modules[modIdx];
+    document.getElementById('editModuleIndex').value = modIdx;
+    document.getElementById('moduleModalTitle').innerHTML = '<span class="material-symbols-outlined text-secondary">edit</span><span>Edit Module</span>';
+    document.getElementById('moduleTitleInput').value = mod.title || '';
+    document.getElementById('moduleSummaryInput').value = mod.summary || '';
+    document.getElementById('moduleModal').classList.remove('hidden');
+  }
+
+  function closeModuleModal() {
+    document.getElementById('moduleModal').classList.add('hidden');
+  }
+
+  function handleModuleFormSubmit(e) {
+    e.preventDefault();
+    const modIdx = parseInt(document.getElementById('editModuleIndex').value);
+    const title = document.getElementById('moduleTitleInput').value.trim();
+    const summary = document.getElementById('moduleSummaryInput').value.trim();
+
+    if (!curriculumData.modules) curriculumData.modules = [];
+
+    if (modIdx >= 0) {
+      curriculumData.modules[modIdx].title = title;
+      curriculumData.modules[modIdx].summary = summary;
+      showToast('Module updated successfully! Remember to click "Save Changes".', 'success');
+    } else {
+      const newModNum = curriculumData.modules.length + 1;
+      curriculumData.modules.push({
+        id: `mod_${newModNum}`,
+        number: newModNum,
+        title: title,
+        summary: summary,
+        lessons: []
+      });
+      showToast('New module added! Remember to click "Save Changes".', 'success');
+    }
+
+    closeModuleModal();
+    renderModules();
+  }
+
+  function deleteModule(modIdx) {
+    if (confirm(`Are you sure you want to delete "${curriculumData.modules[modIdx].title}" and all its lessons?`)) {
+      curriculumData.modules.splice(modIdx, 1);
+      renderModules();
+      showToast('Module removed. Click "Save Changes" to apply.', 'info');
+    }
+  }
+
+  // ================= LESSON ACTIONS =================
+  function onLessonTypeChange(type) {
+    document.querySelectorAll('.type-option').forEach(el => {
+      if (el.getAttribute('data-type') === type) {
+        el.classList.add('border-secondary', 'bg-secondary/10');
+      } else {
+        el.classList.remove('border-secondary', 'bg-secondary/10');
+      }
+    });
+
+    const videoSection = document.getElementById('videoSection');
+    const quizSection = document.getElementById('quizSection');
+    const assessmentSection = document.getElementById('assessmentSection');
+
+    videoSection.classList.add('hidden');
+    quizSection.classList.add('hidden');
+    assessmentSection.classList.add('hidden');
+
+    if (type === 'video') {
+      videoSection.classList.remove('hidden');
+    } else if (type === 'activity') {
+      quizSection.classList.remove('hidden');
+    } else if (type === 'assessment') {
+      assessmentSection.classList.remove('hidden');
+    }
+  }
+
+  function openAddLessonModal(modIdx) {
+    document.getElementById('lessonModIndex').value = modIdx;
+    document.getElementById('lessonIndex').value = "-1";
+    document.getElementById('lessonModalHeading').textContent = `Add Lesson to Module ${modIdx + 1}`;
+
+    const mod = curriculumData.modules[modIdx];
+    const nextLesNum = (mod.lessons || []).length + 1;
+
+    document.getElementById('lessonTitleInput').value = `${modIdx + 1}.${nextLesNum} Practical Topic`;
+    document.getElementById('lessonDurationInput').value = "20 min";
+    document.getElementById('lessonDescInput').value = "Comprehensive lesson overview and practical benchmarks.";
+    document.getElementById('videoTitleInput').value = `${modIdx + 1}.${nextLesNum} Guided Walkthrough`;
+    document.getElementById('videoDurationStrInput').value = "15:00 HD";
+    document.getElementById('overviewInput').value = "In this lesson, you will master the essential industry principles.";
+    document.getElementById('keyPointsInput').value = "Understand baseline specifications\nExecute standard protocols\nPerform verification checks";
+    document.getElementById('readingContentInput').value = "### Core Principles\nFollow established workflow benchmarks to maintain enterprise quality.";
+
+    // Reset video & photo fields
+    document.getElementById('videoUrlInput').value = '';
+    document.getElementById('videoFileInput').value = '';
+    updateVideoPreview('', '');
+    document.getElementById('imageUrlInput').value = '';
+    document.getElementById('imageFileInput').value = '';
+    document.getElementById('imageCaptionInput').value = '';
+    updateImagePreview('', '');
+
+    // Default quiz
+    document.getElementById('quizQuestionInput').value = "What is the primary objective of following standard operating procedures?";
+    document.getElementById('quizOption0').value = "To eliminate reporting requirements";
+    document.getElementById('quizOption1').value = "To ensure consistent high-quality outputs and minimize errors";
+    document.getElementById('quizOption2').value = "To bypass safety checks";
+    document.getElementById('quizOption3').value = "To limit modern technological adoption";
+    document.getElementById('optRadio1').checked = true;
+    document.getElementById('quizExplanationInput').value = "Standard operating procedures ensure consistency and reliability.";
+
+    // Default type: video
+    document.querySelector('input[name="lesson_type"][value="video"]').checked = true;
+    onLessonTypeChange('video');
+
+    document.getElementById('lessonModal').classList.remove('hidden');
+  }
+
+  function openEditLessonModal(modIdx, lesIdx) {
+    const les = curriculumData.modules[modIdx].lessons[lesIdx];
+    document.getElementById('lessonModIndex').value = modIdx;
+    document.getElementById('lessonIndex').value = lesIdx;
+    document.getElementById('lessonModalHeading').textContent = `Edit Lesson: ${les.title}`;
+
+    document.getElementById('lessonTitleInput').value = les.title || '';
+    document.getElementById('lessonDurationInput').value = les.duration || '20 min';
+    document.getElementById('lessonDescInput').value = les.description || '';
+
+    const content = les.content || {};
+    document.getElementById('videoTitleInput').value = content.video_placeholder_title || les.title || '';
+    document.getElementById('videoDurationStrInput').value = content.video_duration_str || '15:00 HD';
+    document.getElementById('overviewInput').value = content.overview || '';
+    document.getElementById('keyPointsInput').value = Array.isArray(content.key_points) ? content.key_points.join('\n') : '';
+    document.getElementById('readingContentInput').value = content.reading_content || '';
+
+    // Populate video & photo fields
+    const videoUrl = content.video_url || '';
+    const videoName = content.video_file_name || (videoUrl ? 'Attached Video' : '');
+    updateVideoPreview(videoUrl, videoName);
+
+    const imageUrl = content.image_url || '';
+    const imageCaption = content.image_caption || '';
+    updateImagePreview(imageUrl, imageCaption);
+
+    const quizData = content.interactive_data || {};
+    document.getElementById('quizQuestionInput').value = quizData.question || '';
+    const opts = quizData.options || [];
+    document.getElementById('quizOption0').value = opts[0] || '';
+    document.getElementById('quizOption1').value = opts[1] || '';
+    document.getElementById('quizOption2').value = opts[2] || '';
+    document.getElementById('quizOption3').value = opts[3] || '';
+
+    const correctIdx = quizData.correct_index !== undefined ? quizData.correct_index : 0;
+    const radio = document.getElementById(`optRadio${correctIdx}`);
+    if (radio) radio.checked = true;
+
+    document.getElementById('quizExplanationInput').value = quizData.explanation || '';
+
+    // Render assessment questions if type is assessment
+    if (les.type === 'assessment') {
+      renderExamQuestionsEditor(content.questions || []);
+    }
+
+    const typeRadio = document.querySelector(`input[name="lesson_type"][value="${les.type}"]`) || document.querySelector('input[name="lesson_type"][value="reading"]');
+    typeRadio.checked = true;
+    onLessonTypeChange(typeRadio.value);
+
+    document.getElementById('lessonModal').classList.remove('hidden');
+  }
+
+  function closeLessonModal() {
+    document.getElementById('lessonModal').classList.add('hidden');
+  }
+
+  function handleLessonFormSubmit(e) {
+    e.preventDefault();
+    const modIdx = parseInt(document.getElementById('lessonModIndex').value);
+    const lesIdx = parseInt(document.getElementById('lessonIndex').value);
+
+    const type = document.querySelector('input[name="lesson_type"]:checked').value;
+    const title = document.getElementById('lessonTitleInput').value.trim();
+    const duration = document.getElementById('lessonDurationInput').value.trim();
+    const desc = document.getElementById('lessonDescInput').value.trim();
+
+    const overview = document.getElementById('overviewInput').value.trim();
+    const keyPoints = document.getElementById('keyPointsInput').value.split('\n').map(s => s.trim()).filter(Boolean);
+    const readingContent = document.getElementById('readingContentInput').value.trim();
+
+    const contentObj = {
+      heading: title,
+      overview: overview,
+      key_points: keyPoints,
+      reading_content: readingContent,
+    };
+
+    if (type === 'video') {
+      contentObj.video_placeholder_title = document.getElementById('videoTitleInput').value.trim() || title;
+      contentObj.video_duration_str = document.getElementById('videoDurationStrInput').value.trim() || duration;
+      contentObj.video_url = document.getElementById('videoUrlInput').value.trim();
+      contentObj.video_file_name = document.getElementById('videoFileNameDisplay').textContent.trim();
+    } else {
+      contentObj.video_url = '';
+      contentObj.video_file_name = '';
+    }
+
+    // Photo / Diagram attachment (available on all lesson types)
+    const attachedImgUrl = document.getElementById('imageUrlInput').value.trim();
+    const attachedImgCaption = document.getElementById('imageCaptionInput').value.trim();
+    if (attachedImgUrl) {
+      contentObj.image_url = attachedImgUrl;
+      contentObj.image_caption = attachedImgCaption;
+    } else {
+      contentObj.image_url = '';
+      contentObj.image_caption = '';
+    }
+
+    if (type === 'activity') {
+      const correctRadio = document.querySelector('input[name="quiz_correct_choice"]:checked');
+      contentObj.interactive_data = {
+        question: document.getElementById('quizQuestionInput').value.trim(),
+        options: [
+          document.getElementById('quizOption0').value.trim(),
+          document.getElementById('quizOption1').value.trim(),
+          document.getElementById('quizOption2').value.trim(),
+          document.getElementById('quizOption3').value.trim(),
+        ],
+        correct_index: correctRadio ? parseInt(correctRadio.value) : 0,
+        explanation: document.getElementById('quizExplanationInput').value.trim()
+      };
+    } else if (type === 'assessment') {
+      contentObj.passing_score = 70;
+      contentObj.questions = getExamQuestionsFromDom();
+    }
+
+    const mod = curriculumData.modules[modIdx];
+    if (!mod.lessons) mod.lessons = [];
+
+    const lessonObj = {
+      id: lesIdx >= 0 ? mod.lessons[lesIdx].id : `mod${modIdx + 1}_les${mod.lessons.length + 1}`,
+      type: type,
+      title: title,
+      duration: duration,
+      description: desc,
+      content: contentObj
+    };
+
+    if (lesIdx >= 0) {
+      mod.lessons[lesIdx] = lessonObj;
+      showToast(`Updated "${title}". Don't forget to click "Save Changes"!`, 'success');
+    } else {
+      mod.lessons.push(lessonObj);
+      showToast(`Added "${title}". Don't forget to click "Save Changes"!`, 'success');
+    }
+
+    closeLessonModal();
+    renderModules();
+  }
+
+  // ================= VIDEO & PHOTO ATTACHMENT CONTROLLERS =================
+  function getEmbedOrVideoUrl(rawUrl) {
+    if (!rawUrl) return { type: 'none', url: '' };
+    const trimmed = rawUrl.trim();
+    
+    // YouTube match standard or short
+    const ytMatch = trimmed.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
+    if (ytMatch && ytMatch[1]) {
+      return { type: 'iframe', url: `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=0&rel=0` };
+    }
+    
+    // YouTube direct embed or playlist/search embed
+    if (trimmed.includes('youtube.com/embed') || trimmed.includes('youtube-nocookie.com/embed')) {
+      return { type: 'iframe', url: trimmed };
+    }
+    
+    // YouTube search results link -> transform to embed playlist search
+    if (trimmed.includes('youtube.com/results') && trimmed.includes('search_query=')) {
+      const qm = trimmed.match(/search_query=([^&]+)/);
+      if (qm && qm[1]) {
+        return { type: 'iframe', url: `https://www.youtube-nocookie.com/embed?listType=search&list=${qm[1]}` };
+      }
+    }
+
+    // Vimeo match
+    const vimeoMatch = trimmed.match(/vimeo\.com\/(?:video\/)?([0-9]+)/i);
+    if (vimeoMatch && vimeoMatch[1]) {
+      return { type: 'iframe', url: `https://player.vimeo.com/video/${vimeoMatch[1]}` };
+    }
+    
+    return { type: 'video', url: trimmed };
+  }
+
+  function autoSuggestAlignedVideo() {
+    const btn = document.getElementById('btnAutoSuggestVideo');
+    const lesTitle = (document.getElementById('lessonTitleInput') ? document.getElementById('lessonTitleInput').value : '').trim();
+    const modTitle = (currentModuleIndex !== null && curriculumData && curriculumData.modules && curriculumData.modules[currentModuleIndex]) ? curriculumData.modules[currentModuleIndex].title : '';
+    const courseTitle = (curriculumData && curriculumData.title) ? curriculumData.title : "{{ program.title|escapejs }}";
+
+    if (!lesTitle && !modTitle) {
+      alert('Please enter a lesson title first so we can find an aligned tutorial video.');
+      return;
+    }
+
+    const origHtml = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.innerHTML = `<span class="material-symbols-outlined text-[13px] animate-spin">progress_activity</span><span>Searching...</span>`;
+      btn.disabled = true;
+    }
+
+    const fetchUrl = `{% url 'peso_ai_find_aligned_videos' %}?topic=${encodeURIComponent(courseTitle)}&module_title=${encodeURIComponent(modTitle)}&lesson_title=${encodeURIComponent(lesTitle)}`;
+
+    fetch(fetchUrl)
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.video) {
+          const vid = data.video;
+          const targetUrl = vid.video_url || vid.embed_url;
+          document.getElementById('videoUrlInput').value = targetUrl;
+          updateVideoPreview(targetUrl, vid.title || 'Aligned Video Tutorial');
+
+          const container = document.getElementById('videoSuggestionContainer');
+          const badge = document.getElementById('videoSuggestionBadge');
+          const titleEl = document.getElementById('videoSuggestionTitle');
+          const altsList = document.getElementById('videoAlternativesList');
+
+          if (container && titleEl) {
+            container.classList.remove('hidden');
+            titleEl.textContent = `Attached: ${vid.title} (${vid.duration_str || 'HD'})`;
+            if (badge) badge.textContent = vid.source === 'curated' ? 'Curated Masterclass' : 'YouTube Aligned';
+
+            if (altsList && Array.isArray(vid.alternatives) && vid.alternatives.length > 0) {
+              altsList.innerHTML = `<span class="text-[10px] font-bold text-purple-900 w-full mb-0.5">Alternative Tutorials:</span>`;
+              vid.alternatives.forEach(alt => {
+                const chip = document.createElement('button');
+                chip.type = 'button';
+                chip.className = 'px-2 py-1 bg-white hover:bg-purple-100 border border-purple-200 text-purple-900 rounded-md text-[10px] font-medium transition-colors text-left truncate max-w-xs';
+                chip.textContent = alt.title;
+                chip.title = alt.title;
+                chip.onclick = () => {
+                  const altUrl = alt.video_url || alt.embed_url;
+                  document.getElementById('videoUrlInput').value = altUrl;
+                  updateVideoPreview(altUrl, alt.title);
+                  titleEl.textContent = `Attached: ${alt.title}`;
+                  showToast(`Switched to: ${alt.title}`, 'info');
+                };
+                altsList.appendChild(chip);
+              });
+            }
+          }
+          showToast(`✨ Attached aligned video: ${vid.title}`, 'success');
+        } else {
+          alert(data.error || 'Could not find an aligned video.');
+        }
+      })
+      .catch(err => {
+        alert('Error fetching aligned video: ' + err.message);
+      })
+      .finally(() => {
+        if (btn) {
+          btn.innerHTML = origHtml;
+          btn.disabled = false;
+        }
+      });
+  }
+
+  function updateVideoPreview(url, fileName) {
+    const card = document.getElementById('videoPreviewCard');
+    const videoEl = document.getElementById('videoPreviewElement');
+    const iframeEl = document.getElementById('videoPreviewIframe');
+    const nameEl = document.getElementById('videoFileNameDisplay');
+    const urlInput = document.getElementById('videoUrlInput');
+
+    if (!url) {
+      if (card) card.classList.add('hidden');
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.src = '';
+        videoEl.classList.add('hidden');
+      }
+      if (iframeEl) {
+        iframeEl.src = '';
+        iframeEl.classList.add('hidden');
+      }
+      if (nameEl) nameEl.textContent = '';
+      return;
+    }
+
+    if (urlInput) urlInput.value = url;
+    const parsed = getEmbedOrVideoUrl(url);
+
+    if (parsed.type === 'iframe') {
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.src = '';
+        videoEl.classList.add('hidden');
+      }
+      if (iframeEl) {
+        iframeEl.src = parsed.url;
+        iframeEl.classList.remove('hidden');
+      }
+    } else {
+      if (iframeEl) {
+        iframeEl.src = '';
+        iframeEl.classList.add('hidden');
+      }
+      if (videoEl) {
+        videoEl.src = parsed.url;
+        videoEl.classList.remove('hidden');
+      }
+    }
+
+    if (nameEl) nameEl.textContent = fileName || url;
+    if (card) card.classList.remove('hidden');
+  }
+
+  function clearLessonVideo() {
+    const urlInput = document.getElementById('videoUrlInput');
+    const fileInput = document.getElementById('videoFileInput');
+    if (urlInput) urlInput.value = '';
+    if (fileInput) fileInput.value = '';
+    updateVideoPreview('', '');
+    showToast('Video removed from this lesson.', 'info');
+  }
+
+  function onVideoUrlInputChange(val) {
+    if (val && val.trim().length > 6) {
+      updateVideoPreview(val.trim(), 'External Video Link');
+    } else if (!val || !val.trim()) {
+      updateVideoPreview('', '');
+    }
+  }
+
+  function testPreviewVideoUrl() {
+    const val = document.getElementById('videoUrlInput').value.trim();
+    if (val) {
+      updateVideoPreview(val, 'External Video Link');
+      showToast('Video preview loaded.', 'success');
+    } else {
+      alert('Please enter a video URL first.');
+    }
+  }
+
+  function updateImagePreview(url, caption) {
+    const card = document.getElementById('imagePreviewCard');
+    const imgEl = document.getElementById('imagePreviewElement');
+    const urlInput = document.getElementById('imageUrlInput');
+    const captionInput = document.getElementById('imageCaptionInput');
+
+    if (!url) {
+      if (card) card.classList.add('hidden');
+      if (imgEl) imgEl.src = '';
+      return;
+    }
+
+    if (urlInput) urlInput.value = url;
+    if (imgEl) imgEl.src = url;
+    if (caption !== undefined && caption !== null && captionInput) {
+      captionInput.value = caption;
+    }
+    if (card) card.classList.remove('hidden');
+  }
+
+  function clearLessonImage() {
+    const urlInput = document.getElementById('imageUrlInput');
+    const fileInput = document.getElementById('imageFileInput');
+    const captionInput = document.getElementById('imageCaptionInput');
+    if (urlInput) urlInput.value = '';
+    if (fileInput) fileInput.value = '';
+    if (captionInput) captionInput.value = '';
+    updateImagePreview('');
+    showToast('Photo removed from this lesson.', 'info');
+  }
+
+  function onImageUrlInputChange(val) {
+    if (val && val.trim().length > 6) {
+      updateImagePreview(val.trim());
+    } else if (!val || !val.trim()) {
+      updateImagePreview('');
+    }
+  }
+
+  function testPreviewImageUrl() {
+    const val = document.getElementById('imageUrlInput').value.trim();
+    if (val) {
+      updateImagePreview(val);
+      showToast('Photo preview loaded.', 'success');
+    } else {
+      alert('Please enter a photo URL first.');
+    }
+  }
+
+  async function uploadMediaFile(file, expectedType) {
+    if (!file) return;
+
+    const isVideo = expectedType === 'video';
+    const progressEl = document.getElementById(isVideo ? 'videoUploadProgress' : 'imageUploadProgress');
+    const promptEl = document.getElementById(isVideo ? 'videoUploadPrompt' : 'imageUploadPrompt');
+
+    if (progressEl) progressEl.classList.remove('hidden');
+    if (promptEl) promptEl.classList.add('hidden');
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const res = await fetch(uploadMediaUrl, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrfToken
+        },
+        body: formData
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        if (data.file_type === 'video' || isVideo) {
+          updateVideoPreview(data.file_url, data.file_name);
+          showToast(`Video "${data.file_name}" uploaded successfully!`, 'success');
+        } else {
+          updateImagePreview(data.file_url);
+          showToast(`Photo "${data.file_name}" uploaded successfully!`, 'success');
+        }
+      } else {
+        alert(data.error || 'Upload failed. Please check the file format and size.');
+      }
+    } catch (err) {
+      console.error('Media upload error:', err);
+      alert('An error occurred during file upload. Please verify file size and connection.');
+    } finally {
+      if (progressEl) progressEl.classList.add('hidden');
+      if (promptEl) promptEl.classList.remove('hidden');
+    }
+  }
+
+  function handleVideoFileUpload(input) {
+    if (input.files && input.files[0]) {
+      uploadMediaFile(input.files[0], 'video');
+    }
+  }
+
+  function handleImageFileUpload(input) {
+    if (input.files && input.files[0]) {
+      uploadMediaFile(input.files[0], 'image');
+    }
+  }
+
+  // Setup drag & drop for drop zones
+  document.addEventListener('DOMContentLoaded', () => {
+    setupDropZone('videoDropZone', 'videoFileInput', (file) => uploadMediaFile(file, 'video'));
+    setupDropZone('imageDropZone', 'imageFileInput', (file) => uploadMediaFile(file, 'image'));
+  });
+
+  function setupDropZone(dropZoneId, fileInputId, onDropCallback) {
+    const zone = document.getElementById(dropZoneId);
+    if (!zone) return;
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      zone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        zone.classList.add('border-secondary', 'bg-secondary/5');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      zone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        zone.classList.remove('border-secondary', 'bg-secondary/5');
+      }, false);
+    });
+
+    zone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      if (files && files.length > 0) {
+        onDropCallback(files[0]);
+      }
+    }, false);
+  }
+
+  function moveLesson(modIdx, lesIdx, direction) {
+    const lessons = curriculumData.modules[modIdx].lessons;
+    const targetIdx = lesIdx + direction;
+    if (targetIdx >= 0 && targetIdx < lessons.length) {
+      const temp = lessons[lesIdx];
+      lessons[lesIdx] = lessons[targetIdx];
+      lessons[targetIdx] = temp;
+      renderModules();
+    }
+  }
+
+  function deleteLesson(modIdx, lesIdx) {
+    const les = curriculumData.modules[modIdx].lessons[lesIdx];
+    if (confirm(`Delete lesson "${les.title}"?`)) {
+      curriculumData.modules[modIdx].lessons.splice(lesIdx, 1);
+      renderModules();
+      showToast('Lesson deleted. Click "Save Changes" to apply.', 'info');
+    }
+  }
+
+  // ================= ASSESSMENT QUESTIONS EDITOR =================
+  let currentExamQuestions = [];
+
+  function renderExamQuestionsEditor(questions) {
+    currentExamQuestions = JSON.parse(JSON.stringify(questions || []));
+    const container = document.getElementById('examQuestionsList');
+    container.innerHTML = '';
+
+    currentExamQuestions.forEach((q, qIdx) => {
+      const qCard = document.createElement('div');
+      qCard.className = "p-3 rounded-lg bg-surface-container-lowest border border-purple-200 space-y-2 text-xs";
+      qCard.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-purple-900">Question ${qIdx + 1}</span>
+          <button type="button" onclick="removeExamQuestion(${qIdx})" class="text-rose-500 hover:text-rose-700 text-xs font-bold">Remove</button>
+        </div>
+        <div>
+          <input type="text" class="w-full bg-surface-bright border border-outline-variant rounded p-1.5 text-xs exam-q-prompt" value="${escapeHtml(q.question || '')}" placeholder="Question text">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          ${(q.options || []).map((opt, oIdx) => `
+            <div class="flex items-center gap-1.5">
+              <input type="radio" name="exam_correct_${qIdx}" value="${oIdx}" ${q.correct === oIdx ? 'checked' : ''}>
+              <input type="text" class="w-full bg-surface-bright border border-outline-variant rounded p-1 text-[11px] exam-q-opt" data-qidx="${qIdx}" data-oidx="${oIdx}" value="${escapeHtml(opt)}">
+            </div>
+          `).join('')}
+        </div>
+      `;
+      container.appendChild(qCard);
+    });
+  }
+
+  function addAssessmentQuestionRow() {
+    currentExamQuestions.push({
+      id: `q${currentExamQuestions.length + 1}`,
+      domain: "General Proficiency Assessment",
+      question: "New assessment question prompt...",
+      options: ["Choice A", "Choice B", "Choice C", "Choice D"],
+      correct: 0,
+      explanation: "Explanation of why this choice is correct."
+    });
+    renderExamQuestionsEditor(currentExamQuestions);
+  }
+
+  function removeExamQuestion(qIdx) {
+    currentExamQuestions.splice(qIdx, 1);
+    renderExamQuestionsEditor(currentExamQuestions);
+  }
+
+  function getExamQuestionsFromDom() {
+    const list = [];
+    const container = document.getElementById('examQuestionsList');
+    const cards = container.children;
+
+    for (let i = 0; i < cards.length; i++) {
+      const card = cards[i];
+      const promptInput = card.querySelector('.exam-q-prompt');
+      const optInputs = card.querySelectorAll('.exam-q-opt');
+      const radio = card.querySelector(`input[name="exam_correct_${i}"]:checked`);
+
+      const options = [];
+      optInputs.forEach(inp => options.push(inp.value.trim()));
+
+      list.push({
+        id: `q${i + 1}`,
+        domain: currentExamQuestions[i] ? currentExamQuestions[i].domain : "General Proficiency",
+        question: promptInput ? promptInput.value.trim() : `Question ${i + 1}`,
+        options: options.length >= 4 ? options : ["Option 1", "Option 2", "Option 3", "Option 4"],
+        correct: radio ? parseInt(radio.value) : 0,
+        explanation: currentExamQuestions[i] ? currentExamQuestions[i].explanation : "Standard industry protocol."
+      });
+    }
+    return list;
+  }
+
+  // ================= SAVE TO SERVER =================
+  function saveCurriculumToServer() {
+    const saveBtn = document.getElementById('saveBtn');
+    const originalText = saveBtn.innerHTML;
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">sync</span><span>Saving...</span>';
+
+    const seatTimeInp = document.getElementById('requiredTrainingMinutesInput');
+    if (seatTimeInp && seatTimeInp.value) {
+      curriculumData.required_training_minutes = parseInt(seatTimeInp.value) || 60;
+    }
+
+    fetch(saveUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrfToken,
+      },
+      body: JSON.stringify(curriculumData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = originalText;
+      if (data.success) {
+        showToast(data.message, 'success');
+      } else {
+        showToast(data.error || 'Failed to save curriculum.', 'error');
+      }
+    })
+    .catch(err => {
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = originalText;
+      showToast('Network error while saving curriculum.', 'error');
+    });
+  }
+
+  // ================= RAW JSON MODAL =================
+  function openRawJsonModal() {
+    document.getElementById('rawJsonTextarea').value = JSON.stringify(curriculumData, null, 2);
+    document.getElementById('jsonModal').classList.remove('hidden');
+  }
+
+  function closeRawJsonModal() {
+    document.getElementById('jsonModal').classList.add('hidden');
+  }
+
+  function copyRawJsonToClipboard() {
+    const txt = document.getElementById('rawJsonTextarea').value;
+    navigator.clipboard.writeText(txt).then(() => {
+      showToast('Copied full JSON to clipboard!', 'info');
+    });
+  }
+
+  function applyRawJsonChanges() {
+    try {
+      const parsed = JSON.parse(document.getElementById('rawJsonTextarea').value);
+      if (!parsed.modules || !Array.isArray(parsed.modules)) {
+        alert('Invalid JSON: Must contain a "modules" array.');
+        return;
+      }
+      curriculumData = parsed;
+      closeRawJsonModal();
+      renderModules();
+      showToast('Curriculum loaded from JSON! Click "Save Changes" to store.', 'success');
+    } catch (err) {
+      alert('Invalid JSON Syntax: ' + err.message);
+    }
+  }
+
+  // Toast Helper
+  function showToast(msg, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `p-4 rounded-xl border border-outline-variant bg-surface-container-lowest/95 backdrop-blur-md shadow-2xl flex items-center gap-3 pointer-events-auto transform transition-all duration-300`;
+
+    let icon = 'info';
+    let iconClass = 'text-secondary bg-secondary/10';
+    if (type === 'success') {
+      icon = 'check_circle';
+      iconClass = 'text-emerald-700 bg-emerald-100';
+    } else if (type === 'error') {
+      icon = 'error';
+      iconClass = 'text-rose-700 bg-rose-100';
+    }
+
+    toast.innerHTML = `
+      <span class="material-symbols-outlined p-1 rounded-full ${iconClass}">${icon}</span>
+      <p class="text-xs font-semibold text-on-surface flex-1">${escapeHtml(msg)}</p>
+    `;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 300);
+    }, 4000);
+  }
+
+  function escapeHtml(text) {
+    if (!text) return '';
+    return text.toString()
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // ================= IMPORT SYLLABUS (AI) MODAL LOGIC =================
+  let selectedImportFile = null;
+
+  function openImportSyllabusModal() {
+    document.getElementById('importSyllabusFormContainer').classList.remove('hidden');
+    document.getElementById('importSyllabusLoadingContainer').classList.add('hidden');
+    document.getElementById('importSyllabusModal').classList.remove('hidden');
+  }
+
+  function closeImportSyllabusModal() {
+    document.getElementById('importSyllabusModal').classList.add('hidden');
+  }
+
+  function handleImportFileSelect(e) {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      selectedImportFile = file;
+      document.getElementById('importFilePrompt').classList.add('hidden');
+      document.getElementById('importFileBadge').classList.remove('hidden');
+      document.getElementById('importFileBadge').classList.add('flex');
+      document.getElementById('importFileName').textContent = file.name;
+      const sizeKb = Math.round(file.size / 1024);
+      document.getElementById('importFileSize').textContent = sizeKb > 1024 ? `${(sizeKb / 1024).toFixed(1)} MB` : `${sizeKb} KB`;
+    }
+  }
+
+  function clearImportFile(e) {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    selectedImportFile = null;
+    const fileInput = document.getElementById('importSyllabusFileInput');
+    if (fileInput) fileInput.value = '';
+    document.getElementById('importFilePrompt').classList.remove('hidden');
+    document.getElementById('importFileBadge').classList.add('hidden');
+    document.getElementById('importFileBadge').classList.remove('flex');
+  }
+
+  function submitImportSyllabus() {
+    const fileInput = document.getElementById('importSyllabusFileInput');
+    const file = selectedImportFile || (fileInput && fileInput.files ? fileInput.files[0] : null);
+    const text = (document.getElementById('importSyllabusTextarea')?.value || '').trim();
+
+    if (!file && (!text || text.length < 20)) {
+      alert('Please select a syllabus document (PDF, Word DOCX/DOC, TXT) or paste syllabus text.');
+      return;
+    }
+
+    const updateDetails = document.getElementById('importUpdateDetailsCheckbox')?.checked ?? false;
+    const attachVideos = document.getElementById('importAttachVideosCheckbox')?.checked ?? true;
+
+    const formData = new FormData();
+    if (file) formData.append('syllabus_file', file);
+    if (text) formData.append('syllabus_text', text);
+    formData.append('update_course_details', updateDetails ? 'true' : 'false');
+    formData.append('attach_videos', attachVideos ? 'true' : 'false');
+
+    document.getElementById('importSyllabusFormContainer').classList.add('hidden');
+    document.getElementById('importSyllabusLoadingContainer').classList.remove('hidden');
+
+    fetch("{% url 'peso_import_syllabus_curriculum' program.id %}", {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}'
+      },
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        closeImportSyllabusModal();
+        if (data.curriculum) {
+          curriculumData = data.curriculum;
+          renderModules();
+        }
+        showToast(data.message || 'Curriculum successfully rebuilt from syllabus!', 'success');
+        setTimeout(() => window.location.reload(), 1200);
+      } else {
+        alert(data.error || 'Failed to import syllabus.');
+        document.getElementById('importSyllabusLoadingContainer').classList.add('hidden');
+        document.getElementById('importSyllabusFormContainer').classList.remove('hidden');
+      }
+    })
+    .catch(err => {
+      alert('Error importing syllabus: ' + err.message);
+      document.getElementById('importSyllabusLoadingContainer').classList.add('hidden');
+      document.getElementById('importSyllabusFormContainer').classList.remove('hidden');
+    });
+  }
+</script>
+
+<!-- Import Syllabus Modal -->
+<div id="importSyllabusModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-surface-bright border border-outline-variant/80 rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4">
+    <div class="flex justify-between items-start pb-3 border-b border-outline-variant/60">
+      <div class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center shadow-xs shrink-0">
+          <span class="material-symbols-outlined text-xl">upload_file</span>
+        </div>
+        <div>
+          <h3 class="font-headline-md text-base md:text-lg font-bold text-on-surface">Rebuild Curriculum from Syllabus (AI)</h3>
+          <p class="text-[11px] text-on-surface-variant">Parses a syllabus file to auto-populate modules, lessons, and exam for "{{ program.title }}".</p>
+        </div>
+      </div>
+      <button onclick="closeImportSyllabusModal()" class="p-1 rounded-lg hover:bg-surface-container-low text-outline">
+        <span class="material-symbols-outlined text-sm">close</span>
+      </button>
+    </div>
+
+    <!-- Form container -->
+    <div id="importSyllabusFormContainer" class="space-y-3.5">
+      <!-- File dropzone -->
+      <div class="border-2 border-dashed border-outline-variant/80 hover:border-emerald-500 rounded-xl p-4 text-center cursor-pointer bg-surface-container-lowest/70 hover:bg-emerald-50/20 transition-all relative">
+        <input type="file" id="importSyllabusFileInput" accept=".pdf,.docx,.doc,.txt" onchange="handleImportFileSelect(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+        <div id="importFilePrompt" class="space-y-1">
+          <span class="material-symbols-outlined text-2xl text-emerald-600">cloud_upload</span>
+          <p class="text-xs font-bold text-on-surface">Drop syllabus file here or <span class="text-secondary underline">browse files</span></p>
+          <p class="text-[10px] text-on-surface-variant">Accepts PDF, Word (DOCX/DOC), or TXT documents</p>
+        </div>
+        <div id="importFileBadge" class="hidden items-center justify-between p-2.5 bg-emerald-50 border border-emerald-300 rounded-lg text-left">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="material-symbols-outlined text-emerald-700 text-lg shrink-0">task</span>
+            <div class="min-w-0">
+              <p id="importFileName" class="text-xs font-bold text-emerald-950 truncate"></p>
+              <p id="importFileSize" class="text-[10px] text-emerald-800"></p>
+            </div>
+          </div>
+          <button type="button" onclick="clearImportFile(event)" class="p-1 hover:bg-emerald-200/50 rounded text-emerald-800 transition-colors z-20">
+            <span class="material-symbols-outlined text-xs">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Or paste text -->
+      <div>
+        <label for="importSyllabusTextarea" class="block text-[11px] font-bold text-on-surface mb-1">Or Paste Syllabus Text Directly:</label>
+        <textarea id="importSyllabusTextarea" rows="3" placeholder="Paste syllabus topics, chapters, or units of competency here..." 
+                  class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-2.5 text-xs focus:border-secondary focus:outline-none"></textarea>
+      </div>
+
+      <!-- Checkboxes -->
+      <div class="space-y-2 pt-1 text-xs text-on-surface">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="importUpdateDetailsCheckbox" class="rounded text-emerald-600 focus:ring-emerald-500">
+          <span>Also update course title and description to match syllabus</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="importAttachVideosCheckbox" checked class="rounded text-emerald-600 focus:ring-emerald-500">
+          <span>✨ Auto-align topic video tutorials from YouTube</span>
+        </label>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="pt-3 border-t border-outline-variant/60 flex justify-end gap-2.5">
+        <button type="button" onclick="closeImportSyllabusModal()" class="px-4 py-2 border border-outline-variant rounded-xl text-xs font-semibold hover:bg-surface-container-low">Cancel</button>
+        <button type="button" onclick="submitImportSyllabus()" class="px-5 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl text-xs font-bold hover:opacity-95 shadow-xs flex items-center gap-1.5 active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-sm">auto_awesome</span>
+          <span>Parse & Rebuild Curriculum</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="importSyllabusLoadingContainer" class="hidden py-8 text-center space-y-3">
+      <div class="w-12 h-12 rounded-full bg-emerald-100 border-2 border-emerald-600 border-t-transparent animate-spin mx-auto flex items-center justify-center">
+        <span class="material-symbols-outlined text-emerald-700 text-lg">auto_awesome</span>
+      </div>
+      <div>
+        <h4 class="font-bold text-on-surface text-sm">AI is Rebuilding Course from Syllabus...</h4>
+        <p class="text-xs text-on-surface-variant mt-1">Extracting modules, lesson milestones, readings, and exam questions...</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

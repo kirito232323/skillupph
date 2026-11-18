@@ -1,0 +1,36 @@
+# /etc/systemd/system/skillup.service
+#
+# Runs SkillUp with Gunicorn on a unix socket; nginx proxies to that socket.
+# Install:  sudo systemctl daemon-reload && sudo systemctl enable --now skillup
+
+[Unit]
+Description=SkillUp Django application (Gunicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=skillup
+Group=www-data
+UMask=0007
+RuntimeDirectory=skillup
+RuntimeDirectoryMode=0750
+WorkingDirectory=/var/www/skillup
+EnvironmentFile=/var/www/skillup/.env
+
+ExecStart=/var/www/skillup/venv/bin/gunicorn skillup_project.wsgi:application \
+          --bind unix:/run/skillup/gunicorn.sock \
+          --workers 2 \
+          --threads 2 \
+          --timeout 300 \
+          --graceful-timeout 30 \
+          --access-logfile - \
+          --error-logfile -
+
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

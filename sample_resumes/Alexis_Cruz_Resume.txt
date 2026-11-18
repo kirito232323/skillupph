@@ -1,0 +1,24 @@
+ALEXIS D. CRUZ
+==============
+Junior Full-Stack Web Developer
+Bocaue, Bulacan  |  +63 917 555 0142  |  alexis.cruz@example.com
+linkedin.com/in/alexiscruz  |  github.com/alexiscruz  |  alexiscruz.dev
+
+PROFESSIONAL SUMMARY
+Full-stack developer with 4+ years of experience building responsive web applications and REST APIs. Skilled in Python, Django, React, and SQL, with a strong focus on clean architecture, automated testing, and measurable business outcomes.
+
+CORE SKILLS
+Python, Django, React, JavaScript, SQL, Git, REST API Development, HTML5, CSS3, Tailwind CSS, PostgreSQL, Problem Solving, Communication
+
+WORK EXPERIENCE
+Web Developer - CloudBridge Digital Solutions (June 2022 - Present)
+Built and maintained 12+ Django and React modules for a logistics platform used by 8,000 monthly users. Designed REST endpoints, optimized PostgreSQL queries, and reduced page load time by 38%.
+Junior Developer Intern - Municipal Government of Bocaue (January 2022 - May 2022)
+Digitized 4,000 resident records, built an internal search tool, and documented data privacy handling for the municipal PESO office.
+
+EDUCATION
+BS Information Technology - Polytechnic University of the Philippines (2018 - 2022)
+
+CERTIFICATIONS
+Computer Systems Servicing NC II - TESDA (2023)
+Meta Front-End Developer Professional Certificate - Coursera (2024)

@@ -1,0 +1,46 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 883 >>
+stream
+BT /F2 20 Tf 1 0 0 1 50 800.00 Tm (MEDICAL CERTIFICATE) Tj ET
+BT /F2 12 Tf 1 0 0 1 50 772.50 Tm (FIT TO WORK - SAMPLE / DEMO ONLY) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 754.00 Tm (Certificate No.: MED-DEMO-2026-0088) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 738.00 Tm (Name: ALEXIS D. CRUZ) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 722.00 Tm (Examination Date: 06 November 2026) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 706.00 Tm (Findings: Physically fit to perform office and software development work.) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 690.00 Tm (Physician: Dr. Helena R. Bautista, MD) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 674.00 Tm (License No.: 1234567 \(sample\)) Tj ET
+BT /F2 11 Tf 1 0 0 1 50 647.00 Tm (NOTICE) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 629.50 Tm (This document is a fictional sample generated for the SKILLUP demonstration. It is not a real medical certificate and must not be used for any official purpose.) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000266 00000 n 
+0000000402 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1336
+%%EOF

@@ -1,0 +1,54 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 2087 >>
+stream
+BT /F2 20 Tf 1 0 0 1 50 800.00 Tm (ALEXIS D. CRUZ) Tj ET
+BT /F2 12 Tf 1 0 0 1 50 772.50 Tm (Junior Full-Stack Web Developer) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 754.00 Tm (Bocaue, Bulacan  |  +63 917 555 0142  |  alexis.cruz@example.com) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 738.00 Tm (linkedin.com/in/alexiscruz  |  github.com/alexiscruz  |  alexiscruz.dev) Tj ET
+BT /F2 11 Tf 1 0 0 1 50 711.00 Tm (PROFESSIONAL SUMMARY) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 693.50 Tm (Full-stack developer with 4+ years of experience building responsive web applications and REST APIs. Skilled in Python, Django, React, and SQL, with a strong focus on clean architecture, automated testing, and measurable business outcomes.) Tj ET
+BT /F2 11 Tf 1 0 0 1 50 666.50 Tm (CORE SKILLS) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 649.00 Tm (Python, Django, React, JavaScript, SQL, Git, REST API Development, HTML5, CSS3, Tailwind CSS, PostgreSQL, Problem Solving, Communication) Tj ET
+BT /F2 11 Tf 1 0 0 1 50 622.00 Tm (WORK EXPERIENCE) Tj ET
+BT /F2 10 Tf 1 0 0 1 50 599.50 Tm (Web Developer - CloudBridge Digital Solutions \(June 2022 - Present\)) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 583.00 Tm (Built and maintained 12+ Django and React modules for a logistics platform used by 8,000 monthly users. Designed REST endpoints, optimized PostgreSQL queries, and reduced page load time by 38%.) Tj ET
+BT /F2 10 Tf 1 0 0 1 50 562.00 Tm (Junior Developer Intern - Municipal Government of Bocaue \(January 2022 - May 2022\)) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 545.50 Tm (Digitized 4,000 resident records, built an internal search tool, and documented data privacy handling for the municipal PESO office.) Tj ET
+BT /F2 11 Tf 1 0 0 1 50 518.50 Tm (EDUCATION) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 501.00 Tm (BS Information Technology - Polytechnic University of the Philippines \(2018 - 2022\)) Tj ET
+BT /F2 11 Tf 1 0 0 1 50 474.00 Tm (CERTIFICATIONS) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 456.50 Tm (Computer Systems Servicing NC II - TESDA \(2023\)) Tj ET
+BT /F1 9.5 Tf 1 0 0 1 50 440.50 Tm (Meta Front-End Developer Professional Certificate - Coursera \(2024\)) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000266 00000 n 
+0000000402 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2541
+%%EOF

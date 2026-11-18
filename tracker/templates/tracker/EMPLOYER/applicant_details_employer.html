@@ -1,0 +1,990 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Applicant Profile | SKILLUP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#0051d5",
+                    "inverse-surface": "#213145",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "outline-variant": "#c6c6cd",
+                    "primary-fixed": "#dae2fd",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-container": "#7c839b",
+                    "primary-fixed-dim": "#bec6e0",
+                    "outline": "#76777d",
+                    "on-secondary-fixed": "#00174b",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-container": "#002113",
+                    "primary-container": "#131b2e",
+                    "tertiary": "#000000",
+                    "on-secondary-container": "#fefcff",
+                    "surface-dim": "#cbdbf5",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-background": "#0b1c30",
+                    "on-surface-variant": "#45464d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#002113",
+                    "inverse-on-surface": "#eaf1ff",
+                    "background": "#f8f9ff",
+                    "secondary-fixed": "#dbe1ff",
+                    "primary": "#000000",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#009668",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed": "#131b2e",
+                    "inverse-primary": "#bec6e0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .tonal-layer {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .skill-radar-bg {
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .zebra-row:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+        .radar-grid { stroke: #E2E8F0; stroke-width: 1; fill: none; }
+        .radar-axis { stroke: #CBD5E1; stroke-width: 1; }
+        .radar-area-target { fill: rgba(0, 81, 213, 0.1); stroke: #0051d5; stroke-width: 2; }
+        .radar-area-current { fill: rgba(78, 222, 163, 0.3); stroke: #4edea3; stroke-width: 2; }
+        .radar-point { transition: all 0.2s ease; }
+        .radar-point:hover { r: 6; }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">SKILLUP</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center justify-center">
+  <a href="{% url 'employer_notifications' %}"
+     class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80 block"
+     {% if unread_match_alerts %}style="color:#0051d5" {% endif %}>notifications</a>
+  {% if unread_match_alerts %}<span
+     class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">{{ unread_match_alerts }}</span>{% endif %}
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80">settings</button>
+<a href="{% url 'company_profile_employer' %}" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-secondary/15 flex items-center justify-center font-bold text-xs text-secondary shrink-0 hover:ring-2 hover:ring-secondary transition-all" title="{{ request.user.profile.company_name|default:request.user.get_full_name }}">
+  {% if request.user.profile.company_logo %}
+    <img alt="{{ request.user.profile.company_name }}" class="w-full h-full object-cover" src="{{ request.user.profile.company_logo.url }}">
+  {% elif request.user.profile.profile_picture %}
+    <img alt="{{ request.user.get_full_name }}" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+  {% else %}
+    {{ request.user.profile.company_name|slice:":1"|upper|default:request.user.first_name|slice:":1"|upper|default:"E" }}
+  {% endif %}
+</a>
+</div>
+</header>
+{% if request.user.profile.role == 'admin' %}
+<aside class="fixed left-0 top-0 h-full w-64 pt-20 bg-surface-container-lowest dark:bg-primary-container border-r border-outline-variant dark:border-outline hidden md:flex flex-col p-4 gap-2 z-40">
+<div class="flex items-center gap-3 px-2 py-4 mb-4 border-b border-outline-variant/30">
+{% if request.user.profile.profile_picture %}
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant shrink-0">
+  <img alt="Office Logo" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+</div>
+{% else %}
+<div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-white font-black text-xl shrink-0">P</div>
+{% endif %}
+<div>
+<h2 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider whitespace-nowrap">SKILLUP Portal</h2>
+<p class="text-[10px] text-on-surface-variant opacity-70">Public Employment Service</p>
+</div>
+</div>
+<nav class="flex-grow flex flex-col gap-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_dashboard_admin' %}">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 {% if from_section == 'talent_bench' or not from_section %}bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold{% else %}text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface{% endif %} rounded-lg scale-98 active:scale-95 duration-150 transition-all font-label-md text-label-md" href="{% url 'applicant_monitoring_admin' %}">
+<span class="material-symbols-outlined" {% if from_section == 'talent_bench' or not from_section %}style="font-variation-settings: 'FILL' 1;"{% endif %}>groups</span>
+<span>Talent Bench</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employer_management_admin' %}">
+<span class="material-symbols-outlined">domain</span>
+<span>Employers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 {% if from_section == 'vacancies' %}bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold{% else %}text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface{% endif %} transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'vacancy_management_admin' %}">
+<span class="material-symbols-outlined" {% if from_section == 'vacancies' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>work</span>
+<span>Vacancies</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employment_tracking_admin' %}">
+<span class="material-symbols-outlined">description</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'skill_monitoring_admin' %}">
+<span class="material-symbols-outlined">analytics</span>
+<span>Skill Gaps</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 {% if from_section == 'training' %}bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold{% else %}text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface{% endif %} transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'training_monitoring_admin' %}">
+<span class="material-symbols-outlined" {% if from_section == 'training' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>school</span>
+<span>Training Programs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'job_matching_analytics_admin' %}">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_profile_admin' %}">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'logout' %}">
+<span class="material-symbols-outlined">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</aside>
+{% else %}
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 pt-20 bg-surface-container-lowest dark:bg-primary-container border-r border-outline-variant dark:border-outline hidden md:flex flex-col p-4 gap-2 z-40">
+<div class="flex items-center gap-3 px-2 py-4 mb-4 border-b border-outline-variant/30">
+<div class="w-10 h-10 bg-surface border border-outline-variant rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
+  {% if request.user.profile.company_logo %}
+    <img class="w-full h-full object-cover" src="{{ request.user.profile.company_logo.url }}" alt="Company Logo">
+  {% else %}
+    <span class="text-white font-black text-xl bg-secondary w-full h-full flex items-center justify-center">{{ request.user.profile.company_name|slice:":1"|default:"P" }}</span>
+  {% endif %}
+</div>
+<div>
+<h2 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider whitespace-nowrap">SKILLUP Portal</h2>
+<p class="text-[10px] text-on-surface-variant opacity-70">Enterprise Talent Network</p>
+</div>
+</div>
+<nav class="flex-grow flex flex-col gap-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-3 py-2 {% if from_section == 'employer_dashboard' %}bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold{% else %}text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface{% endif %} transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employer_dashboard' %}">
+  <span class="material-symbols-outlined" {% if from_section == 'employer_dashboard' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>dashboard</span>
+  <span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 {% if from_section == 'hiring_tracker' or not from_section and request.user.profile.role == 'employer' %}bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold{% else %}text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface{% endif %} transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'hiring_tracker_employer' %}">
+  <span class="material-symbols-outlined" {% if from_section == 'hiring_tracker' or not from_section and request.user.profile.role == 'employer' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>developer_board</span>
+  <span>Hiring Tracker</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 {% if from_section == 'job_management' %}bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold{% else %}text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface{% endif %} transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'job_management_employer' %}">
+  <span class="material-symbols-outlined" {% if from_section == 'job_management' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>work</span>
+  <span>Job Management</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'company_profile_employer' %}">
+  <span class="material-symbols-outlined">corporate_fare</span>
+  <span>Company Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 {% if from_section == 'notifications' or from_section == 'match_alerts' %}bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold{% else %}text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface{% endif %} transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md relative" href="{% url 'employer_notifications' %}">
+  <span class="material-symbols-outlined" {% if from_section == 'notifications' or from_section == 'match_alerts' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>notifications</span>
+  <span>Match Alerts</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'logout' %}"><span class="material-symbols-outlined">logout</span><span>Log Out</span></a>
+</div>
+</aside>
+{% endif %}
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-20 min-h-screen">
+<div class="px-6 md:px-8 py-6 space-y-6">
+<!-- Breadcrumbs & Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 border-b border-outline-variant">
+  <div class="flex items-center gap-3.5 min-w-0 flex-1">
+    {% if from_section == 'vacancies' and from_vacancy %}
+      <a href="{% url 'vacancy_detail_admin' from_vacancy.id %}" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Back to Vacancy Details">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-0.5">
+          <a href="{% url 'vacancy_management_admin' %}" class="hover:text-secondary font-medium">Vacancies</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <a href="{% url 'vacancy_detail_admin' from_vacancy.id %}" class="hover:text-secondary font-medium">{{ from_vacancy.title|truncatechars:30 }}</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <span class="font-bold text-on-surface">Applicant Profile</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">{{ profile.user.get_full_name }}</h2>
+      </div>
+    {% elif from_section == 'training' and from_training %}
+      <a href="{% url 'training_program_detail_admin' from_training.id %}" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Back to Training Program">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-0.5">
+          <a href="{% url 'training_monitoring_admin' %}" class="hover:text-secondary font-medium">Training Programs</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <a href="{% url 'training_program_detail_admin' from_training.id %}" class="hover:text-secondary font-medium">{{ from_training.title|truncatechars:30 }}</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <span class="font-bold text-on-surface">Applicant Profile</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">{{ profile.user.get_full_name }}</h2>
+      </div>
+    {% elif from_section == 'talent_bench' %}
+      <a href="{% url 'applicant_monitoring_admin' %}" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Back to Talent Bench">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-0.5">
+          <a href="{% url 'applicant_monitoring_admin' %}" class="hover:text-secondary font-medium">Talent Bench</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <span class="font-bold text-on-surface">Applicant Profile</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">{{ profile.user.get_full_name }}</h2>
+      </div>
+    {% elif from_section == 'notifications' or from_section == 'match_alerts' %}
+      <a href="{% url 'employer_notifications' %}" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Back to Match Alerts">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-0.5">
+          <a href="{% url 'employer_notifications' %}" class="hover:text-secondary font-medium">Match Alerts</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <span class="font-bold text-on-surface">Applicant Profile</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">{{ profile.user.get_full_name }}</h2>
+      </div>
+    {% elif from_section == 'hiring_tracker' or request.user.profile.role == 'employer' and not from_section %}
+      <a href="{% url 'hiring_tracker_employer' %}" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Back to Hiring Tracker">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-0.5">
+          <a href="{% url 'hiring_tracker_employer' %}" class="hover:text-secondary font-medium">Hiring Tracker</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <span class="font-bold text-on-surface">Applicant Profile</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">{{ profile.user.get_full_name }}</h2>
+      </div>
+    {% elif from_section == 'job_management' %}
+      <a href="{% url 'job_management_employer' %}" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Back to Job Management">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-0.5">
+          <a href="{% url 'job_management_employer' %}" class="hover:text-secondary font-medium">Job Management</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <span class="font-bold text-on-surface">Applicant Profile</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">{{ profile.user.get_full_name }}</h2>
+      </div>
+    {% elif from_section == 'employer_dashboard' %}
+      <a href="{% url 'employer_dashboard' %}" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Back to Dashboard">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-0.5">
+          <a href="{% url 'employer_dashboard' %}" class="hover:text-secondary font-medium">Dashboard</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <span class="font-bold text-on-surface">Applicant Profile</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">{{ profile.user.get_full_name }}</h2>
+      </div>
+    {% else %}
+      <a href="javascript:history.back()" class="w-10 h-10 rounded-full border border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low hover:text-secondary flex items-center justify-center text-on-surface-variant transition-all shadow-xs active:scale-95 shrink-0" title="Go Back">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+      </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-0.5">
+          <a href="javascript:history.back()" class="hover:text-secondary font-medium">Directory</a>
+          <span class="material-symbols-outlined text-xs">chevron_right</span>
+          <span class="font-bold text-on-surface">Applicant Profile</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">{{ profile.user.get_full_name }}</h2>
+      </div>
+    {% endif %}
+  </div>
+  <div class="flex flex-wrap items-center gap-2 md:justify-end">
+    {% if active_referral and active_referral.status != 'No Response from Applicant' and active_referral.status != 'Not Hired' %}
+    <button type="button" onclick="openProfileUnresponsiveModal()" class="px-4 py-2 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded-lg flex items-center gap-2 transition-all font-label-md text-label-md font-bold shadow-xs cursor-pointer whitespace-nowrap" title="Candidate is no longer reachable">
+      <span class="material-symbols-outlined text-[18px] text-amber-600">phone_disabled</span>
+      No Longer Contacted
+    </button>
+    {% endif %}
+    <a href="{% url 'applicant_job_matches' profile.id %}?from_section=applicant_detail" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg flex items-center gap-2 transition-all font-label-md text-label-md font-bold shadow-xs whitespace-nowrap">
+      <span class="material-symbols-outlined text-[16px]">travel_explore</span>
+      Explore Job Matches
+    </a>
+    {% if request.user.profile.role == 'admin' %}
+    <a href="{% url 'coordinator_interview' profile.id %}" class="px-4 py-2 bg-slate-900 hover:bg-black text-white rounded-lg flex items-center gap-2 transition-all font-label-md text-label-md font-bold shadow-xs whitespace-nowrap">
+      <span class="material-symbols-outlined text-[16px]">rate_review</span>
+      Coordinator Interview
+    </a>
+    {% endif %}
+    <button onclick="window.print()" class="px-4 py-2 border border-outline-variant rounded-lg bg-surface-container-lowest flex items-center gap-2 hover:bg-surface-container-low transition-all text-on-surface font-label-md text-label-md font-bold shadow-xs whitespace-nowrap">
+      <span class="material-symbols-outlined text-[16px]">print</span>
+      Print / PDF
+    </button>
+  </div>
+</div>
+
+<!-- Profile Bento Grid - Full Width Canvas -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start w-full">
+<!-- Left Column: Identity & Contact -->
+<div class="lg:col-span-4 xl:col-span-3 space-y-6">
+<section class="bg-white rounded-2xl border border-outline-variant/70 shadow-sm p-6 relative">
+<div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+  <div class="flex items-center gap-1.5">
+    <span class="text-[11px] font-bold text-outline uppercase tracking-wider">Candidate</span>
+    
+  </div>
+  <span class="bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-xs">
+    <span class="material-symbols-outlined text-[13px]">verified</span>
+    VERIFIED
+  </span>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="relative mb-3 flex items-center justify-center">
+{% if profile.profile_picture %}
+<img class="w-24 h-24 rounded-full border-4 border-slate-100 object-cover shadow-sm" src="{{ profile.profile_picture.url }}" alt="{{ profile.user.get_full_name }}">
+{% else %}
+<div class="w-24 h-24 rounded-full border-4 border-slate-100 flex items-center justify-center font-bold text-2xl bg-secondary/10 text-secondary shadow-sm">
+    {{ profile.user.first_name|slice:":1"|upper }}{{ profile.user.last_name|slice:":1"|upper }}
+</div>
+{% endif %}
+<div class="absolute bottom-0.5 right-0.5 bg-emerald-500 w-4 h-4 rounded-full border-2 border-white" title="Active Candidate"></div>
+</div>
+<h3 class="font-headline-md text-xl font-bold text-on-surface mb-0.5">{{ profile.user.first_name }} {{ profile.user.last_name }}</h3>
+<p class="text-secondary font-semibold text-xs mb-4">{{ profile.preferred_job|default:"Job Applicant" }} Specialist</p>
+
+<div class="w-full space-y-2 text-left pt-2">
+  <div class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+    <span class="material-symbols-outlined text-secondary text-[18px]">location_on</span>
+    <div class="min-w-0 flex-1">
+      <p class="text-[9px] text-outline font-bold uppercase tracking-wider">Location</p>
+      <p class="text-xs font-semibold text-on-surface truncate">{{ profile.location|default:"Taguig City, Metro Manila" }}</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+    <span class="material-symbols-outlined text-secondary text-[18px]">mail</span>
+    <div class="min-w-0 flex-1">
+      <p class="text-[9px] text-outline font-bold uppercase tracking-wider">Email</p>
+      <p class="text-xs font-semibold text-on-surface truncate" title="{{ profile.user.email }}">{{ profile.user.email }}</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+    <span class="material-symbols-outlined text-secondary text-[18px]">phone</span>
+    <div class="min-w-0 flex-1">
+      <p class="text-[9px] text-outline font-bold uppercase tracking-wider">Phone</p>
+      <p class="text-xs font-semibold text-on-surface">{{ profile.phone_number|default:"+63 917 123 4567" }}</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+    <span class="material-symbols-outlined text-secondary text-[18px]">work</span>
+    <div class="min-w-0 flex-1">
+      <p class="text-[9px] text-outline font-bold uppercase tracking-wider">Preferred Sector</p>
+      <p class="text-xs font-bold text-secondary uppercase">{{ profile.preferred_job|default:"General" }}</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-2">
+    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+      <p class="text-[9px] text-outline font-bold uppercase tracking-wider">Age</p>
+      <p class="text-xs font-semibold text-on-surface">{% if profile.age %}{{ profile.age }} Years{% else %}24 Years{% endif %}</p>
+    </div>
+    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+      <p class="text-[9px] text-outline font-bold uppercase tracking-wider">Civil Status</p>
+      <p class="text-xs font-semibold text-on-surface">{{ profile.civil_status|default:"Single" }}</p>
+    </div>
+  </div>
+  {% if profile.soft_notes %}
+  <div class="p-3 bg-secondary/5 rounded-xl border border-secondary/20 space-y-1">
+    <p class="text-[9px] text-secondary font-bold uppercase tracking-wider flex items-center gap-1">
+      <span class="material-symbols-outlined text-[14px]">format_quote</span> Applicant Short Note
+    </p>
+    <p class="text-xs text-on-surface leading-relaxed whitespace-pre-line">{{ profile.soft_notes }}</p>
+  </div>
+  {% endif %}
+</div>
+</div>
+</section>
+
+<!-- Quick Stats -->
+<section class="bg-white rounded-2xl border border-outline-variant/70 shadow-sm p-6">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-bold text-sm text-on-surface flex items-center gap-1.5">
+  <span class="material-symbols-outlined text-secondary text-[18px]">analytics</span>
+  Quick Stats
+</h4>
+<span class="material-symbols-outlined text-outline text-[18px]">query_stats</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3.5 bg-slate-50 border border-slate-100 rounded-xl">
+<p class="text-[10px] text-outline font-bold uppercase">Experience</p>
+<p class="text-base font-black text-on-surface mt-0.5">{{ profile.experience_years|default:"0 Years" }}</p>
+</div>
+<div class="p-3.5 bg-blue-50/60 border border-blue-100 rounded-xl">
+<p class="text-[10px] text-secondary font-bold uppercase">Skill Match</p>
+<p class="text-base font-black text-secondary mt-0.5">{{ highest_match }}%</p>
+</div>
+<div class="p-3.5 bg-slate-50 border border-slate-100 rounded-xl">
+<p class="text-[10px] text-outline font-bold uppercase">Availability</p>
+<p class="text-base font-black text-on-surface mt-0.5">{% if profile.status == 'Hired' %}Employed{% else %}Immediate{% endif %}</p>
+</div>
+<div class="p-3.5 bg-slate-50 border border-slate-100 rounded-xl">
+<p class="text-[10px] text-outline font-bold uppercase">Retention Score</p>
+<p class="text-base font-black text-emerald-700 mt-0.5">{% if highest_match >= 75 %}High{% else %}Moderate{% endif %}</p>
+</div>
+</div>
+</section>
+</div>
+
+<!-- Right Column: Skills, Gaps, History, Education -->
+<div class="lg:col-span-8 xl:col-span-9 space-y-6">
+
+{% if active_referral %}
+<!-- Multi-Stage Interview Process Tracker Card -->
+<section class="bg-white rounded-2xl border-2 border-secondary/30 shadow-sm p-6 relative overflow-hidden">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-outline-variant/40">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-[24px]">diversity_3</span>
+      </div>
+      <div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <h4 class="font-bold text-base text-on-surface">Interview Process Tracker</h4>
+          <span class="px-2.5 py-0.5 rounded text-[11px] font-bold
+            {% if active_referral.current_interview_stage_number == 1 %}bg-amber-100 text-amber-900 border border-amber-300
+            {% elif active_referral.current_interview_stage_number == 2 %}bg-blue-100 text-blue-900 border border-blue-300
+            {% elif active_referral.current_interview_stage_number == 3 %}bg-purple-100 text-purple-900 border border-purple-300
+            {% else %}bg-emerald-100 text-emerald-900 border border-emerald-300{% endif %}">
+            Stage {{ active_referral.current_interview_stage_number }} of 3: {{ active_referral.interview_stage|default:"Initial Assessment" }}
+          </span>
+        </div>
+        <p class="text-xs text-on-surface-variant mt-0.5">
+          Application for: <span class="font-bold text-on-surface">{{ active_referral.job_vacancy.title }}</span> &bull; Status: <span class="font-semibold text-secondary">{{ active_referral.status }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button type="button" onclick="openProfileStageModal()"
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-xs flex items-center gap-1.5 transition-all">
+        <span class="material-symbols-outlined text-[16px]">step_into</span>
+        Advance / Update Stage
+      </button>
+      <button type="button" onclick="openProfileUnresponsiveModal()"
+        class="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg shadow-xs flex items-center gap-1.5 transition-all"
+        title="Candidate is no longer reachable or responding">
+        <span class="material-symbols-outlined text-[16px]">phone_disabled</span>
+        No Longer Contacted
+      </button>
+    </div>
+  </div>
+
+  <!-- 3-Stage Visual Progression Stepper -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
+    <!-- Stage 1 -->
+    <div class="p-3.5 rounded-xl border relative transition-all
+      {% if active_referral.current_interview_stage_number > 1 %}bg-emerald-50/60 border-emerald-300
+      {% elif active_referral.current_interview_stage_number == 1 %}bg-amber-50/80 border-amber-400 shadow-xs ring-2 ring-amber-400/20
+      {% else %}bg-slate-50/60 border-slate-200 opacity-75{% endif %}">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[10px] font-extrabold uppercase tracking-wider
+          {% if active_referral.current_interview_stage_number > 1 %}text-emerald-700
+          {% elif active_referral.current_interview_stage_number == 1 %}text-amber-800
+          {% else %}text-slate-500{% endif %}">Stage 1</span>
+        <span class="material-symbols-outlined text-base
+          {% if active_referral.current_interview_stage_number > 1 %}text-emerald-600
+          {% elif active_referral.current_interview_stage_number == 1 %}text-amber-600 animate-pulse
+          {% else %}text-slate-400{% endif %}">
+          {% if active_referral.current_interview_stage_number > 1 %}check_circle{% elif active_referral.current_interview_stage_number == 1 %}pending{% else %}radio_button_unchecked{% endif %}
+        </span>
+      </div>
+      <div class="font-bold text-xs text-on-surface">Initial Assessment</div>
+      <div class="text-[11px] text-on-surface-variant mt-0.5">Resume &amp; Baseline Screening</div>
+      <div class="mt-2 text-[10px] font-bold
+        {% if active_referral.current_interview_stage_number > 1 %}text-emerald-700
+        {% elif active_referral.current_interview_stage_number == 1 %}text-amber-800
+        {% else %}text-slate-400{% endif %}">
+        {% if active_referral.current_interview_stage_number > 1 %}Completed ✓{% elif active_referral.current_interview_stage_number == 1 %}Active Stage ⏳{% else %}Upcoming{% endif %}
+      </div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="p-3.5 rounded-xl border relative transition-all
+      {% if active_referral.current_interview_stage_number > 2 %}bg-emerald-50/60 border-emerald-300
+      {% elif active_referral.current_interview_stage_number == 2 %}bg-blue-50/80 border-blue-400 shadow-xs ring-2 ring-blue-400/20
+      {% else %}bg-slate-50/60 border-slate-200 opacity-75{% endif %}">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[10px] font-extrabold uppercase tracking-wider
+          {% if active_referral.current_interview_stage_number > 2 %}text-emerald-700
+          {% elif active_referral.current_interview_stage_number == 2 %}text-blue-800
+          {% else %}text-slate-500{% endif %}">Stage 2</span>
+        <span class="material-symbols-outlined text-base
+          {% if active_referral.current_interview_stage_number > 2 %}text-emerald-600
+          {% elif active_referral.current_interview_stage_number == 2 %}text-blue-600 animate-pulse
+          {% else %}text-slate-400{% endif %}">
+          {% if active_referral.current_interview_stage_number > 2 %}check_circle{% elif active_referral.current_interview_stage_number == 2 %}videocam{% else %}radio_button_unchecked{% endif %}
+        </span>
+      </div>
+      <div class="font-bold text-xs text-on-surface">Online or F2F Assessment</div>
+      <div class="text-[11px] text-on-surface-variant mt-0.5">Technical &amp; Behavioral Tasks</div>
+      <div class="mt-2 text-[10px] font-bold
+        {% if active_referral.current_interview_stage_number > 2 %}text-emerald-700
+        {% elif active_referral.current_interview_stage_number == 2 %}text-blue-800
+        {% else %}text-slate-400{% endif %}">
+        {% if active_referral.current_interview_stage_number > 2 %}Completed ✓{% elif active_referral.current_interview_stage_number == 2 %}Active Stage ⏳{% else %}Upcoming{% endif %}
+      </div>
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="p-3.5 rounded-xl border relative transition-all
+      {% if active_referral.current_interview_stage_number > 3 %}bg-emerald-50/60 border-emerald-300
+      {% elif active_referral.current_interview_stage_number == 3 %}bg-purple-50/80 border-purple-400 shadow-xs ring-2 ring-purple-400/20
+      {% else %}bg-slate-50/60 border-slate-200 opacity-75{% endif %}">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[10px] font-extrabold uppercase tracking-wider
+          {% if active_referral.current_interview_stage_number > 3 %}text-emerald-700
+          {% elif active_referral.current_interview_stage_number == 3 %}text-purple-800
+          {% else %}text-slate-500{% endif %}">Stage 3</span>
+        <span class="material-symbols-outlined text-base
+          {% if active_referral.current_interview_stage_number > 3 %}text-emerald-600
+          {% elif active_referral.current_interview_stage_number == 3 %}text-purple-600 animate-pulse
+          {% else %}text-slate-400{% endif %}">
+          {% if active_referral.current_interview_stage_number > 3 %}check_circle{% elif active_referral.current_interview_stage_number == 3 %}handshake{% else %}radio_button_unchecked{% endif %}
+        </span>
+      </div>
+      <div class="font-bold text-xs text-on-surface">Hiring Manager / Final</div>
+      <div class="text-[11px] text-on-surface-variant mt-0.5">Executive Fit &amp; Offer Discussion</div>
+      <div class="mt-2 text-[10px] font-bold
+        {% if active_referral.current_interview_stage_number > 3 %}text-emerald-700
+        {% elif active_referral.current_interview_stage_number == 3 %}text-purple-800
+        {% else %}text-slate-400{% endif %}">
+        {% if active_referral.current_interview_stage_number > 3 %}Completed ✓{% elif active_referral.current_interview_stage_number == 3 %}Active Stage ⏳{% else %}Upcoming{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage Details & Logistics -->
+  <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs space-y-2">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div>
+        <span class="font-bold text-slate-700">Interview Mode:</span>
+        <span class="font-semibold text-slate-900 ml-1">{{ active_referral.interview_mode|default:"Online Video Assessment" }}</span>
+      </div>
+      <div>
+        <span class="font-bold text-slate-700">Last Stage Update:</span>
+        <span class="text-slate-800 ml-1">{{ active_referral.updated_at|date:"M d, Y h:i A" }}</span>
+      </div>
+    </div>
+    {% if active_referral.interview_stage_notes %}
+    <div class="pt-2 border-t border-slate-200">
+      <span class="font-bold text-slate-700">Stage Notes / Feedback:</span>
+      <p class="text-slate-800 mt-0.5 italic">"{{ active_referral.interview_stage_notes }}"</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+<!-- Skills & Gaps Analysis Side-by-Side -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+<section class="bg-white rounded-2xl border border-outline-variant/70 shadow-sm p-6 flex flex-col">
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-outline-variant/40">
+  <h4 class="font-bold text-sm text-on-surface flex items-center gap-1.5">
+    <span class="material-symbols-outlined text-secondary text-[18px]">psychology</span>
+    Skills &amp; Competencies
+  </h4>
+  <span class="text-xs font-bold bg-secondary/10 text-secondary px-2 py-0.5 rounded-full">{{ skills_list|length }} Skills</span>
+</div>
+<div class="flex flex-wrap gap-2 content-start flex-1">
+  {% for s in skills_list %}
+    <span class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-3 py-1.5 text-xs font-semibold rounded-lg text-on-surface flex items-center gap-1.5 transition-colors">
+      <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+      {{ s.skill.name }}
+    </span>
+  {% empty %}
+    <p class="text-xs text-on-surface-variant italic">No skills listed.</p>
+  {% endfor %}
+</div>
+</section>
+
+<section class="bg-white rounded-2xl border border-outline-variant/70 shadow-sm p-6 flex flex-col">
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-outline-variant/40">
+  <h4 class="font-bold text-sm text-on-surface flex items-center gap-1.5">
+    <span class="material-symbols-outlined text-secondary text-[18px]">fact_check</span>
+    Verified Skill Gaps Analysis
+  </h4>
+</div>
+<div class="space-y-2.5 flex-1">
+{% if gaps %}
+  {% for g in gaps %}
+  <div class="flex justify-between items-center p-2.5 bg-slate-50 border border-slate-100 rounded-xl">
+    <span class="text-xs font-semibold text-on-surface">{{ g.skill }}</span>
+    <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full
+      {% if g.gap > 0 %}text-red-700 bg-red-50 border border-red-200
+      {% else %}text-emerald-800 bg-emerald-100 border border-emerald-200{% endif %}">
+      {% if g.gap > 0 %}Missing{% else %}Sufficient{% endif %}
+    </span>
+  </div>
+  {% endfor %}
+{% else %}
+  <div class="h-full flex items-center justify-center py-6 text-center text-xs text-on-surface-variant italic">
+    No specific job vacancy selected for comparative gap analysis.
+  </div>
+{% endif %}
+</div>
+</section>
+</div>
+
+<!-- Work History Timeline -->
+<section class="bg-white rounded-2xl border border-outline-variant/70 shadow-sm p-6">
+<h4 class="font-bold text-sm text-on-surface mb-6 flex items-center gap-1.5 pb-2 border-b border-outline-variant/40">
+  <span class="material-symbols-outlined text-secondary text-[18px]">work_history</span>
+  Work History &amp; Impact
+</h4>
+<div class="relative border-l-2 border-secondary/20 ml-3 space-y-6 pb-2">
+{% for exp in experience_list %}
+<div class="relative pl-8">
+<div class="absolute -left-[11px] top-1 w-5 h-5 {% if exp.is_current %}bg-secondary{% else %}bg-outline-variant{% endif %} rounded-full border-4 border-white {% if exp.is_current %}shadow-sm{% endif %}"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-1.5">
+<div>
+<h5 class="font-bold text-sm text-on-surface">{{ exp.position }}</h5>
+<p class="text-xs text-on-surface-variant font-medium">{{ exp.company }} • {{ exp.start_date }} — {{ exp.end_date }}</p>
+</div>
+{% if exp.is_current %}
+<span class="bg-blue-100 text-blue-800 border border-blue-200 px-2.5 py-0.5 rounded-full text-[10px] font-bold">CURRENT</span>
+{% endif %}
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">{{ exp.description }}</p>
+</div>
+{% empty %}
+<p class="text-xs text-on-surface-variant italic pl-6">No work experience listed.</p>
+{% endfor %}
+</div>
+</section>
+
+<!-- Education & Certs Table -->
+<section class="bg-white rounded-2xl border border-outline-variant/70 shadow-sm overflow-hidden">
+<div class="p-5 border-b border-outline-variant/50 bg-slate-50/50 flex items-center justify-between">
+<h4 class="font-bold text-sm text-on-surface flex items-center gap-1.5">
+  <span class="material-symbols-outlined text-secondary text-[18px]">school</span>
+  Education &amp; Certifications
+</h4>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-100/70 text-on-surface-variant uppercase text-[10px] font-label-sm tracking-wider border-b border-outline-variant/40">
+<tr>
+<th class="px-6 py-3 font-bold">Qualification</th>
+<th class="px-6 py-3 font-bold">Institution / Issuer</th>
+<th class="px-6 py-3 font-bold">Status</th>
+<th class="px-6 py-3 font-bold">Date</th>
+</tr>
+</thead>
+<tbody class="text-xs divide-y divide-outline-variant/40">
+{% for edu in education_list %}
+<tr class="zebra-row hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4 font-semibold text-on-surface">{{ edu.degree }} in {{ edu.field_of_study }}</td>
+<td class="px-6 py-4 text-on-surface-variant">{{ edu.institution }}</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 text-[11px]">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Verified
+</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-label-sm">{{ edu.end_year }}</td>
+</tr>
+{% endfor %}
+{% for cert in certification_list %}
+<tr class="zebra-row hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-4 font-semibold text-on-surface">{{ cert.name }}</td>
+<td class="px-6 py-4 text-on-surface-variant">{{ cert.issuing_organization }}</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 text-[11px]">
+<span class="material-symbols-outlined text-[13px]">{% if cert.is_tesda %}stars{% else %}check_circle{% endif %}</span> 
+{% if cert.is_tesda %}TESDA Certified{% else %}Active{% endif %}
+</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-label-sm">{{ cert.issue_date|date:"Y"|default:"N/A" }}</td>
+</tr>
+{% endfor %}
+{% if not education_list and not certification_list %}
+<tr>
+<td colspan="4" class="px-6 py-8 text-center text-xs text-on-surface-variant italic">No education or certifications listed.</td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- Resume / Documents Section -->
+<section class="bg-white rounded-2xl border border-outline-variant/70 shadow-sm p-6">
+  <h4 class="font-bold text-sm text-on-surface mb-4 flex items-center gap-2 pb-2 border-b border-outline-variant/40">
+    <span class="material-symbols-outlined text-secondary text-[18px]">folder_open</span>
+    Applicant Documents
+  </h4>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% for doc in profile.documents.all %}
+    <div class="flex items-center justify-between p-3.5 border border-outline-variant rounded-xl hover:border-secondary transition-colors group bg-slate-50/50">
+      <div class="flex items-center gap-3">
+        {% if doc.file_name|lower|slice:"-4:" == ".pdf" %}
+        <span class="material-symbols-outlined text-red-600 bg-red-50 p-2 rounded-lg border border-red-100">description</span>
+        {% elif doc.file_name|lower|slice:"-4:" == ".zip" %}
+        <span class="material-symbols-outlined text-blue-600 bg-blue-50 p-2 rounded-lg border border-blue-100">folder_shared</span>
+        {% else %}
+        <span class="material-symbols-outlined text-secondary bg-blue-50 p-2 rounded-lg border border-blue-100">article</span>
+        {% endif %}
+        <div>
+          <p class="font-bold text-xs text-on-surface">{{ doc.file_name }}</p>
+          <p class="text-[10px] text-outline">Uploaded {{ doc.uploaded_at|date:"M d, Y" }} • {{ doc.file_size }}</p>
+        </div>
+      </div>
+      <a href="{{ doc.file.url }}" download class="p-2 hover:bg-white rounded-lg transition-all group-hover:text-secondary flex items-center justify-center border border-transparent hover:border-outline-variant shadow-xs">
+        <span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary text-[18px]">download</span>
+      </a>
+    </div>
+    {% empty %}
+    <div class="col-span-2 text-center py-6 text-xs text-on-surface-variant italic border border-dashed border-outline-variant rounded-xl bg-slate-50/40">No documents uploaded by this applicant yet.</div>
+    {% endfor %}
+  </div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Space -->
+<footer class="md:ml-64 p-8 border-t border-outline-variant mt-12 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-sm">
+<div class="flex gap-6">
+<a class="hover:text-secondary" href="#">Privacy Policy</a>
+<a class="hover:text-secondary" href="#">Terms of Service</a>
+<a class="hover:text-secondary" href="#">API Access</a>
+</div>
+</div>
+</footer>
+{% if active_referral %}
+
+<!-- Candidate Unresponsive Modal -->
+<div id="profileUnresponsiveModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center hidden animate-fade-in p-4">
+  <div class="bg-white border border-outline-variant rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+    <div class="flex justify-between items-center border-b pb-3 mb-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-amber-600 text-[24px]">phone_disabled</span>
+        <div>
+          <h3 class="font-bold text-base text-amber-950">Candidate No Longer Contacted</h3>
+          <p class="text-xs text-on-surface-variant">Update hiring status for: <span class="font-bold text-on-surface">{{ profile.user.get_full_name }}</span></p>
+        </div>
+      </div>
+      <button type="button" onclick="closeProfileUnresponsiveModal()" class="material-symbols-outlined text-outline hover:text-on-surface text-lg">close</button>
+    </div>
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="mark_unresponsive">
+      <input type="hidden" name="referral_id" value="{{ active_referral.id }}">
+
+      <div class="space-y-4">
+        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed">
+          This will update the hiring status to <strong>No Response from Applicant</strong> and restore any reserved vacancy slot for <strong>{{ active_referral.job_vacancy.title }}</strong>.
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-1">Reason *</label>
+          <select name="unresponsive_reason" required
+            class="w-full text-xs border border-outline-variant rounded-lg px-3 py-2.5 bg-white font-body-sm outline-none focus:ring-2 focus:ring-amber-500 text-on-surface">
+            <option value="Candidate Unreachable via Phone and Email">Candidate Unreachable via Phone and Email</option>
+            <option value="No Response to Multiple Interview Invitations">No Response to Multiple Interview Invitations</option>
+            <option value="No Longer Responding After Job Offer">No Longer Responding After Job Offer</option>
+            <option value="Contact Number Disconnected or Invalid">Contact Number Disconnected or Invalid</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-1">Process Description &amp; Contact Attempts *</label>
+          <textarea name="process_notes" required rows="3"
+            class="w-full text-xs border border-outline-variant rounded-lg p-3 outline-none focus:ring-2 focus:ring-amber-500 text-on-surface leading-relaxed"
+            placeholder="Document contact attempts made, dates, and decision reason..."></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+        <button type="button" onclick="closeProfileUnresponsiveModal()"
+          class="px-4 py-2 border border-outline-variant text-on-surface rounded-lg text-xs font-semibold hover:bg-slate-50 transition-colors">Cancel</button>
+        <button type="submit"
+          class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-sm">person_off</span>
+          <span>Update Status</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Update Interview Stage Modal -->
+<div id="profileStageModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center hidden animate-fade-in p-4">
+  <div class="bg-white border border-outline-variant rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+    <div class="flex justify-between items-center border-b pb-3 mb-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-blue-600 text-[24px]">step_into</span>
+        <div>
+          <h3 class="font-bold text-base text-on-surface">Update Interview Stage</h3>
+          <p class="text-xs text-on-surface-variant">Candidate: <span class="font-bold text-on-surface">{{ profile.user.get_full_name }}</span></p>
+        </div>
+      </div>
+      <button type="button" onclick="closeProfileStageModal()" class="material-symbols-outlined text-outline hover:text-on-surface text-lg">close</button>
+    </div>
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="update_interview_stage">
+      <input type="hidden" name="referral_id" value="{{ active_referral.id }}">
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1">Target Interview Stage *</label>
+          <select name="interview_stage" required class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500 text-on-surface">
+            <option value="Initial Assessment" {% if active_referral.interview_stage == 'Initial Assessment' %}selected{% endif %}>Stage 1: Initial Assessment (Resume &amp; Baseline)</option>
+            <option value="Online or Face-to-Face (F2F) Assessment" {% if 'Online' in active_referral.interview_stage or 'F2F' in active_referral.interview_stage %}selected{% endif %}>Stage 2: Online or Face-to-Face (F2F) Assessment</option>
+            <option value="Hiring Manager / Final Interview" {% if 'Final' in active_referral.interview_stage or 'Hiring' in active_referral.interview_stage %}selected{% endif %}>Stage 3: Hiring Manager / Final Interview</option>
+            <option value="Interview Completed" {% if active_referral.interview_stage == 'Interview Completed' %}selected{% endif %}>All Interview Stages Completed</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1">Interview Format / Mode *</label>
+          <select name="interview_mode" required class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500 text-on-surface">
+            <option value="Online Video Assessment" {% if 'Online' in active_referral.interview_mode %}selected{% endif %}>Online Video Assessment (Google Meet / Zoom / Teams)</option>
+            <option value="Face-to-Face (F2F)" {% if 'Face' in active_referral.interview_mode or 'F2F' in active_referral.interview_mode %}selected{% endif %}>Face-to-Face (F2F) On-Site Assessment</option>
+            <option value="Phone Call" {% if 'Phone' in active_referral.interview_mode %}selected{% endif %}>Phone Screening / Call</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1">Meeting Link or Venue Address</label>
+          <input type="text" name="meeting_link_venue" class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. https://meet.google.com/abc-defg-hij or Head Office Boardroom">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Schedule Date (Optional)</label>
+            <input type="date" name="scheduled_date" class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Schedule Time (Optional)</label>
+            <input type="time" name="scheduled_time" class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1">Employer Notes &amp; Stage Feedback</label>
+          <textarea name="interview_stage_notes" rows="3" class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Candidate demonstrated strong competency. Advanced to final interview round.">{{ active_referral.interview_stage_notes|default:'' }}</textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+        <button type="button" onclick="closeProfileStageModal()" class="px-4 py-2 border border-outline text-on-surface rounded-lg text-sm hover:bg-slate-50 transition-colors">Cancel</button>
+        <button type="submit" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-bold shadow-xs transition-all">Save &amp; Update Stage</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}
+
+<!-- Interactive Layer for Skill Tags -->
+<script>
+    
+    function openProfileUnresponsiveModal() {
+        const modal = document.getElementById('profileUnresponsiveModal');
+        if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeProfileUnresponsiveModal() {
+        const modal = document.getElementById('profileUnresponsiveModal');
+        if (modal) modal.classList.add('hidden');
+    }
+
+    function openProfileStageModal() {
+        const modal = document.getElementById('profileStageModal');
+        if (modal) modal.classList.remove('hidden');
+    }
+    function closeProfileStageModal() {
+        const modal = document.getElementById('profileStageModal');
+        if (modal) modal.classList.add('hidden');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initializations
+    });
+</script>
+</body></html>

@@ -1,0 +1,2556 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Training Programs | SKILLUP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#0051d5",
+                    "inverse-surface": "#213145",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "outline-variant": "#c6c6cd",
+                    "primary-fixed": "#dae2fd",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-container": "#7c839b",
+                    "primary-fixed-dim": "#bec6e0",
+                    "outline": "#76777d",
+                    "on-secondary-fixed": "#00174b",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-container": "#002113",
+                    "primary-container": "#131b2e",
+                    "tertiary": "#000000",
+                    "on-secondary-container": "#fefcff",
+                    "surface-dim": "#cbdbf5",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-background": "#0b1c30",
+                    "on-surface-variant": "#45464d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#002113",
+                    "inverse-on-surface": "#eaf1ff",
+                    "background": "#f8f9ff",
+                    "secondary-fixed": "#dbe1ff",
+                    "primary": "#000000",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#009668",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed": "#131b2e",
+                    "inverse-primary": "#bec6e0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F8FAFC;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background: rgba(248, 250, 255, 0.8);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 10px;
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+{% if messages %}
+<div class="fixed top-20 right-4 z-50 flex flex-col gap-2 max-w-sm w-full">
+    {% for message in messages %}
+    <div class="toast-notification flex items-center gap-3 p-4 rounded-xl border border-outline-variant bg-surface-container-lowest/80 backdrop-blur-md shadow-lg transition-all duration-300 transform translate-x-12 opacity-0" data-type="{{ message.tags }}">
+        {% if message.tags == 'success' %}
+        <span class="material-symbols-outlined text-[20px] text-green-600 bg-green-50 p-1.5 rounded-full" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        {% elif message.tags == 'error' %}
+        <span class="material-symbols-outlined text-[20px] text-error bg-error-container/10 p-1.5 rounded-full">error</span>
+        {% else %}
+        <span class="material-symbols-outlined text-[20px] text-secondary bg-secondary/10 p-1.5 rounded-full">info</span>
+        {% endif %}
+        <div class="flex-grow">
+            <p class="font-body-sm text-body-sm font-semibold text-on-surface">{{ message }}</p>
+        </div>
+        <button onclick="this.parentElement.remove()" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface text-sm">close</button>
+    </div>
+    {% endfor %}
+</div>
+<script id="toast-script">
+    document.addEventListener('DOMContentLoaded', () => {
+        const toasts = document.querySelectorAll('.toast-notification');
+        toasts.forEach((toast, index) => {
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, index * 150);
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000 + (index * 150));
+        });
+    });
+</script>
+{% endif %}
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">SKILLUP</h1>
+</div>
+<div class="flex items-center gap-4">
+<a href="{% url 'admin_notifications' %}" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80" title="Notifications">notifications</a>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80">settings</button>
+<a href="{% url 'peso_profile_admin' %}" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-secondary/15 flex items-center justify-center font-bold text-xs text-secondary shrink-0 hover:ring-2 hover:ring-secondary transition-all" title="{{ request.user.get_full_name }}">
+{% if request.user.profile.profile_picture %}
+<img alt="{{ request.user.get_full_name }}" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+{% else %}
+{{ request.user.first_name|slice:":1"|upper }}{{ request.user.last_name|slice:":1"|upper|default:"P" }}
+{% endif %}
+</a>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 pt-20 bg-surface-container-lowest dark:bg-primary-container border-r border-outline-variant dark:border-outline hidden md:flex flex-col p-4 gap-2 z-40">
+<div class="flex items-center gap-3 px-2 py-4 mb-4 border-b border-outline-variant/30">
+{% if request.user.profile.profile_picture %}
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant shrink-0">
+  <img alt="Office Logo" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+</div>
+{% else %}
+<div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-white font-black text-xl shrink-0">P</div>
+{% endif %}
+<div>
+<h2 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider whitespace-nowrap">SKILLUP Portal</h2>
+<p class="text-[10px] text-on-surface-variant opacity-70">Public Employment Service</p>
+</div>
+</div>
+<nav class="flex-grow flex flex-col gap-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_dashboard_admin' %}">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'applicant_monitoring_admin' %}">
+<span class="material-symbols-outlined">groups</span>
+<span>Talent Bench</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employer_management_admin' %}">
+<span class="material-symbols-outlined">domain</span>
+<span>Employers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'vacancy_management_admin' %}">
+<span class="material-symbols-outlined">work</span>
+<span>Vacancies</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employment_tracking_admin' %}">
+<span class="material-symbols-outlined">description</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'skill_monitoring_admin' %}">
+<span class="material-symbols-outlined">analytics</span>
+<span>Skill Gaps</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold rounded-lg scale-98 active:scale-95 duration-150 transition-all font-label-md text-label-md" href="{% url 'training_monitoring_admin' %}">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span>Training Programs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'job_matching_analytics_admin' %}">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_profile_admin' %}">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'logout' %}">
+<span class="material-symbols-outlined">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-20 min-h-screen">
+<div class="p-margin-desktop space-y-gutter">
+<!-- Page Header -->
+<header class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div class="min-w-0 flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Training Programs</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Real-time oversight of organizational growth and provider performance.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3 xl:flex-nowrap xl:shrink-0">
+<!-- Interactive Timeframe Filter -->
+<form method="GET" class="inline-flex items-center shrink-0">
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 flex items-center gap-2 shadow-sm hover:border-secondary transition-colors">
+    <span class="material-symbols-outlined text-on-surface-variant text-sm">calendar_today</span>
+    <select name="timeframe" onchange="this.form.submit()" class="bg-transparent border-none text-xs font-semibold text-on-surface focus:ring-0 cursor-pointer pr-4">
+      <option value="all" {% if timeframe == 'all' or not timeframe %}selected{% endif %}>All Time</option>
+      <option value="30" {% if timeframe == '30' %}selected{% endif %}>Last 30 Days</option>
+      <option value="60" {% if timeframe == '60' %}selected{% endif %}>Last 60 Days</option>
+      <option value="90" {% if timeframe == '90' %}selected{% endif %}>Last 90 Days</option>
+      <option value="365" {% if timeframe == '365' %}selected{% endif %}>This Year</option>
+    </select>
+  </div>
+</form>
+
+<div class="flex items-center gap-2.5 flex-wrap">
+  <button type="button" onclick="openAiGeneratorModal('syllabus')" class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white px-4 py-2 rounded-lg font-label-md text-label-md hover:opacity-95 transition-all flex items-center gap-2 shadow-sm font-bold cursor-pointer active:scale-95">
+    <span class="material-symbols-outlined text-sm text-emerald-200">upload_file</span>
+    Upload Syllabus (AI)
+  </button>
+  <button type="button" onclick="openAiGeneratorModal('topic')" class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white px-4 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 transition-all flex items-center gap-2 shadow-sm font-bold cursor-pointer active:scale-95">
+    <span class="material-symbols-outlined text-sm text-amber-300">auto_awesome</span>
+    Generate with AI
+  </button>
+  <button id="openModalBtn" class="bg-secondary text-white px-5 py-2 rounded-lg font-label-md text-label-md hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-sm font-bold cursor-pointer">
+    <span class="material-symbols-outlined text-sm text-white">add</span>
+    New Program
+  </button>
+</div>
+</div>
+</header>
+<!-- Real KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<!-- KPI 1: Total Enrolled -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant card-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="text-secondary bg-secondary/10 px-2 py-0.5 rounded text-[10px] font-bold border border-secondary/20">{{ active_enrolled }} Active</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Total Enrolled</p>
+<h2 class="font-display-lg text-display-lg text-on-surface mt-1">{{ total_enrolled }}</h2>
+<div class="w-full h-1.5 bg-surface-container-low rounded-full mt-4 overflow-hidden">
+<div class="h-full bg-secondary w-full rounded-full"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-2">Active training participants</p>
+</div>
+
+<!-- KPI 2: Completion Rate -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant card-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<span class="text-green-800 bg-green-100 px-2 py-0.5 rounded text-[10px] font-bold border border-green-200">{{ attended_count }} Completed</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Completion Rate</p>
+<h2 class="font-display-lg text-display-lg text-on-surface mt-1">{{ completion_rate|floatformat:1 }}<span class="text-headline-md">%</span></h2>
+<div class="w-full h-1.5 bg-surface-container-low rounded-full mt-4 overflow-hidden">
+<div class="h-full bg-green-600 rounded-full" style="--bar-width: {{ completion_rate }}%; width: var(--bar-width);"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-2">Completed and certified attendees</p>
+</div>
+
+<!-- KPI 3: Active Programs -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant card-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="text-on-tertiary-container bg-tertiary-fixed-dim/20 px-2 py-0.5 rounded text-[10px] font-bold">{{ programs|length }} Total</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Active Programs</p>
+<h2 class="font-display-lg text-display-lg text-on-surface mt-1">{{ active_programs_count }}</h2>
+<div class="w-full h-1.5 bg-surface-container-low rounded-full mt-4 overflow-hidden">
+<div class="h-full bg-secondary w-full rounded-full"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-2">Scheduled & in-progress courses</p>
+</div>
+
+<!-- KPI 4: Skills Addressed -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant card-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="text-secondary bg-secondary/10 px-2 py-0.5 rounded text-[10px] font-bold border border-secondary/20">Skill Gaps</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Skills Addressed</p>
+<h2 class="font-display-lg text-display-lg text-on-surface mt-1">{{ skills_addressed_count }}</h2>
+<div class="w-full h-1.5 bg-surface-container-low rounded-full mt-4 overflow-hidden">
+<div class="h-full bg-secondary w-full rounded-full"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-2">Targeted competencies covered</p>
+</div>
+</div>
+<!-- Main Analytics Section -->
+<div class="bento-grid">
+<!-- Program Status Table -->
+<div class="col-span-12 bg-surface-container-lowest rounded-xl border border-outline-variant card-shadow flex flex-col">
+<div class="p-6 border-b border-outline-variant flex flex-col md:flex-row md:items-center justify-between gap-4 sticky top-0 bg-surface-container-lowest z-10 rounded-t-xl">
+  <div>
+    <h3 class="font-headline-md text-headline-md text-on-surface">Ongoing Programs</h3>
+    <p class="text-xs text-on-surface-variant mt-0.5">Filter courses by title, provider, skills, or status</p>
+  </div>
+  <div class="flex items-center gap-2 flex-wrap">
+    <div class="relative w-full sm:w-64">
+      <span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant pointer-events-none text-base">search</span>
+      <input type="text" id="programSearchInput" oninput="filterProgramsTable()" placeholder="Search program, provider, skill..." class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-9 pr-3 py-1.5 text-xs font-semibold focus:bg-surface-container-lowest focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none">
+    </div>
+    <select id="programStatusFilter" onchange="filterProgramsTable()" class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-1.5 text-xs font-semibold focus:ring-1 focus:ring-secondary focus:outline-none cursor-pointer">
+      <option value="">All Statuses</option>
+      <option value="scheduled">Scheduled</option>
+      <option value="in progress">In Progress / Ongoing</option>
+      <option value="completed">Completed</option>
+      <option value="closed">Closed / Full</option>
+    </select>
+    <select id="programProviderFilter" onchange="filterProgramsTable()" class="bg-surface-container-low border border-outline-variant rounded-lg px-3 py-1.5 text-xs font-semibold focus:ring-1 focus:ring-secondary focus:outline-none cursor-pointer">
+      <option value="">All Providers</option>
+      <option value="tesda">TESDA</option>
+      <option value="tup">TUP</option>
+      <option value="peso">PESO</option>
+    </select>
+    <button type="button" onclick="clearProgramFilters()" class="px-3 py-1.5 bg-surface-container-high hover:bg-surface-container rounded-lg text-xs font-bold text-on-surface transition-colors cursor-pointer">
+      Reset
+    </button>
+  </div>
+</div>
+<div class="overflow-x-auto overflow-y-auto flex-1 custom-scrollbar">
+<table class="w-full table-fixed text-left border-collapse min-w-[960px]">
+<colgroup>
+  <col style="width: 49%;">
+  <col style="width: 14%;">
+  <col style="width: 10%;">
+  <col style="width: 27%;">
+</colgroup>
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-3.5 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Program Name</th>
+<th class="px-6 py-3.5 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Available Slots</th>
+<th class="px-6 py-3.5 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider whitespace-nowrap">Status</th>
+<th class="px-6 py-3.5 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right whitespace-nowrap">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+{% for prog in programs %}
+<tr class="program-item-row hover:bg-surface-container-low transition-colors" data-title="{{ prog.title|lower }}" data-provider="{{ prog.provider|lower }}" data-skills="{{ prog.skills_display|lower }}" data-status="{{ prog.status|lower }}" data-available="{{ prog.available_slots }}">
+<td class="px-6 py-5 align-middle">
+<div class="flex flex-col gap-2 max-w-4xl">
+  <a href="{% url 'training_program_detail_admin' prog.id %}" class="text-[16px] md:text-[17px] font-extrabold text-on-surface hover:text-secondary transition-colors inline-flex items-center gap-1.5 group leading-snug tracking-tight">
+    <span>{{ prog.title }}</span>
+    <span class="material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 text-secondary transition-opacity transform group-hover:translate-x-0.5">arrow_forward</span>
+  </a>
+  <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-on-surface-variant leading-relaxed">
+    <span>Addresses: <span class="font-semibold text-secondary">{{ prog.skills_display }}</span></span>
+    <span class="text-outline-variant font-bold">•</span>
+    <span>Provider: <span class="font-medium text-on-surface">{{ prog.provider }}</span></span>
+  </div>
+  <div class="flex flex-wrap items-center gap-2 pt-0.5">
+    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-xs text-on-surface-variant font-medium border border-outline-variant/60">
+      <span class="material-symbols-outlined text-[14px] text-secondary">location_on</span>
+      <span>{{ prog.location|default:"PESO Training Center" }}</span>
+    </span>
+    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container text-xs text-on-surface-variant font-medium border border-outline-variant/60">
+      <span class="material-symbols-outlined text-[14px] text-secondary">schedule</span>
+      <span>Duration: {{ prog.duration }}</span>
+    </span>
+    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-amber-50 text-amber-900 text-xs font-semibold border border-amber-200" title="Minimum seat-time required before certificate unlock">
+      <span class="material-symbols-outlined text-[14px] text-amber-600">timer</span>
+      <span>Seat-Time: {{ prog.formatted_required_duration }}</span>
+    </span>
+  </div>
+</div>
+</td>
+<td class="px-6 py-5 align-middle whitespace-nowrap">
+  <div class="flex flex-col gap-1 items-start">
+    <span class="inline-flex items-center gap-1.5 font-bold text-xs px-2.5 py-1 rounded-full {% if prog.available_slots > 0 %}bg-emerald-50 text-emerald-700 border border-emerald-200{% else %}bg-rose-50 text-rose-700 border border-rose-200{% endif %}">
+      <span class="w-1.5 h-1.5 rounded-full {% if prog.available_slots > 0 %}bg-emerald-500{% else %}bg-rose-500{% endif %}"></span>
+      {{ prog.available_slots }} / {{ prog.slots }} Open
+    </span>
+    <span class="text-[11px] text-outline font-medium pl-1">Start: {{ prog.scheduled_date|default:"TBD" }}</span>
+  </div>
+</td>
+<td class="px-6 py-5 align-middle whitespace-nowrap">
+  <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider
+    {% if prog.status == 'Completed' %}bg-green-100 text-green-800 border border-green-200
+    {% elif prog.status == 'In Progress' %}bg-amber-100 text-amber-800 border border-amber-200
+    {% elif prog.status == 'Closed' or prog.available_slots <= 0 %}bg-rose-100 text-rose-800 border border-rose-200
+    {% else %}bg-blue-100 text-blue-800 border border-blue-200{% endif %}">
+    {% if prog.status == 'Scheduled' and prog.available_slots <= 0 %}FULL (CLOSED){% elif prog.status == 'In Progress' %}ONGOING{% else %}{{ prog.status }}{% endif %}
+  </span>
+</td>
+<td class="px-6 py-5 align-middle text-right">
+  <div class="inline-flex items-center justify-end gap-1.5">
+    <!-- 1. Curriculum / Course Content -->
+    <a href="{% url 'training_curriculum_builder_admin' prog.id %}"
+      class="w-9 h-9 bg-secondary/10 hover:bg-secondary hover:text-white text-secondary rounded-lg transition-all inline-flex items-center justify-center border border-secondary/20 shadow-xs"
+      title="Edit Inside Course Content (Modules, Lessons, Quizzes & Capstone)"
+      aria-label="Edit curriculum for {{ prog.title }}">
+      <span class="material-symbols-outlined text-[18px]">edit_document</span>
+    </a>
+
+    <!-- 2. Program Details & Enrollees -->
+    <a href="{% url 'training_program_detail_admin' prog.id %}"
+      class="relative w-9 h-9 bg-surface-container hover:bg-secondary hover:text-white text-secondary rounded-lg transition-all inline-flex items-center justify-center border border-outline-variant shadow-xs"
+      title="View Full Training Program & Enrolled Candidates ({{ prog.enrollments.count }})"
+      aria-label="View program and {{ prog.enrollments.count }} enrollees">
+      <span class="material-symbols-outlined text-[18px]">groups</span>
+      {% if prog.enrollments.count %}
+      <span class="absolute -top-1 -right-1 min-w-[15px] h-[15px] px-1 rounded-full bg-secondary text-white text-[8px] font-extrabold flex items-center justify-center border border-white">{{ prog.enrollments.count }}</span>
+      {% endif %}
+    </a>
+
+    <!-- 3. Enroll -->
+    {% if prog.status != 'Completed' and prog.available_slots > 0 %}
+      <button type="button"
+        onclick="openEnrollModal('{{ prog.id }}', '{{ prog.title|escapejs }}')"
+        class="w-9 h-9 bg-secondary text-white rounded-lg hover:opacity-90 transition-all shadow-sm inline-flex items-center justify-center"
+        title="Enroll Candidate into Available Slot"
+        aria-label="Enroll a candidate in {{ prog.title }}">
+        <span class="material-symbols-outlined text-[18px]">person_add</span>
+      </button>
+    {% else %}
+      <button type="button"
+        disabled
+        class="w-9 h-9 bg-slate-100 text-slate-400 rounded-lg inline-flex items-center justify-center border border-slate-200 cursor-not-allowed opacity-60"
+        title="{% if prog.status == 'Completed' %}Program Completed — Registration closed{% else %}No available slots remaining ({{ prog.slots }}/{{ prog.slots }} full){% endif %}"
+        aria-label="Enrollment unavailable">
+        <span class="material-symbols-outlined text-[18px]">person_add</span>
+      </button>
+    {% endif %}
+
+    <!-- Hidden Safe JSON Data blocks -->
+    <script type="application/json" id="prog-data-{{ prog.id }}">{{ prog.serialized_json|safe }}</script>
+    <script type="application/json" id="enrolled-data-{{ prog.id }}">{{ prog.enrolled_json|safe }}</script>
+
+    <!-- 4. Finish / Certify -->
+    {% if prog.status != 'Completed' and prog.enrollments.exists %}
+      <button type="button"
+        onclick="openCompleteProgramModal({{ prog.id }}, '{{ prog.title|escapejs }}')"
+        class="w-9 h-9 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all shadow-sm inline-flex items-center justify-center cursor-pointer"
+        title="Confirm Completion & Issue Certifications"
+        aria-label="Finish and certify {{ prog.title }}">
+        <span class="material-symbols-outlined text-[18px]">check_circle</span>
+      </button>
+    {% else %}
+      <button type="button"
+        disabled
+        class="w-9 h-9 bg-slate-100 text-slate-400 rounded-lg inline-flex items-center justify-center border border-slate-200 cursor-not-allowed opacity-60"
+        title="{% if prog.status == 'Completed' %}Program is already completed and certified{% else %}No candidates enrolled yet to finish{% endif %}"
+        aria-label="Finish unavailable">
+        <span class="material-symbols-outlined text-[18px]">check_circle</span>
+      </button>
+    {% endif %}
+
+    <!-- 5. Edit Program -->
+    <button type="button"
+      onclick="openEditProgramModal({{ prog.id }})"
+      class="w-9 h-9 bg-surface-container-high hover:bg-secondary hover:text-white text-on-surface rounded-lg transition-all inline-flex items-center justify-center border border-outline-variant/60 shadow-sm cursor-pointer"
+      title="Edit Program Details"
+      aria-label="Edit {{ prog.title }}">
+      <span class="material-symbols-outlined text-[18px]">edit</span>
+    </button>
+  </div>
+</td>
+</tr>
+{% empty %}
+<tr>
+  <td colspan="4" class="px-6 py-10 text-center italic text-outline">No training programs scheduled.</td>
+</tr>
+{% endfor %}
+<tr id="noProgramsFoundRow" class="hidden">
+  <td colspan="4" class="px-6 py-10 text-center italic text-outline">No training programs match your filter criteria.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<!-- AI Program Generator & Syllabus Importer Modal -->
+<div id="aiGeneratorModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-surface-bright border border-outline-variant/80 rounded-2xl max-w-2xl w-full p-6 md:p-7 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto custom-scrollbar">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-start pb-4 border-b border-outline-variant/60">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-700 text-white flex items-center justify-center shadow-xs shrink-0">
+          <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+        </div>
+        <div>
+          <h3 class="font-headline-md text-lg md:text-xl font-extrabold text-on-surface">AI Course Architect & Syllabus Engine</h3>
+          <p class="text-xs text-on-surface-variant mt-0.5">Upload a course syllabus or enter a topic to automatically build LMS modules, lessons, and exams.</p>
+        </div>
+      </div>
+      <button onclick="closeAiGeneratorModal()" class="p-1.5 rounded-xl hover:bg-surface-container-low text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Mode Tabs -->
+    <div class="flex rounded-xl bg-surface-container-low p-1 border border-outline-variant/60 gap-1" id="aiGenTabsHeader">
+      <button type="button" id="tabBtnSyllabus" onclick="switchAiGenTab('syllabus')" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 bg-surface-bright text-secondary shadow-xs">
+        <span class="material-symbols-outlined text-sm text-emerald-600">upload_file</span>
+        <span>Upload Course Syllabus</span>
+        <span class="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-extrabold uppercase">Fast</span>
+      </button>
+      <button type="button" id="tabBtnTopic" onclick="switchAiGenTab('topic')" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface">
+        <span class="material-symbols-outlined text-sm text-purple-600">psychology</span>
+        <span>Generate from Topic Prompt</span>
+      </button>
+    </div>
+
+    <!-- Main Content Container -->
+    <div id="aiGenFormContainer">
+      <!-- TAB 1: SYLLABUS UPLOAD MODE -->
+      <div id="aiGenSyllabusTab" class="space-y-4">
+        <!-- Drag & Drop Zone -->
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1.5 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-emerald-600">description</span>
+              Syllabus Document (PDF, Word DOCX/DOC, TXT) *
+            </span>
+            <span class="text-[10px] text-on-surface-variant">Max 25MB</span>
+          </label>
+          <div id="syllabusDropzone" class="border-2 border-dashed border-outline-variant/80 hover:border-emerald-500 rounded-xl p-5 text-center cursor-pointer bg-surface-container-lowest/70 hover:bg-emerald-50/20 transition-all group relative">
+            <input type="file" id="aiGenSyllabusFile" accept=".pdf,.docx,.doc,.txt" onchange="handleSyllabusFileSelect(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+            <div id="syllabusDropzonePrompt" class="space-y-2">
+              <div class="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-2xl">cloud_upload</span>
+              </div>
+              <p class="text-xs font-bold text-on-surface">Drop syllabus file here or <span class="text-secondary underline">browse files</span></p>
+              <p class="text-[11px] text-on-surface-variant">Supports TESDA Training Regulations, university syllabi, and training outlines</p>
+            </div>
+            <!-- File selected badge -->
+            <div id="syllabusFileBadge" class="hidden items-center justify-between p-3 bg-emerald-50 border border-emerald-300 rounded-lg text-left">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="material-symbols-outlined text-emerald-700 text-xl shrink-0">task</span>
+                <div class="min-w-0">
+                  <p id="syllabusFileName" class="text-xs font-bold text-emerald-950 truncate"></p>
+                  <p id="syllabusFileSize" class="text-[10px] text-emerald-800"></p>
+                </div>
+              </div>
+              <button type="button" onclick="clearSyllabusFile(event)" class="p-1 hover:bg-emerald-200/50 rounded-md text-emerald-800 transition-colors z-20" title="Remove file">
+                <span class="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Or Paste Syllabus Text Toggle -->
+        <div>
+          <button type="button" onclick="togglePasteSyllabusText()" class="text-xs font-bold text-secondary hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm" id="pasteToggleIcon">expand_more</span>
+            <span id="pasteToggleLabel">Or paste syllabus text directly</span>
+          </button>
+          <div id="pasteTextContainer" class="hidden mt-2">
+            <textarea id="aiGenSyllabusText" rows="4" placeholder="Paste syllabus modules, competencies, topics, and course outline text here..." 
+                      class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-3 text-xs focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <!-- Optional Parameters Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+          <div>
+            <label for="aiGenSyllabusTitleOverride" class="block text-xs font-bold text-on-surface mb-1">Course Title Override <span class="font-normal text-[10px] text-on-surface-variant">(Optional)</span></label>
+            <input type="text" id="aiGenSyllabusTitleOverride" placeholder="Auto-detected from syllabus if blank" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+          <div>
+            <label for="aiGenSyllabusDuration" class="block text-xs font-bold text-on-surface mb-1">Estimated Duration Hours</label>
+            <input type="number" id="aiGenSyllabusDuration" placeholder="e.g. 40 (auto-detected if blank)" min="1" max="500" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3.5">
+          <div>
+            <label for="aiGenSyllabusSeatTime" class="block text-xs font-bold text-on-surface mb-1">Min. LMS Seat-Time (Mins)</label>
+            <input type="number" id="aiGenSyllabusSeatTime" value="60" min="1" max="1000" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+          <div>
+            <label for="aiGenSyllabusSlots" class="block text-xs font-bold text-on-surface mb-1">Available Slots</label>
+            <input type="number" id="aiGenSyllabusSlots" value="30" min="1" max="500" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Video Alignment Toggle -->
+        <label class="flex items-start gap-2.5 pt-1 cursor-pointer">
+          <input type="checkbox" id="aiGenSyllabusAttachVideos" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500">
+          <span class="text-xs text-on-surface leading-tight">
+            <strong>✨ Auto-align topic video tutorials:</strong> Automatically pair every syllabus unit and lesson with verified, topic-relevant vocational YouTube tutorials.
+          </span>
+        </label>
+
+        <!-- Information Callout -->
+        <div class="p-3 bg-emerald-50/80 border border-emerald-200 rounded-xl text-xs text-emerald-950 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-emerald-700 text-lg mt-0.5 shrink-0">verified</span>
+          <div class="leading-relaxed">
+            <span class="font-bold">Automated Course Generation from Syllabus:</span>
+            <p class="mt-0.5 text-emerald-900 text-[11px]">AI faithfully reads your document, extracts units of competency into multi-topic modules, generates milestone lessons with technical reading guides, aligns tutorial videos, and formulates an 8-question certification assessment exam.</p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="sticky bottom-0 z-10 bg-surface-bright pt-3 border-t border-outline-variant/70 flex justify-end gap-3">
+          <button type="button" onclick="closeAiGeneratorModal()" class="px-5 py-2.5 border border-outline-variant rounded-xl text-xs font-bold hover:bg-surface-container-low cursor-pointer">Cancel</button>
+          <button type="button" onclick="submitAiSyllabusGeneration()" id="aiGenSyllabusSubmitBtn" class="px-6 py-2.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white rounded-xl text-xs font-bold hover:opacity-95 shadow-xs flex items-center gap-2 cursor-pointer active:scale-95 transition-all">
+            <span class="material-symbols-outlined text-sm text-emerald-200">auto_awesome</span>
+            <span>Generate Course from Syllabus</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 2: TOPIC PROMPT GENERATION MODE -->
+      <div id="aiGenTopicTab" class="hidden space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="aiGenTopic" class="block text-xs font-bold text-on-surface mb-1.5">Course Topic or In-Demand Skill *</label>
+            <input type="text" id="aiGenTopic" placeholder="e.g. Shielded Metal Arc Welding NC-II, Data Analytics, Solar Installation" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3.5 py-2.5 text-xs focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none">
+          </div>
+
+          <div>
+            <label for="aiGenSkills" class="block text-xs font-bold text-on-surface mb-1.5">Target Competencies (Comma separated)</label>
+            <input type="text" id="aiGenSkills" placeholder="e.g. SMAW, Metal Cutting, Safety Standards" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3.5 py-2.5 text-xs focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label for="aiGenTrainingNeeds" class="block text-xs font-bold text-on-surface mb-1.5">
+            What training is needed?
+            <span class="font-normal text-[10px] text-on-surface-variant">(Optional — describe the gap, target roles, equipment, or outcomes)</span>
+          </label>
+          <textarea id="aiGenTrainingNeeds" rows="3"
+                    placeholder="e.g. New hires need hands-on training in SMAW welding, PPE compliance, and weld inspection for structural steel fabrication. Focus on shop safety and NC II assessment readiness."
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3.5 py-2.5 text-xs leading-relaxed focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none resize-y"></textarea>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3.5">
+          <div>
+            <label for="aiGenDuration" class="block text-xs font-bold text-on-surface mb-1.5">Duration (Hours)</label>
+            <input type="number" id="aiGenDuration" value="40" min="1" max="500" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+          <div>
+            <label for="aiGenSeatTime" class="block text-xs font-bold text-on-surface mb-1.5">Min. Seat-Time (Mins)</label>
+            <input type="number" id="aiGenSeatTime" value="60" min="1" max="1000" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+          <div>
+            <label for="aiGenSlots" class="block text-xs font-bold text-on-surface mb-1.5">Slots</label>
+            <input type="number" id="aiGenSlots" value="30" min="1" max="500" 
+                   class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Curriculum Scale & Depth Selection -->
+        <div class="p-3.5 bg-surface-container-low border border-outline-variant/70 rounded-xl space-y-3">
+          <div class="flex items-center justify-between">
+            <label for="aiGenScalePreset" class="block text-xs font-bold text-on-surface flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-secondary">view_timeline</span>
+              Curriculum Depth & Module Structure
+            </label>
+            <span class="text-[10px] font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">Recommended: 10 Modules</span>
+          </div>
+
+          <select id="aiGenScalePreset" onchange="onScalePresetChange(this.value)" class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-2 text-xs font-semibold focus:border-secondary focus:outline-none">
+            <option value="10_10" selected>🌟 Extensive Masterclass (10 Modules, 100 Milestone Lessons)</option>
+            <option value="8_8">📘 In-Depth Certification (8 Modules, 64 Milestone Lessons)</option>
+            <option value="5_6">🛠️ Standard Vocational Track (5 Modules, 30 Lessons)</option>
+            <option value="custom">⚙️ Custom Module & Lesson Count...</option>
+          </select>
+
+          <div id="customScaleContainer" class="hidden grid-cols-2 gap-3 pt-1">
+            <div>
+              <label for="aiGenNumModules" class="block text-[11px] font-bold text-on-surface-variant mb-1">Number of Modules (3 - 12):</label>
+              <input type="number" id="aiGenNumModules" value="10" min="3" max="12" class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-1.5 text-xs focus:border-secondary focus:outline-none">
+            </div>
+            <div>
+              <label for="aiGenLessonsPerModule" class="block text-[11px] font-bold text-on-surface-variant mb-1">Lessons per Module (2 - 15):</label>
+              <input type="number" id="aiGenLessonsPerModule" value="10" min="2" max="15" class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-3 py-1.5 text-xs focus:border-secondary focus:outline-none">
+            </div>
+          </div>
+
+          <!-- Video Alignment Toggle -->
+          <label class="flex items-start gap-2.5 pt-1.5 cursor-pointer">
+            <input type="checkbox" id="aiGenAttachVideos" checked class="mt-0.5 rounded text-secondary focus:ring-secondary">
+            <span class="text-xs text-on-surface leading-tight">
+              <strong>✨ Auto-align topic video tutorials:</strong> Automatically attach verified, topic-relevant YouTube video tutorials for every module and video milestone.
+            </span>
+          </label>
+        </div>
+
+        <div class="p-3.5 bg-purple-50/80 border border-purple-200 rounded-xl text-xs text-purple-900 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-purple-700 text-lg mt-0.5 shrink-0">psychology</span>
+          <div>
+            <span class="font-bold">What will be auto-generated by AI:</span>
+            <p class="mt-0.5 text-purple-800 text-[11px] leading-relaxed">Full syllabus, course overview, up to 10 comprehensive modules with 100 practical milestones, topic-aligned YouTube tutorials, standard operating guides, and candidate certification exam questions.</p>
+          </div>
+        </div>
+
+        <div class="sticky bottom-0 z-10 bg-surface-bright pt-4 border-t border-outline-variant/70 flex justify-end gap-3">
+          <button type="button" onclick="closeAiGeneratorModal()" class="px-5 py-2.5 border border-outline-variant rounded-xl text-xs font-bold hover:bg-surface-container-low cursor-pointer">Cancel</button>
+          <button type="button" onclick="submitAiTrainingGeneration()" id="aiGenSubmitBtn" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl text-xs font-bold hover:opacity-95 shadow-xs flex items-center gap-2 cursor-pointer">
+            <span class="material-symbols-outlined text-sm">auto_awesome</span>
+            <span>Generate with AI</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="aiGenLoadingContainer" class="hidden py-10 text-center space-y-4">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-emerald-100 to-teal-100 border-3 border-emerald-600 border-t-transparent animate-spin mx-auto flex items-center justify-center shadow-inner">
+        <span class="material-symbols-outlined text-emerald-700 text-2xl animate-pulse">auto_awesome</span>
+      </div>
+      <div>
+        <h4 class="font-bold text-on-surface text-base" id="aiGenLoadingTitle">AI is Analyzing Syllabus & Building Course...</h4>
+        <p id="aiGenStepText" class="text-xs text-on-surface-variant mt-1.5 font-medium transition-all">Extracting text and units of competency from syllabus...</p>
+      </div>
+      <div class="w-56 mx-auto bg-surface-container rounded-full h-2 overflow-hidden shadow-inner">
+        <div id="aiGenProgressBar" class="h-full bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-600 animate-pulse w-3/4 rounded-full transition-all duration-500"></div>
+      </div>
+      <p class="text-[11px] text-outline italic">Please do not close this window while AI structures modules and certification exams.</p>
+    </div>
+
+    <!-- Success State Card -->
+    <div id="aiGenSuccessContainer" class="hidden py-6 text-center space-y-5">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 border-2 border-emerald-500 text-emerald-700 flex items-center justify-center mx-auto shadow-md">
+        <span class="material-symbols-outlined text-3xl font-bold">check_circle</span>
+      </div>
+      <div>
+        <h4 class="font-extrabold text-on-surface text-lg md:text-xl">Course Successfully Created & Published!</h4>
+        <p id="aiGenSuccessTitle" class="text-sm font-bold text-secondary mt-1"></p>
+        <p id="aiGenSuccessMessage" class="text-xs text-on-surface-variant mt-1 max-w-md mx-auto"></p>
+      </div>
+
+      <!-- Quick Metrics Summary -->
+      <div class="grid grid-cols-3 gap-3 max-w-md mx-auto p-3.5 bg-surface-container-low rounded-xl border border-outline-variant/60">
+        <div class="text-center">
+          <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Modules</span>
+          <span id="aiGenSuccessModules" class="text-lg font-black text-on-surface"></span>
+        </div>
+        <div class="text-center border-x border-outline-variant/50">
+          <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Lessons</span>
+          <span id="aiGenSuccessLessons" class="text-lg font-black text-on-surface"></span>
+        </div>
+        <div class="text-center">
+          <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Exam Qs</span>
+          <span id="aiGenSuccessExam" class="text-lg font-black text-emerald-600">8+</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="pt-3 border-t border-outline-variant/60 flex items-center justify-center gap-3">
+        <button type="button" onclick="closeAiGeneratorModal(); window.location.reload();" class="px-5 py-2.5 border border-outline-variant rounded-xl text-xs font-bold hover:bg-surface-container-low transition-colors">Done</button>
+        <a id="aiGenSuccessBuilderLink" href="#" class="px-6 py-2.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white rounded-xl text-xs font-bold hover:opacity-95 shadow-xs flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">edit_document</span>
+          <span>Open Curriculum Builder</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Program Modal -->
+<div id="newProgramModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-surface-bright border border-outline-variant/80 rounded-2xl max-w-4xl w-full p-6 md:p-8 shadow-2xl transform transition-all duration-300 scale-95 opacity-0 my-8" id="modalContainer">
+    <div class="flex justify-between items-start pb-4 border-b border-outline-variant/60 mb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0 border border-secondary/20">
+          <span class="material-symbols-outlined text-2xl">add_circle</span>
+        </div>
+        <div>
+          <h3 class="font-headline-md text-xl md:text-2xl font-extrabold text-on-surface">Add New Training Program</h3>
+          <p class="text-xs text-on-surface-variant mt-0.5">Configure course specifications, seat-time requirements, and target competencies.</p>
+        </div>
+      </div>
+      <button id="closeModalBtn" class="p-1.5 rounded-xl hover:bg-surface-container-low transition-colors text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    
+    <form method="POST" class="space-y-6">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="create">
+
+      <!-- Full-width Program Title -->
+      <div>
+        <label for="title" class="block text-label-md font-bold mb-1.5 text-on-surface">Program Title *</label>
+        <input type="text" id="title" name="title" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-2.5 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none" placeholder="e.g., Advanced React Patterns & Cloud Architecture">
+      </div>
+      
+      <!-- Side-by-side 2-column Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        <!-- Left Column: Logistics, Seat-Time & Venue -->
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-3.5">
+            <div>
+              <label for="provider" class="block text-label-md font-bold mb-1.5 text-on-surface">Provider *</label>
+              <input type="text" id="provider" name="provider" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none" placeholder="e.g., TESDA">
+            </div>
+            <div>
+              <label for="duration" class="block text-label-md font-bold mb-1.5 text-on-surface">Display Duration *</label>
+              <input type="text" id="duration" name="duration" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none" placeholder="e.g., 40 Hours">
+            </div>
+          </div>
+
+          <!-- Training Seat-Time Enforcement Card -->
+          <div class="p-4 rounded-xl bg-amber-50/80 border border-amber-200/90 space-y-2">
+            <div class="flex items-center justify-between">
+              <label for="required_training_minutes" class="block text-xs font-bold text-amber-950 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-amber-700 text-base">timer</span>
+                <span>Required Training Seat-Time (Minutes) *</span>
+              </label>
+              <span class="text-[10px] text-amber-900 font-bold bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">Enforced for Cert</span>
+            </div>
+            <input type="number" id="required_training_minutes" name="required_training_minutes" min="1" max="10000" value="60" required class="w-full bg-white border border-amber-300 rounded-lg px-3 py-2 text-sm font-bold text-on-surface focus:border-secondary focus:outline-none" placeholder="60">
+            <p class="text-[11px] text-amber-900/80 leading-tight">Applicant must actively study inside the LMS for this duration before the final assessment and certificate of completion can be unlocked.</p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-3.5">
+            <div>
+              <label for="scheduled_date" class="block text-label-md font-bold mb-1.5 text-on-surface">Start Date *</label>
+              <input type="date" id="scheduled_date" name="scheduled_date" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none">
+            </div>
+            <div>
+              <label for="location" class="block text-label-md font-bold mb-1.5 text-on-surface">Location / Venue</label>
+              <input type="text" id="location" name="location" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none" placeholder="e.g., PESO Taguig / Online">
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-3.5">
+            <div>
+              <label for="slots" class="block text-label-md font-bold mb-1.5 text-on-surface">Available Slots *</label>
+              <input type="number" id="slots" name="slots" min="1" max="1000" value="30" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none" placeholder="30">
+            </div>
+            <div>
+              <label for="status" class="block text-label-md font-bold mb-1.5 text-on-surface">Initial Status</label>
+              <select id="status" name="status" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none">
+                <option value="Scheduled">Scheduled</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Skills & Description -->
+        <div class="space-y-4">
+          <!-- Multi-Select Addresses Skills -->
+          <div class="relative" id="skillSearchContainer">
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="block text-label-md font-bold text-on-surface">Addresses Skills *</label>
+              <span id="selectedCountBadge" class="text-[11px] font-bold text-secondary hidden">0 selected</span>
+            </div>
+            
+            <!-- Hidden inputs container holding selected skill IDs for form POST -->
+            <div id="skillHiddenInputsContainer"></div>
+            
+            <!-- Selected Skills Chips Display -->
+            <div id="selectedSkillsChips" class="flex flex-wrap gap-1.5 mb-2 min-h-[44px] p-2 bg-surface-container-low/60 rounded-xl border border-outline-variant/60">
+              <span id="emptySkillsPrompt" class="text-xs text-on-surface-variant/70 italic self-center px-1">No skills selected. Search and click below to add.</span>
+            </div>
+
+            <!-- Search Trigger Input -->
+            <div class="relative flex items-center">
+              <span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none text-lg">search</span>
+              <input type="text" 
+                     id="skillSearchInput" 
+                     autocomplete="off"
+                     placeholder="Search to add skills (e.g. Warehouse, Welding, Python)..." 
+                     class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-9 pr-8 py-2 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none placeholder:text-outline/70">
+              <button type="button" id="clearSkillSearchBtn" class="absolute right-2.5 text-on-surface-variant hover:text-on-surface p-1 rounded hidden" title="Clear search text">
+                <span class="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
+
+            <!-- Dropdown List Container -->
+            <div id="skillDropdownList" class="hidden absolute left-0 right-0 top-full mt-1 bg-surface-bright border border-outline-variant rounded-xl shadow-2xl z-50 max-h-52 overflow-y-auto divide-y divide-outline-variant/30 custom-scrollbar">
+              <div id="skillOptionsList">
+                {% for skill in skills %}
+                  <div class="skill-option px-3.5 py-2 hover:bg-surface-container-low cursor-pointer flex items-center justify-between transition-colors text-sm"
+                       data-id="{{ skill.id }}"
+                       data-name="{{ skill.name }}"
+                       data-category="{{ skill.category }}">
+                    <div class="flex items-center gap-2.5">
+                      <div class="skill-checkbox w-4 h-4 rounded border border-outline-variant flex items-center justify-center text-white text-[11px] transition-colors">
+                        <span class="material-symbols-outlined text-xs hidden check-icon">check</span>
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-semibold text-on-surface skill-name leading-tight">{{ skill.name }}</span>
+                        <span class="text-[10px] text-on-surface-variant opacity-75 skill-category">{{ skill.category }}</span>
+                      </div>
+                    </div>
+                    <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant/40">
+                      {{ skill.category }}
+                    </span>
+                  </div>
+                {% endfor %}
+              </div>
+              <div id="noSkillsFound" class="hidden px-4 py-6 text-center text-xs text-on-surface-variant italic">
+                No matching skills found.
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <label for="description" class="block text-label-md font-bold mb-1.5 text-on-surface">Program Description</label>
+            <textarea id="description" name="description" rows="5" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3.5 py-2 text-body-md focus:border-secondary focus:outline-none" placeholder="Briefly describe the program curriculum, learning objectives, and candidate prerequisites..."></textarea>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pt-5 border-t border-outline-variant/70 flex justify-end gap-3">
+        <button type="button" id="cancelModalBtn" class="px-5 py-2.5 border border-outline-variant rounded-xl text-label-md font-bold hover:bg-surface-container-low transition-colors">Cancel</button>
+        <button type="submit" class="px-7 py-2.5 bg-secondary text-white rounded-xl text-label-md font-bold hover:bg-blue-700 transition-all cursor-pointer shadow-sm flex items-center gap-2">
+          <span class="material-symbols-outlined text-base">check_circle</span>
+          <span>Save Program</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Program Modal -->
+<div id="editProgramModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-surface-bright border border-outline-variant/80 rounded-2xl max-w-4xl w-full p-6 md:p-8 shadow-2xl transform transition-all duration-300 scale-95 opacity-0 my-8" id="editModalContainer">
+    <div class="flex justify-between items-start pb-4 border-b border-outline-variant/60 mb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0 border border-secondary/20">
+          <span class="material-symbols-outlined text-2xl">edit_note</span>
+        </div>
+        <div>
+          <h3 class="font-headline-md text-xl md:text-2xl font-extrabold text-on-surface">Edit Training Program</h3>
+          <p class="text-xs text-on-surface-variant mt-0.5">Update program specifications, seat-time requirements, and curriculum parameters.</p>
+        </div>
+      </div>
+      <button onclick="closeEditModal()" class="p-1.5 rounded-xl hover:bg-surface-container-low transition-colors text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    
+    <form method="POST" class="space-y-6" id="editProgramForm">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="edit">
+      <input type="hidden" name="training_program_id" id="editProgramId">
+      
+      <!-- Full-width Program Title -->
+      <div>
+        <label for="editTitle" class="block text-label-md font-bold mb-1.5 text-on-surface">Program Title *</label>
+        <input type="text" id="editTitle" name="title" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-2.5 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none">
+      </div>
+      
+      <!-- Side-by-side 2-column Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        <!-- Left Column: Logistics, Seat-Time & Venue -->
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-3.5">
+            <div>
+              <label for="editProvider" class="block text-label-md font-bold mb-1.5 text-on-surface">Provider *</label>
+              <input type="text" id="editProvider" name="provider" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none">
+            </div>
+            <div>
+              <label for="editDuration" class="block text-label-md font-bold mb-1.5 text-on-surface">Display Duration *</label>
+              <input type="text" id="editDuration" name="duration" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none">
+            </div>
+          </div>
+
+          <!-- Training Seat-Time Enforcement Card -->
+          <div class="p-4 rounded-xl bg-amber-50/80 border border-amber-200/90 space-y-2">
+            <div class="flex items-center justify-between">
+              <label for="editRequiredMinutes" class="block text-xs font-bold text-amber-950 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-amber-700 text-base">timer</span>
+                <span>Required Training Seat-Time (Minutes) *</span>
+              </label>
+              <span class="text-[10px] text-amber-900 font-bold bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">Enforced for Cert</span>
+            </div>
+            <input type="number" id="editRequiredMinutes" name="required_training_minutes" min="1" max="10000" value="60" required class="w-full bg-white border border-amber-300 rounded-lg px-3 py-2 text-sm font-bold text-on-surface focus:border-secondary focus:outline-none" placeholder="60">
+            <p class="text-[11px] text-amber-900/80 leading-tight">Applicant must actively study inside the LMS for this duration before the final assessment and certificate of completion can be unlocked.</p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-3.5">
+            <div>
+              <label for="editScheduledDate" class="block text-label-md font-bold mb-1.5 text-on-surface">Start Date</label>
+              <input type="date" id="editScheduledDate" name="scheduled_date" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none">
+            </div>
+            <div>
+              <label for="editLocation" class="block text-label-md font-bold mb-1.5 text-on-surface">Location / Venue</label>
+              <input type="text" id="editLocation" name="location" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none" placeholder="e.g., PESO Taguig / Online">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3.5">
+            <div>
+              <label for="editSlots" class="block text-label-md font-bold mb-1.5 text-on-surface">Total Slots *</label>
+              <input type="number" id="editSlots" name="slots" min="1" max="1000" required class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none" placeholder="30">
+            </div>
+            <div>
+              <label for="editStatus" class="block text-label-md font-bold mb-1.5 text-on-surface">Program Status</label>
+              <select id="editStatus" name="status" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md focus:border-secondary focus:outline-none">
+                <option value="Scheduled">Scheduled (Open for Registration)</option>
+                <option value="In Progress">In Progress (Class Ongoing)</option>
+                <option value="Closed">Closed (Registration Locked)</option>
+                <option value="Completed">Completed (Graduated & Certified)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Column: Skills & Description -->
+        <div class="space-y-4">
+          <!-- Multi-Select Addresses Skills (Edit Modal) -->
+          <div class="relative" id="editSkillSearchContainer">
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="block text-label-md font-bold text-on-surface">Addresses Skills *</label>
+              <span id="editSelectedCountBadge" class="text-[11px] font-bold text-secondary hidden">0 selected</span>
+            </div>
+            
+            <!-- Hidden inputs container -->
+            <div id="editSkillHiddenInputsContainer"></div>
+            
+            <!-- Selected Skills Chips Display -->
+            <div id="editSelectedSkillsChips" class="flex flex-wrap gap-1.5 mb-2 min-h-[44px] p-2 bg-surface-container-low/60 rounded-xl border border-outline-variant/60">
+              <span id="editEmptySkillsPrompt" class="text-xs text-on-surface-variant/70 italic self-center px-1">No skills selected. Search and click below to add.</span>
+            </div>
+
+            <!-- Search Trigger Input -->
+            <div class="relative flex items-center">
+              <span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none text-lg">search</span>
+              <input type="text" 
+                     id="editSkillSearchInput" 
+                     autocomplete="off"
+                     placeholder="Search to add/remove skills..." 
+                     class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-9 pr-8 py-2 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none placeholder:text-outline/70">
+              <button type="button" id="clearEditSkillSearchBtn" class="absolute right-2.5 text-on-surface-variant hover:text-on-surface p-1 rounded hidden" title="Clear search text">
+                <span class="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
+
+            <!-- Dropdown List Container -->
+            <div id="editSkillDropdownList" class="hidden absolute left-0 right-0 top-full mt-1 bg-surface-bright border border-outline-variant rounded-xl shadow-2xl z-50 max-h-52 overflow-y-auto divide-y divide-outline-variant/30 custom-scrollbar">
+              <div id="editSkillOptionsList">
+                {% for skill in skills %}
+                  <div class="edit-skill-option px-3.5 py-2 hover:bg-surface-container-low cursor-pointer flex items-center justify-between transition-colors text-sm"
+                       data-id="{{ skill.id }}"
+                       data-name="{{ skill.name }}"
+                       data-category="{{ skill.category }}">
+                    <div class="flex items-center gap-2.5">
+                      <div class="edit-skill-checkbox w-4 h-4 rounded border border-outline-variant flex items-center justify-center text-white text-[11px] transition-colors">
+                        <span class="material-symbols-outlined text-xs hidden edit-check-icon">check</span>
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-semibold text-on-surface skill-name leading-tight">{{ skill.name }}</span>
+                        <span class="text-[10px] text-on-surface-variant opacity-75 skill-category">{{ skill.category }}</span>
+                      </div>
+                    </div>
+                    <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant/40">
+                      {{ skill.category }}
+                    </span>
+                  </div>
+                {% endfor %}
+              </div>
+              <div id="noEditSkillsFound" class="hidden px-4 py-6 text-center text-xs text-on-surface-variant italic">
+                No matching skills found.
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <label for="editDescription" class="block text-label-md font-bold mb-1.5 text-on-surface">Description</label>
+            <textarea id="editDescription" name="description" rows="5" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3.5 py-2 text-body-md focus:border-secondary focus:outline-none" placeholder="Briefly describe the program contents..."></textarea>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pt-5 border-t border-outline-variant/70 flex justify-between items-center gap-3">
+        <button type="button" onclick="confirmDeleteCurrentProgram()" class="px-4 py-2.5 border border-error/30 text-error hover:bg-error/10 rounded-xl text-label-md font-bold transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-base">delete</span> Delete
+        </button>
+        <div class="flex gap-3">
+          <button type="button" onclick="closeEditModal()" class="px-5 py-2.5 border border-outline-variant rounded-xl text-label-md font-bold hover:bg-surface-container-low transition-colors cursor-pointer">Cancel</button>
+          <button type="submit" class="px-7 py-2.5 bg-secondary text-white rounded-xl text-label-md font-bold hover:bg-blue-700 shadow-sm transition-all cursor-pointer flex items-center gap-2">
+            <span class="material-symbols-outlined text-base">check_circle</span>
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </div>
+    </form>
+    
+    <!-- Hidden form for deletion -->
+    <form method="POST" id="deleteProgramForm" class="hidden">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="delete">
+      <input type="hidden" name="training_program_id" id="deleteProgramId">
+    </form>
+  </div>
+</div>
+
+<!-- Enrolled Candidates Roster Modal -->
+<div id="rosterModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-surface-bright border border-outline-variant rounded-2xl max-w-2xl w-full p-6 shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="rosterModalContainer">
+    <div class="flex justify-between items-start mb-4 pb-4 border-b border-outline-variant">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-2xl">groups</span>
+          <h3 class="font-headline-md text-headline-md text-on-surface" id="rosterProgramTitle">Enrolled Candidates List</h3>
+          <span id="rosterCountBadge" class="px-2.5 py-0.5 bg-secondary/10 text-secondary text-xs font-bold rounded-full border border-secondary/30">0 Enrolled</span>
+        </div>
+        <p class="text-xs text-on-surface-variant mt-1" id="rosterProgramDetails">Program Information</p>
+      </div>
+      <button onclick="closeRosterModal()" class="p-1 rounded-full hover:bg-surface-container-low transition-colors text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Search / Filter inside Roster -->
+    <div class="mb-4 flex items-center justify-between gap-3">
+      <div class="relative flex-1">
+        <span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant pointer-events-none text-base">search</span>
+        <input type="text" id="rosterSearchInput" oninput="filterRosterCandidates(this.value)" placeholder="Filter enrolled candidates by name or job..." 
+               class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-9 pr-3 py-1.5 text-xs focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none">
+      </div>
+      <button type="button" id="rosterEnrollMoreBtn" class="px-3 py-1.5 bg-secondary text-white text-xs font-bold rounded-lg hover:opacity-90 transition-opacity flex items-center gap-1 shrink-0">
+        <span class="material-symbols-outlined text-sm">person_add</span> Add Candidates
+      </button>
+    </div>
+
+    <!-- Candidates Table / Cards Container -->
+    <div class="max-h-72 overflow-y-auto custom-scrollbar border border-outline-variant/40 rounded-xl divide-y divide-outline-variant/30">
+      <div id="rosterCandidatesList" class="divide-y divide-outline-variant/30"></div>
+      <div id="noRosterCandidatesPrompt" class="hidden py-10 text-center text-on-surface-variant italic text-xs">
+        <span class="material-symbols-outlined text-outline text-3xl mb-1 block">person_off</span>
+        No candidates enrolled in this training program yet.
+      </div>
+    </div>
+
+    <div class="pt-4 mt-4 border-t border-outline-variant flex justify-between items-center">
+      <span class="text-[11px] text-on-surface-variant">PESO Training Program Registry</span>
+      <button type="button" onclick="closeRosterModal()" class="px-5 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg text-xs font-bold transition-colors">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden form for unenrollment -->
+<form method="POST" id="unenrollCandidateForm" class="hidden">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="unenroll">
+  <input type="hidden" name="training_program_id" id="unenrollProgramId">
+  <input type="hidden" name="applicant_id" id="unenrollApplicantId">
+</form>
+
+<!-- Enroll Candidate Modal -->
+<div id="enrollModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-surface-bright border border-outline-variant rounded-2xl max-w-md w-full p-6 shadow-2xl">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="font-headline-md text-headline-md text-on-surface">Enroll Applicant in Training</h3>
+      <button onclick="closeEnrollModal()" class="p-1 rounded-full hover:bg-surface-container-low transition-colors text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    
+    <form method="POST" class="space-y-4">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="enroll">
+      <input type="hidden" name="training_program_id" id="enrollProgramId">
+      
+      <div>
+        <label class="block text-label-md font-bold mb-1.5 text-on-surface">Training Program</label>
+        <input type="text" id="enrollProgramTitle" readonly class="w-full bg-surface-container border border-outline-variant rounded-lg px-3 py-2 text-body-md cursor-not-allowed">
+      </div>
+      
+      <!-- Multi-Select Applicant Picker -->
+      <div class="relative" id="applicantSearchContainer">
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="block text-label-md font-bold text-on-surface">Select Applicants *</label>
+          <span id="selectedApplicantCountBadge" class="text-[11px] font-bold text-secondary hidden">0 selected</span>
+        </div>
+        
+        <!-- Hidden inputs container holding selected applicant IDs for form POST -->
+        <div id="applicantHiddenInputsContainer"></div>
+        
+        <!-- Selected Applicants Chips Display -->
+        <div id="selectedApplicantsChips" class="flex flex-wrap gap-1.5 mb-2 min-h-[32px] p-1.5 bg-surface-container-low/60 rounded-lg border border-outline-variant/60">
+          <span id="emptyApplicantsPrompt" class="text-xs text-on-surface-variant/70 italic self-center px-1">No applicants selected. Search and click below to add.</span>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none text-lg">search</span>
+          <input type="text" 
+                 id="applicantSearchInput" 
+                 autocomplete="off"
+                 placeholder="Search to add applicants (e.g. Dave, Maria, IT, BPO)..." 
+                 class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-9 pr-8 py-2 text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none placeholder:text-outline/70">
+          <button type="button" id="clearApplicantSearchBtn" class="absolute right-2.5 text-on-surface-variant hover:text-on-surface p-1 rounded hidden" title="Clear search text">
+            <span class="material-symbols-outlined text-sm">close</span>
+          </button>
+        </div>
+
+        <!-- Dropdown List Container -->
+        <div id="applicantDropdownList" class="hidden absolute left-0 right-0 top-full mt-1 bg-surface-bright border border-outline-variant rounded-xl shadow-2xl z-50 max-h-52 overflow-y-auto divide-y divide-outline-variant/30 custom-scrollbar">
+          <div id="applicantOptionsList">
+            {% for app in applicants %}
+              <div class="applicant-option px-3.5 py-2 hover:bg-surface-container-low cursor-pointer flex items-center justify-between transition-colors text-sm"
+                   data-id="{{ app.id }}"
+                   data-name="{{ app.user.get_full_name }}"
+                   data-job="{{ app.preferred_job|default:'Any' }}"
+                   data-email="{{ app.user.email }}">
+                <div class="flex items-center gap-2.5">
+                  <div class="applicant-checkbox w-4 h-4 rounded border border-outline-variant flex items-center justify-center text-white text-[11px] transition-colors">
+                    <span class="material-symbols-outlined text-xs hidden app-check-icon">check</span>
+                  </div>
+                  <div class="w-6 h-6 rounded-full bg-secondary/10 text-secondary font-bold text-[10px] flex items-center justify-center">
+                    {{ app.user.first_name|slice:":1"|upper }}{{ app.user.last_name|slice:":1"|upper }}
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="font-semibold text-on-surface leading-tight">{{ app.user.get_full_name }}</span>
+                    <span class="text-[10px] text-on-surface-variant opacity-75">Pref: {{ app.preferred_job|default:"Any" }}</span>
+                  </div>
+                </div>
+                <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant/40">
+                  {{ app.preferred_job|default:"Any" }}
+                </span>
+              </div>
+            {% endfor %}
+          </div>
+          <div id="noApplicantsFound" class="hidden px-4 py-6 text-center text-xs text-on-surface-variant italic">
+            No matching applicants found.
+          </div>
+        </div>
+      </div>
+      
+      <div class="pt-4 border-t border-outline-variant flex justify-end gap-3">
+        <button type="button" onclick="closeEnrollModal()" class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-colors">Cancel</button>
+        <button type="submit" class="px-6 py-2 bg-secondary text-white rounded-lg text-label-md font-label-md hover:opacity-90 transition-opacity font-bold">Enroll Applicant</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Confirm Completion Modal -->
+<div id="completeModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-surface-bright border border-outline-variant rounded-2xl max-w-md w-full p-6 shadow-2xl">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="font-headline-md text-headline-md text-on-surface">Confirm Training Completion</h3>
+      <button onclick="closeCompleteModal()" class="p-1 rounded-full hover:bg-surface-container-low transition-colors text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    
+    <form method="POST" class="space-y-4">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="confirm_finish">
+      <input type="hidden" name="training_program_id" id="completeProgramId">
+      
+      <div>
+        <label class="block text-label-md font-bold mb-1.5 text-on-surface">Training Program</label>
+        <input type="text" id="completeProgramTitle" readonly class="w-full bg-surface-container border border-outline-variant rounded-lg px-3 py-2 text-body-md cursor-not-allowed">
+      </div>
+      
+      <div>
+        <label class="block text-label-md font-bold mb-2 text-on-surface">Select Applicants Who Completed & Attended</label>
+        <div id="enrolledChecklist" class="space-y-2 max-h-48 overflow-y-auto p-2 bg-surface-container rounded-lg border border-outline-variant/30">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+      
+      <p class="text-xs text-on-surface-variant leading-relaxed italic">Checked applicants will receive status "Attended & Completed" and have the corresponding skill added to their profile at Level 3. Unchecked applicants will be marked as "No Show".</p>
+      
+      <div class="pt-4 border-t border-outline-variant flex justify-end gap-3">
+        <button type="button" onclick="closeCompleteModal()" class="px-4 py-2 border border-outline-variant rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-colors">Cancel</button>
+        <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-lg text-label-md font-label-md hover:opacity-90 transition-opacity font-bold">Confirm Finish</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+        // Micro-interactions for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.cursor = 'pointer';
+            });
+        });
+
+        // Simple mock search functionality
+        const searchInput = document.querySelector('input[type="text"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                console.log('Searching for:', e.target.value);
+                // Integration logic would go here
+            });
+        }
+
+        // Modal Controls
+        const modal = document.getElementById('newProgramModal');
+        const modalContainer = document.getElementById('modalContainer');
+        const openBtn = document.getElementById('openModalBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const cancelBtn = document.getElementById('cancelModalBtn');
+
+        function showModal() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modalContainer.classList.remove('scale-95', 'opacity-0');
+                modalContainer.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function hideModal() {
+            modalContainer.classList.remove('scale-100', 'opacity-100');
+            modalContainer.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        if (openBtn) openBtn.addEventListener('click', showModal);
+        if (closeBtn) closeBtn.addEventListener('click', hideModal);
+        if (cancelBtn) cancelBtn.addEventListener('click', hideModal);
+
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+        }
+
+        // Enroll Modal helpers
+        function openEnrollModal(id, title) {
+            document.getElementById('enrollProgramId').value = id;
+            document.getElementById('enrollProgramTitle').value = title;
+            clearSelectedApplicant();
+            const enrollModal = document.getElementById('enrollModal');
+            enrollModal.classList.remove('hidden');
+            enrollModal.classList.add('flex');
+        }
+        function closeEnrollModal() {
+            const enrollModal = document.getElementById('enrollModal');
+            enrollModal.classList.add('hidden');
+            enrollModal.classList.remove('flex');
+            closeApplicantDropdown();
+        }
+
+        function openCompleteProgramModal(id, title) {
+            const el = document.getElementById('enrolled-data-' + id);
+            let list = [];
+            if (el && el.textContent) {
+                try { list = JSON.parse(el.textContent); } catch (e) { console.error('Enrolled list parse error:', e); }
+            }
+            openCompleteModal(id, title, list);
+        }
+
+        function openEditProgramModal(id) {
+            const el = document.getElementById('prog-data-' + id);
+            if (!el || !el.textContent) return;
+            try {
+                const program = JSON.parse(el.textContent);
+                openEditModal(program);
+            } catch (e) {
+                console.error('Error parsing program data:', e);
+            }
+        }
+
+        // Complete Modal helpers
+        function openCompleteModal(id, title, enrolledList) {
+            document.getElementById('completeProgramId').value = id;
+            document.getElementById('completeProgramTitle').value = title;
+            
+            const container = document.getElementById('enrolledChecklist');
+            container.innerHTML = '';
+            
+            if (enrolledList.length === 0) {
+                container.innerHTML = '<p class="text-xs text-outline italic">No applicants enrolled.</p>';
+            } else {
+                enrolledList.forEach(app => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center gap-2 py-1';
+                    div.innerHTML = `
+                        <input type="checkbox" name="completed_applicants" value="${app.id}" id="complete_app_${app.id}" class="rounded border-outline-variant text-secondary focus:ring-secondary">
+                        <label for="complete_app_${app.id}" class="text-sm text-on-surface cursor-pointer select-none">${app.name}</label>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+            
+            const completeModal = document.getElementById('completeModal');
+            completeModal.classList.remove('hidden');
+            completeModal.classList.add('flex');
+        }
+        function closeCompleteModal() {
+            const completeModal = document.getElementById('completeModal');
+            completeModal.classList.add('hidden');
+            completeModal.classList.remove('flex');
+        }
+
+        // Multi-Select Skill Selection in Add New Program Modal
+        const skillSearchInput = document.getElementById('skillSearchInput');
+        const skillDropdownList = document.getElementById('skillDropdownList');
+        const hiddenInputsContainer = document.getElementById('skillHiddenInputsContainer');
+        const chipsContainer = document.getElementById('selectedSkillsChips');
+        const emptyPrompt = document.getElementById('emptySkillsPrompt');
+        const countBadge = document.getElementById('selectedCountBadge');
+        const clearSearchBtn = document.getElementById('clearSkillSearchBtn');
+        const noSkillsFound = document.getElementById('noSkillsFound');
+        const skillOptions = document.querySelectorAll('.skill-option');
+
+        const selectedSkills = new Map(); // id -> { name, category }
+
+        function openSkillDropdown() {
+            skillDropdownList.classList.remove('hidden');
+            filterSkills(skillSearchInput.value);
+        }
+
+        function closeSkillDropdown() {
+            skillDropdownList.classList.add('hidden');
+        }
+
+        function filterSkills(query) {
+            const q = (query || '').toLowerCase().trim();
+            let matches = 0;
+            skillOptions.forEach(opt => {
+                const name = (opt.dataset.name || '').toLowerCase();
+                const cat = (opt.dataset.category || '').toLowerCase();
+                if (name.includes(q) || cat.includes(q)) {
+                    opt.style.display = 'flex';
+                    matches++;
+                } else {
+                    opt.style.display = 'none';
+                }
+            });
+            if (matches === 0) {
+                noSkillsFound.classList.remove('hidden');
+            } else {
+                noSkillsFound.classList.add('hidden');
+            }
+        }
+
+        function updateSelectedUI() {
+            // Update hidden inputs
+            hiddenInputsContainer.innerHTML = '';
+            chipsContainer.innerHTML = '';
+
+            if (selectedSkills.size === 0) {
+                chipsContainer.appendChild(emptyPrompt);
+                emptyPrompt.classList.remove('hidden');
+                countBadge.classList.add('hidden');
+            } else {
+                countBadge.textContent = `${selectedSkills.size} selected`;
+                countBadge.classList.remove('hidden');
+
+                selectedSkills.forEach((val, id) => {
+                    // Create hidden input
+                    const inp = document.createElement('input');
+                    inp.type = 'hidden';
+                    inp.name = 'skills_addressed[]';
+                    inp.value = id;
+                    hiddenInputsContainer.appendChild(inp);
+
+                    // Create chip
+                    const chip = document.createElement('div');
+                    chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 bg-secondary/10 border border-secondary/30 text-secondary rounded-lg text-xs font-semibold';
+                    chip.innerHTML = `
+                        <span>${val.name}</span>
+                        <span class="text-[10px] text-secondary/70">(${val.category})</span>
+                        <button type="button" class="hover:text-error ml-0.5 flex items-center justify-center p-0.5 rounded-full hover:bg-white/50" onclick="removeSkill('${id}')">
+                            <span class="material-symbols-outlined text-[13px]">close</span>
+                        </button>
+                    `;
+                    chipsContainer.appendChild(chip);
+                });
+            }
+
+            // Update dropdown checkmarks
+            skillOptions.forEach(opt => {
+                const id = opt.dataset.id;
+                const isSelected = selectedSkills.has(id);
+                const checkbox = opt.querySelector('.skill-checkbox');
+                const checkIcon = opt.querySelector('.check-icon');
+
+                if (isSelected) {
+                    checkbox.classList.add('bg-secondary', 'border-secondary');
+                    checkbox.classList.remove('border-outline-variant');
+                    checkIcon.classList.remove('hidden');
+                    opt.classList.add('bg-secondary/5');
+                } else {
+                    checkbox.classList.remove('bg-secondary', 'border-secondary');
+                    checkbox.classList.add('border-outline-variant');
+                    checkIcon.classList.add('hidden');
+                    opt.classList.remove('bg-secondary/5');
+                }
+            });
+
+            if (selectedSkills.size > 0) {
+                skillSearchInput.classList.remove('border-error');
+            }
+        }
+
+        function toggleSkill(id, name, category) {
+            if (selectedSkills.has(id)) {
+                selectedSkills.delete(id);
+            } else {
+                selectedSkills.set(id, { name, category });
+            }
+            updateSelectedUI();
+        }
+
+        window.removeSkill = function(id) {
+            selectedSkills.delete(id);
+            updateSelectedUI();
+        };
+
+        if (skillSearchInput) {
+            skillSearchInput.addEventListener('focus', openSkillDropdown);
+            skillSearchInput.addEventListener('click', openSkillDropdown);
+            skillSearchInput.addEventListener('input', (e) => {
+                openSkillDropdown();
+                filterSkills(e.target.value);
+                if (e.target.value) {
+                    clearSearchBtn.classList.remove('hidden');
+                } else {
+                    clearSearchBtn.classList.add('hidden');
+                }
+            });
+        }
+
+        if (clearSearchBtn) {
+            clearSearchBtn.addEventListener('click', () => {
+                skillSearchInput.value = '';
+                clearSearchBtn.classList.add('hidden');
+                filterSkills('');
+                skillSearchInput.focus();
+            });
+        }
+
+        skillOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                toggleSkill(opt.dataset.id, opt.dataset.name, opt.dataset.category);
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('skillSearchContainer');
+            if (container && !container.contains(e.target)) {
+                closeSkillDropdown();
+            }
+        });
+
+        // Validate on form submit
+        const newProgramForm = document.querySelector('#newProgramModal form');
+        if (newProgramForm) {
+            newProgramForm.addEventListener('submit', (e) => {
+                if (selectedSkills.size === 0) {
+                    e.preventDefault();
+                    skillSearchInput.classList.add('border-error');
+                    skillSearchInput.focus();
+                    openSkillDropdown();
+                }
+            });
+        }
+
+        // Multi-Select Applicant Selection in Enroll Modal
+        const applicantSearchInput = document.getElementById('applicantSearchInput');
+        const applicantDropdownList = document.getElementById('applicantDropdownList');
+        const applicantHiddenInputsContainer = document.getElementById('applicantHiddenInputsContainer');
+        const selectedApplicantsChips = document.getElementById('selectedApplicantsChips');
+        const emptyApplicantsPrompt = document.getElementById('emptyApplicantsPrompt');
+        const applicantCountBadge = document.getElementById('selectedApplicantCountBadge');
+        const clearApplicantSearchBtn = document.getElementById('clearApplicantSearchBtn');
+        const noApplicantsFound = document.getElementById('noApplicantsFound');
+        const applicantOptions = document.querySelectorAll('.applicant-option');
+
+        const selectedApplicants = new Map(); // id -> { name, job }
+
+        function openApplicantDropdown() {
+            applicantDropdownList.classList.remove('hidden');
+            filterApplicants(applicantSearchInput.value);
+        }
+
+        function closeApplicantDropdown() {
+            applicantDropdownList.classList.add('hidden');
+        }
+
+        function filterApplicants(query) {
+            const q = (query || '').toLowerCase().trim();
+            let matches = 0;
+            applicantOptions.forEach(opt => {
+                const name = (opt.dataset.name || '').toLowerCase();
+                const job = (opt.dataset.job || '').toLowerCase();
+                const email = (opt.dataset.email || '').toLowerCase();
+                if (name.includes(q) || job.includes(q) || email.includes(q)) {
+                    opt.style.display = 'flex';
+                    matches++;
+                } else {
+                    opt.style.display = 'none';
+                }
+            });
+            if (matches === 0) {
+                noApplicantsFound.classList.remove('hidden');
+            } else {
+                noApplicantsFound.classList.add('hidden');
+            }
+        }
+
+        function updateSelectedApplicantsUI() {
+            applicantHiddenInputsContainer.innerHTML = '';
+            selectedApplicantsChips.innerHTML = '';
+
+            if (selectedApplicants.size === 0) {
+                selectedApplicantsChips.appendChild(emptyApplicantsPrompt);
+                emptyApplicantsPrompt.classList.remove('hidden');
+                applicantCountBadge.classList.add('hidden');
+            } else {
+                applicantCountBadge.textContent = `${selectedApplicants.size} selected`;
+                applicantCountBadge.classList.remove('hidden');
+
+                selectedApplicants.forEach((val, id) => {
+                    // Create hidden input
+                    const inp = document.createElement('input');
+                    inp.type = 'hidden';
+                    inp.name = 'applicant_ids[]';
+                    inp.value = id;
+                    applicantHiddenInputsContainer.appendChild(inp);
+
+                    // Create chip
+                    const chip = document.createElement('div');
+                    chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 bg-secondary/10 border border-secondary/30 text-secondary rounded-lg text-xs font-semibold';
+                    chip.innerHTML = `
+                        <span>${val.name}</span>
+                        <span class="text-[10px] text-secondary/70">(${val.job})</span>
+                        <button type="button" class="hover:text-error ml-0.5 flex items-center justify-center p-0.5 rounded-full hover:bg-white/50" onclick="removeApplicant('${id}')">
+                            <span class="material-symbols-outlined text-[13px]">close</span>
+                        </button>
+                    `;
+                    selectedApplicantsChips.appendChild(chip);
+                });
+            }
+
+            // Update dropdown checkmarks
+            applicantOptions.forEach(opt => {
+                const id = opt.dataset.id;
+                const isSelected = selectedApplicants.has(id);
+                const checkbox = opt.querySelector('.applicant-checkbox');
+                const checkIcon = opt.querySelector('.app-check-icon');
+
+                if (isSelected) {
+                    checkbox.classList.add('bg-secondary', 'border-secondary');
+                    checkbox.classList.remove('border-outline-variant');
+                    checkIcon.classList.remove('hidden');
+                    opt.classList.add('bg-secondary/5');
+                } else {
+                    checkbox.classList.remove('bg-secondary', 'border-secondary');
+                    checkbox.classList.add('border-outline-variant');
+                    checkIcon.classList.add('hidden');
+                    opt.classList.remove('bg-secondary/5');
+                }
+            });
+
+            if (selectedApplicants.size > 0) {
+                applicantSearchInput.classList.remove('border-error');
+            }
+        }
+
+        function toggleApplicant(id, name, job) {
+            if (selectedApplicants.has(id)) {
+                selectedApplicants.delete(id);
+            } else {
+                selectedApplicants.set(id, { name, job });
+            }
+            updateSelectedApplicantsUI();
+        }
+
+        window.removeApplicant = function(id) {
+            selectedApplicants.delete(id);
+            updateSelectedApplicantsUI();
+        };
+
+        function clearSelectedApplicant() {
+            selectedApplicants.clear();
+            if (applicantSearchInput) {
+                applicantSearchInput.value = '';
+                applicantSearchInput.classList.remove('border-error');
+            }
+            if (clearApplicantSearchBtn) clearApplicantSearchBtn.classList.add('hidden');
+            updateSelectedApplicantsUI();
+            closeApplicantDropdown();
+        }
+
+        if (applicantSearchInput) {
+            applicantSearchInput.addEventListener('focus', openApplicantDropdown);
+            applicantSearchInput.addEventListener('click', openApplicantDropdown);
+            applicantSearchInput.addEventListener('input', (e) => {
+                openApplicantDropdown();
+                filterApplicants(e.target.value);
+                if (e.target.value) {
+                    clearApplicantSearchBtn.classList.remove('hidden');
+                } else {
+                    clearApplicantSearchBtn.classList.add('hidden');
+                }
+            });
+        }
+
+        if (clearApplicantSearchBtn) {
+            clearApplicantSearchBtn.addEventListener('click', () => {
+                applicantSearchInput.value = '';
+                clearApplicantSearchBtn.classList.add('hidden');
+                filterApplicants('');
+                applicantSearchInput.focus();
+            });
+        }
+
+        applicantOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                toggleApplicant(opt.dataset.id, opt.dataset.name, opt.dataset.job);
+            });
+        });
+
+        // Close applicant dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('applicantSearchContainer');
+            if (container && !container.contains(e.target)) {
+                closeApplicantDropdown();
+            }
+        });
+
+        // Validate enroll form submit
+        const enrollForm = document.querySelector('#enrollModal form');
+        if (enrollForm) {
+            enrollForm.addEventListener('submit', (e) => {
+                if (selectedApplicants.size === 0) {
+                    e.preventDefault();
+                    applicantSearchInput.classList.add('border-error');
+                    applicantSearchInput.focus();
+                    openApplicantDropdown();
+                }
+            });
+        }
+
+        // ================= EDIT PROGRAM MODAL LOGIC =================
+        const editModal = document.getElementById('editProgramModal');
+        const editModalContainer = document.getElementById('editModalContainer');
+        const editSkillSearchInput = document.getElementById('editSkillSearchInput');
+        const editSkillDropdownList = document.getElementById('editSkillDropdownList');
+        const editSkillHiddenInputsContainer = document.getElementById('editSkillHiddenInputsContainer');
+        const editSelectedSkillsChips = document.getElementById('editSelectedSkillsChips');
+        const editEmptySkillsPrompt = document.getElementById('editEmptySkillsPrompt');
+        const editSelectedCountBadge = document.getElementById('editSelectedCountBadge');
+        const clearEditSkillSearchBtn = document.getElementById('clearEditSkillSearchBtn');
+        const noEditSkillsFound = document.getElementById('noEditSkillsFound');
+        const editSkillOptions = document.querySelectorAll('.edit-skill-option');
+
+        const editSelectedSkills = new Map(); // id -> { name, category }
+
+        function openEditModal(program) {
+            if (!program) return;
+            document.getElementById('editProgramId').value = program.id;
+            document.getElementById('deleteProgramId').value = program.id;
+            document.getElementById('editTitle').value = program.title || '';
+            document.getElementById('editProvider').value = program.provider || '';
+            document.getElementById('editDuration').value = program.duration || '';
+            document.getElementById('editRequiredMinutes').value = program.required_training_minutes || 60;
+            document.getElementById('editScheduledDate').value = program.scheduled_date || '';
+            document.getElementById('editLocation').value = program.location || '';
+            document.getElementById('editSlots').value = program.slots || 30;
+            document.getElementById('editStatus').value = program.status || 'Scheduled';
+            document.getElementById('editDescription').value = program.description || '';
+
+            // Populate skills
+            editSelectedSkills.clear();
+            if (program.skills && Array.isArray(program.skills)) {
+                program.skills.forEach(sk => {
+                    editSelectedSkills.set(String(sk.id), { name: sk.name, category: sk.category });
+                });
+            }
+            updateEditSelectedSkillsUI();
+
+            editModal.classList.remove('hidden');
+            editModal.classList.add('flex');
+            setTimeout(() => {
+                editModalContainer.classList.remove('scale-95', 'opacity-0');
+                editModalContainer.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeEditModal() {
+            editModalContainer.classList.remove('scale-100', 'opacity-100');
+            editModalContainer.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                editModal.classList.add('hidden');
+                editModal.classList.remove('flex');
+                closeEditSkillDropdown();
+            }, 300);
+        }
+
+        function openEditSkillDropdown() {
+            editSkillDropdownList.classList.remove('hidden');
+            filterEditSkills(editSkillSearchInput.value);
+        }
+
+        function closeEditSkillDropdown() {
+            editSkillDropdownList.classList.add('hidden');
+        }
+
+        function filterEditSkills(query) {
+            const q = (query || '').toLowerCase().trim();
+            let matches = 0;
+            editSkillOptions.forEach(opt => {
+                const name = (opt.dataset.name || '').toLowerCase();
+                const cat = (opt.dataset.category || '').toLowerCase();
+                if (name.includes(q) || cat.includes(q)) {
+                    opt.style.display = 'flex';
+                    matches++;
+                } else {
+                    opt.style.display = 'none';
+                }
+            });
+            if (matches === 0) {
+                noEditSkillsFound.classList.remove('hidden');
+            } else {
+                noEditSkillsFound.classList.add('hidden');
+            }
+        }
+
+        function updateEditSelectedSkillsUI() {
+            editSkillHiddenInputsContainer.innerHTML = '';
+            editSelectedSkillsChips.innerHTML = '';
+
+            if (editSelectedSkills.size === 0) {
+                editSelectedSkillsChips.appendChild(editEmptySkillsPrompt);
+                editEmptySkillsPrompt.classList.remove('hidden');
+                editSelectedCountBadge.classList.add('hidden');
+            } else {
+                editSelectedCountBadge.textContent = `${editSelectedSkills.size} selected`;
+                editSelectedCountBadge.classList.remove('hidden');
+
+                editSelectedSkills.forEach((val, id) => {
+                    const inp = document.createElement('input');
+                    inp.type = 'hidden';
+                    inp.name = 'skills_addressed[]';
+                    inp.value = id;
+                    editSkillHiddenInputsContainer.appendChild(inp);
+
+                    const chip = document.createElement('div');
+                    chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 bg-secondary/10 border border-secondary/30 text-secondary rounded-lg text-xs font-semibold';
+                    chip.innerHTML = `
+                        <span>${val.name}</span>
+                        <span class="text-[10px] text-secondary/70">(${val.category})</span>
+                        <button type="button" class="hover:text-error ml-0.5 flex items-center justify-center p-0.5 rounded-full hover:bg-white/50" onclick="removeEditSkill('${id}')">
+                            <span class="material-symbols-outlined text-[13px]">close</span>
+                        </button>
+                    `;
+                    editSelectedSkillsChips.appendChild(chip);
+                });
+            }
+
+            editSkillOptions.forEach(opt => {
+                const id = String(opt.dataset.id);
+                const isSelected = editSelectedSkills.has(id);
+                const checkbox = opt.querySelector('.edit-skill-checkbox');
+                const checkIcon = opt.querySelector('.edit-check-icon');
+
+                if (isSelected) {
+                    checkbox.classList.add('bg-secondary', 'border-secondary');
+                    checkbox.classList.remove('border-outline-variant');
+                    checkIcon.classList.remove('hidden');
+                    opt.classList.add('bg-secondary/5');
+                } else {
+                    checkbox.classList.remove('bg-secondary', 'border-secondary');
+                    checkbox.classList.add('border-outline-variant');
+                    checkIcon.classList.add('hidden');
+                    opt.classList.remove('bg-secondary/5');
+                }
+            });
+
+            if (editSelectedSkills.size > 0) {
+                editSkillSearchInput.classList.remove('border-error');
+            }
+        }
+
+        function toggleEditSkill(id, name, category) {
+            const sid = String(id);
+            if (editSelectedSkills.has(sid)) {
+                editSelectedSkills.delete(sid);
+            } else {
+                editSelectedSkills.set(sid, { name, category });
+            }
+            updateEditSelectedSkillsUI();
+        }
+
+        window.removeEditSkill = function(id) {
+            editSelectedSkills.delete(String(id));
+            updateEditSelectedSkillsUI();
+        };
+
+        if (editSkillSearchInput) {
+            editSkillSearchInput.addEventListener('focus', openEditSkillDropdown);
+            editSkillSearchInput.addEventListener('click', openEditSkillDropdown);
+            editSkillSearchInput.addEventListener('input', (e) => {
+                openEditSkillDropdown();
+                filterEditSkills(e.target.value);
+                if (e.target.value) {
+                    clearEditSkillSearchBtn.classList.remove('hidden');
+                } else {
+                    clearEditSkillSearchBtn.classList.add('hidden');
+                }
+            });
+        }
+
+        if (clearEditSkillSearchBtn) {
+            clearEditSkillSearchBtn.addEventListener('click', () => {
+                editSkillSearchInput.value = '';
+                clearEditSkillSearchBtn.classList.add('hidden');
+                filterEditSkills('');
+                editSkillSearchInput.focus();
+            });
+        }
+
+        editSkillOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                toggleEditSkill(opt.dataset.id, opt.dataset.name, opt.dataset.category);
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('editSkillSearchContainer');
+            if (container && !container.contains(e.target)) {
+                closeEditSkillDropdown();
+            }
+            if (editModal && e.target === editModal) {
+                closeEditModal();
+            }
+        });
+
+        const editProgramForm = document.getElementById('editProgramForm');
+        if (editProgramForm) {
+            editProgramForm.addEventListener('submit', (e) => {
+                if (editSelectedSkills.size === 0) {
+                    e.preventDefault();
+                    editSkillSearchInput.classList.add('border-error');
+                    editSkillSearchInput.focus();
+                    openEditSkillDropdown();
+                }
+            });
+        }
+
+        function confirmDeleteCurrentProgram() {
+            const title = document.getElementById('editTitle').value || 'this program';
+            if (confirm(`Are you sure you want to delete "${title}"? This action cannot be undone.`)) {
+                document.getElementById('deleteProgramForm').submit();
+            }
+        }
+
+        // ================= ENROLLED CANDIDATES ROSTER MODAL LOGIC =================
+        const rosterModal = document.getElementById('rosterModal');
+        const rosterModalContainer = document.getElementById('rosterModalContainer');
+        const rosterProgramTitle = document.getElementById('rosterProgramTitle');
+        const rosterProgramDetails = document.getElementById('rosterProgramDetails');
+        const rosterCountBadge = document.getElementById('rosterCountBadge');
+        const rosterCandidatesList = document.getElementById('rosterCandidatesList');
+        const noRosterCandidatesPrompt = document.getElementById('noRosterCandidatesPrompt');
+        const rosterSearchInput = document.getElementById('rosterSearchInput');
+        const rosterEnrollMoreBtn = document.getElementById('rosterEnrollMoreBtn');
+
+        let currentRosterData = null;
+
+        function openRosterModal(rosterData) {
+            if (!rosterData) return;
+            currentRosterData = rosterData;
+
+            rosterProgramTitle.textContent = rosterData.title || 'Training Program';
+            rosterProgramDetails.innerHTML = `Provider: <strong class="text-on-surface">${rosterData.provider}</strong> • Location: <strong class="text-on-surface">${rosterData.location}</strong> • Date: <strong class="text-on-surface">${rosterData.scheduled_date}</strong>`;
+            
+            const total = (rosterData.enrollees || []).length;
+            rosterCountBadge.textContent = `${total} Enrolled`;
+
+            if (rosterSearchInput) rosterSearchInput.value = '';
+
+            renderRosterCandidates(rosterData.enrollees || []);
+
+            if (rosterEnrollMoreBtn) {
+                rosterEnrollMoreBtn.onclick = () => {
+                    closeRosterModal();
+                    openEnrollModal(rosterData.id, rosterData.title);
+                };
+            }
+
+            rosterModal.classList.remove('hidden');
+            rosterModal.classList.add('flex');
+            setTimeout(() => {
+                rosterModalContainer.classList.remove('scale-95', 'opacity-0');
+                rosterModalContainer.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeRosterModal() {
+            rosterModalContainer.classList.remove('scale-100', 'opacity-100');
+            rosterModalContainer.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                rosterModal.classList.add('hidden');
+                rosterModal.classList.remove('flex');
+            }, 300);
+        }
+
+        function renderRosterCandidates(enrollees) {
+            rosterCandidatesList.innerHTML = '';
+
+            if (!enrollees || enrollees.length === 0) {
+                noRosterCandidatesPrompt.classList.remove('hidden');
+                return;
+            }
+            noRosterCandidatesPrompt.classList.add('hidden');
+
+            enrollees.forEach(c => {
+                const row = document.createElement('div');
+                row.className = 'roster-candidate-row px-4 py-3 hover:bg-surface-container-low flex items-center justify-between transition-colors text-sm';
+                row.dataset.name = (c.name || '').toLowerCase();
+                row.dataset.email = (c.email || '').toLowerCase();
+                row.dataset.job = (c.job || '').toLowerCase();
+
+                let statusBadge = `<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 uppercase">Enrolled</span>`;
+                if (c.status === 'Attended') {
+                    statusBadge = `<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-green-100 text-green-800 uppercase">Attended</span>`;
+                } else if (c.status === 'No Show') {
+                    statusBadge = `<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-500 uppercase line-through">No Show</span>`;
+                }
+
+                row.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-secondary/10 text-secondary font-bold text-xs flex items-center justify-center">
+                            ${c.initials || 'AP'}
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-on-surface leading-tight">${c.name}</span>
+                            <span class="text-[11px] text-on-surface-variant">${c.email}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant/40">
+                            Pref: ${c.job}
+                        </span>
+                        ${statusBadge}
+                        <button type="button" onclick="confirmUnenrollCandidate('${currentRosterData.id}', '${c.id}', '${c.name}')" class="p-1 text-on-surface-variant hover:text-error hover:bg-error/10 rounded transition-colors" title="Remove from program">
+                            <span class="material-symbols-outlined text-sm">person_remove</span>
+                        </button>
+                    </div>
+                `;
+                rosterCandidatesList.appendChild(row);
+            });
+        }
+
+        function filterRosterCandidates(query) {
+            const q = (query || '').toLowerCase().trim();
+            const rows = document.querySelectorAll('.roster-candidate-row');
+            let matches = 0;
+            rows.forEach(r => {
+                const name = r.dataset.name || '';
+                const email = r.dataset.email || '';
+                const job = r.dataset.job || '';
+                if (name.includes(q) || email.includes(q) || job.includes(q)) {
+                    r.style.display = 'flex';
+                    matches++;
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+            if (matches === 0 && rows.length > 0) {
+                noRosterCandidatesPrompt.classList.remove('hidden');
+            } else if (rows.length > 0) {
+                noRosterCandidatesPrompt.classList.add('hidden');
+            }
+        }
+
+        function confirmUnenrollCandidate(programId, applicantId, applicantName) {
+            if (confirm(`Remove "${applicantName}" from this training program?`)) {
+                document.getElementById('unenrollProgramId').value = programId;
+                document.getElementById('unenrollApplicantId').value = applicantId;
+                document.getElementById('unenrollCandidateForm').submit();
+            }
+        }
+
+        // Ongoing Programs Real-Time Filtering
+        function filterProgramsTable() {
+            const searchInput = document.getElementById('programSearchInput');
+            const statusFilter = document.getElementById('programStatusFilter');
+            const providerFilter = document.getElementById('programProviderFilter');
+
+            const search = (searchInput ? searchInput.value : '').toLowerCase().trim();
+            const status = (statusFilter ? statusFilter.value : '').toLowerCase();
+            const provider = (providerFilter ? providerFilter.value : '').toLowerCase();
+
+            const rows = document.querySelectorAll('.program-item-row');
+            let visibleCount = 0;
+
+            rows.forEach(r => {
+                const title = r.dataset.title || '';
+                const prov = r.dataset.provider || '';
+                const skills = r.dataset.skills || '';
+                const rowStatus = r.dataset.status || '';
+                const avail = parseInt(r.dataset.available || '0');
+
+                const matchSearch = !search || title.includes(search) || prov.includes(search) || skills.includes(search);
+                let matchStatus = !status;
+                if (status) {
+                    if (status === 'closed') {
+                        matchStatus = rowStatus === 'closed' || avail <= 0;
+                    } else if (status === 'in progress') {
+                        matchStatus = rowStatus.includes('progress') || rowStatus.includes('ongoing');
+                    } else {
+                        matchStatus = rowStatus.includes(status);
+                    }
+                }
+                const matchProvider = !provider || prov.includes(provider);
+
+                if (matchSearch && matchStatus && matchProvider) {
+                    r.style.display = '';
+                    visibleCount++;
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+
+            const emptyRow = document.getElementById('noProgramsFoundRow');
+            if (emptyRow) {
+                if (visibleCount === 0 && rows.length > 0) {
+                    emptyRow.classList.remove('hidden');
+                } else {
+                    emptyRow.classList.add('hidden');
+                }
+            }
+        }
+
+        function clearProgramFilters() {
+            if (document.getElementById('programSearchInput')) document.getElementById('programSearchInput').value = '';
+            if (document.getElementById('programStatusFilter')) document.getElementById('programStatusFilter').value = '';
+            if (document.getElementById('programProviderFilter')) document.getElementById('programProviderFilter').value = '';
+            filterProgramsTable();
+        }
+
+        // ================= AI TRAINING GENERATOR & SYLLABUS IMPORTER LOGIC =================
+        let aiStepInterval = null;
+        let selectedSyllabusFile = null;
+
+        function openAiGeneratorModal(tab = 'syllabus') {
+            const modal = document.getElementById('aiGeneratorModal');
+            if (!modal) return;
+
+            document.getElementById('aiGenFormContainer').classList.remove('hidden');
+            document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+            document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+            document.getElementById('aiGenSuccessContainer').classList.add('hidden');
+
+            switchAiGenTab(tab);
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeAiGeneratorModal() {
+            const modal = document.getElementById('aiGeneratorModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+            if (aiStepInterval) {
+                clearInterval(aiStepInterval);
+                aiStepInterval = null;
+            }
+        }
+
+        function switchAiGenTab(tab) {
+            const tabSyllabusBtn = document.getElementById('tabBtnSyllabus');
+            const tabTopicBtn = document.getElementById('tabBtnTopic');
+            const syllabusTab = document.getElementById('aiGenSyllabusTab');
+            const topicTab = document.getElementById('aiGenTopicTab');
+
+            if (tab === 'syllabus') {
+                tabSyllabusBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 bg-surface-bright text-secondary shadow-xs';
+                tabTopicBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface';
+                syllabusTab.classList.remove('hidden');
+                topicTab.classList.add('hidden');
+            } else {
+                tabTopicBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 bg-surface-bright text-secondary shadow-xs';
+                tabSyllabusBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface';
+                topicTab.classList.remove('hidden');
+                syllabusTab.classList.add('hidden');
+            }
+        }
+
+        function handleSyllabusFileSelect(event) {
+            const file = event.target.files && event.target.files[0];
+            if (file) {
+                setSyllabusFile(file);
+            }
+        }
+
+        function setSyllabusFile(file) {
+            selectedSyllabusFile = file;
+            const prompt = document.getElementById('syllabusDropzonePrompt');
+            const badge = document.getElementById('syllabusFileBadge');
+            const nameEl = document.getElementById('syllabusFileName');
+            const sizeEl = document.getElementById('syllabusFileSize');
+
+            if (nameEl) nameEl.textContent = file.name;
+            if (sizeEl) {
+                const sizeKb = Math.round(file.size / 1024);
+                sizeEl.textContent = sizeKb > 1024 ? `${(sizeKb / 1024).toFixed(1)} MB` : `${sizeKb} KB`;
+            }
+
+            if (prompt) prompt.classList.add('hidden');
+            if (badge) {
+                badge.classList.remove('hidden');
+                badge.classList.add('flex');
+            }
+        }
+
+        function clearSyllabusFile(event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            selectedSyllabusFile = null;
+            const fileInput = document.getElementById('aiGenSyllabusFile');
+            if (fileInput) fileInput.value = '';
+
+            const prompt = document.getElementById('syllabusDropzonePrompt');
+            const badge = document.getElementById('syllabusFileBadge');
+            if (prompt) prompt.classList.remove('hidden');
+            if (badge) {
+                badge.classList.add('hidden');
+                badge.classList.remove('flex');
+            }
+        }
+
+        function togglePasteSyllabusText() {
+            const container = document.getElementById('pasteTextContainer');
+            const icon = document.getElementById('pasteToggleIcon');
+            const label = document.getElementById('pasteToggleLabel');
+            if (!container) return;
+
+            const isHidden = container.classList.contains('hidden');
+            if (isHidden) {
+                container.classList.remove('hidden');
+                if (icon) icon.textContent = 'expand_less';
+                if (label) label.textContent = 'Hide pasted syllabus text area';
+                document.getElementById('aiGenSyllabusText')?.focus();
+            } else {
+                container.classList.add('hidden');
+                if (icon) icon.textContent = 'expand_more';
+                if (label) label.textContent = 'Or paste syllabus text directly';
+            }
+        }
+
+        // Setup Drag & Drop listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropzone = document.getElementById('syllabusDropzone');
+            if (dropzone) {
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropzone.classList.add('border-emerald-600', 'bg-emerald-50/40');
+                    }, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropzone.classList.remove('border-emerald-600', 'bg-emerald-50/40');
+                    }, false);
+                });
+
+                dropzone.addEventListener('drop', (e) => {
+                    const dt = e.dataTransfer;
+                    const file = dt.files && dt.files[0];
+                    if (file) {
+                        const fileInput = document.getElementById('aiGenSyllabusFile');
+                        if (fileInput) fileInput.files = dt.files;
+                        setSyllabusFile(file);
+                    }
+                }, false);
+            }
+        });
+
+        function startAiStepRotator(steps, titleText) {
+            const stepEl = document.getElementById('aiGenStepText');
+            const titleEl = document.getElementById('aiGenLoadingTitle');
+            if (titleEl && titleText) titleEl.textContent = titleText;
+
+            let stepIdx = 0;
+            if (stepEl && steps.length > 0) stepEl.textContent = steps[0];
+
+            if (aiStepInterval) clearInterval(aiStepInterval);
+            aiStepInterval = setInterval(() => {
+                stepIdx = (stepIdx + 1) % steps.length;
+                if (stepEl) {
+                    stepEl.style.opacity = '0';
+                    setTimeout(() => {
+                        stepEl.textContent = steps[stepIdx];
+                        stepEl.style.opacity = '1';
+                    }, 200);
+                }
+            }, 2500);
+        }
+
+        function submitAiSyllabusGeneration() {
+            const fileInput = document.getElementById('aiGenSyllabusFile');
+            const file = selectedSyllabusFile || (fileInput && fileInput.files ? fileInput.files[0] : null);
+            const text = (document.getElementById('aiGenSyllabusText')?.value || '').trim();
+
+            if (!file && (!text || text.length < 20)) {
+                alert('Please upload a course syllabus document (PDF, Word DOCX/DOC, TXT) or paste syllabus text.');
+                return;
+            }
+
+            const titleOverride = (document.getElementById('aiGenSyllabusTitleOverride')?.value || '').trim();
+            const duration = document.getElementById('aiGenSyllabusDuration')?.value || '';
+            const seatTime = document.getElementById('aiGenSyllabusSeatTime')?.value || '60';
+            const slots = document.getElementById('aiGenSyllabusSlots')?.value || '30';
+            const attachVideos = document.getElementById('aiGenSyllabusAttachVideos')?.checked ?? true;
+
+            const formData = new FormData();
+            if (file) {
+                formData.append('syllabus_file', file);
+            }
+            if (text) {
+                formData.append('syllabus_text', text);
+            }
+            if (titleOverride) {
+                formData.append('override_title', titleOverride);
+            }
+            if (duration) {
+                formData.append('duration_hours', duration);
+            }
+            formData.append('required_seat_time_mins', seatTime);
+            formData.append('slots', slots);
+            formData.append('attach_videos', attachVideos ? 'true' : 'false');
+
+            // Switch to Loading View
+            document.getElementById('aiGenFormContainer').classList.add('hidden');
+            document.getElementById('aiGenTabsHeader').classList.add('hidden');
+            document.getElementById('aiGenLoadingContainer').classList.remove('hidden');
+
+            const steps = [
+                "📄 Extracting text and units of competency from syllabus...",
+                "🧠 AI analyzing learning outcomes and structuring progressive modules...",
+                "🎬 Aligning vocational tutorial videos and hands-on demonstrations...",
+                "✍️ Crafting comprehensive certification exam questions...",
+                "🚀 Compiling interactive LMS course & publishing to registry..."
+            ];
+            startAiStepRotator(steps, "AI is Analyzing Syllabus & Building Course...");
+
+            fetch("{% url 'peso_ai_generate_from_syllabus' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (aiStepInterval) clearInterval(aiStepInterval);
+
+                if (data.success) {
+                    document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+                    const successContainer = document.getElementById('aiGenSuccessContainer');
+                    successContainer.classList.remove('hidden');
+
+                    document.getElementById('aiGenSuccessTitle').textContent = data.title;
+                    document.getElementById('aiGenSuccessMessage').textContent = data.message;
+                    document.getElementById('aiGenSuccessModules').textContent = data.modules_count || 'Multi';
+                    document.getElementById('aiGenSuccessLessons').textContent = data.lessons_count || 'Comprehensive';
+                    document.getElementById('aiGenSuccessBuilderLink').href = data.curriculum_url || data.redirect_url;
+                } else {
+                    alert(data.error || 'Failed to generate course from syllabus.');
+                    document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+                    document.getElementById('aiGenFormContainer').classList.remove('hidden');
+                    document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+                }
+            })
+            .catch(err => {
+                if (aiStepInterval) clearInterval(aiStepInterval);
+                alert('Error connecting to AI syllabus generator: ' + err.message);
+                document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+                document.getElementById('aiGenFormContainer').classList.remove('hidden');
+                document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+            });
+        }
+
+        function onScalePresetChange(val) {
+            const customContainer = document.getElementById('customScaleContainer');
+            const numModulesInput = document.getElementById('aiGenNumModules');
+            const lessonsInput = document.getElementById('aiGenLessonsPerModule');
+
+            if (val === 'custom') {
+                if (customContainer) {
+                    customContainer.classList.remove('hidden');
+                    customContainer.classList.add('grid');
+                }
+            } else {
+                if (customContainer) {
+                    customContainer.classList.add('hidden');
+                    customContainer.classList.remove('grid');
+                }
+                if (val === '10_10') {
+                    if (numModulesInput) numModulesInput.value = 10;
+                    if (lessonsInput) lessonsInput.value = 10;
+                } else if (val === '8_8') {
+                    if (numModulesInput) numModulesInput.value = 8;
+                    if (lessonsInput) lessonsInput.value = 8;
+                } else if (val === '5_6') {
+                    if (numModulesInput) numModulesInput.value = 5;
+                    if (lessonsInput) lessonsInput.value = 6;
+                }
+            }
+        }
+
+        function submitAiTrainingGeneration() {
+            const topic = (document.getElementById('aiGenTopic').value || '').trim();
+            const skills = (document.getElementById('aiGenSkills').value || '').trim();
+            const trainingNeeds = (document.getElementById('aiGenTrainingNeeds')?.value || '').trim();
+            const duration = document.getElementById('aiGenDuration').value || '40';
+            const seatTime = document.getElementById('aiGenSeatTime').value || '60';
+            const slots = document.getElementById('aiGenSlots').value || '30';
+            
+            const numModules = document.getElementById('aiGenNumModules') ? parseInt(document.getElementById('aiGenNumModules').value || '10') : 10;
+            const lessonsPerModule = document.getElementById('aiGenLessonsPerModule') ? parseInt(document.getElementById('aiGenLessonsPerModule').value || '10') : 10;
+            const attachVideos = document.getElementById('aiGenAttachVideos') ? document.getElementById('aiGenAttachVideos').checked : true;
+
+            if (!topic) {
+                alert('Please enter a course topic or in-demand vocational skill.');
+                return;
+            }
+
+            document.getElementById('aiGenFormContainer').classList.add('hidden');
+            document.getElementById('aiGenTabsHeader').classList.add('hidden');
+            document.getElementById('aiGenLoadingContainer').classList.remove('hidden');
+
+            const steps = [
+                "🧠 Generating comprehensive learning objectives and curriculum overview...",
+                "📚 Crafting structured modules and technical milestone lessons...",
+                "🎬 Aligning high-definition video tutorials from verified channels...",
+                "📝 Formulating standard operating procedures and reading material...",
+                "🎯 Synthesizing multiple-choice certification exam..."
+            ];
+            startAiStepRotator(steps, "AI is Structuring Training Curriculum...");
+
+            fetch("{% url 'peso_ai_generate_training' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    topic: topic,
+                    target_skills: skills,
+                    training_needs: trainingNeeds,
+                    duration_hours: parseInt(duration),
+                    required_seat_time_mins: parseInt(seatTime),
+                    slots: parseInt(slots),
+                    num_modules: numModules,
+                    lessons_per_module: lessonsPerModule,
+                    attach_videos: attachVideos
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (aiStepInterval) clearInterval(aiStepInterval);
+
+                if (data.success) {
+                    document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+                    const successContainer = document.getElementById('aiGenSuccessContainer');
+                    successContainer.classList.remove('hidden');
+
+                    document.getElementById('aiGenSuccessTitle').textContent = data.title;
+                    document.getElementById('aiGenSuccessMessage').textContent = data.message;
+                    document.getElementById('aiGenSuccessModules').textContent = numModules;
+                    document.getElementById('aiGenSuccessLessons').textContent = numModules * lessonsPerModule;
+                    document.getElementById('aiGenSuccessBuilderLink').href = data.curriculum_url || data.redirect_url;
+                } else {
+                    alert(data.error || 'Failed to generate training program.');
+                    document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+                    document.getElementById('aiGenFormContainer').classList.remove('hidden');
+                    document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+                }
+            })
+            .catch(err => {
+                if (aiStepInterval) clearInterval(aiStepInterval);
+                alert('Error connecting to AI service: ' + err.message);
+                document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+                document.getElementById('aiGenFormContainer').classList.remove('hidden');
+                document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+            });
+        }
+    </script>
+</body></html>

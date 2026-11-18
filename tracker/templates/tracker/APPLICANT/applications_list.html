@@ -1,0 +1,447 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>My Applications | SKILLUP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "secondary": "#0051d5",
+                "inverse-surface": "#213145",
+                "on-primary-fixed-variant": "#3f465c",
+                "outline-variant": "#c6c6cd",
+                "primary-fixed": "#dae2fd",
+                "on-error": "#ffffff",
+                "surface-container": "#e5eeff",
+                "on-tertiary": "#ffffff",
+                "surface-tint": "#565e74",
+                "on-tertiary-fixed-variant": "#005236",
+                "surface-container-low": "#eff4ff",
+                "on-surface": "#0b1c30",
+                "on-secondary-fixed-variant": "#003ea8",
+                "surface-bright": "#f8f9ff",
+                "tertiary-fixed": "#6ffbbe",
+                "on-primary-container": "#7c839b",
+                "primary-fixed-dim": "#bec6e0",
+                "outline": "#76777d",
+                "on-secondary-fixed": "#00174b",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#d3e4fe",
+                "tertiary-container": "#002113",
+                "primary-container": "#131b2e",
+                "tertiary": "#000000",
+                "on-secondary-container": "#fefcff",
+                "surface-dim": "#cbdbf5",
+                "error": "#ba1a1a",
+                "on-primary": "#ffffff",
+                "tertiary-fixed-dim": "#4edea3",
+                "on-background": "#0b1c30",
+                "on-surface-variant": "#45464d",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed": "#002113",
+                "inverse-on-surface": "#eaf1ff",
+                "background": "#f8f9ff",
+                "secondary-fixed": "#dbe1ff",
+                "primary": "#000000",
+                "secondary-container": "#316bf3",
+                "on-tertiary-container": "#009668",
+                "surface-variant": "#d3e4fe",
+                "surface-container-high": "#dce9ff",
+                "error-container": "#ffdad6",
+                "on-error-container": "#93000a",
+                "surface": "#f8f9ff",
+                "secondary-fixed-dim": "#b4c5ff",
+                "on-primary-fixed": "#131b2e",
+                "inverse-primary": "#bec6e0"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "gutter": "24px",
+                "margin-mobile": "16px",
+                "margin-desktop": "40px",
+                "container-max": "1440px",
+                "unit": "4px"
+            },
+            "fontFamily": {
+                "body-md": ["Inter"],
+                "headline-md": ["Inter"],
+                "display-lg": ["Inter"],
+                "body-lg": ["Inter"],
+                "label-sm": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "body-sm": ["Inter"],
+                "headline-lg": ["Inter"],
+                "label-md": ["Inter"]
+            },
+            "fontSize": {
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(0, 81, 213, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+{% if messages %}
+<div class="fixed top-20 right-4 z-50 flex flex-col gap-2 max-w-sm w-full">
+    {% for message in messages %}
+    <div class="toast-notification flex items-center gap-3 p-4 rounded-xl border border-outline-variant bg-surface-container-lowest/80 backdrop-blur-md shadow-lg transition-all duration-300 transform translate-x-12 opacity-0" data-type="{{ message.tags }}">
+        {% if message.tags == 'success' %}
+        <span class="material-symbols-outlined text-[20px] text-green-600 bg-green-50 p-1.5 rounded-full" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        {% elif message.tags == 'error' %}
+        <span class="material-symbols-outlined text-[20px] text-error bg-error-container/10 p-1.5 rounded-full">error</span>
+        {% else %}
+        <span class="material-symbols-outlined text-[20px] text-secondary bg-secondary/10 p-1.5 rounded-full">info</span>
+        {% endif %}
+        <div class="flex-grow">
+            <p class="font-body-sm text-body-sm font-semibold text-on-surface">{{ message }}</p>
+        </div>
+        <button onclick="this.parentElement.remove()" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface text-sm">close</button>
+    </div>
+    {% endfor %}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toasts = document.querySelectorAll('.toast-notification');
+        toasts.forEach((toast, index) => {
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, index * 150);
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000 + (index * 150));
+        });
+    });
+</script>
+{% endif %}
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant h-16 flex items-center justify-between px-6 md:px-12 lg:px-16">
+  <div class="flex items-center gap-8">
+    <a href="{% url 'applicant_dashboard' %}" class="font-headline-md text-headline-md font-bold text-on-surface">SKILLUP</a>
+    <nav class="hidden md:flex items-center gap-6 h-16">
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_dashboard' %}">Dashboard</a>
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-secondary font-semibold border-b-2 border-secondary" href="{% url 'applicant_applications_list' %}">My Applications</a>
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'training_recommendations' %}">My Learning</a>
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'job_search' %}">Job Board</a>
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_profile' %}">Profile</a>
+    </nav>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2">
+      <a href="{% url 'applicant_notifications' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant relative block" title="Notifications">
+        <span class="material-symbols-outlined">notifications</span>
+        {% if unread_notifications_count %}<span class="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] font-black flex items-center justify-center">{{ unread_notifications_count }}</span>{% endif %}
+      </a>
+      <a href="{% url 'applicant_settings' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant" title="Settings">
+        <span class="material-symbols-outlined">settings</span>
+      </a>
+      <a href="{% url 'logout' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant" title="Logout">
+        <span class="material-symbols-outlined">logout</span>
+      </a>
+    </div>
+  </div>
+</header>
+<main class="pt-24 pb-24 md:pb-12 px-6 md:px-12 lg:px-16 max-w-[1600px] w-full mx-auto">
+<!-- Header & Breadcrumbs -->
+<div class="mb-8">
+  <div>
+    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">My Applications</h2>
+    <p class="text-on-surface-variant max-w-2xl">Track and monitor your active submissions, interview stages, and archived application history.</p>
+  </div>
+</div>
+
+<!-- Tabs & Filter Bar -->
+<div class="mb-6 flex flex-col lg:flex-row gap-4 lg:items-center justify-between">
+  <!-- Status Tabs -->
+  <div class="flex items-center gap-2 p-1 bg-surface-container-low rounded-xl border border-outline-variant/40 overflow-x-auto">
+    <button type="button" onclick="setAppTab('active')" id="tabActiveBtn" class="tab-btn px-4 py-2 rounded-lg font-body-sm font-bold text-xs transition-all flex items-center gap-2 bg-white text-secondary shadow-sm">
+      <span class="material-symbols-outlined text-sm">check_circle</span>
+      Active Applications
+      <span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-[11px] font-bold">{{ active_count }}</span>
+    </button>
+    <button type="button" onclick="setAppTab('closed')" id="tabClosedBtn" class="tab-btn px-4 py-2 rounded-lg font-body-sm font-medium text-xs text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2">
+      <span class="material-symbols-outlined text-sm">archive</span>
+      Withdrawn & Closed
+      <span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-bold">{{ closed_count }}</span>
+    </button>
+    <button type="button" onclick="setAppTab('all')" id="tabAllBtn" class="tab-btn px-4 py-2 rounded-lg font-body-sm font-medium text-xs text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2">
+      <span class="material-symbols-outlined text-sm">list_alt</span>
+      All History
+      <span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-bold">{{ total_count }}</span>
+    </button>
+  </div>
+
+  <!-- Search & Quick Filters -->
+  <div class="flex flex-col sm:flex-row gap-3 items-center">
+    <div class="relative w-full sm:w-72">
+      <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]">search</span>
+      <input type="text" id="appSearchInput" placeholder="Search job title or company..." class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-lg font-body-sm text-xs focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+    </div>
+    <select id="appStatusFilter" class="w-full sm:w-auto bg-white border border-outline-variant rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-secondary outline-none font-medium">
+      <option value="">All Statuses</option>
+      <option value="Pending">Pending</option>
+      <option value="Interviewing">Interviewing</option>
+      <option value="Accepted — Awaiting Onboarding">Offer Received</option>
+      <option value="Confirmed — Onboarding">Onboarding</option>
+      <option value="Withdrawn — Position Closed">Withdrawn (Closed)</option>
+      <option value="Not Hired">Not Hired</option>
+      <option value="Hired">Hired / Placed</option>
+    </select>
+  </div>
+</div>
+
+<!-- Auto-Removal Info Banner (Shown if there are closed applications) -->
+{% if closed_count > 0 %}
+<div class="mb-6 p-4 rounded-xl bg-surface-container-low/70 border border-outline-variant/40 flex items-start gap-3">
+  <span class="material-symbols-outlined text-secondary text-xl shrink-0 mt-0.5">info</span>
+  <div class="text-xs leading-relaxed text-on-surface-variant">
+    <strong class="text-on-surface font-semibold">Automatic Application Removal Policy:</strong>
+    When an employer closes a job posting or remaining slots are filled, active applications for that posting are automatically withdrawn from active review and archived here for your records.
+  </div>
+</div>
+{% endif %}
+
+<!-- Applications List Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+  <div class="p-5 border-b border-outline-variant/30 flex justify-between items-center bg-surface-bright/30">
+    <h3 id="tableTitle" class="font-headline-md text-sm font-bold text-on-surface uppercase tracking-wider">Active Applications</h3>
+    <span id="appCounterBadge" class="bg-surface-container text-secondary font-bold text-xs px-3 py-1 rounded-full">{{ active_count }} Active</span>
+  </div>
+  
+  <div id="applicationsListContainer" class="divide-y divide-outline-variant/30">
+    {% for item in referrals_data %}
+      <div class="application-row p-6 hover:bg-surface-bright/50 transition-colors flex flex-col md:flex-row justify-between items-start md:items-center gap-4 {% if not item.is_active %}is-closed-row{% else %}is-active-row{% endif %}"
+           data-job-title="{{ item.referral.job_vacancy.title }}"
+           data-company="{{ item.referral.job_vacancy.employer.company_name|default:'Nexus Digital Solutions' }}"
+           data-status="{{ item.referral.status }}"
+           data-vacancy-status="{{ item.referral.job_vacancy.status }}"
+           data-is-active="{% if item.is_active %}true{% else %}false{% endif %}">
+        
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 {% if item.is_active %}bg-surface-container text-secondary{% else %}bg-surface-dim text-outline{% endif %} rounded-lg flex items-center justify-center shrink-0 mt-1">
+            <span class="material-symbols-outlined text-2xl">work</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 class="font-headline-md text-headline-md text-on-surface">{{ item.referral.job_vacancy.title }}</h4>
+              {% if item.referral.job_vacancy.status == 'Closed' or item.referral.status == 'Withdrawn — Position Closed' %}
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px]">lock</span> Posting Closed
+                </span>
+              {% elif item.referral.job_vacancy.status == 'On Hold' %}
+                <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px]">pause_circle</span> On Hold
+                </span>
+              {% endif %}
+            </div>
+            
+            <p class="text-on-surface-variant font-body-md">{{ item.referral.job_vacancy.employer.company_name|default:"Nexus Digital Solutions" }}</p>
+            
+            <div class="flex flex-wrap items-center gap-3 mt-2 text-body-sm text-outline">
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> {{ item.referral.job_vacancy.location }}</span>
+              <span>•</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">calendar_month</span> Applied: {{ item.referral.date_referred|date:"F d, Y" }}</span>
+              {% if item.referral.status == 'Withdrawn — Position Closed' %}
+                <span>•</span>
+                <span class="text-slate-600 font-medium flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">info</span> Auto-withdrawn upon posting closure
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-4 w-full md:w-auto justify-between md:justify-end">
+          <div class="text-left md:text-right">
+            <div class="{% if item.is_active %}bg-surface-container text-secondary active-glow{% else %}bg-surface-dim text-outline{% endif %} font-bold px-3 py-1 rounded text-headline-md mb-1 inline-block">{{ item.match_score }}% Match</div>
+            {% if item.gaps_count > 0 %}
+              <div class="text-[11px] text-error flex items-center gap-0.5 mt-0.5 justify-end">
+                <span class="material-symbols-outlined text-xs">warning</span>
+                {{ item.gaps_count }} Skill Gap{{ item.gaps_count|pluralize }}
+              </div>
+            {% else %}
+              <div class="text-[11px] text-green-600 flex items-center gap-0.5 mt-0.5 justify-end">
+                <span class="material-symbols-outlined text-xs">check_circle</span>
+                Perfect Fit
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <div class="flex flex-col items-end gap-1">
+              <span class="px-3.5 py-1.5 rounded-full font-bold text-label-md uppercase tracking-wider text-xs
+                {% if item.referral.status == 'Withdrawn — Position Closed' %}bg-slate-100 text-slate-700 border border-slate-300
+                {% elif 'Hired' in item.referral.status and 'Not' not in item.referral.status or item.referral.status == 'Regularly Employed' %}bg-tertiary-fixed text-on-tertiary-fixed-variant
+                {% elif 'Onboarding' in item.referral.status or 'Awaiting' in item.referral.status %}bg-secondary-fixed text-on-secondary-fixed-variant
+                {% elif item.referral.status == 'Interviewing' %}bg-primary-fixed text-on-primary-fixed-variant
+                {% elif item.referral.status == 'Pending' %}bg-surface-container-highest text-on-surface
+                {% elif item.referral.status == 'Not Hired' or item.referral.status == 'Declined' or 'Show' in item.referral.status or 'Separated' in item.referral.status %}bg-error-container text-error
+                {% else %}bg-surface-container text-on-surface-variant{% endif %}">
+                {{ item.referral.status }}
+              </span>
+              {% if item.referral.status == 'Interviewing' and item.referral.interview_stage %}
+                <span class="text-[10px] font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded-md border border-secondary/20 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                  {{ item.referral.interview_stage }}
+                </span>
+              {% endif %}
+            </div>
+            <a href="{% url 'applicant_application_details' item.referral.id %}" class="bg-surface border border-outline-variant hover:border-secondary hover:bg-surface-bright text-secondary p-2.5 rounded-lg transition-all flex items-center justify-center" title="View Details">
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="p-12 text-center text-on-surface-variant italic">
+        <span class="material-symbols-outlined text-4xl mb-2 text-outline">work_off</span>
+        <p class="text-body-lg">You have not submitted any applications yet.</p>
+        <a href="{% url 'job_search' %}" class="mt-4 inline-flex items-center gap-2 bg-secondary text-white px-6 py-2.5 rounded-lg font-bold hover:opacity-90 active:scale-95 transition-all">
+          Explore Job Openings
+          <span class="material-symbols-outlined">explore</span>
+        </a>
+      </div>
+    {% endfor %}
+    <div id="noResultsMessage" class="hidden p-12 text-center text-on-surface-variant italic">
+      <span class="material-symbols-outlined text-4xl mb-2 text-outline">search_off</span>
+      <p class="text-body-lg">No applications matching your current filter.</p>
+    </div>
+  </div>
+</div>
+</main>
+<footer class="mt-auto border-t border-outline-variant py-8 px-margin-desktop text-center bg-surface-container-lowest">
+</footer>
+<script>
+  let currentTab = 'active';
+
+  function setAppTab(tab) {
+      currentTab = tab;
+      const tabActiveBtn = document.getElementById('tabActiveBtn');
+      const tabClosedBtn = document.getElementById('tabClosedBtn');
+      const tabAllBtn = document.getElementById('tabAllBtn');
+      const tableTitle = document.getElementById('tableTitle');
+
+      // Reset styles
+      [tabActiveBtn, tabClosedBtn, tabAllBtn].forEach(btn => {
+          if (btn) {
+              btn.className = 'tab-btn px-4 py-2 rounded-lg font-body-sm font-medium text-xs text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2';
+          }
+      });
+
+      if (tab === 'active') {
+          if (tabActiveBtn) tabActiveBtn.className = 'tab-btn px-4 py-2 rounded-lg font-body-sm font-bold text-xs transition-all flex items-center gap-2 bg-white text-secondary shadow-sm';
+          if (tableTitle) tableTitle.textContent = 'Active Applications (Open Postings)';
+      } else if (tab === 'closed') {
+          if (tabClosedBtn) tabClosedBtn.className = 'tab-btn px-4 py-2 rounded-lg font-body-sm font-bold text-xs transition-all flex items-center gap-2 bg-white text-secondary shadow-sm';
+          if (tableTitle) tableTitle.textContent = 'Withdrawn & Closed Applications';
+      } else {
+          if (tabAllBtn) tabAllBtn.className = 'tab-btn px-4 py-2 rounded-lg font-body-sm font-bold text-xs transition-all flex items-center gap-2 bg-white text-secondary shadow-sm';
+          if (tableTitle) tableTitle.textContent = 'All Application History';
+      }
+
+      filterApplications();
+  }
+
+  function filterApplications() {
+      const searchInput = document.getElementById('appSearchInput');
+      const statusFilter = document.getElementById('appStatusFilter');
+      const rows = document.querySelectorAll('.application-row');
+      const counterBadge = document.getElementById('appCounterBadge');
+      const noResults = document.getElementById('noResultsMessage');
+
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      const status = (statusFilter ? statusFilter.value : '').toLowerCase().trim();
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+          const jobTitle = (row.dataset.jobTitle || '').toLowerCase();
+          const company = (row.dataset.company || '').toLowerCase();
+          const rowStatus = (row.dataset.status || '').toLowerCase();
+          const isActive = row.dataset.isActive === 'true';
+
+          // Tab condition
+          let tabMatches = true;
+          if (currentTab === 'active') {
+              tabMatches = isActive;
+          } else if (currentTab === 'closed') {
+              tabMatches = !isActive;
+          }
+
+          // Search condition
+          const searchMatches = !query || jobTitle.includes(query) || company.includes(query);
+
+          // Status dropdown condition
+          let statusMatches = !status;
+          if (status) {
+              if (status === 'hired') {
+                  statusMatches = (rowStatus.includes('hired') && !rowStatus.includes('not hired')) || rowStatus.includes('employed');
+              } else if (status.includes('withdrawn')) {
+                  statusMatches = rowStatus.includes('withdrawn');
+              } else if (status === 'not hired') {
+                  statusMatches = rowStatus === 'not hired' || rowStatus.includes('declined');
+              } else {
+                  statusMatches = rowStatus.includes(status);
+              }
+          }
+
+          if (tabMatches && searchMatches && statusMatches) {
+              row.classList.remove('hidden');
+              visibleCount++;
+          } else {
+              row.classList.add('hidden');
+          }
+      });
+
+      if (noResults) {
+          if (visibleCount === 0 && rows.length > 0) {
+              noResults.classList.remove('hidden');
+          } else {
+              noResults.classList.add('hidden');
+          }
+      }
+
+      if (counterBadge) {
+          counterBadge.textContent = `${visibleCount} ${currentTab === 'active' ? 'Active' : (currentTab === 'closed' ? 'Closed' : 'Total')}`;
+      }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('appSearchInput');
+      const statusFilter = document.getElementById('appStatusFilter');
+
+      if (searchInput) searchInput.addEventListener('input', filterApplications);
+      if (statusFilter) statusFilter.addEventListener('change', filterApplications);
+
+      // Initial filter run on 'active'
+      setAppTab('active');
+  });
+</script>
+</body></html>

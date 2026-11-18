@@ -1,0 +1,11 @@
+{
+  "transferable_weight": 0.05,
+  "bias": -0.0288,
+  "samples": 21,
+  "positives": 12,
+  "negatives": 9,
+  "accuracy": 0.429,
+  "exact_weight": 1.0,
+  "algorithm": "logistic_regression",
+  "trained_at": "2026-11-12T19:01:04"
+}

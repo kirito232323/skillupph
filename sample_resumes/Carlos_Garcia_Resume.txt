@@ -1,0 +1,39 @@
+CARLOS GARCIA
+Junior Full-Stack Web Developer
+Email: carlos.garcia@skillup.ph | Phone: +63 917 889 2234
+Location: 124 Paseo del Congreso, Malolos, Bulacan, Philippines
+LinkedIn: https://linkedin.com/in/carlos-garcia-dev | GitHub: https://github.com/carlosgarcia-dev
+
+PROFESSIONAL SUMMARY
+Motivated Junior Full-Stack Web Developer with practical foundation in Python, Django, JavaScript, React, and relational databases. Completing the intensive TESDA & DICT Web Development Bootcamp. Passionate about building clean, performant, and responsive enterprise applications with modern engineering best practices.
+
+TECHNICAL SKILLS
+- Programming Languages: Python, JavaScript, SQL, HTML5, CSS3
+- Frameworks & Libraries: Django, React, Tailwind CSS, Bootstrap
+- Databases: PostgreSQL, SQLite, MySQL
+- Developer Tools & DevOps: Git, GitHub Actions, Docker basics, Linux, REST APIs
+- Methodologies: Agile / Scrum, Responsive Web Design, Unit Testing
+
+WORK EXPERIENCE
+Junior Web Developer | Nexus Digital Solutions
+June 2024 - Present | Makati City, Metro Manila (Hybrid)
+- Built and maintained full-stack web features using Python, Django, and React.
+- Designed database models and optimized SQL queries for PostgreSQL databases.
+- Developed RESTful API endpoints for mobile and web clients with token-based authentication.
+- Collaborated with QA teams to eliminate application vulnerabilities and streamline deployments.
+
+Frontend Development Intern | Bulacan Tech Innovations
+November 2023 - May 2024 | Malolos, Bulacan
+- Created responsive user interfaces and landing pages using HTML5, CSS3, and modern JavaScript.
+- Translated Figma design prototypes into production-ready web components.
+- Participated in daily standups, code reviews, and Git version control workflows.
+
+EDUCATION
+Bachelor of Science in Information Technology (BSIT)
+Bulacan State University | 2020 - 2024
+- Major in Web and Mobile Application Development
+- Academic Honor Roll / Dean's Lister
+
+CERTIFICATIONS & CREDENTIALS
+- Full-Stack Web Development Bootcamp Certificate | TESDA & DICT (2026)
+- Python Programming Certification | Certiport / DICT

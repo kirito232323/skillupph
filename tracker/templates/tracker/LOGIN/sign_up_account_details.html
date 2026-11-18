@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SKILLUP | Sign Up</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary": "#000000",
+                "primary-container": "#131b2e",
+                "on-primary": "#ffffff",
+                "on-surface": "#0b1c30",
+                "secondary": "#0051d5",
+                "on-tertiary-fixed-variant": "#005236",
+                "error-container": "#ffdad6",
+                "surface-container-low": "#eff4ff",
+                "on-secondary": "#ffffff",
+                "secondary-container": "#316bf3",
+                "error": "#ba1a1a",
+                "on-primary-fixed-variant": "#3f465c",
+                "surface-bright": "#f8f9ff",
+                "on-primary-container": "#7c839b",
+                "tertiary-fixed-dim": "#4edea3",
+                "surface-tint": "#565e74",
+                "on-surface-variant": "#45464d",
+                "on-secondary-fixed-variant": "#003ea8",
+                "surface-container-lowest": "#ffffff",
+                "on-error-container": "#93000a",
+                "tertiary-fixed": "#6ffbbe",
+                "tertiary": "#000000",
+                "secondary-fixed": "#dbe1ff",
+                "surface": "#f8f9ff",
+                "inverse-on-surface": "#eaf1ff",
+                "primary-fixed": "#dae2fd",
+                "surface-container-highest": "#d3e4fe",
+                "surface-dim": "#cbdbf5",
+                "outline": "#76777d",
+                "inverse-primary": "#bec6e0",
+                "background": "#f8f9ff",
+                "on-background": "#0b1c30",
+                "on-tertiary": "#ffffff",
+                "on-secondary-container": "#fefcff",
+                "on-tertiary-fixed": "#002113",
+                "surface-container-high": "#dce9ff",
+                "on-primary-fixed": "#131b2e",
+                "primary-fixed-dim": "#bec6e0",
+                "on-tertiary-container": "#009668",
+                "on-secondary-fixed": "#00174b",
+                "on-error": "#ffffff",
+                "surface-variant": "#d3e4fe",
+                "outline-variant": "#c6c6cd",
+                "inverse-surface": "#213145",
+                "secondary-fixed-dim": "#b4c5ff",
+                "surface-container": "#e5eeff",
+                "tertiary-container": "#002113"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "margin-desktop": "40px",
+                "gutter": "24px",
+                "margin-mobile": "16px",
+                "container-max": "1440px",
+                "unit": "4px"
+            },
+            "fontFamily": {
+                "body-md": ["Inter"],
+                "label-md": ["Inter"],
+                "headline-md": ["Inter"],
+                "display-lg": ["Inter"],
+                "headline-lg": ["Inter"],
+                "label-sm": ["Inter"],
+                "body-lg": ["Inter"],
+                "body-sm": ["Inter"],
+                "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .step-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Navigation Shell (Suppressed for focused Transactional Page per rules, but showing TopNavBar style as Header) -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin-desktop h-16 bg-surface border-b border-outline-variant">
+<div class="font-headline-md text-headline-md font-bold text-on-surface">SKILLUP</div>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center pt-16 px-margin-mobile md:px-0 relative overflow-hidden">
+<!-- Atmospheric Background Element -->
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-tertiary-fixed-dim/5 rounded-full blur-[120px]"></div>
+</div>
+<div class="w-full max-w-[1280px] grid lg:grid-cols-12 gap-8 lg:gap-12 items-start py-8 relative z-10">
+<!-- Branding/Value Prop Column -->
+<div class="hidden lg:flex lg:col-span-5 flex-col gap-8 sticky top-24 pt-4">
+<div class="space-y-4">
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">Scale your talent with <span class="text-secondary">precision.</span></h1>
+</div>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Real-time Analytics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instant visibility into organizational proficiency and readiness.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Adaptive Learning</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Personalized growth paths generated by our proprietary AI engine.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Direct PESO Matching</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Seamlessly connect with local government employment coordinators and verified employers.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Column -->
+<div class="w-full lg:col-span-7 max-w-xl mx-auto">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 sm:p-8 md:p-9 shadow-sm">
+<div class="mb-6">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Create Account</h2>
+<p class="font-body-sm text-on-surface-variant">Fill in your information to register and get matched with opportunities.</p>
+</div>
+{% if messages %}
+<div class="space-y-2 mb-4">
+    {% for message in messages %}
+    <div class="p-4 rounded-lg {% if message.tags == 'error' %}bg-error-container text-on-error-container{% else %}bg-tertiary-fixed-dim/20 text-on-tertiary-fixed-variant{% endif %} font-body-sm">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<form class="space-y-4" id="signupForm" method="POST" action="{% url 'signup' %}">
+{% csrf_token %}
+
+<!-- Role Selection -->
+<div class="space-y-1.5">
+    <label class="font-label-md text-label-md text-on-surface font-semibold" for="role">Register as</label>
+    <div class="relative">
+        <select class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md" id="role" name="role" required>
+            <option value="applicant" {% if form_data.role != 'employer' %}selected{% endif %}>Applicant (Job Seeker)</option>
+            <option value="employer" {% if form_data.role == 'employer' %}selected{% endif %}>Employer (Company / Recruiter)</option>
+        </select>
+    </div>
+</div>
+
+<!-- Common Account Fields: First Name & Last Name -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="space-y-1.5">
+        <label class="font-label-md text-label-md text-on-surface" for="firstname">First Name <span class="text-error">*</span></label>
+        <input class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md" id="firstname" name="firstname" value="{{ form_data.firstname|default:'' }}" placeholder="John" required type="text"/>
+    </div>
+    <div class="space-y-1.5">
+        <label class="font-label-md text-label-md text-on-surface" for="lastname">Last Name <span class="text-error">*</span></label>
+        <input class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md" id="lastname" name="lastname" value="{{ form_data.lastname|default:'' }}" placeholder="Rosales" required type="text"/>
+    </div>
+</div>
+
+<!-- Email Address -->
+<div class="space-y-1.5">
+    <label class="font-label-md text-label-md text-on-surface" for="email">Email Address <span class="text-error">*</span></label>
+    <div class="relative">
+        <input class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md" id="email" name="email" value="{{ form_data.email|default:'' }}" placeholder="john.rosales@example.com" required type="email"/>
+        <span class="material-symbols-outlined absolute right-3 top-3 text-outline text-[20px]">mail</span>
+    </div>
+</div>
+
+<!-- Optional ID verification & profile auto-fill -->
+<div id="applicant_id_section" class="space-y-3 p-4 rounded-xl border border-blue-200 bg-blue-50/50">
+    <div class="flex items-start gap-2.5">
+        <span class="material-symbols-outlined text-blue-700 text-[22px]">badge</span>
+        <div class="min-w-0">
+            <p class="font-label-md text-label-md text-on-surface font-bold">Verify faster with a Valid ID
+                <span class="text-[11px] font-medium text-blue-700">(optional)</span>
+            </p>
+            <p class="text-[11px] text-blue-900/80 leading-relaxed">Upload a clear photo or PDF of your ID. We'll
+                read your name, ID number and address to pre-fill your profile and mark your identity as verified.</p>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="space-y-1.5">
+            <label class="font-label-sm text-[11px] font-bold uppercase tracking-wider text-blue-900" for="id_type">ID Type</label>
+            <select class="w-full px-3 py-2 bg-white border border-blue-200 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all text-xs" id="id_type" name="id_type">
+                <option value="">Select ID type</option>
+                <option value="Philippine National ID (PhilSys)">Philippine National ID (PhilSys / PhilID)</option>
+                <option value="Philippine Passport">Philippine Passport</option>
+                <option value="Driver's License">Driver's License</option>
+                <option value="UMID">UMID</option>
+                <option value="PhilHealth ID">PhilHealth ID</option>
+                <option value="SSS ID">SSS ID</option>
+                <option value="GSIS ID">GSIS ID</option>
+                <option value="TIN ID">TIN ID</option>
+                <option value="Voter's ID">Voter's ID</option>
+                <option value="PRC ID">PRC ID</option>
+                <option value="Postal ID">Postal ID</option>
+                <option value="Barangay ID">Barangay ID</option>
+                <option value="Senior Citizen ID">Senior Citizen ID</option>
+                <option value="PWD ID">PWD ID</option>
+                <option value="Other">Other government ID</option>
+            </select>
+        </div>
+        <div class="space-y-1.5">
+            <label class="font-label-sm text-[11px] font-bold uppercase tracking-wider text-blue-900" for="id_number">ID Number</label>
+            <input class="w-full px-3 py-2 bg-white border border-blue-200 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all text-xs" id="id_number" name="id_number" placeholder="e.g. P1234567A" type="text"/>
+        </div>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+        <input class="block w-full text-xs text-slate-600 file:mr-3 file:px-3 file:py-2 file:rounded-lg file:border-0 file:bg-blue-600 file:text-white file:text-xs file:font-bold hover:file:bg-blue-700 cursor-pointer" id="id_scan_file" type="file" accept="image/png,image/jpeg,image/webp,application/pdf"/>
+        <button class="shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-all active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed" id="scanIdBtn" type="button">
+            <span class="material-symbols-outlined text-[16px]">document_scanner</span>
+            <span id="scanIdBtnText">Scan ID</span>
+        </button>
+    </div>
+    <p class="hidden text-[11px] font-semibold" id="idScanStatus"></p>
+    <div class="hidden rounded-lg border border-blue-200 bg-white p-3 text-[11px] text-slate-700 space-y-1" id="idScanResult"></div>
+    <input id="id_scan_token" name="id_scan_token" type="hidden" value=""/>
+</div>
+
+<!-- Employer-Specific Fields -->
+<div id="employer_fields" class="space-y-4 hidden">
+    <div class="space-y-1.5">
+        <label class="font-label-md text-label-md text-on-surface" for="company_name">Company Name <span class="text-error">*</span></label>
+        <input class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md" id="company_name" name="company_name" value="{{ form_data.company_name|default:'' }}" placeholder="Acme Corporation" type="text"/>
+    </div>
+    <div class="space-y-1.5">
+        <label class="font-label-md text-label-md text-on-surface" for="employer_phone">Company Phone Number</label>
+        <div class="relative">
+            <input class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md" id="employer_phone" name="employer_phone" value="{{ form_data.employer_phone|default:'' }}" placeholder="+63 912 345 6789" type="tel" disabled/>
+            <span class="material-symbols-outlined absolute right-3 top-3 text-outline text-[20px]">call</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- Password & Confirm Password -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+    <div class="space-y-1.5">
+        <label class="font-label-md text-label-md text-on-surface" for="password-step1">Password <span class="text-error">*</span></label>
+        <div class="relative">
+            <input class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md" id="password-step1" name="password" placeholder="••••••••" required type="password"/>
+            <button class="absolute right-3 top-3 text-outline hover:text-primary transition-colors focus:outline-none" type="button" id="togglePassword">
+                <span class="material-symbols-outlined text-[20px]">visibility</span>
+            </button>
+        </div>
+    </div>
+    <div class="space-y-1.5">
+        <label class="font-label-md text-label-md text-on-surface" for="confirm-password">Confirm Password <span class="text-error">*</span></label>
+        <div class="relative">
+            <input class="w-full px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md" id="confirm-password" name="confirm_password" placeholder="••••••••" required type="password"/>
+            <button class="absolute right-3 top-3 text-outline hover:text-primary transition-colors focus:outline-none" type="button" id="toggleConfirmPassword">
+                <span class="material-symbols-outlined text-[20px]">visibility</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<button class="w-full bg-primary text-on-primary py-3.5 rounded-lg font-headline-md text-[16px] flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all shadow-sm cursor-pointer mt-2" type="submit">
+    Create Account
+    <span class="material-symbols-outlined text-[20px]">how_to_reg</span>
+</button>
+</form>
+<div class="mt-6 pt-5 border-t border-outline-variant text-center space-y-3">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+    Already have an account? <a class="text-secondary font-semibold hover:underline decoration-2 underline-offset-4" href="{% url 'login' %}">Log in</a>
+</p>
+<p class="font-label-sm text-[11px] text-on-primary-container leading-relaxed px-4">
+    By signing up, you agree to our <a class="underline" href="#">Terms of Service</a> and <a class="underline" href="#">Privacy Policy</a>. We'll send you industry updates; unsubscribe anytime.
+</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Show/hide password toggle logic (synchronized)
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const passwordInput = document.getElementById('password-step1');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+
+        function setPasswordsVisibility(visible) {
+            const type = visible ? 'text' : 'password';
+            const iconText = visible ? 'visibility_off' : 'visibility';
+
+            if (passwordInput) passwordInput.setAttribute('type', type);
+            if (confirmPasswordInput) confirmPasswordInput.setAttribute('type', type);
+
+            if (togglePassword) {
+                const icon = togglePassword.querySelector('.material-symbols-outlined');
+                if (icon) icon.textContent = iconText;
+            }
+            if (toggleConfirmPassword) {
+                const icon = toggleConfirmPassword.querySelector('.material-symbols-outlined');
+                if (icon) icon.textContent = iconText;
+            }
+        }
+
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function () {
+                const isCurrentlyPassword = passwordInput.getAttribute('type') === 'password';
+                setPasswordsVisibility(isCurrentlyPassword);
+            });
+        }
+
+        if (toggleConfirmPassword && confirmPasswordInput) {
+            toggleConfirmPassword.addEventListener('click', function () {
+                const isCurrentlyPassword = confirmPasswordInput.getAttribute('type') === 'password';
+                setPasswordsVisibility(isCurrentlyPassword);
+            });
+        }
+
+        // Confirm Password live validation
+        function validatePassword() {
+            if (!passwordInput || !confirmPasswordInput) return;
+            // Only set custom error if both inputs have text and don't match
+            if (confirmPasswordInput.value && passwordInput.value && passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordInput.setCustomValidity("Passwords do not match.");
+            } else {
+                confirmPasswordInput.setCustomValidity('');
+            }
+        }
+
+        if (passwordInput && confirmPasswordInput) {
+            ['input', 'change', 'keyup', 'blur', 'paste'].forEach(evt => {
+                passwordInput.addEventListener(evt, validatePassword);
+                confirmPasswordInput.addEventListener(evt, validatePassword);
+            });
+        }
+
+        // Form submission validation & loading indicator
+        const signupForm = document.getElementById('signupForm');
+        if (signupForm) {
+            signupForm.addEventListener('submit', function (e) {
+                validatePassword();
+                if (passwordInput && confirmPasswordInput && passwordInput.value !== confirmPasswordInput.value) {
+                    e.preventDefault();
+                    confirmPasswordInput.setCustomValidity("Passwords do not match.");
+                    confirmPasswordInput.reportValidity();
+                    return false;
+                }
+                const btn = signupForm.querySelector('button[type="submit"]');
+                if (btn) {
+                    btn.disabled = true;
+                    btn.classList.add('opacity-80', 'cursor-not-allowed');
+                    btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Creating Account...';
+                }
+            });
+        }
+
+        // Dynamic Role Company Name field toggle logic
+        const roleSelect = document.getElementById('role');
+        const employerFields = document.getElementById('employer_fields');
+        const companyNameInput = document.getElementById('company_name');
+        const employerPhoneInput = document.getElementById('employer_phone');
+        
+        function handleRoleChange() {
+            const applicantIdSection = document.getElementById('applicant_id_section');
+            if (roleSelect && roleSelect.value === 'employer') {
+                if (employerFields) employerFields.classList.remove('hidden');
+                if (companyNameInput) companyNameInput.setAttribute('required', '');
+                if (employerPhoneInput) employerPhoneInput.removeAttribute('disabled');
+                if (applicantIdSection) applicantIdSection.classList.add('hidden');
+            } else {
+                if (employerFields) employerFields.classList.add('hidden');
+                if (companyNameInput) {
+                    companyNameInput.removeAttribute('required');
+                    companyNameInput.value = '';
+                }
+                if (employerPhoneInput) employerPhoneInput.setAttribute('disabled', 'true');
+                if (applicantIdSection) applicantIdSection.classList.remove('hidden');
+            }
+        }
+        if (roleSelect) {
+            roleSelect.addEventListener('change', handleRoleChange);
+            handleRoleChange(); // Initial check
+        }
+
+        // ===== Optional Valid-ID scan & auto-fill =====
+        const scanIdBtn = document.getElementById('scanIdBtn');
+        if (scanIdBtn) {
+            scanIdBtn.addEventListener('click', async function () {
+                const fileInput = document.getElementById('id_scan_file');
+                const statusEl = document.getElementById('idScanStatus');
+                const resultEl = document.getElementById('idScanResult');
+                const tokenEl = document.getElementById('id_scan_token');
+                const btnText = document.getElementById('scanIdBtnText');
+                const file = fileInput && fileInput.files && fileInput.files[0];
+
+                const setStatus = (msg, ok) => {
+                    if (!statusEl) return;
+                    statusEl.textContent = msg;
+                    statusEl.classList.remove('hidden', 'text-emerald-700', 'text-red-600', 'text-blue-700');
+                    statusEl.classList.add(ok ? 'text-emerald-700' : 'text-red-600');
+                };
+
+                if (!file) {
+                    setStatus('Please choose an ID image or PDF first.', false);
+                    return;
+                }
+                const csrf = document.querySelector('#signupForm [name="csrfmiddlewaretoken"]');
+                if (!csrf) {
+                    setStatus('Security token missing. Refresh the page and try again.', false);
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('id_document', file);
+                scanIdBtn.disabled = true;
+                if (btnText) btnText.textContent = 'Scanning...';
+                setStatus('Reading your ID, please wait...', true);
+
+                try {
+                    const response = await fetch("{% url 'signup_scan_id' %}", {
+                        method: 'POST',
+                        headers: { 'X-CSRFToken': csrf.value },
+                        body: formData,
+                    });
+                    const data = await response.json();
+                    if (!response.ok || !data.success) {
+                        throw new Error(data.error || 'Could not scan this ID.');
+                    }
+
+                    if (tokenEl) tokenEl.value = data.token || '';
+                    const fields = data.fields || {};
+
+                    const firstInput = document.getElementById('firstname');
+                    const lastInput = document.getElementById('lastname');
+                    if (firstInput && !firstInput.value.trim() && fields.first_name) firstInput.value = fields.first_name;
+                    if (lastInput && !lastInput.value.trim() && fields.last_name) lastInput.value = fields.last_name;
+
+                    const typeSelect = document.getElementById('id_type');
+                    if (typeSelect && fields.id_type && !typeSelect.value) {
+                        const needle = String(fields.id_type).toLowerCase();
+                        if (needle.includes('philsys') || needle.includes('philid') || needle.includes('national id') || needle.includes('philippine identification')) {
+                            typeSelect.value = 'Philippine National ID (PhilSys)';
+                        } else {
+                            const match = Array.from(typeSelect.options).find(opt =>
+                                opt.value && (needle.includes(opt.value.toLowerCase()) || opt.value.toLowerCase().includes(needle))
+                            );
+                            typeSelect.value = match ? match.value : 'Other';
+                        }
+                    }
+                    const numberInput = document.getElementById('id_number');
+                    if (numberInput && !numberInput.value.trim() && fields.id_number) numberInput.value = fields.id_number;
+
+                    if (resultEl) {
+                        resultEl.innerHTML = '';
+                        const rows = [
+                            ['Name', fields.full_name || [fields.first_name, fields.last_name].filter(Boolean).join(' ')],
+                            ['ID type', fields.id_type],
+                            ['ID number', fields.id_number],
+                            ['Birthdate', fields.birthdate],
+                            ['Address', fields.address],
+                        ].filter(([, value]) => value);
+                        rows.forEach(([label, value]) => {
+                            const p = document.createElement('p');
+                            p.innerHTML = `<span class="font-bold text-slate-900">${label}:</span> `;
+                            p.appendChild(document.createTextNode(String(value)));
+                            resultEl.appendChild(p);
+                        });
+                        if (rows.length) {
+                            const note = document.createElement('p');
+                            note.className = 'text-[10px] font-semibold text-emerald-700 pt-1';
+                            note.textContent = 'Details copied into the form. You can edit them before creating your account.';
+                            resultEl.appendChild(note);
+                            resultEl.classList.remove('hidden');
+                        }
+                    }
+                    setStatus(data.message || 'ID scanned successfully.', true);
+                } catch (error) {
+                    if (tokenEl) tokenEl.value = '';
+                    if (resultEl) resultEl.classList.add('hidden');
+                    setStatus(error.message || 'Could not scan this ID. Please try again or continue without it.', false);
+                } finally {
+                    scanIdBtn.disabled = false;
+                    if (btnText) btnText.textContent = 'Scan ID';
+                }
+            });
+        }
+    </script>
+</body></html>

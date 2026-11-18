@@ -1,0 +1,1039 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>My Learning | SKILLUP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#0051d5",
+                    "inverse-surface": "#213145",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "outline-variant": "#c6c6cd",
+                    "primary-fixed": "#dae2fd",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-container": "#7c839b",
+                    "primary-fixed-dim": "#bec6e0",
+                    "outline": "#76777d",
+                    "on-secondary-fixed": "#00174b",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-container": "#002113",
+                    "primary-container": "#131b2e",
+                    "tertiary": "#000000",
+                    "on-secondary-container": "#fefcff",
+                    "surface-dim": "#cbdbf5",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-background": "#0b1c30",
+                    "on-surface-variant": "#45464d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#002113",
+                    "inverse-on-surface": "#eaf1ff",
+                    "background": "#f8f9ff",
+                    "secondary-fixed": "#dbe1ff",
+                    "primary": "#000000",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#009668",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed": "#131b2e",
+                    "inverse-primary": "#bec6e0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .tonal-card {
+            background-color: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tonal-card:hover {
+            border-color: #0051d5;
+            box-shadow: 0px 4px 20px rgba(15, 23, 42, 0.05);
+        }
+        .progress-bar-bg { background-color: #E2E8F0; }
+        .tab-active { position: relative; }
+        .tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #0051d5;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+{% if messages %}
+<div class="fixed top-20 right-4 z-50 flex flex-col gap-2 max-w-sm w-full">
+    {% for message in messages %}
+    <div class="toast-notification flex items-center gap-3 p-4 rounded-xl border border-outline-variant bg-surface-container-lowest/80 backdrop-blur-md shadow-lg transition-all duration-300 transform translate-x-12 opacity-0" data-type="{{ message.tags }}">
+        {% if message.tags == 'success' %}
+        <span class="material-symbols-outlined text-[20px] text-green-600 bg-green-50 p-1.5 rounded-full" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        {% elif message.tags == 'error' %}
+        <span class="material-symbols-outlined text-[20px] text-error bg-error-container/10 p-1.5 rounded-full">error</span>
+        {% else %}
+        <span class="material-symbols-outlined text-[20px] text-secondary bg-secondary/10 p-1.5 rounded-full">info</span>
+        {% endif %}
+        <div class="flex-grow">
+            <p class="font-body-sm text-body-sm font-semibold text-on-surface">{{ message }}</p>
+        </div>
+        <button onclick="this.parentElement.remove()" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface text-sm">close</button>
+    </div>
+    {% endfor %}
+</div>
+<script id="toast-script">
+    document.addEventListener('DOMContentLoaded', () => {
+        const toasts = document.querySelectorAll('.toast-notification');
+        toasts.forEach((toast, index) => {
+            setTimeout(() => {
+                toast.classList.remove('translate-x-12', 'opacity-0');
+            }, index * 150);
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000 + (index * 150));
+        });
+    });
+</script>
+{% endif %}
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant h-16 flex items-center justify-between px-6 md:px-12 lg:px-16">
+  <div class="flex items-center gap-8">
+    <a href="{% url 'applicant_dashboard' %}" class="font-headline-md text-headline-md font-bold text-on-surface">SKILLUP</a>
+    <nav class="hidden md:flex items-center gap-6 h-16">
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_dashboard' %}">Dashboard</a>
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_applications_list' %}">My Applications</a>
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-secondary font-semibold border-b-2 border-secondary" href="{% url 'training_recommendations' %}">My Learning</a>
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'job_search' %}">Job Board</a>
+      <a class="font-body-md text-body-md h-full flex items-center px-2 transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-low" href="{% url 'applicant_profile' %}">Profile</a>
+    </nav>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2">
+      <a href="{% url 'applicant_notifications' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant relative block" title="Notifications">
+        <span class="material-symbols-outlined">notifications</span>
+        {% if unread_notifications_count %}<span class="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-red-500 text-white text-[9px] font-black flex items-center justify-center">{{ unread_notifications_count }}</span>{% endif %}
+      </a>
+      <a href="{% url 'applicant_settings' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant" title="Settings">
+        <span class="material-symbols-outlined">settings</span>
+      </a>
+      <a href="{% url 'logout' %}" class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant" title="Logout">
+        <span class="material-symbols-outlined">logout</span>
+      </a>
+    </div>
+  </div>
+</header>
+<main class="mt-16 min-h-screen w-full">
+<!-- Hero Summary Section -->
+<section class="bg-surface-container-lowest border-b border-outline-variant pt-12 pb-16">
+<div class="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div class="space-y-3">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Personalized Growth Path</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Targeted Skill Development</h1>
+
+<form id="categoryFilterForm" method="GET" class="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-1 pb-2">
+  <label class="font-bold text-sm text-on-surface-variant whitespace-nowrap" for="category_select">Preferred Job Category:</label>
+  <div class="relative">
+    {% if q %}<input type="hidden" name="q" value="{{ q }}">{% endif %}
+    <select name="category" id="category_select" onchange="document.getElementById('categoryFilterForm').submit()" class="bg-white border border-outline-variant rounded-lg px-4 py-2 font-body-md text-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+      <option value="">-- All Categories --</option>
+      {% for cat in categories %}
+        <option value="{{ cat.code }}" {% if target_category == cat.code %}selected{% endif %}>{{ cat.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</form>
+
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">We've identified {{ gaps_count }} key gaps in your profile for vacancies matching your selected category. These recommendations are curated to bridge those gaps through certified training and workshops (including TESDA trades).</p>
+</div>
+<div class="bg-surface-container rounded-xl p-6 flex items-center gap-6 border border-outline-variant shrink-0">
+<div class="relative h-20 w-20">
+<svg class="h-20 w-20 -rotate-90">
+<circle class="text-outline-variant" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="8"></circle>
+<circle id="matchCircle" class="text-secondary" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226.2" stroke-dashoffset="226.2" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-headline-md text-headline-md">{{ profile_match_percentage }}%</div>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Best Profile Match</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bridge the remaining <span class="text-secondary font-bold">{{ remaining_gap }}%</span> gap</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<div class="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 pt-12 pb-24 md:py-12">
+  <!-- My Enrolled Trainings Section (Cisco / Udemy Styled LMS Portal) -->
+  {% if enrolled_trainings.exists %}
+    <div class="mb-14">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">play_circle</span>
+            My Learning & Enrolled Courses
+          </h2>
+          <p class="text-xs text-on-surface-variant mt-1">Jump right back into your interactive modules, skill assessments, and certificates.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-full border border-outline-variant/60">
+            {{ enrolled_trainings.count }} Active Course{% if enrolled_trainings.count > 1 %}s{% endif %}
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for enroll in enrolled_trainings %}
+          <div class="bg-surface-container-lowest border-2 border-outline-variant/80 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:border-secondary hover:shadow-lg transition-all relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-slate-100">
+              <div class="h-full bg-secondary transition-all duration-500" style="--bar-width: {{ enroll.progress_percentage|default:0 }}%; width: var(--bar-width);"></div>
+            </div>
+
+            <div>
+              <div class="flex items-start justify-between gap-3 mb-4 mt-2">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase shrink-0 whitespace-nowrap
+                    {% if enroll.progress_percentage >= 100 or enroll.status == 'Attended' %}bg-emerald-100 text-emerald-800 border border-emerald-300
+                    {% elif enroll.progress_percentage > 0 %}bg-blue-100 text-blue-800 border border-blue-300
+                    {% else %}bg-slate-100 text-slate-700 border border-slate-300{% endif %}">
+                    {% if enroll.progress_percentage >= 100 or enroll.status == 'Attended' %}
+                      <span class="inline-flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">verified</span> Completed</span>
+                    {% elif enroll.progress_percentage > 0 %}
+                      In Progress
+                    {% else %}
+                      Not Started
+                    {% endif %}
+                  </span>
+
+                  {% if enroll.can_claim_certificate %}
+                    <button type="button"
+                      data-name="{{ enroll.training_program.title|default:'Certificate of Competency' }}"
+                      data-issuer="{{ enroll.training_program.provider|default:'TESDA & SKILLUP Certified' }}"
+                      data-date="{{ enroll.completed_at|date:'F d, Y'|default:'Verified Active Credential' }}"
+                      data-code="{{ enroll.certificate_code|default:'SKILLUP-TESDA-2026-ACTIVE' }}"
+                      data-tesda="{% if enroll.training_program.provider == 'TESDA' or 'TESDA' in enroll.training_program.title or 'NC' in enroll.training_program.title %}true{% else %}false{% endif %}"
+                      data-download="{% url 'applicant_download_certificate' enroll.id %}"
+                      data-verify="{% url 'applicant_download_certificate' enroll.id %}"
+                      onclick="openViewCertificateModalFromBtn(this)"
+                      class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 shadow-2xs transition-all cursor-pointer active:scale-95"
+                      title="View Official Certificate">
+                      <span class="material-symbols-outlined text-[13px] text-amber-700">military_tech</span>
+                      <span>Certificate</span>
+                    </button>
+                  {% elif enroll.progress_percentage >= 100 and not enroll.is_time_requirement_met %}
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold text-amber-800 bg-amber-50 border border-amber-300" title="Seat-Time Requirement in Progress: {{ enroll.formatted_time_remaining }} remaining">
+                      <span class="material-symbols-outlined text-[13px] text-amber-600">timer</span>
+                      <span>Time Pending ({{ enroll.formatted_time_remaining }})</span>
+                    </span>
+                  {% endif %}
+                </div>
+                <span class="text-xs text-outline font-semibold truncate">{{ enroll.training_program.provider }}</span>
+              </div>
+
+              <a href="{% url 'applicant_course_lms' enroll.id %}" class="block group-hover:text-secondary transition-colors">
+                <h3 class="font-bold text-on-surface text-lg mb-2 leading-snug line-clamp-2">{{ enroll.training_program.title }}</h3>
+              </a>
+              <p class="text-xs text-on-surface-variant mb-4 leading-relaxed line-clamp-2">{{ enroll.training_program.description }}</p>
+            </div>
+
+            <div class="space-y-3 pt-4 border-t border-outline-variant/30">
+              <!-- Progress Bar -->
+              <div>
+                <div class="flex justify-between items-center text-xs mb-1.5">
+                  <span class="font-semibold text-on-surface-variant">Course Progress</span>
+                  <span class="font-bold text-secondary">{{ enroll.progress_percentage|default:0 }}%</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                  <div class="bg-secondary h-2 rounded-full transition-all duration-500" style="--bar-width: {{ enroll.progress_percentage|default:0 }}%; width: var(--bar-width);"></div>
+                </div>
+              </div>
+
+              <!-- Seat-Time Progress Bar -->
+              <div class="pt-1">
+                <div class="flex justify-between items-center text-xs mb-1">
+                  <span class="font-semibold text-on-surface-variant flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[13px] {% if enroll.is_time_requirement_met %}text-emerald-600{% else %}text-blue-600{% endif %}">schedule</span>
+                    Seat-Time Progress
+                  </span>
+                  <span class="text-[11px] font-bold {% if enroll.is_time_requirement_met %}text-emerald-700{% else %}text-on-surface{% endif %}">
+                    {{ enroll.formatted_time_spent }} / {{ enroll.formatted_required_time }}
+                  </span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                  <div class="{% if enroll.is_time_requirement_met %}bg-emerald-500{% else %}bg-blue-600{% endif %} h-1.5 rounded-full transition-all duration-500" style="width: {{ enroll.time_progress_percentage }}%;"></div>
+                </div>
+              </div>
+
+              <!-- Meta -->
+              <div class="text-[11px] text-outline flex items-center justify-between pt-1">
+                <span><i class="fa-solid fa-layer-group me-1 text-secondary"></i> 5 Modules (Cisco LMS)</span>
+                <span><i class="fa-solid fa-clock me-1 text-slate-400"></i> {{ enroll.training_program.formatted_required_duration }}</span>
+              </div>
+
+              <!-- Action CTA -->
+              <div class="pt-2">
+                <a href="{% url 'applicant_course_lms' enroll.id %}" class="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-secondary hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-sm active:scale-[0.99]">
+                  <span class="material-symbols-outlined text-[16px]">play_arrow</span>
+                  {% if enroll.progress_percentage >= 100 or enroll.status == 'Attended' %}
+                    Review Course Material
+                  {% elif enroll.progress_percentage > 0 %}
+                    Continue Learning
+                  {% else %}
+                    Start Learning Now
+                  {% endif %}
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- AI Smart Training Recommendations Section -->
+  <section class="mb-14">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center shadow-xs shrink-0">
+          <span class="material-symbols-outlined text-xl">auto_awesome</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="font-headline-md text-headline-md font-bold text-on-surface">AI Training Recommendations</h2>
+          </div>
+          <p class="text-xs text-on-surface-variant">Personalized course suggestions tailored to bridge your skill gaps and fast-track your employment readiness.</p>
+        </div>
+      </div>
+      <button type="button" onclick="refreshAiTrainingRecs()" id="refreshAiRecsBtn" class="px-4 py-2 border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-900 rounded-xl text-xs font-bold transition-all shadow-2xs flex items-center gap-1.5 shrink-0 cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-sm">sync</span>
+        <span>Refresh AI Suggestions</span>
+      </button>
+    </div>
+
+    <!-- AI Loading State (Hidden by default) -->
+    <div id="aiRecsLoading" class="hidden text-center py-10 bg-surface-container-lowest border border-purple-200 rounded-2xl p-6 mb-6">
+      <div class="w-10 h-10 rounded-full border-3 border-purple-600 border-t-transparent animate-spin mx-auto mb-3"></div>
+      <h4 class="font-bold text-on-surface text-sm">Analyzing Skill Gaps with AI...</h4>
+      <p class="text-xs text-on-surface-variant mt-1">Cross-referencing your profile and verified competencies with top active employer openings.</p>
+    </div>
+
+    <!-- AI Recommendations Grid -->
+    <div id="aiRecsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {% for item in ai_recommended_trainings %}
+        <div class="bg-surface-container-lowest border-2 border-indigo-200/80 rounded-2xl p-6 shadow-sm hover:border-indigo-500 hover:shadow-lg transition-all flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-purple-100/40 rounded-full blur-2xl -mr-8 -mt-8 pointer-events-none"></div>
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <span class="px-2.5 py-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow-2xs flex items-center gap-1">
+                <span class="material-symbols-outlined text-[12px]">auto_awesome</span> Top AI Pick
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-2xs flex items-center gap-1">
+                <span class="material-symbols-outlined text-[12px] text-emerald-600">verified</span> {{ item.match_score }}% Match
+              </span>
+            </div>
+
+            <h3 class="font-bold text-on-surface text-lg mb-1 leading-snug group-hover:text-secondary transition-colors">{{ item.program.title }}</h3>
+            <p class="text-xs text-on-surface-variant mb-3 flex items-center gap-1.5 font-medium">
+              <span class="material-symbols-outlined text-sm text-secondary">business</span>
+              <span>{{ item.program.provider }}</span>
+              <span>•</span>
+              <span>{{ item.program.duration|default:"40 Hours" }}</span>
+            </p>
+
+            <!-- Why AI Recommends This -->
+            <div class="bg-purple-50/70 border border-purple-200/70 p-3 rounded-xl mb-4 text-xs text-purple-950 leading-relaxed">
+              <div class="font-bold text-purple-900 mb-0.5 flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs text-purple-700">psychology</span>
+                Career Upskill Impact
+              </div>
+              <p class="text-[11px] text-purple-900/90">{{ item.why_recommended }}</p>
+            </div>
+
+            <!-- Key Skills Acquired -->
+            <div class="space-y-1.5 mb-4">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant block">Competencies Bridge:</span>
+              <div class="flex flex-wrap gap-1.5">
+                {% for ksk in item.key_skills %}
+                  <span class="bg-surface-container text-on-surface-variant text-[11px] font-semibold px-2 py-0.5 rounded-md border border-outline-variant/40">
+                    {{ ksk }}
+                  </span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-outline-variant/40 flex items-center justify-between gap-3">
+            <div class="text-xs">
+              <span class="font-bold {% if item.program.available_slots > 0 %}text-emerald-700{% else %}text-rose-600{% endif %}">
+                {{ item.program.available_slots }} / {{ item.program.slots }} Slots Open
+              </span>
+            </div>
+            {% if item.program.id in enrolled_ids %}
+              <button disabled class="px-4 py-2 bg-surface-container text-on-surface-variant rounded-xl text-xs font-bold cursor-not-allowed">Enrolled</button>
+            {% elif item.program.available_slots <= 0 or item.program.status == 'In Progress' or item.program.status == 'Completed' %}
+              <button disabled class="px-4 py-2 bg-slate-100 text-slate-400 rounded-xl text-xs font-bold cursor-not-allowed">Full / Closed</button>
+            {% else %}
+              <button type="button"
+                data-url="{% url 'applicant_enroll_training' item.program.id %}"
+                data-title="{{ item.program.title }}"
+                onclick="confirmEnroll(this.dataset.url, this.dataset.title)"
+                class="px-5 py-2 bg-secondary hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer active:scale-95">
+                <span>Enroll Course</span>
+              </button>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-span-3 text-center py-8 bg-surface-container-lowest border border-outline-variant rounded-2xl">
+          <p class="text-xs text-on-surface-variant">Click "Refresh AI Suggestions" to generate personalized training recommendations.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Curated Skill Gap Recommendations Header -->
+  <div class="mb-6">
+    <h2 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+      <span class="material-symbols-outlined text-secondary">domain_verification</span>
+      Curated Bridging Courses
+    </h2>
+    <p class="text-xs text-on-surface-variant mt-0.5">Programs directly mapped to the required skills of your target job category.</p>
+  </div>
+
+  <!-- Bento-style Grid of Recommendations -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+{% for program in recommended_programs %}
+<div class="tonal-card rounded-xl p-8 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">school</span>
+{% if program.provider == "TESDA" or program.provider == "TUP" %}TESDA Vocational Trade{% else %}Professional Development{% endif %}
+</div>
+<h3 class="font-headline-md text-headline-md mb-2 text-xl">{{ program.title }}</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">{{ program.description }}</p>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Addresses Skill:</span>
+<span class="font-medium text-secondary">{{ program.skills_display|default:program.skill_addressed.name }}</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Provider:</span>
+<span class="font-medium">{{ program.provider }}</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Location:</span>
+<span class="font-medium flex items-center gap-1"><span class="material-symbols-outlined text-xs text-secondary">location_on</span>{{ program.location|default:"PESO Training Center" }}</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Duration:</span>
+<span class="font-medium">{{ program.duration }}</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-on-surface-variant">Available Slots:</span>
+<span class="font-bold {% if program.available_slots > 0 %}text-emerald-700{% else %}text-rose-600{% endif %}">
+  {{ program.available_slots }} / {{ program.slots }} Open
+</span>
+</div>
+<div class="pt-4 border-t border-outline-variant flex gap-4 w-full">
+  {% if program.id in enrolled_ids %}
+    <button disabled class="flex-grow w-full bg-surface-container text-on-surface-variant py-2 rounded text-label-md font-label-md cursor-not-allowed">Enrolled</button>
+  {% elif program.available_slots <= 0 or program.status == 'In Progress' or program.status == 'Completed' or program.status == 'Closed' %}
+    <button disabled class="flex-grow w-full bg-slate-100 text-slate-400 border border-slate-200 py-2 rounded text-label-md font-label-md cursor-not-allowed">
+      {% if program.status == 'In Progress' %}Class Ongoing{% elif program.status == 'Completed' %}Completed{% else %}Registration Full / Closed{% endif %}
+    </button>
+  {% else %}
+    <button type="button"
+      data-url="{% url 'applicant_enroll_training' program.id %}"
+      data-title="{{ program.title }}"
+      onclick="confirmEnroll(this.dataset.url, this.dataset.title)"
+      class="flex-grow w-full bg-secondary text-white py-2 rounded text-label-md font-label-md hover:bg-opacity-90 transition-colors">Enroll Program</button>
+  {% endif %}
+</div>
+</div>
+</div>
+{% empty %}
+<div class="col-span-3 text-center py-12 bg-surface-container-lowest border border-outline-variant rounded-xl w-full">
+<span class="material-symbols-outlined text-outline text-5xl mb-4">school</span>
+<p class="text-on-surface-variant">No training recommendations currently available. Rate your skills in your Profile to check for course recommendations.</p>
+</div>
+{% endfor %}
+</div>
+
+<!-- All Available Training Programs Section -->
+<div class="mt-16 pt-12 border-t border-outline-variant">
+  <div class="mb-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+    <div>
+      <h2 class="font-headline-lg text-headline-lg mb-2 text-on-surface flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary">explore</span>
+        All Available Training Courses
+      </h2>
+      <p class="text-on-surface-variant font-body-md">Browse the complete catalogue of training and vocational trade programs posted by PESO.</p>
+    </div>
+    
+    <!-- Search Bar -->
+    <form method="GET" action="{% url 'training_recommendations' %}" class="w-full lg:w-auto min-w-[320px]">
+      {% if target_category %}<input type="hidden" name="category" value="{{ target_category }}">{% endif %}
+      <div class="bg-surface-container-lowest border border-outline-variant p-1.5 rounded-xl shadow-sm flex items-center gap-2">
+        <div class="flex-grow flex items-center px-3 py-1">
+          <span class="material-symbols-outlined text-outline mr-2 text-[20px]">search</span>
+          <input class="w-full border-none focus:ring-0 bg-transparent text-body-sm p-0 placeholder-outline focus:outline-none" 
+                 name="q" value="{{ q|default:'' }}" placeholder="Search courses, provider, or skill..." type="text">
+          {% if q %}
+            <a href="{% url 'training_recommendations' %}{% if target_category %}?category={{ target_category }}{% endif %}" class="material-symbols-outlined text-outline hover:text-on-surface text-lg cursor-pointer mr-1">close</a>
+          {% endif %}
+        </div>
+        <button type="submit" class="bg-secondary text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 transition-opacity active:scale-95 text-body-sm shrink-0">
+          Search
+        </button>
+      </div>
+    </form>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {% for program in all_programs %}
+      <div class="tonal-card rounded-xl p-8 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 mb-4 text-secondary font-label-sm text-label-sm">
+            <span class="material-symbols-outlined text-[16px]">school</span>
+            {% if program.provider == "TESDA" or program.provider == "TUP" %}TESDA Vocational Trade{% else %}Professional Development{% endif %}
+          </div>
+          <h3 class="font-headline-md text-headline-md mb-2 text-xl">{{ program.title }}</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">{{ program.description }}</p>
+        </div>
+        <div class="space-y-4">
+          <div class="flex justify-between text-body-sm">
+            <span class="text-on-surface-variant">Addresses Skill:</span>
+            <span class="font-medium text-secondary">{{ program.skills_display|default:program.skill_addressed.name }}</span>
+          </div>
+          <div class="flex justify-between text-body-sm">
+            <span class="text-on-surface-variant">Provider:</span>
+            <span class="font-medium">{{ program.provider }}</span>
+          </div>
+          <div class="flex justify-between text-body-sm">
+            <span class="text-on-surface-variant">Location:</span>
+            <span class="font-medium flex items-center gap-1"><span class="material-symbols-outlined text-xs text-secondary">location_on</span>{{ program.location|default:"PESO Training Center" }}</span>
+          </div>
+          <div class="flex justify-between text-body-sm">
+            <span class="text-on-surface-variant">Duration:</span>
+            <span class="font-medium">{{ program.duration }}</span>
+          </div>
+          <div class="flex justify-between text-body-sm">
+            <span class="text-on-surface-variant">Available Slots:</span>
+            <span class="font-bold {% if program.available_slots > 0 %}text-emerald-700{% else %}text-rose-600{% endif %}">
+              {{ program.available_slots }} / {{ program.slots }} Open
+            </span>
+          </div>
+          <div class="pt-4 border-t border-outline-variant flex gap-4 w-full">
+            {% if program.id in enrolled_ids %}
+              <button disabled class="flex-grow w-full bg-surface-container text-on-surface-variant py-2 rounded text-label-md font-label-md cursor-not-allowed">Enrolled</button>
+            {% elif program.available_slots <= 0 or program.status == 'In Progress' or program.status == 'Completed' or program.status == 'Closed' %}
+              <button disabled class="flex-grow w-full bg-slate-100 text-slate-400 border border-slate-200 py-2 rounded text-label-md font-label-md cursor-not-allowed">
+                {% if program.status == 'In Progress' %}Class Ongoing{% elif program.status == 'Completed' %}Completed{% else %}Registration Full / Closed{% endif %}
+              </button>
+            {% else %}
+              <button type="button"
+                data-url="{% url 'applicant_enroll_training' program.id %}"
+                data-title="{{ program.title }}"
+                onclick="confirmEnroll(this.dataset.url, this.dataset.title)"
+                class="flex-grow w-full bg-secondary text-white py-2 rounded text-label-md font-label-md hover:bg-opacity-90 transition-colors">Enroll Program</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-span-3 text-center py-12 bg-surface-container-lowest border border-outline-variant rounded-xl w-full">
+        <span class="material-symbols-outlined text-outline text-5xl mb-4">school</span>
+        <p class="text-on-surface-variant">No training programs are currently posted.</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation Bar -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant px-4 py-2 flex justify-around items-center z-50">
+  <a href="{% url 'applicant_dashboard' %}" class="flex flex-col items-center gap-1 transition-all duration-200 text-on-surface-variant opacity-70 hover:opacity-100">
+    <span class="material-symbols-outlined">dashboard</span>
+    <span class="text-[10px] font-label-sm">Dashboard</span>
+  </a>
+  <a href="{% url 'skill_gap_analysis' %}" class="flex flex-col items-center gap-1 transition-all duration-200 text-on-surface-variant opacity-70 hover:opacity-100">
+    <span class="material-symbols-outlined">analytics</span>
+    <span class="text-[10px] font-label-sm">Gaps</span>
+  </a>
+  <a href="{% url 'training_recommendations' %}" class="flex flex-col items-center gap-1 transition-all duration-200 text-secondary font-bold">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+    <span class="text-[10px] font-label-sm">Learning</span>
+  </a>
+  <a href="{% url 'job_search' %}" class="flex flex-col items-center gap-1 transition-all duration-200 text-on-surface-variant opacity-70 hover:opacity-100">
+    <span class="material-symbols-outlined">work</span>
+    <span class="text-[10px] font-label-sm">Jobs</span>
+  </a>
+  <a href="{% url 'applicant_profile' %}" class="flex flex-col items-center gap-1 transition-all duration-200 text-on-surface-variant opacity-70 hover:opacity-100">
+    <span class="material-symbols-outlined">person</span>
+    <span class="text-[10px] font-label-sm">Profile</span>
+  </a>
+</nav>
+<!-- Custom Training Enrollment Confirmation Modal -->
+<div id="enrollConfirmationModal"
+  class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+  <!-- Backdrop -->
+  <div id="enrollModalBackdrop" class="absolute inset-0 bg-inverse-surface/40 backdrop-blur-sm"></div>
+
+  <!-- Modal Content Container -->
+  <div
+    class="relative bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-2xl max-w-sm w-full mx-4 transform scale-95 transition-transform duration-300 z-10">
+    <div class="flex flex-col items-center text-center">
+      <!-- Icon Container with Glow -->
+      <div
+        class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4 shadow-inner active-glow">
+        <span class="material-symbols-outlined text-2xl">school</span>
+      </div>
+
+      <!-- Heading -->
+      <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Confirm Enrollment</h3>
+
+      <!-- Message -->
+      <p class="text-on-surface-variant text-body-sm">Are you sure you want to enroll in this training program?</p>
+      <p id="enrollProgramName" class="font-semibold text-secondary text-sm mt-2"></p>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3 w-full mt-6">
+        <button id="cancelEnrollBtn" type="button"
+          class="flex-1 px-4 py-2.5 border border-outline-variant hover:border-secondary text-on-surface-variant hover:text-secondary font-body-sm font-semibold rounded-lg hover:bg-surface-container-low transition-all">
+          Cancel
+        </button>
+        <button id="confirmEnrollBtn" type="button"
+          class="flex-1 px-4 py-2.5 bg-secondary text-white font-body-sm font-semibold rounded-lg hover:opacity-90 active:scale-95 transition-all">
+          Yes, Enroll
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden Form for Enrollment -->
+<form id="globalEnrollForm" method="POST" action="" style="display: none;">
+  {% csrf_token %}
+</form>
+
+<!-- View Certificate Modal -->
+<div id="viewCertificateModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden transform scale-95 transition-all duration-300">
+        <!-- Header -->
+        <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-amber-400 text-2xl">workspace_premium</span>
+                <div>
+                    <h3 class="font-bold text-sm leading-tight">Credential Preview</h3>
+                    <p class="text-[11px] text-slate-300 font-medium">SKILLUP Digital Certification Registry</p>
+                </div>
+            </div>
+            <button onclick="closeViewCertificateModal()" class="material-symbols-outlined text-slate-400 hover:text-white transition-colors cursor-pointer">close</button>
+        </div>
+
+        <!-- Certificate Body / Frame -->
+        <div class="p-6 md:p-8 bg-gradient-to-b from-amber-50/50 via-white to-amber-50/30">
+            <div id="certPreviewCard" class="relative border-4 border-double border-amber-600/40 rounded-xl p-6 md:p-8 bg-white shadow-sm text-center overflow-hidden">
+                <!-- Background decorative watermark -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none select-none">
+                    <span class="material-symbols-outlined text-[260px] text-amber-900">verified</span>
+                </div>
+
+                <!-- Issuer badges -->
+                <div class="flex items-center justify-center gap-2 mb-4 flex-wrap">
+                    <span id="certTesdaBadge" class="inline-flex items-center gap-1 px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full border border-emerald-300">
+                        <span class="material-symbols-outlined text-sm">verified</span> TESDA Recognized
+                    </span>
+                    <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full border border-blue-300">
+                        <span class="material-symbols-outlined text-sm">school</span> SKILLUP Certified
+                    </span>
+                </div>
+
+                <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Certificate of Competency</p>
+                <p class="text-xs text-slate-500 mb-2">This is officially awarded to</p>
+                
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 font-serif mb-2 tracking-wide">
+                    {{ request.user.get_full_name|default:request.user.username }}
+                </h2>
+
+                <p class="text-[11px] text-slate-500 mb-2">for successfully demonstrating vocational and technical mastery in</p>
+                
+                <div class="mb-4">
+                    <h3 id="certModalName" class="text-base md:text-lg font-bold text-blue-900 px-4 py-2 bg-blue-50/80 rounded-lg inline-block border border-blue-200/80 max-w-full">
+                        Advanced Full-Stack Engineering Certification
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 text-left border-t border-b border-dashed border-slate-200 py-3 mb-4 text-xs">
+                    <div>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold">Issuing Organization</span>
+                        <span id="certModalIssuer" class="font-semibold text-slate-800">TESDA & SKILLUP Certified</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold">Issue / Verification Date</span>
+                        <span id="certModalDate" class="font-semibold text-slate-800">October 2026</span>
+                    </div>
+                </div>
+
+                <!-- Credential Code Bar -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="text-slate-500 font-mono text-[11px]">Credential ID:</span>
+                        <span id="certModalCode" class="font-mono font-bold text-slate-900 tracking-wider">SKILLUP-TESDA-2026-A1B2</span>
+                    </div>
+                    <span id="certStatusBadge" class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> <span id="certStatusText">Authenticated &amp; Active</span>
+                    </span>
+                </div>
+                <div id="certNoFileNote" class="hidden mt-3 text-[11px] leading-relaxed text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                    This credential was added from your resume or profile. No digital certificate file is on record, so it cannot be opened or downloaded. Complete a SKILLUP training to earn a verifiable certificate.
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="px-6 py-4 bg-slate-50 border-t border-outline-variant flex flex-wrap justify-between items-center gap-3">
+            <div>
+                <a id="certDownloadLink" href="#" target="_blank" download class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm">
+                    <span class="material-symbols-outlined text-sm">download</span> Download Certificate
+                </a>
+            </div>
+            <div class="flex items-center gap-2">
+                <a id="certFullDocLink" href="#" target="_blank" class="px-4 py-2 bg-secondary text-white hover:bg-secondary/90 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm">
+                    <span class="material-symbols-outlined text-sm">open_in_new</span> Open Full Certificate (HD)
+                </a>
+                <button type="button" onclick="closeViewCertificateModal()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-lg text-xs font-semibold transition-colors cursor-pointer">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openViewCertificateModalFromBtn(btn) {
+    const isTesda = btn.dataset.tesda === 'true';
+    openViewCertificateModal(
+        btn.dataset.name,
+        btn.dataset.issuer,
+        btn.dataset.date,
+        btn.dataset.code,
+        isTesda,
+        btn.dataset.download,
+        btn.dataset.verify
+    );
+}
+
+function openViewCertificateModal(name, issuer, issueDate, certCode, isTesda, downloadUrl, verifyUrl) {
+    document.getElementById('certModalName').textContent = name || 'Certificate of Competency';
+    document.getElementById('certModalIssuer').textContent = issuer || 'TESDA & SKILLUP Certified';
+    document.getElementById('certModalDate').textContent = issueDate || 'Active Credential';
+    document.getElementById('certModalCode').textContent = certCode || 'SKILLUP-TESDA-2026-ACTIVE';
+
+    const tesdaBadge = document.getElementById('certTesdaBadge');
+    if (tesdaBadge) {
+        if (isTesda) {
+            tesdaBadge.classList.remove('hidden');
+            tesdaBadge.classList.add('inline-flex');
+        } else {
+            tesdaBadge.classList.add('hidden');
+            tesdaBadge.classList.remove('inline-flex');
+        }
+    }
+
+    const downloadLink = document.getElementById('certDownloadLink');
+    const fullDocLink = document.getElementById('certFullDocLink');
+    const hasFile = Boolean(downloadUrl) && downloadUrl !== '#';
+
+    if (downloadLink) {
+        downloadLink.href = hasFile ? downloadUrl : '#';
+        downloadLink.classList.toggle('hidden', !hasFile);
+        downloadLink.classList.toggle('flex', hasFile);
+    }
+
+    if (fullDocLink) {
+        fullDocLink.href = hasFile ? downloadUrl : '#';
+        fullDocLink.classList.toggle('hidden', !hasFile);
+        fullDocLink.classList.toggle('flex', hasFile);
+    }
+
+    const noFileNote = document.getElementById('certNoFileNote');
+    if (noFileNote) {
+        noFileNote.classList.toggle('hidden', hasFile);
+    }
+
+    const statusBadge = document.getElementById('certStatusBadge');
+    const statusText = document.getElementById('certStatusText');
+    if (statusBadge && statusText) {
+        statusText.textContent = hasFile ? 'Authenticated & Active' : 'Self-reported credential';
+        statusBadge.classList.toggle('text-emerald-700', hasFile);
+        statusBadge.classList.toggle('bg-emerald-50', hasFile);
+        statusBadge.classList.toggle('border-emerald-200', hasFile);
+        statusBadge.classList.toggle('text-amber-800', !hasFile);
+        statusBadge.classList.toggle('bg-amber-50', !hasFile);
+        statusBadge.classList.toggle('border-amber-200', !hasFile);
+    }
+
+    const modal = document.getElementById('viewCertificateModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    setTimeout(() => {
+        modal.firstElementChild.classList.remove('scale-95');
+        modal.firstElementChild.classList.add('scale-100');
+    }, 10);
+}
+
+function closeViewCertificateModal() {
+    const modal = document.getElementById('viewCertificateModal');
+    modal.firstElementChild.classList.remove('scale-100');
+    modal.firstElementChild.classList.add('scale-95');
+    setTimeout(() => {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+    }, 200);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const matchPct = parseInt("{{ profile_match_percentage|default:0 }}", 10);
+    const circle = document.getElementById('matchCircle');
+    if (circle) {
+        const radius = 36;
+        const circumference = 2 * Math.PI * radius; // 226.19
+        const offset = circumference - (matchPct / 100) * circumference;
+        circle.style.strokeDasharray = circumference;
+        circle.style.strokeDashoffset = offset;
+    }
+
+    let currentEnrollUrl = '';
+
+    function decodeUnicodeEscapes(str) {
+        if (!str) return '';
+        try {
+            return str.replace(/\\u([0-9a-fA-F]{4})/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
+        } catch (e) {
+            return str;
+        }
+    }
+
+    window.confirmEnroll = function(url, title) {
+        currentEnrollUrl = url;
+        const modal = document.getElementById('enrollConfirmationModal');
+        const titleEl = document.getElementById('enrollProgramName');
+        if (titleEl) {
+            titleEl.textContent = decodeUnicodeEscapes(title);
+        }
+        if (modal) {
+            modal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                const content = modal.querySelector('.relative');
+                if (content) {
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }
+            });
+        }
+    };
+
+    const hideEnrollModal = () => {
+        const modal = document.getElementById('enrollConfirmationModal');
+        if (modal) {
+            modal.classList.add('opacity-0');
+            const content = modal.querySelector('.relative');
+            if (content) {
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+            }
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    };
+
+    document.getElementById('cancelEnrollBtn')?.addEventListener('click', hideEnrollModal);
+    document.getElementById('enrollModalBackdrop')?.addEventListener('click', hideEnrollModal);
+    document.getElementById('confirmEnrollBtn')?.addEventListener('click', () => {
+        const form = document.getElementById('globalEnrollForm');
+        if (form && currentEnrollUrl) {
+            form.action = currentEnrollUrl;
+            form.submit();
+        }
+    });
+
+    // Refresh AI Training Recommendations via API
+    window.refreshAiTrainingRecs = function() {
+        const btn = document.getElementById('refreshAiRecsBtn');
+        const container = document.getElementById('aiRecsContainer');
+        const loading = document.getElementById('aiRecsLoading');
+        if (btn) {
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+        if (loading) loading.classList.remove('hidden');
+        if (container) container.classList.add('opacity-40');
+
+        fetch("{% url 'applicant_ai_training_recommendations' %}")
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.recommendations && data.recommendations.length > 0) {
+                    renderAiTrainingCards(data.recommendations);
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching AI training recommendations:', err);
+            })
+            .finally(() => {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+                if (loading) loading.classList.add('hidden');
+                if (container) container.classList.remove('opacity-40');
+            });
+    };
+
+    function renderAiTrainingCards(recs) {
+        const container = document.getElementById('aiRecsContainer');
+        if (!container) return;
+        container.innerHTML = recs.map(item => `
+            <div class="bg-surface-container-lowest border-2 border-indigo-200/80 rounded-2xl p-6 shadow-sm hover:border-indigo-500 hover:shadow-lg transition-all flex flex-col justify-between group relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-purple-100/40 rounded-full blur-2xl -mr-8 -mt-8 pointer-events-none"></div>
+              <div>
+                <div class="flex items-start justify-between gap-2 mb-3">
+                  <span class="px-2.5 py-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow-2xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[12px]">auto_awesome</span> Top AI Pick
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-2xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[12px] text-emerald-600">verified</span> ${item.match_score}% Match
+                  </span>
+                </div>
+
+                <h3 class="font-bold text-on-surface text-lg mb-1 leading-snug group-hover:text-secondary transition-colors">${escapeHtml(item.title)}</h3>
+                <p class="text-xs text-on-surface-variant mb-3 flex items-center gap-1.5 font-medium">
+                  <span class="material-symbols-outlined text-sm text-secondary">business</span>
+                  <span>${escapeHtml(item.provider)}</span>
+                  <span>•</span>
+                  <span>${escapeHtml(item.duration || '40 Hours')}</span>
+                </p>
+
+                <div class="bg-purple-50/70 border border-purple-200/70 p-3 rounded-xl mb-4 text-xs text-purple-950 leading-relaxed">
+                  <div class="font-bold text-purple-900 mb-0.5 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs text-purple-700">psychology</span>
+                    Career Upskill Impact
+                  </div>
+                  <p class="text-[11px] text-purple-900/90">${escapeHtml(item.why_recommended)}</p>
+                </div>
+
+                <div class="space-y-1.5 mb-4">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant block">Competencies Bridge:</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    ${(item.key_skills || []).map(ksk => `
+                      <span class="bg-surface-container text-on-surface-variant text-[11px] font-semibold px-2 py-0.5 rounded-md border border-outline-variant/40">
+                        ${escapeHtml(ksk)}
+                      </span>
+                    `).join('')}
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-outline-variant/40 flex items-center justify-between gap-3">
+                <div class="text-xs">
+                  <span class="font-bold ${item.available_slots > 0 ? 'text-emerald-700' : 'text-rose-600'}">
+                    ${item.available_slots} / ${item.slots} Slots Open
+                  </span>
+                </div>
+                ${item.available_slots <= 0 || item.status === 'In Progress' || item.status === 'Completed' ? `
+                  <button disabled class="px-4 py-2 bg-slate-100 text-slate-400 rounded-xl text-xs font-bold cursor-not-allowed">Full / Closed</button>
+                ` : `
+                  <button type="button"
+                    data-url="${item.enroll_url}"
+                    data-title="${escapeHtml(item.title)}"
+                    onclick="confirmEnroll(this.dataset.url, this.dataset.title)"
+                    class="px-5 py-2 bg-secondary hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer active:scale-95">
+                    <span>Enroll Course</span>
+                  </button>
+                `}
+              </div>
+            </div>
+        `).join('');
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+});
+</script>
+</body></html>

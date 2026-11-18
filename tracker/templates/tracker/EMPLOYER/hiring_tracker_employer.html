@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Employer Hiring Tracker | SKILLUP</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet">
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#0051d5",
+            "inverse-surface": "#213145",
+            "on-primary-fixed-variant": "#3f465c",
+            "outline-variant": "#c6c6cd",
+            "primary-fixed": "#dae2fd",
+            "on-error": "#ffffff",
+            "surface-container": "#e5eeff",
+            "on-tertiary": "#ffffff",
+            "surface-tint": "#565e74",
+            "on-tertiary-fixed-variant": "#005236",
+            "surface-container-low": "#eff4ff",
+            "on-surface": "#0b1c30",
+            "on-secondary-fixed-variant": "#003ea8",
+            "surface-bright": "#f8f9ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-primary-container": "#7c839b",
+            "primary-fixed-dim": "#bec6e0",
+            "outline": "#76777d",
+            "on-secondary-fixed": "#00174b",
+            "on-secondary": "#ffffff",
+            "surface-container-highest": "#d3e4fe",
+            "tertiary-container": "#002113",
+            "primary-container": "#131b2e",
+            "tertiary": "#000000",
+            "on-secondary-container": "#fefcff",
+            "surface-dim": "#cbdbf5",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-background": "#0b1c30",
+            "on-surface-variant": "#45464d",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#002113",
+            "inverse-on-surface": "#eaf1ff",
+            "background": "#f8f9ff",
+            "secondary-fixed": "#dbe1ff",
+            "primary": "#000000",
+            "secondary-container": "#316bf3",
+            "on-tertiary-container": "#009668",
+            "surface-variant": "#d3e4fe",
+            "surface-container-high": "#dce9ff",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "surface": "#f8f9ff",
+            "secondary-fixed-dim": "#b4c5ff",
+            "on-primary-fixed": "#131b2e",
+            "inverse-primary": "#bec6e0"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "40px",
+            "container-max": "1440px",
+            "unit": "4px"
+          },
+          "fontFamily": {
+            "body-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "label-md": ["Inter"]
+          },
+          "fontSize": {
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .pipeline-column {
+      min-width: 340px;
+      max-width: 340px;
+      flex-shrink: 0;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .candidate-card {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .candidate-card:hover {
+      border-color: #0051d5;
+      box-shadow: 0px 8px 24px rgba(15, 23, 42, 0.08);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+  <!-- TopNavBar -->
+  <header
+    class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-desktop h-16 w-full">
+    <div class="flex items-center gap-8">
+      <h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">SKILLUP</h1>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="relative flex items-center justify-center">
+        <a href="{% url 'employer_notifications' %}"
+          class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80 block"
+          {% if unread_match_alerts %}style="color:#0051d5" {% endif %}>notifications</a>
+        {% if unread_match_alerts %}<span
+          class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">{{unread_match_alerts}}</span>{% endif %}
+      </div>
+      <button
+        class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80">settings</button>
+      <a href="{% url 'company_profile_employer' %}"
+        class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-secondary/15 flex items-center justify-center font-bold text-xs text-secondary shrink-0 hover:ring-2 hover:ring-secondary transition-all"
+        title="{{ request.user.profile.company_name|default:request.user.get_full_name }}">
+        {% if request.user.profile.company_logo %}
+        <img alt="{{ request.user.profile.company_name }}" class="w-full h-full object-cover"
+          src="{{ request.user.profile.company_logo.url }}">
+        {% elif request.user.profile.profile_picture %}
+        <img alt="{{ request.user.get_full_name }}" class="w-full h-full object-cover"
+          src="{{ request.user.profile.profile_picture.url }}">
+        {% else %}
+        {{request.user.profile.company_name|slice:":1"|upper|default:request.user.first_name|slice:":1"|upper|default:"E"}}
+        {% endif %}
+      </a>
+    </div>
+  </header>
+  <div class="flex flex-1 pt-20 overflow-hidden">
+    <!-- SideNavBar -->
+    <aside
+      class="fixed left-0 top-0 h-full w-64 pt-20 bg-surface-container-lowest dark:bg-primary-container border-r border-outline-variant dark:border-outline hidden md:flex flex-col p-4 gap-2 z-40">
+      <div class="flex items-center gap-3 px-2 py-4 mb-4 border-b border-outline-variant/30">
+        <div
+          class="w-10 h-10 bg-surface border border-outline-variant rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
+          {% if request.user.profile.company_logo %}
+          <img class="w-full h-full object-cover" src="{{ request.user.profile.company_logo.url }}" alt="Company Logo">
+          {% else %}
+          <img class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdMw5mmmox8BYZy-x0WBPiT0GMsmdUQYYDKU6rhH-gEpoK6FE5UJa8c575bgaBIsZFB-JxpuxyzA1i0OZxVcf8XHtB_DpVFrzPWTtM2vk1odO-k43Rvq9vrx-RMhNx-Qam1umYBcf25DNfLu0wKq0txPFg0I-lk2qOPS3yo-qFLm8Tihvjy5j8jw9TUt5-N1rg7dSyDW_Pw4n8gkb2a7VzxsxlZ_77QMehstREVXIlUxNCZuA1eLzhzSGtRr1H_8kYgDrwBc7X1tcV"
+            alt="Company Logo">
+          {% endif %}
+        </div>
+        <div>
+          <h2 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider whitespace-nowrap">
+            SKILLUP Portal</h2>
+          <p class="text-[10px] text-on-surface-variant opacity-70">Enterprise Talent Network</p>
+        </div>
+      </div>
+      <nav class="flex-grow flex flex-col gap-1 overflow-y-auto custom-scrollbar">
+        <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md"
+          href="{% url 'employer_dashboard' %}"><span
+            class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a>
+        <a class="flex items-center gap-3 px-3 py-2 bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold rounded-lg scale-98 active:scale-95 duration-150 transition-all font-label-md text-label-md"
+          href="{% url 'hiring_tracker_employer' %}"><span class="material-symbols-outlined"
+            style="font-variation-settings: 'FILL' 1;">developer_board</span><span>Hiring Tracker</span></a>
+        <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md"
+          href="{% url 'job_management_employer' %}"><span class="material-symbols-outlined">work</span><span>Job
+            Management</span></a>
+        <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md"
+          href="{% url 'company_profile_employer' %}"><span
+            class="material-symbols-outlined">corporate_fare</span><span>Company Profile</span></a>
+        <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md relative"
+          href="{% url 'employer_notifications' %}"><span
+            class="material-symbols-outlined">notifications</span><span>Match Alerts</span></a>
+      </nav>
+      <div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+        <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md"
+          href="{% url 'logout' %}"><span class="material-symbols-outlined">logout</span><span>Log Out</span></a>
+      </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main class="flex-1 md:ml-64 p-gutter max-h-[calc(100vh-4rem)] overflow-hidden flex flex-col pb-4">
+      {% if messages %}
+      <div class="space-y-2 mb-4 shrink-0">
+        {% for message in messages %}
+        <div
+          class="p-4 rounded-lg {% if message.tags == 'error' %}bg-error-container text-on-error-container border border-error{% else %}bg-tertiary-fixed text-on-tertiary-fixed-variant border border-tertiary-fixed-dim{% endif %} flex items-center gap-2 text-xs">
+          <span class="material-symbols-outlined text-[16px]">{% if message.tags == 'error' %}error{%else%}check_circle{% endif %}</span>
+          <span>{{ message }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <!-- Header Section -->
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 id="pipelineHeaderTitle" class="font-headline-lg text-headline-lg font-bold text-on-surface mb-1">
+            {{ profile.company_name|default:"Enterprise" }} Candidate Pipeline
+          </h2>
+          <div class="flex items-center gap-4 text-on-surface-variant text-body-sm flex-wrap">
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[18px]">domain</span>
+              {{ profile.company_name|default:"Enterprise Partner" }}
+            </span>
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-[18px]">location_on</span>
+              {{ profile.address|default:profile.location|default:"Bulacan, Philippines" }}
+            </span>
+            <span class="flex items-center gap-1 font-bold text-secondary">
+              <span class="material-symbols-outlined text-[18px]"
+                style="font-variation-settings:'FILL' 1;">groups</span>
+              <span id="pipelineMatchesCount">{{ referrals|length }} Candidate Referrals</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Search & Filter Controls with View Switcher -->
+      <div
+        class="mb-6 flex flex-col md:flex-row gap-4 items-center justify-between bg-surface-container-low/50 p-4 rounded-xl border border-outline-variant/30 shrink-0">
+        <div class="relative w-full md:w-80">
+          <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]">search</span>
+          <input type="text" id="boardSearchInput" placeholder="Search candidate name or job..."
+            class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-lg font-body-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-xs">
+        </div>
+        <div class="flex items-center gap-3 flex-wrap justify-end">
+          <!-- View Switcher -->
+          <div class="flex items-center bg-white rounded-lg p-1 border border-outline-variant shadow-sm">
+            <button type="button" id="boardViewToggleBtn" onclick="switchTrackerView('board')"
+              class="px-3 py-1.5 rounded-md text-xs font-bold transition-all bg-secondary text-white shadow-sm flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">view_kanban</span>
+              <span>Kanban Board</span>
+            </button>
+            <button type="button" id="tableViewToggleBtn" onclick="switchTrackerView('table')"
+              class="px-3 py-1.5 rounded-md text-xs font-bold transition-all text-on-surface-variant hover:text-secondary flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">table_rows</span>
+              <span>List &amp; Page View</span>
+            </button>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs text-on-surface-variant font-semibold">Job:</span>
+            <select id="boardJobFilter"
+              class="bg-white border border-outline-variant rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-secondary outline-none font-medium text-on-surface">
+              <option value="">All Jobs</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs text-on-surface-variant font-semibold">Date:</span>
+            <select id="boardDateFilter"
+              class="bg-white border border-outline-variant rounded-lg px-3 py-1.5 text-xs focus:ring-2 focus:ring-secondary outline-none font-medium text-on-surface shadow-sm cursor-pointer">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="last_7_days">New (Past 7 Days)</option>
+              <option value="last_30_days">New (Past 30 Days)</option>
+              <option value="older_30_days">Old (&gt; 30 Days)</option>
+            </select>
+          </div>
+
+          <button onclick="exportPipelineExcel()"
+            class="flex items-center gap-1.5 font-label-md text-xs text-on-surface-variant border border-outline-variant px-3 py-1.5 rounded-lg hover:bg-surface-container-low transition-colors shadow-sm bg-white font-bold">
+            <span class="material-symbols-outlined text-[18px]">download</span>
+            Export Excel
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW 1: Pipeline Visual Board (Kanban) -->
+      <div id="kanbanBoardView" class="flex-1 overflow-x-auto custom-scrollbar pb-6">
+        <div class="flex gap-5 h-full items-start">
+          <!-- Column: Applied -->
+          <div
+            class="pipeline-column h-full flex flex-col bg-slate-50/80 rounded-2xl border border-slate-200/80 p-3 shadow-xs">
+            <div class="flex items-center justify-between px-1 pb-2.5 border-b border-slate-200/70 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+                <h3 class="font-label-md text-xs uppercase tracking-wider text-on-surface font-extrabold">Applied</h3>
+                <span class="bg-slate-200/80 px-2 py-0.5 rounded-full text-[10px] font-bold text-slate-700">{{applied_lane|length}}</span>
+              </div>
+              <span class="material-symbols-outlined text-outline text-lg">more_horiz</span>
+            </div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar space-y-3 p-0.5">
+              {% for ref in applied_lane %}
+              <div
+                class="candidate-card bg-white border border-slate-200 p-3.5 rounded-xl cursor-pointer shadow-xs hover:shadow-md hover:border-secondary/50 relative group flex flex-col justify-between gap-2.5 transition-all"
+                data-timestamp="{{ ref.date_referred|date:'U'|default:0 }}"
+                data-name="{{ ref.applicant.user.get_full_name|lower }}" data-job="{{ ref.job_vacancy.title|lower }}"
+                data-job-exact="{{ ref.job_vacancy.title }}">
+                <div>
+                  <div class="flex items-start gap-3 mb-2">
+                    <div
+                      class="w-10 h-10 rounded-full bg-secondary/15 text-secondary border border-secondary/20 flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                      {{ ref.initials }}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <a href="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                        class="font-bold text-sm text-on-surface hover:text-secondary block leading-snug break-words"
+                        title="{{ ref.applicant.user.get_full_name }}">
+                        {{ ref.applicant.user.first_name }} {{ ref.applicant.user.last_name }}
+                      </a>
+                      <div class="text-[10px] text-on-surface-variant flex items-center gap-1 mt-0.5">
+                        <span class="material-symbols-outlined text-xs">schedule</span>
+                        <span>Referred: {{ ref.date_referred|date:"M d, Y" }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-xs text-on-surface-variant break-words leading-tight">
+                    <span class="text-slate-400 font-medium">Position:</span> <span class="font-bold text-on-surface">{{ref.job_vacancy.title}}</span>
+                  </div>
+                  {% include 'tracker/EMPLOYER/_candidate_scorecard.html' with ref=ref %}
+                </div>
+
+                <div>
+                  <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-1.5 flex-wrap">
+                    <div
+                      class="flex items-center gap-1 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 font-bold text-[11px] shrink-0">
+                      <span class="material-symbols-outlined text-[13px]"
+                        style="font-variation-settings: 'FILL' 1;">stars</span>
+                      <span>{{ ref.match_percentage }}% Match</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 justify-end flex-wrap">
+                      <button type="button"
+                        class="inspect-candidate-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] rounded-lg font-bold transition-all border border-slate-200 shadow-xs"
+                        data-id="{{ ref.applicant.id }}" data-referral-id="{{ ref.id }}"
+                        data-name="{{ ref.applicant.user.get_full_name }}" data-email="{{ ref.applicant.user.email }}"
+                        data-phone="{{ ref.applicant.phone_number|default:'No Phone' }}"
+                        data-location="{{ ref.applicant.location|default:'Bulacan, Philippines' }}"
+                        data-job="{{ ref.job_vacancy.title }}" data-status="{{ ref.status }}"
+                        data-stage="{{ ref.stage_name }}" data-match="{{ ref.match_percentage }}"
+                        data-skills="{{ ref.skills_str }}" data-education="{{ ref.edu_str }}"
+                        data-experience="{{ ref.exp_str }}" data-certifications="{{ ref.certs_str }}"
+                        data-profile-url="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                        title="View candidate details">Details</button>
+                      <button type="button"
+                        onclick="openConfirmInterviewModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                        class="px-2.5 py-1 bg-secondary text-white text-[11px] rounded-lg font-bold hover:bg-opacity-90 shadow-xs transition-all">Interview</button>
+                      <button type="button"
+                        onclick="openMarkUnresponsiveModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                        class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded-lg text-[11px] font-bold shadow-xs transition-all flex items-center gap-0.5"
+                        title="Candidate no longer responding"><span
+                          class="material-symbols-outlined text-[12px] text-amber-600">phone_disabled</span>
+                        Unresponsive</button>
+                      <button type="button"
+                        onclick="openConfirmRejectModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                        class="px-2.5 py-1 bg-error text-white text-[11px] rounded-lg font-bold hover:bg-opacity-90 shadow-xs transition-all">Reject</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% empty %}
+              <div
+                class="p-6 border border-dashed border-slate-300 rounded-xl text-center text-xs text-on-surface-variant italic bg-white/60">
+                No candidates applied.</div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Column: Interviewing -->
+          <div
+            class="pipeline-column h-full flex flex-col bg-slate-50/80 rounded-2xl border border-slate-200/80 p-3 shadow-xs">
+            <div class="flex items-center justify-between px-1 pb-2.5 border-b border-slate-200/70 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></span>
+                <h3 class="font-label-md text-xs uppercase tracking-wider text-on-surface font-extrabold">Interviewing
+                </h3>
+                <span
+                  class="bg-blue-100 text-blue-900 border border-blue-200 px-2 py-0.5 rounded-full text-[10px] font-bold">{{interviewing_lane|length}}</span>
+              </div>
+              <span class="material-symbols-outlined text-outline text-lg">more_horiz</span>
+            </div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar space-y-3 p-0.5">
+              {% for ref in interviewing_lane %}
+              <div
+                class="candidate-card bg-white border-2 border-blue-400/60 p-3.5 rounded-xl cursor-pointer shadow-xs hover:shadow-md hover:border-blue-600 relative group flex flex-col justify-between gap-2.5 transition-all"
+                data-timestamp="{{ ref.date_referred|date:'U'|default:0 }}"
+                data-name="{{ ref.applicant.user.get_full_name|lower }}" data-job="{{ ref.job_vacancy.title|lower }}"
+                data-job-exact="{{ ref.job_vacancy.title }}">
+                <div>
+                  <div class="flex items-start gap-3 mb-2">
+                    <div
+                      class="w-10 h-10 rounded-full bg-blue-50 text-blue-700 border border-blue-200 flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                      {{ ref.initials }}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <a href="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                        class="font-bold text-sm text-on-surface hover:text-secondary block leading-snug break-words"
+                        title="{{ ref.applicant.user.get_full_name }}">
+                        {{ ref.applicant.user.first_name }} {{ ref.applicant.user.last_name }}
+                      </a>
+
+                      <!-- Multi-stage pipeline badge -->
+                      <div class="mt-2 flex flex-col gap-1.5">
+                        <div class="flex items-center gap-1 flex-wrap">
+                          <span class="px-2 py-0.5 rounded text-[10px] font-extrabold flex items-center gap-1 shadow-xs
+                            {% if ref.current_interview_stage_number == 1 %}bg-amber-100 text-amber-900 border border-amber-300
+                            {% elif ref.current_interview_stage_number == 2 %}bg-blue-100 text-blue-900 border border-blue-300
+                            {% elif ref.current_interview_stage_number == 3 %}bg-purple-100 text-purple-900 border border-purple-300
+                            {% else %}bg-emerald-100 text-emerald-900 border border-emerald-300{% endif %}">
+                            <span
+                              class="w-1.5 h-1.5 rounded-full {% if ref.current_interview_stage_number == 1 %}bg-amber-600 animate-pulse{% elif ref.current_interview_stage_number == 2 %}bg-blue-600 animate-pulse{% elif ref.current_interview_stage_number == 3 %}bg-purple-600 animate-pulse{% else %}bg-emerald-600{% endif %}"></span>
+                            Stage {{ ref.current_interview_stage_number }} of 3: {{ref.interview_stage|default:"Initial Assessment"}}
+                          </span>
+                          {% if ref.interview_mode %}
+                          <span
+                            class="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-0.5">
+                            <span class="material-symbols-outlined text-[10px]">
+                              {% if 'Face' in ref.interview_mode or 'F2F' in ref.interview_mode %}person
+                              {% elif 'Phone' in ref.interview_mode %}call
+                              {% else %}videocam{% endif %}
+                            </span>
+                            {{ ref.interview_mode }}
+                          </span>
+                          {% endif %}
+                        </div>
+
+                        <!-- Mini 3-Segment Progress Bar -->
+                        <div class="flex items-center gap-1 w-full"
+                          title="Stage {{ ref.current_interview_stage_number }} of 3">
+                          <div
+                            class="h-1 flex-1 rounded-full {% if ref.current_interview_stage_number >= 1 %}bg-amber-500{% else %}bg-slate-200{% endif %}">
+                          </div>
+                          <div
+                            class="h-1 flex-1 rounded-full {% if ref.current_interview_stage_number >= 2 %}bg-blue-500{% else %}bg-slate-200{% endif %}">
+                          </div>
+                          <div
+                            class="h-1 flex-1 rounded-full {% if ref.current_interview_stage_number >= 3 %}bg-purple-500{% else %}bg-slate-200{% endif %}">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="text-[10px] text-outline flex items-center gap-1 mt-1.5">
+                        <span class="material-symbols-outlined text-xs">schedule</span>
+                        <span>Applied: {{ ref.date_referred|date:"M d, Y" }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-xs text-on-surface-variant break-words leading-tight mt-1">
+                    <span class="text-slate-400 font-medium">Position:</span> <span class="font-bold text-on-surface">{{ref.job_vacancy.title}}</span>
+                  </div>
+                  {% include 'tracker/EMPLOYER/_candidate_scorecard.html' with ref=ref %}
+
+                  {% if ref.interview_stage_notes %}
+                  <div
+                    class="p-2 bg-slate-50 rounded-lg text-[11px] text-slate-600 mt-2 border border-slate-200 break-words line-clamp-2 leading-snug">
+                    <span class="font-bold text-slate-800">Notes:</span> {{ ref.interview_stage_notes }}
+                  </div>
+                  {% endif %}
+                </div>
+
+                <div>
+                  <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-1.5 flex-wrap">
+                    <div
+                      class="flex items-center gap-1 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 font-bold text-[11px] shrink-0">
+                      <span class="material-symbols-outlined text-[13px]"
+                        style="font-variation-settings: 'FILL' 1;">stars</span>
+                      <span>{{ ref.match_percentage }}% Match</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 justify-end flex-wrap">
+                      <button type="button"
+                        class="inspect-candidate-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] rounded-lg font-bold transition-all border border-slate-200 shadow-xs"
+                        data-id="{{ ref.applicant.id }}" data-referral-id="{{ ref.id }}"
+                        data-name="{{ ref.applicant.user.get_full_name }}" data-email="{{ ref.applicant.user.email }}"
+                        data-phone="{{ ref.applicant.phone_number|default:'No Phone' }}"
+                        data-location="{{ ref.applicant.location|default:'Bulacan, Philippines' }}"
+                        data-job="{{ ref.job_vacancy.title }}" data-status="{{ ref.status }}"
+                        data-stage="{{ ref.stage_name }}" data-match="{{ ref.match_percentage }}"
+                        data-skills="{{ ref.skills_str }}" data-education="{{ ref.edu_str }}"
+                        data-experience="{{ ref.exp_str }}" data-certifications="{{ ref.certs_str }}"
+                        data-profile-url="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                        title="View candidate details">Details</button>
+                      <button type="button" data-id="{{ ref.id }}" data-name="{{ ref.applicant.user.get_full_name }}"
+                        data-stage="{{ ref.interview_stage|default:'Initial Assessment' }}"
+                        data-mode="{{ ref.interview_mode|default:'Online Video Assessment' }}"
+                        data-notes="{{ ref.interview_stage_notes|default:'' }}"
+                        onclick="openUpdateInterviewStageModal(this.dataset.id, this.dataset.name, this.dataset.stage, this.dataset.mode, this.dataset.notes)"
+                        class="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white text-[11px] rounded-lg font-bold transition-all shadow-xs flex items-center gap-0.5"
+                        title="Advance to next interview stage">
+                        <span class="material-symbols-outlined text-[13px]">step_into</span> Stage
+                      </button>
+                      <button type="button"
+                        onclick="openOfferAcceptanceModal('{{ ref.id }}', '{{ ref.job_vacancy.title|escapejs }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                        class="px-2.5 py-1 bg-secondary text-white text-[11px] rounded-lg font-bold hover:bg-opacity-90 shadow-xs transition-all">Offer</button>
+                      <button type="button"
+                        onclick="openMarkUnresponsiveModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                        class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded-lg text-[11px] font-bold shadow-xs transition-all flex items-center gap-0.5"
+                        title="Candidate no longer responding"><span
+                          class="material-symbols-outlined text-[12px] text-amber-600">phone_disabled</span>
+                        Unresponsive</button>
+                      <button type="button"
+                        onclick="openConfirmRejectModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                        class="px-2.5 py-1 bg-error text-white text-[11px] rounded-lg font-bold hover:bg-opacity-90 shadow-xs transition-all">Reject</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% empty %}
+              <div
+                class="p-6 border border-dashed border-slate-300 rounded-xl text-center text-xs text-on-surface-variant italic bg-white/60">
+                No candidates in interviewing.</div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Column: Offered & Onboarding -->
+          <div
+            class="pipeline-column h-full flex flex-col bg-slate-50/80 rounded-2xl border border-slate-200/80 p-3 shadow-xs">
+            <div class="flex items-center justify-between px-1 pb-2.5 border-b border-slate-200/70 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+                <h3 class="font-label-md text-xs uppercase tracking-wider text-on-surface font-extrabold">Offered &amp;
+                  Onboarding</h3>
+                <span
+                  class="bg-purple-100 text-purple-900 border border-purple-200 px-2 py-0.5 rounded-full text-[10px] font-bold">{{offered_lane|length}}</span>
+              </div>
+              <span class="material-symbols-outlined text-outline text-lg">more_horiz</span>
+            </div>
+            <div class="flex-1 overflow-y-auto custom-scrollbar space-y-3 p-0.5">
+              {% for ref in offered_lane %}
+              <div
+                class="candidate-card bg-white border border-purple-200 p-3.5 rounded-xl cursor-pointer shadow-xs hover:shadow-md hover:border-purple-400 relative group flex flex-col justify-between gap-2.5 transition-all"
+                data-timestamp="{{ ref.date_referred|date:'U'|default:0 }}"
+                data-name="{{ ref.applicant.user.get_full_name|lower }}" data-job="{{ ref.job_vacancy.title|lower }}"
+                data-job-exact="{{ ref.job_vacancy.title }}">
+                <div>
+                  <div class="flex items-start gap-3 mb-2">
+                    <div
+                      class="w-10 h-10 rounded-full bg-purple-50 text-purple-700 border border-purple-200 flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                      {{ ref.initials }}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <a href="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                        class="font-bold text-sm text-on-surface hover:text-secondary block leading-snug break-words"
+                        title="{{ ref.applicant.user.get_full_name }}">
+                        {{ ref.applicant.user.first_name }} {{ ref.applicant.user.last_name }}
+                      </a>
+                      <div class="text-[11px] font-semibold text-purple-700 mt-0.5">
+                        {% if ref.status == 'Accepted — Awaiting Onboarding' %}
+                        Awaiting Confirmation
+                        {% elif ref.status == 'Confirmed — Onboarding' %}
+                        Onboarding (Docs: {{ ref.completed_requirements_count }}/10)
+                        {% elif ref.status == 'No Show' %}
+                        No Show (Follow-up)
+                        {% else %}
+                        Offer Extended
+                        {% endif %}
+                      </div>
+                      <div class="text-[10px] text-outline flex items-center gap-1 mt-1">
+                        <span class="material-symbols-outlined text-xs">schedule</span>
+                        <span>Applied: {{ ref.date_referred|date:"M d, Y" }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-xs text-on-surface-variant break-words leading-tight mt-1">
+                    <span class="text-slate-400 font-medium">Position:</span> <span
+                      class="font-bold text-on-surface">{{ ref.job_vacancy.title }}</span>
+                  </div>
+                  {% include 'tracker/EMPLOYER/_candidate_scorecard.html' with ref=ref %}
+                </div>
+
+                <div>
+                  <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-1.5 flex-wrap">
+                    <div
+                      class="flex items-center gap-1 text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200 font-bold text-[11px] shrink-0">
+                      <span class="material-symbols-outlined text-[13px]"
+                        style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+                      <span>{{ ref.status }}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 justify-end flex-wrap">
+                      <button type="button"
+                        class="inspect-candidate-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] rounded-lg font-bold transition-all border border-slate-200 shadow-xs"
+                        data-id="{{ ref.applicant.id }}" data-referral-id="{{ ref.id }}"
+                        data-name="{{ ref.applicant.user.get_full_name }}" data-email="{{ ref.applicant.user.email }}"
+                        data-phone="{{ ref.applicant.phone_number|default:'No Phone' }}"
+                        data-location="{{ ref.applicant.location|default:'Bulacan, Philippines' }}"
+                        data-job="{{ ref.job_vacancy.title }}" data-status="{{ ref.status }}"
+                        data-stage="{{ ref.stage_name }}" data-match="{{ ref.match_percentage }}"
+                        data-skills="{{ ref.skills_str }}" data-education="{{ ref.edu_str }}"
+                        data-experience="{{ ref.exp_str }}" data-certifications="{{ ref.certs_str }}"
+                        data-profile-url="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                        title="View candidate details">Details</button>
+                      <button type="button"
+                        onclick="openMarkUnresponsiveModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                        class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded-lg text-[11px] font-bold shadow-xs transition-all flex items-center gap-0.5"
+                        title="Candidate no longer responding"><span
+                          class="material-symbols-outlined text-[12px] text-amber-600">phone_disabled</span>
+                        Unresponsive</button>
+                      <button type="button"
+                        onclick="openConfirmRejectModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                        class="px-2.5 py-1 bg-error text-white text-[11px] rounded-lg font-bold hover:bg-opacity-90 shadow-xs transition-all">Reject</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+            <div
+              class="p-6 border border-dashed border-slate-300 rounded-xl text-center text-xs text-on-surface-variant italic bg-white/60">
+              No candidates in onboarding.</div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Column: Hired / Active -->
+        <div
+          class="pipeline-column h-full flex flex-col bg-slate-50/80 rounded-2xl border border-slate-200/80 p-3 shadow-xs">
+          <div class="flex items-center justify-between px-1 pb-2.5 border-b border-slate-200/70 mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+              <h3 class="font-label-md text-xs uppercase tracking-wider text-on-surface font-extrabold">Hired / Active
+              </h3>
+              <span
+                class="bg-emerald-100 text-emerald-900 border border-emerald-200 px-2 py-0.5 rounded-full text-[10px] font-bold">{{hired_lane|length}}</span>
+            </div>
+            <span class="material-symbols-outlined text-outline text-lg">more_horiz</span>
+          </div>
+          <div class="flex-1 overflow-y-auto custom-scrollbar space-y-3 p-0.5">
+            {% for ref in hired_lane %}
+            <div
+              class="candidate-card bg-white border border-emerald-200 p-3.5 rounded-xl cursor-default shadow-xs hover:shadow-md hover:border-emerald-400 relative group flex flex-col justify-between gap-2.5 transition-all"
+              data-timestamp="{{ ref.date_referred|date:'U'|default:0 }}"
+              data-name="{{ ref.applicant.user.get_full_name|lower }}" data-job="{{ ref.job_vacancy.title|lower }}"
+              data-job-exact="{{ ref.job_vacancy.title }}">
+              <div>
+                <div class="flex items-start gap-3 mb-2">
+                  <div
+                    class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                    {{ ref.initials }}
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <a href="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                      class="font-bold text-sm text-on-surface hover:text-secondary block leading-snug break-words"
+                      title="{{ ref.applicant.user.get_full_name }}">
+                      {{ ref.applicant.user.first_name }} {{ ref.applicant.user.last_name }}
+                    </a>
+                    <div class="text-[11px] font-semibold text-emerald-800 mt-0.5">
+                      {% if ref.status == 'Hired — Probationary' %}
+                      Probationary Placement
+                      {% elif ref.status == 'Hired — Regular' or ref.status == 'Regularly Employed' %}
+                      Regularly Employed
+                      {% else %}
+                      {{ ref.status }}
+                      {% endif %}
+                    </div>
+                    <div class="text-[10px] text-outline flex items-center gap-1 mt-1">
+                      <span class="material-symbols-outlined text-xs">schedule</span>
+                      <span>Applied: {{ ref.date_referred|date:"M d, Y" }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-xs text-on-surface-variant break-words leading-tight mt-1">
+                  <span class="text-slate-400 font-medium">Position:</span> <span class="font-bold text-on-surface">{{ref.job_vacancy.title}}</span>
+                </div>
+                {% include 'tracker/EMPLOYER/_candidate_scorecard.html' with ref=ref %}
+              </div>
+
+              <div>
+                <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-1.5 flex-wrap">
+                  <div
+                    class="flex items-center gap-1 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 font-bold text-[11px] shrink-0">
+                    <span class="material-symbols-outlined text-[13px]"
+                      style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+                    <span>{{ ref.status }}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 justify-end flex-wrap">
+                    <button type="button"
+                      class="inspect-candidate-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] rounded-lg font-bold transition-all border border-slate-200 shadow-xs"
+                      data-id="{{ ref.applicant.id }}" data-referral-id="{{ ref.id }}"
+                      data-name="{{ ref.applicant.user.get_full_name }}" data-email="{{ ref.applicant.user.email }}"
+                      data-phone="{{ ref.applicant.phone_number|default:'No Phone' }}"
+                      data-location="{{ ref.applicant.location|default:'Bulacan, Philippines' }}"
+                      data-job="{{ ref.job_vacancy.title }}" data-status="{{ ref.status }}"
+                      data-stage="{{ ref.stage_name }}" data-match="{{ ref.match_percentage }}"
+                      data-skills="{{ ref.skills_str }}" data-education="{{ ref.edu_str }}"
+                      data-experience="{{ ref.exp_str }}" data-certifications="{{ ref.certs_str }}"
+                      data-profile-url="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                      title="View candidate details">Details</button>
+                    {% if ref.status == 'Hired — Probationary' or ref.status == 'Probation Extended' %}
+                    <button type="button"
+                      onclick="openProbationReviewModal('{{ ref.id }}', '{{ ref.job_vacancy.title|escapejs }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                      class="px-2.5 py-1 bg-secondary text-white text-[11px] rounded-lg font-bold hover:bg-opacity-90 shadow-xs transition-all">Review</button>
+                    {% endif %}
+                    {% if not ref.eval_emp_satisfaction %}
+                    <button type="button"
+                      onclick="openEmployerEvaluationModal('{{ ref.id }}', '{{ ref.job_vacancy.title|escapejs }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                      class="px-2.5 py-1 bg-emerald-600 text-white text-[11px] rounded-lg font-bold hover:bg-opacity-90 shadow-xs transition-all">Evaluate</button>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <div
+              class="p-6 border border-dashed border-slate-300 rounded-xl text-center text-xs text-on-surface-variant italic bg-white/60">
+              No hired placements yet.</div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Column: Closed / Other -->
+        <div
+          class="pipeline-column h-full flex flex-col bg-slate-50/80 rounded-2xl border border-slate-200/80 p-3 shadow-xs">
+          <div class="flex items-center justify-between px-1 pb-2.5 border-b border-slate-200/70 mb-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+              <h3 class="font-label-md text-xs uppercase tracking-wider text-on-surface font-extrabold">Closed /
+                Declined</h3>
+              <span
+                class="bg-red-100 text-red-900 border border-red-200 px-2 py-0.5 rounded-full text-[10px] font-bold">{{closed_lane|length}}</span>
+            </div>
+            <span class="material-symbols-outlined text-outline text-lg">more_horiz</span>
+          </div>
+          <div class="flex-1 overflow-y-auto custom-scrollbar space-y-3 p-0.5">
+            {% for ref in closed_lane %}
+            <div
+              class="candidate-card bg-white border border-slate-200 p-3.5 rounded-xl cursor-default shadow-xs hover:shadow-md relative group flex flex-col justify-between gap-2.5 transition-all"
+              data-timestamp="{{ ref.date_referred|date:'U'|default:0 }}"
+              data-name="{{ ref.applicant.user.get_full_name|lower }}" data-job="{{ ref.job_vacancy.title|lower }}"
+              data-job-exact="{{ ref.job_vacancy.title }}">
+              <div>
+                <div class="flex items-start gap-3 mb-2">
+                  <div
+                    class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 border border-slate-200 flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                    {{ ref.initials }}
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <a href="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                      class="font-bold text-sm text-on-surface hover:text-secondary block leading-snug break-words"
+                      title="{{ ref.applicant.user.get_full_name }}">
+                      {{ ref.applicant.user.first_name }} {{ ref.applicant.user.last_name }}
+                    </a>
+                    <div class="text-[11px] text-error font-semibold mt-0.5">{{ ref.status }}</div>
+                    <div class="text-[10px] text-outline flex items-center gap-1 mt-1">
+                      <span class="material-symbols-outlined text-xs">schedule</span>
+                      <span>Applied: {{ ref.date_referred|date:"M d, Y" }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-xs text-on-surface-variant break-words leading-tight mt-1">
+                  <span class="text-slate-400 font-medium">Position:</span> <span class="font-bold text-on-surface">{{ref.job_vacancy.title}}</span>
+                </div>
+                {% include 'tracker/EMPLOYER/_candidate_scorecard.html' with ref=ref %}
+                {% if ref.decline_reason or ref.rejection_reason %}
+                <div
+                  class="text-[11px] bg-red-50 border border-red-100 text-red-700 p-2 rounded-lg mt-2 break-words leading-snug">
+                  <span class="font-bold">Reason:</span> {{ ref.decline_reason|default:ref.rejection_reason }}
+                </div>
+                {% endif %}
+              </div>
+
+              <div>
+                <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-1.5 flex-wrap">
+                  <div
+                    class="flex items-center gap-1 text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200 font-bold text-[11px] shrink-0">
+                    <span class="material-symbols-outlined text-[13px]">cancel</span>
+                    <span>Closed</span>
+                  </div>
+                  <div class="flex items-center gap-1.5 justify-end flex-wrap">
+                    <button type="button"
+                      class="inspect-candidate-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] rounded-lg font-bold transition-all border border-slate-200 shadow-xs"
+                      data-id="{{ ref.applicant.id }}" data-referral-id="{{ ref.id }}"
+                      data-name="{{ ref.applicant.user.get_full_name }}" data-email="{{ ref.applicant.user.email }}"
+                      data-phone="{{ ref.applicant.phone_number|default:'No Phone' }}"
+                      data-location="{{ ref.applicant.location|default:'Bulacan, Philippines' }}"
+                      data-job="{{ ref.job_vacancy.title }}" data-status="{{ ref.status }}"
+                      data-stage="{{ ref.stage_name }}" data-match="{{ ref.match_percentage }}"
+                      data-skills="{{ ref.skills_str }}" data-education="{{ ref.edu_str }}"
+                      data-experience="{{ ref.exp_str }}" data-certifications="{{ ref.certs_str }}"
+                      data-profile-url="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                      title="View candidate details">Details</button>
+                    {% if not ref.eval_emp_satisfaction %}
+                    <button type="button"
+                      onclick="openEmployerEvaluationModal('{{ ref.id }}', '{{ ref.job_vacancy.title|escapejs }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                      class="px-2.5 py-1 bg-emerald-600 text-white text-[11px] rounded-lg font-bold hover:bg-opacity-90 shadow-xs transition-all">Evaluate</button>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <div
+              class="p-6 border border-dashed border-slate-300 rounded-xl text-center text-xs text-on-surface-variant italic bg-white/60">
+              No closed placements.</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- VIEW 2: Interactive Candidate List & Approval Table View -->
+  <div id="candidateTableView" class="hidden flex-1 overflow-y-auto custom-scrollbar pb-6 space-y-4">
+    <!-- Stage Filter Navigation Tabs -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar shrink-0">
+      <button type="button" onclick="filterTableStage('all')"
+        class="table-stage-tab px-4 py-2 rounded-full text-xs font-bold transition-all bg-secondary text-white shadow-sm"
+        data-stage="all">
+        All Candidates (<span id="tabCount-all">{{ all_referrals|length }}</span>)
+      </button>
+      <button type="button" onclick="filterTableStage('Applied')"
+        class="table-stage-tab px-4 py-2 rounded-full text-xs font-semibold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface"
+        data-stage="Applied">
+        Applied (<span id="tabCount-Applied">{{ applied_lane|length }}</span>)
+      </button>
+      <button type="button" onclick="filterTableStage('Interviewing')"
+        class="table-stage-tab px-4 py-2 rounded-full text-xs font-semibold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface"
+        data-stage="Interviewing">
+        Interviewing (<span id="tabCount-Interviewing">{{ interviewing_lane|length }}</span>)
+      </button>
+      <button type="button" onclick="filterTableStage('Offered')"
+        class="table-stage-tab px-4 py-2 rounded-full text-xs font-semibold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface"
+        data-stage="Offered">
+        Offered &amp; Onboarding (<span id="tabCount-Offered">{{ offered_lane|length }}</span>)
+      </button>
+      <button type="button" onclick="filterTableStage('Hired')"
+        class="table-stage-tab px-4 py-2 rounded-full text-xs font-semibold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface"
+        data-stage="Hired">
+        Hired Placements (<span id="tabCount-Hired">{{ hired_lane|length }}</span>)
+      </button>
+      <button type="button" onclick="filterTableStage('Closed')"
+        class="table-stage-tab px-4 py-2 rounded-full text-xs font-semibold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface"
+        data-stage="Closed">
+        Closed / Declined (<span id="tabCount-Closed">{{ closed_lane|length }}</span>)
+      </button>
+    </div>
+
+    <!-- High-Density Candidate Approval Table -->
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-x-auto shadow-sm">
+      <table class="w-full text-left border-collapse table-fixed">
+        <colgroup>
+          <col style="width: 22%;">
+          <col style="width: 16%;">
+          <col style="width: 11%;">
+          <col style="width: 19%;">
+          <col style="width: 11%;">
+          <col style="width: 21%;">
+        </colgroup>
+        <thead class="bg-slate-100/80 border-b border-outline-variant">
+          <tr>
+            <th class="px-4 py-3.5 font-label-md text-xs font-bold text-on-surface-variant uppercase">Candidate</th>
+            <th class="px-4 py-3.5 font-label-md text-xs font-bold text-on-surface-variant uppercase">Applied Position
+            </th>
+            <th class="px-4 py-3.5 font-label-md text-xs font-bold text-on-surface-variant uppercase text-center">Match
+              Score</th>
+            <th class="px-4 py-3.5 font-label-md text-xs font-bold text-on-surface-variant uppercase">Stage &amp; Status
+            </th>
+            <th class="px-4 py-3.5 font-label-md text-xs font-bold text-on-surface-variant uppercase">Date Referred</th>
+            <th class="px-4 py-3.5 font-label-md text-xs font-bold text-on-surface-variant uppercase text-right">
+              Quick Actions &amp; Approval</th>
+          </tr>
+        </thead>
+        <tbody id="candidateTableListBody" class="divide-y divide-outline-variant">
+          <tr id="tableEmptyRow" class="hidden">
+            <td colspan="6" class="px-6 py-12 text-center text-on-surface-variant">
+              <div class="flex flex-col items-center justify-center">
+                <span class="material-symbols-outlined text-4xl text-outline/40 mb-2">person_search</span>
+                <p class="font-bold text-on-surface text-sm">No Candidates in This Stage</p>
+                <p class="text-xs text-on-surface-variant mt-1" id="tableEmptyMsg">No candidates found for the selected
+                  stage and job filter.</p>
+              </div>
+            </td>
+          </tr>
+          {% for ref in all_referrals %}
+          <tr class="table-candidate-row zebra-row hover:bg-blue-50/40 transition-colors"
+            data-name="{{ ref.applicant.user.get_full_name|lower }}" data-job="{{ ref.job_vacancy.title|lower }}"
+            data-stage="{{ ref.stage_name }}" data-job-exact="{{ ref.job_vacancy.title }}"
+            data-timestamp="{{ ref.date_referred|date:'U'|default:0 }}">
+            <td class="px-3 py-4.5">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full bg-secondary/15 text-secondary font-black text-sm flex items-center justify-center shrink-0 border border-secondary/20 shadow-sm">
+                  {{ ref.initials }}
+                </div>
+                <div>
+                  <a href="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                    class="font-bold text-on-surface hover:text-secondary text-sm block">
+                    {{ ref.applicant.user.get_full_name }}
+                  </a>
+                  <div class="text-xs text-on-surface-variant">{{ ref.applicant.user.email }} &bull; {{ref.applicant.phone_number|default:"No Phone"}}</div>
+                  <div class="text-[11px] text-outline mt-0.5">{{ref.applicant.location|default:"Bulacan, Philippines"}}</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-3 py-4.5">
+              <span class="font-bold text-on-surface text-sm block">{{ ref.job_vacancy.title }}</span>
+              <span
+                class="text-[11px] font-semibold text-secondary px-2 py-0.5 bg-secondary/10 rounded-full border border-secondary/20 inline-block mt-0.5">{{ref.job_vacancy.category_display}}</span>
+            </td>
+            <td class="px-3 py-4.5 text-center whitespace-nowrap">
+              <span
+                class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold {% if ref.match_percentage >= 70 %}bg-emerald-100 text-emerald-800 border border-emerald-200{% elif ref.match_percentage >= 50 %}bg-blue-100 text-blue-800 border border-blue-200{% else %}bg-amber-100 text-amber-800 border border-amber-200{% endif %}">
+                <span class="material-symbols-outlined text-[14px]"
+                  style="font-variation-settings:'FILL' 1;">stars</span>
+                {{ ref.match_percentage }}% Match
+              </span>
+            </td>
+            <td class="px-3 py-4.5">
+              <div class="flex flex-col gap-1">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold w-fit
+                      {% if ref.stage_name == 'Hired' %}bg-emerald-100 text-emerald-800 border border-emerald-200
+                      {% elif ref.stage_name == 'Interviewing' %}bg-blue-100 text-blue-800 border border-blue-200
+                      {% elif ref.stage_name == 'Offered' %}bg-purple-100 text-purple-800 border border-purple-200
+                      {% elif ref.stage_name == 'Closed' %}bg-slate-100 text-slate-700 border border-slate-200
+                      {% else %}bg-amber-100 text-amber-800 border border-amber-200{% endif %}">
+                  <span
+                    class="w-2 h-2 rounded-full {% if ref.stage_name == 'Hired' %}bg-emerald-600{% elif ref.stage_name == 'Interviewing' %}bg-blue-600{% elif ref.stage_name == 'Offered' %}bg-purple-600{% elif ref.stage_name == 'Closed' %}bg-slate-400{% else %}bg-amber-600{% endif %}"></span>
+                  {{ ref.status }}
+                </span>
+                {% if ref.status == 'Interviewing' %}
+                <span class="text-[10px] font-extrabold px-2 py-0.5 rounded w-fit flex items-center gap-1
+                        {% if ref.current_interview_stage_number == 1 %}bg-amber-50 text-amber-800 border border-amber-200
+                        {% elif ref.current_interview_stage_number == 2 %}bg-blue-50 text-blue-800 border border-blue-200
+                        {% elif ref.current_interview_stage_number == 3 %}bg-purple-50 text-purple-800 border border-purple-200
+                        {% else %}bg-emerald-50 text-emerald-800 border border-emerald-200{% endif %}">
+                  <span
+                    class="w-1.5 h-1.5 rounded-full {% if ref.current_interview_stage_number == 1 %}bg-amber-600 animate-pulse{% elif ref.current_interview_stage_number == 2 %}bg-blue-600 animate-pulse{% elif ref.current_interview_stage_number == 3 %}bg-purple-600 animate-pulse{% else %}bg-emerald-600{% endif %}"></span>
+                  Stage {{ ref.current_interview_stage_number }}/3: {{ref.interview_stage|default:"Initial Assessment"}}
+                </span>
+                {% endif %}
+              </div>
+            </td>
+            <td class="px-3 py-4.5 text-on-surface-variant text-sm whitespace-nowrap">
+              <div>{{ ref.date_referred|date:"M d, Y" }}</div>
+              <div class="text-[11px] text-outline">{{ ref.updated_at|time:"g:i A" }}</div>
+            </td>
+            <td class="px-3 py-4.5 text-right">
+              <div class="flex flex-wrap items-center justify-end gap-1.5">
+                {% if ref.stage_name == 'Applied' %}
+                <!-- One-Click Approve to Interview -->
+                <button type="button"
+                  onclick="openConfirmInterviewModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                  class="h-8 px-3.5 inline-flex items-center justify-center gap-1 bg-secondary hover:opacity-90 text-white rounded-lg text-xs font-bold whitespace-nowrap shadow-sm active:scale-95 transition-all">
+                  <span class="material-symbols-outlined text-[16px]">how_to_reg</span>
+                  <span>Approve Interview</span>
+                </button>
+                {% elif ref.stage_name == 'Interviewing' %}
+                <!-- Update Interview Stage -->
+                <button type="button" data-id="{{ ref.id }}" data-name="{{ ref.applicant.user.get_full_name }}"
+                  data-stage="{{ ref.interview_stage|default:'Initial Assessment' }}"
+                  data-mode="{{ ref.interview_mode|default:'Online Video Assessment' }}"
+                  data-notes="{{ ref.interview_stage_notes|default:'' }}"
+                  onclick="openUpdateInterviewStageModal(this.dataset.id, this.dataset.name, this.dataset.stage, this.dataset.mode, this.dataset.notes)"
+                  class="h-8 px-3 inline-flex items-center justify-center gap-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold whitespace-nowrap shadow-sm active:scale-95 transition-all"
+                  title="Advance or Update Interview Stage">
+                  <span class="material-symbols-outlined text-[15px]">step_into</span>
+                  <span>Update Stage</span>
+                </button>
+                <!-- One-Click Extend Job Offer -->
+                <button type="button"
+                  onclick="openOfferAcceptanceModal('{{ ref.id }}', '{{ ref.job_vacancy.title|escapejs }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                  class="h-8 px-3 inline-flex items-center justify-center gap-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold whitespace-nowrap shadow-sm active:scale-95 transition-all">
+                  <span class="material-symbols-outlined text-[15px]">card_membership</span>
+                  <span>Extend Offer</span>
+                </button>
+                {% elif ref.stage_name == 'Offered' %}
+                {% if ref.status == 'Accepted — Awaiting Onboarding' %}
+                <form method="POST" class="inline">
+                  {% csrf_token %}
+                  <input type="hidden" name="referral_id" value="{{ ref.id }}">
+                  <input type="hidden" name="action" value="confirm_onboarding">
+                  <button type="submit"
+                    class="h-8 px-3.5 inline-flex items-center justify-center gap-1 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-xs font-bold whitespace-nowrap shadow-sm active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                    <span>Confirm Onboarding</span>
+                  </button>
+                </form>
+                {% else %}
+                <button type="button"
+                  onclick="openLogReportingModal('{{ ref.id }}', '{{ ref.job_vacancy.title|escapejs }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                  class="h-8 px-3.5 inline-flex items-center justify-center gap-1 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-bold whitespace-nowrap shadow-sm active:scale-95 transition-all">
+                  <span class="material-symbols-outlined text-[16px]">badge</span>
+                  <span>Log Reporting</span>
+                </button>
+                {% endif %}
+                {% elif ref.stage_name == 'Hired' %}
+                <button type="button"
+                  onclick="openProbationReviewModal('{{ ref.id }}', '{{ ref.job_vacancy.title|escapejs }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                  class="h-8 px-3.5 inline-flex items-center justify-center gap-1 bg-slate-800 hover:bg-black text-white rounded-lg text-xs font-bold whitespace-nowrap shadow-sm active:scale-95 transition-all">
+                  <span class="material-symbols-outlined text-[16px]">rate_review</span>
+                  <span>Probation Review</span>
+                </button>
+                {% endif %}
+
+                <!-- Full Candidate Inspector Trigger Button -->
+                <button type="button"
+                  class="inspect-candidate-btn h-8 px-3 inline-flex items-center justify-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg text-xs font-semibold whitespace-nowrap border border-slate-200 transition-all shadow-sm active:scale-95"
+                  data-id="{{ ref.applicant.id }}" data-referral-id="{{ ref.id }}"
+                  data-name="{{ ref.applicant.user.get_full_name }}" data-email="{{ ref.applicant.user.email }}"
+                  data-phone="{{ ref.applicant.phone_number|default:'No Phone' }}"
+                  data-location="{{ ref.applicant.location|default:'Bulacan, Philippines' }}"
+                  data-job="{{ ref.job_vacancy.title }}" data-status="{{ ref.status }}"
+                  data-stage="{{ ref.stage_name }}" data-match="{{ ref.match_percentage }}"
+                  data-skills="{{ ref.skills_str }}" data-education="{{ ref.edu_str }}"
+                  data-experience="{{ ref.exp_str }}" data-certifications="{{ ref.certs_str }}"
+                  data-profile-url="{% url 'applicant_details_employer_id' ref.applicant.id %}"
+                  title="Inspect full candidate details">
+                  <span class="material-symbols-outlined text-[15px]">visibility</span>
+                  <span>Details</span>
+                </button>
+
+                <!-- Automated Score Card -->
+                <button type="button"
+                  data-scorecard-url="{% url 'applicant_scorecard_employer' ref.id %}"
+                  data-scorecard-name="{{ ref.applicant.user.get_full_name }}"
+                  class="scorecard-btn h-8 px-2.5 inline-flex items-center justify-center gap-1 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-lg text-xs font-bold border border-slate-200 transition-all active:scale-95 cursor-pointer"
+                  title="Open automated applicant score card">
+                  <span class="material-symbols-outlined text-[15px]">assignment</span>
+                  <span>Score Card</span>
+                </button>
+
+                <!-- Technical Screening Scorecard -->
+                <button type="button"
+                  class="screening-eval-btn h-8 px-2.5 inline-flex items-center justify-center gap-1 bg-violet-50 hover:bg-violet-100 text-violet-700 rounded-lg text-xs font-bold border border-violet-200 transition-all active:scale-95"
+                  data-referral-id="{{ ref.id }}"
+                  data-name="{{ ref.applicant.user.get_full_name }}"
+                  data-url="{% url 'save_screening_evaluation' ref.id %}"
+                  data-evaluation="{{ ref.screening_scores_json }}"
+                  data-notes="{{ ref.screening_evaluation.notes|default:'' }}"
+                  title="Open technical screening scorecard">
+                  <span class="material-symbols-outlined text-[15px]">fact_check</span>
+                  <span>Evaluate{% if ref.screening_total %} · {{ ref.screening_total }}%{% endif %}</span>
+                </button>
+
+                {% if ref.stage_name != 'Closed' %}
+                <!-- Quick Mark Unresponsive -->
+                <button type="button"
+                  onclick="openMarkUnresponsiveModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                  class="h-8 px-2 inline-flex items-center justify-center gap-1 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded-lg text-xs font-bold border border-amber-300 transition-all active:scale-95"
+                  title="Candidate No Longer Contacted / Unresponsive">
+                  <span class="material-symbols-outlined text-[14px] text-amber-600">phone_disabled</span>
+                  <span>No Contact</span>
+                </button>
+                <!-- Quick Reject -->
+                <button type="button"
+                  onclick="openConfirmRejectModal('{{ ref.id }}', '{{ ref.applicant.user.get_full_name|escapejs }}')"
+                  class="h-8 w-8 inline-flex items-center justify-center bg-red-50 hover:bg-red-100 text-red-600 rounded-lg text-xs font-bold border border-red-200 transition-all active:scale-95"
+                  title="Decline Candidate">
+                  <span class="material-symbols-outlined text-[16px]">close</span>
+                </button>
+                {% endif %}
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="px-6 py-12 text-center text-on-surface-variant">
+              <span class="material-symbols-outlined text-4xl text-outline/40 mb-2 block">person_search</span>
+              <p class="font-bold text-on-surface">No Candidates in Pipeline</p>
+              <p class="text-xs text-on-surface-variant mt-1">No candidate referrals found for this company.</p>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </main>
+  </div>
+
+  <!-- CANDIDATE PROFILE INSPECTION & QUICK ACTION MODAL -->
+  <div id="candidateInspectModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 animate-fade-in">
+    <div
+      class="bg-white border border-outline-variant rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] flex flex-col overflow-hidden">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-outline-variant/60 pb-4 mb-4 shrink-0">
+        <div class="flex items-center gap-3">
+          <div id="inspectAvatar"
+            class="w-12 h-12 rounded-full bg-secondary/15 text-secondary font-black text-lg flex items-center justify-center border border-secondary/20 shadow-sm">
+            C
+          </div>
+          <div>
+            <h3 id="inspectName" class="font-headline-md text-lg font-bold text-on-surface">Candidate Name</h3>
+            <p id="inspectJob" class="text-xs font-semibold text-secondary">Applied Position</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="inspectMatchBadge"
+            class="px-3 py-1 bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-bold rounded-full">
+            100% Match
+          </span>
+          <button onclick="closeCandidateInspectModal()"
+            class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="flex-1 overflow-y-auto custom-scrollbar space-y-4 pr-1 text-xs">
+        <!-- Contact & Basic Info -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+          <div>
+            <span class="text-outline uppercase text-[10px] font-bold block">Email</span>
+            <span id="inspectEmail" class="font-semibold text-on-surface break-all">email@test.com</span>
+          </div>
+          <div>
+            <span class="text-outline uppercase text-[10px] font-bold block">Phone</span>
+            <span id="inspectPhone" class="font-semibold text-on-surface">09123456789</span>
+          </div>
+          <div>
+            <span class="text-outline uppercase text-[10px] font-bold block">Location</span>
+            <span id="inspectLocation" class="font-semibold text-on-surface">Bulacan, Philippines</span>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+          <h4
+            class="font-bold text-on-surface uppercase text-[11px] tracking-wider mb-1.5 flex items-center gap-1 text-secondary">
+            <span class="material-symbols-outlined text-[16px]">psychology</span>
+            Applicant Skills
+          </h4>
+          <p id="inspectSkills" class="text-on-surface-variant font-medium leading-relaxed"></p>
+        </div>
+
+        <!-- Experience -->
+        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+          <h4
+            class="font-bold text-on-surface uppercase text-[11px] tracking-wider mb-1.5 flex items-center gap-1 text-secondary">
+            <span class="material-symbols-outlined text-[16px]">work</span>
+            Work Experience
+          </h4>
+          <p id="inspectExperience" class="text-on-surface-variant font-medium leading-relaxed"></p>
+        </div>
+
+        <!-- Education -->
+        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+          <h4
+            class="font-bold text-on-surface uppercase text-[11px] tracking-wider mb-1.5 flex items-center gap-1 text-secondary">
+            <span class="material-symbols-outlined text-[16px]">school</span>
+            Education Background
+          </h4>
+          <p id="inspectEducation" class="text-on-surface-variant font-medium leading-relaxed"></p>
+        </div>
+
+        <!-- Certifications -->
+        <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+          <h4
+            class="font-bold text-on-surface uppercase text-[11px] tracking-wider mb-1.5 flex items-center gap-1 text-secondary">
+            <span class="material-symbols-outlined text-[16px]">verified</span>
+            Certifications &amp; Licenses
+          </h4>
+          <p id="inspectCertifications" class="text-on-surface-variant font-medium leading-relaxed"></p>
+        </div>
+      </div>
+
+      <!-- Modal Footer with Instant Actions -->
+      <div
+        class="border-t border-outline-variant/60 pt-4 mt-4 shrink-0 flex items-center justify-between flex-wrap gap-3">
+        <a id="inspectFullProfileLink" href="#"
+          class="inline-flex items-center gap-1 text-secondary hover:underline font-bold text-xs">
+          <span>Open Full Profile Page</span>
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+        </a>
+        <div class="flex items-center gap-2 flex-wrap">
+          <button type="button" id="inspectInterviewBtn"
+            class="px-3.5 py-2 bg-secondary hover:opacity-90 text-white rounded-lg text-xs font-bold transition-all shadow-sm">
+            Approve Interview
+          </button>
+          <button type="button" id="inspectOfferBtn"
+            class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm">
+            Extend Offer
+          </button>
+          <button type="button" id="inspectUnresponsiveBtn"
+            class="px-3.5 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm flex items-center gap-1.5"
+            title="Candidate is no longer reachable or responding">
+            <span class="material-symbols-outlined text-[15px]">phone_disabled</span>
+            <span>No Longer Contacted</span>
+          </button>
+          <button type="button" id="inspectRejectBtn"
+            class="px-3.5 py-2 bg-error hover:bg-opacity-90 text-white rounded-lg text-xs font-bold transition-all shadow-sm">
+            Decline
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 1: Offer Acceptance Modal -->
+  <div id="offerAcceptanceModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden animate-fade-in">
+    <div class="bg-white border border-outline-variant rounded-xl max-w-lg w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[24px]">contact_mail</span>
+          Offer Acceptance Details
+        </h3>
+        <button onclick="closeOfferAcceptanceModal()"
+          class="material-symbols-outlined text-outline hover:text-on-surface text-lg">close</button>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="offer_acceptance">
+        <input type="hidden" name="referral_id" id="offerReferralId">
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Candidate Name</label>
+            <input type="text" id="offerCandidateName" readonly
+              class="w-full text-sm bg-surface-container border border-outline-variant rounded px-3 py-2 outline-none cursor-not-allowed">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Accepted Position / Specific Job Title
+              *</label>
+            <input type="text" name="accepted_position" id="offerJobTitle" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-on-surface mb-1">Accepted Salary / Comp.</label>
+              <input type="text" name="accepted_salary" placeholder="e.g. Php 30,000"
+                class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-on-surface mb-1">Expected Reporting Date *</label>
+              <input type="date" name="reporting_date" required
+                class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-on-surface mb-1">Employment Type *</label>
+              <select name="employment_type" required
+                class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none focus:ring-2 focus:ring-secondary focus:border-transparent bg-white font-body-sm text-sm">
+                <option value="Probationary">Probationary</option>
+                <option value="Regular">Regular</option>
+                <option value="Project-Based">Project-Based</option>
+                <option value="Contract">Contract</option>
+                <option value="Part-Time">Part-Time</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-on-surface mb-1">Probationary Period (Months)</label>
+              <input type="number" name="probationary_period_months" value="6" min="1" max="12"
+                class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Work Location *</label>
+            <input type="text" name="work_location" placeholder="e.g. Main Office / Branch A" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Remarks for candidate/PESO</label>
+            <textarea name="employer_remarks"
+              placeholder="e.g. Applicant needs to submit medical clearance before reporting date."
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none focus:ring-2 focus:ring-secondary focus:border-transparent h-16"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+          <button type="button" onclick="closeOfferAcceptanceModal()"
+            class="px-4 py-2 border border-outline text-on-surface rounded text-sm hover:bg-slate-50 transition-colors">Cancel</button>
+          <button type="submit"
+            class="px-4 py-2 bg-secondary text-white rounded text-sm hover:opacity-90 transition-opacity font-bold">Record
+            Acceptance</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- STAGE 4: Log Reporting Status Modal -->
+  <div id="logReportingModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden animate-fade-in">
+    <div class="bg-white border border-outline-variant rounded-xl max-w-md w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[24px]">verified_user</span>
+          Log Reporting Status
+        </h3>
+        <button onclick="closeLogReportingModal()"
+          class="material-symbols-outlined text-outline hover:text-on-surface text-lg">close</button>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="log_reporting_status">
+        <input type="hidden" name="referral_id" id="reportingReferralId">
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Candidate</label>
+            <input type="text" id="reportingCandidateName" readonly
+              class="w-full text-sm bg-surface-container border border-outline-variant rounded px-3 py-2 outline-none cursor-not-allowed">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Reported for Work *</label>
+            <select name="reported_for_work" id="reportedForWorkSelect" onchange="toggleStartDateField()" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white outline-none">
+              <option value="Yes">Yes, has reported for work</option>
+              <option value="No">No, failed to report (No Show)</option>
+            </select>
+          </div>
+          <div id="startDateField">
+            <label class="block text-xs font-semibold text-on-surface mb-1">Actual Start Date *</label>
+            <input type="date" name="actual_start_date" id="actualStartDateInput" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none">
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+          <button type="button" onclick="closeLogReportingModal()"
+            class="px-4 py-2 border border-outline text-on-surface rounded text-sm hover:bg-slate-50 transition-colors">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-secondary text-white rounded text-sm hover:opacity-90 font-bold">Log
+            Status</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- STAGE 6: Probation Review Modal -->
+  <div id="probationReviewModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden animate-fade-in">
+    <div class="bg-white border border-outline-variant rounded-xl max-w-md w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[24px]">military_tech</span>
+          Probation Review
+        </h3>
+        <button onclick="closeProbationReviewModal()"
+          class="material-symbols-outlined text-outline hover:text-on-surface text-lg">close</button>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="final_probation_status">
+        <input type="hidden" name="referral_id" id="probationReferralId">
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Employee</label>
+            <input type="text" id="probationCandidateName" readonly
+              class="w-full text-sm bg-surface-container border border-outline-variant rounded px-3 py-2 outline-none cursor-not-allowed">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Probation Outcome *</label>
+            <select name="final_employment_status" id="probationOutcomeSelect" onchange="toggleProbationFields()"
+              required class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white outline-none">
+              <option value="Regularized">Regularize Employee</option>
+              <option value="Extended">Extend Probation Period</option>
+              <option value="Separated">Not Regularized (Separate Candidate)</option>
+            </select>
+          </div>
+          <div id="probationExtField" class="hidden">
+            <label class="block text-xs font-semibold text-on-surface mb-1">New Probation End Date *</label>
+            <input type="date" name="probation_extension_end_date" id="probationExtDate"
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 outline-none">
+          </div>
+          <div id="separationReasonField" class="hidden">
+            <label class="block text-xs font-semibold text-on-surface mb-1">Separation Reason *</label>
+            <select name="separation_reason" id="separationReasonSelect"
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white outline-none">
+              <option value="Employer-initiated">Employer-initiated (Performance / Policy)</option>
+              <option value="Employee-resigned">Employee-resigned (Voluntary Resignation)</option>
+              <option value="Mutual agreement">Mutual agreement</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+          <button type="button" onclick="closeProbationReviewModal()"
+            class="px-4 py-2 border border-outline text-on-surface rounded text-sm hover:bg-slate-50 transition-colors">Cancel</button>
+          <button type="submit"
+            class="px-4 py-2 bg-secondary text-white rounded text-sm hover:opacity-90 font-bold">Submit Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- STAGE 7: Employer Evaluation Feedback Modal -->
+  <div id="employerEvaluationModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden animate-fade-in">
+    <div class="bg-white border border-outline-variant rounded-xl max-w-lg w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[24px]">rate_review</span>
+          PESO Candidate Placement Feedback
+        </h3>
+        <button onclick="closeEmployerEvaluationModal()"
+          class="material-symbols-outlined text-outline hover:text-on-surface text-lg">close</button>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="submit_employer_evaluation">
+        <input type="hidden" name="referral_id" id="evalReferralId">
+
+        <div class="space-y-4 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Referred Candidate</label>
+            <input type="text" id="evalCandidateName" readonly
+              class="w-full text-sm bg-surface-container border border-outline-variant rounded px-3 py-2 outline-none cursor-not-allowed">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">1. Overall quality of the referred
+              candidate? *</label>
+            <select name="eval_emp_quality" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white">
+              <option value="5">Excellent (5/5)</option>
+              <option value="4">Good (4/5)</option>
+              <option value="3">Satisfactory (3/5)</option>
+              <option value="2">Poor (2/5)</option>
+              <option value="1">Unsatisfactory (1/5)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">2. Was the applicant's skill level accurate
+              to what PESO represented? *</label>
+            <select name="eval_emp_skills_accurate" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white font-body-sm text-sm">
+              <option value="Yes">Yes, skills matched representation</option>
+              <option value="No">No, skills were misrepresented</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">3. Were the applicant's certifications
+              genuine and relevant? *</label>
+            <select name="eval_emp_certs_genuine" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white font-body-sm text-sm">
+              <option value="Yes">Yes, certificates checked out</option>
+              <option value="No">No, certificates were irrelevant / missing</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">4. Would you accept more referrals from PESO
+              in the future? *</label>
+            <select name="eval_emp_future_referrals" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white font-body-sm text-sm">
+              <option value="Yes">Yes, absolutely</option>
+              <option value="No">No, preferred other channels</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">5. Overall satisfaction with PESO's job
+              matching service? *</label>
+            <select name="eval_emp_satisfaction" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white font-body-sm text-sm">
+              <option value="5">Extremely Satisfied (5/5)</option>
+              <option value="4">Satisfied (4/5)</option>
+              <option value="3">Neutral (3/5)</option>
+              <option value="2">Dissatisfied (2/5)</option>
+              <option value="1">Extremely Dissatisfied (1/5)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Additional Remarks (optional)</label>
+            <textarea name="eval_emp_notes" placeholder="Please leave any comments to improve PESO services..."
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 h-16 outline-none focus:ring-2 focus:ring-secondary"></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+          <button type="button" onclick="closeEmployerEvaluationModal()"
+            class="px-4 py-2 border border-outline text-on-surface rounded text-sm hover:bg-slate-50 transition-colors">Cancel</button>
+          <button type="submit"
+            class="px-4 py-2 bg-secondary text-white rounded text-sm hover:opacity-90 font-bold">Submit
+            Feedback</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Custom Interview Confirmation Modal with Multi-Stage Selection -->
+  <div id="confirmInterviewModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden animate-fade-in p-4">
+    <div class="bg-white border border-outline-variant rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[24px]">forum</span>
+          Approve to Interview Pipeline
+        </h3>
+        <button type="button" onclick="closeConfirmInterviewModal()"
+          class="material-symbols-outlined text-outline hover:text-on-surface text-lg cursor-pointer">close</button>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="move_interviewing">
+        <input type="hidden" name="referral_id" id="interviewReferralId">
+
+        <div class="space-y-4">
+          <p class="text-sm text-on-surface-variant">
+            Moving <span id="interviewCandidateName" class="font-bold text-on-surface"></span> into the multi-stage
+            interview pipeline.
+          </p>
+
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Starting Stage</label>
+            <select name="interview_stage"
+              class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-secondary text-on-surface">
+              <option value="Initial Assessment" selected>Stage 1: Initial Assessment</option>
+              <option value="Online or Face-to-Face (F2F) Assessment">Stage 2: Online or Face-to-Face (F2F) Assessment
+              </option>
+              <option value="Hiring Manager / Final Interview">Stage 3: Hiring Manager / Final Interview</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Assessment Format</label>
+            <select name="interview_mode"
+              class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-secondary text-on-surface">
+              <option value="Online Video Assessment" selected>Online Video Assessment</option>
+              <option value="Face-to-Face (F2F)">Face-to-Face (F2F) Assessment</option>
+              <option value="Phone Call">Phone Call Screening</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Notes / Instructions for Candidate</label>
+            <textarea name="interview_stage_notes" rows="2"
+              class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-secondary"
+              placeholder="e.g. Please prepare your portfolio for the initial assessment round."></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+          <button type="button" onclick="closeConfirmInterviewModal()"
+            class="px-4 py-2 border border-outline text-on-surface rounded-lg text-sm hover:bg-slate-50 transition-colors">Cancel</button>
+          <button type="submit"
+            class="px-5 py-2 bg-secondary text-white rounded-lg text-sm hover:opacity-90 font-bold transition-opacity shadow-sm">Confirm
+            Approval</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Multi-Stage Interview Stage Update Modal -->
+  <div id="updateInterviewStageModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden animate-fade-in p-4">
+    <div
+      class="bg-white border border-outline-variant rounded-2xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-blue-600 text-[24px]">step_into</span>
+          Update Interview Stage
+        </h3>
+        <button type="button" onclick="closeUpdateInterviewStageModal()"
+          class="material-symbols-outlined text-outline hover:text-on-surface text-lg cursor-pointer">close</button>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="update_interview_stage">
+        <input type="hidden" name="referral_id" id="stageReferralId">
+
+        <div class="space-y-4">
+          <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-center gap-3">
+            <span class="material-symbols-outlined text-blue-600 text-2xl">person</span>
+            <div>
+              <div class="font-bold text-slate-900" id="stageCandidateName">Candidate Name</div>
+              <div class="text-xs text-blue-800">Multi-Stage Pipeline Progression</div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Select Interview Stage *</label>
+            <select name="interview_stage" id="stageSelectInput" required
+              class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2.5 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500 text-on-surface">
+              <option value="Initial Assessment">Stage 1: Initial Assessment</option>
+              <option value="Online or Face-to-Face (F2F) Assessment">Stage 2: Online or Face-to-Face (F2F) Assessment
+              </option>
+              <option value="Hiring Manager / Final Interview">Stage 3: Hiring Manager / Final Interview</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Assessment / Interview Format *</label>
+            <select name="interview_mode" id="stageModeInput" required
+              class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2.5 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500 text-on-surface">
+              <option value="Online Video Assessment">Online Video Assessment (Google Meet / Zoom / Teams)</option>
+              <option value="Face-to-Face (F2F)">Face-to-Face (F2F) On-Site Assessment</option>
+              <option value="Phone Call">Phone Call / Screening</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Meeting Link or Venue Address</label>
+            <input type="text" name="meeting_link_venue" id="stageVenueInput"
+              class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="e.g. https://meet.google.com/abc-defg-hij or 4th Floor Conference Room">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1">Schedule Date (Optional)</label>
+              <input type="date" name="scheduled_date" id="stageDateInput"
+                class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-on-surface mb-1">Schedule Time (Optional)</label>
+              <input type="time" name="scheduled_time" id="stageTimeInput"
+                class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1">Employer Notes & Stage Feedback</label>
+            <textarea name="interview_stage_notes" id="stageNotesInput" rows="3"
+              class="w-full text-sm border border-outline-variant rounded-lg px-3 py-2 bg-white font-body-sm outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="e.g. Candidate demonstrated strong fundamentals. Advanced to F2F technical task."></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+          <button type="button" onclick="closeUpdateInterviewStageModal()"
+            class="px-4 py-2 border border-outline text-on-surface rounded-lg text-sm hover:bg-slate-50 transition-colors">Cancel</button>
+          <button type="submit"
+            class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-bold shadow-sm transition-all">Save
+            & Update Stage</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Custom Reject Confirmation Modal -->
+  <div id="confirmRejectModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden animate-fade-in">
+    <div class="bg-white border border-outline-variant rounded-xl max-w-md w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h3 class="font-headline-md text-headline-md font-bold text-error flex items-center gap-2">
+          <span class="material-symbols-outlined text-error text-[24px]">cancel</span>
+          Reject Candidate
+        </h3>
+        <button type="button" onclick="closeConfirmRejectModal()"
+          class="material-symbols-outlined text-outline hover:text-on-surface text-lg">close</button>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="move_rejected">
+        <input type="hidden" name="referral_id" id="rejectReferralId">
+
+        <div class="space-y-4">
+          <p class="text-sm text-on-surface-variant">
+            Are you sure you want to reject <span id="rejectCandidateName" class="font-bold text-on-surface"></span>?
+            This action is permanent.
+          </p>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Rejection Reason *</label>
+            <select name="rejection_reason" required
+              class="w-full text-sm border border-outline-variant rounded px-3 py-2 bg-white font-body-sm text-sm outline-none focus:ring-2 focus:ring-error text-on-surface">
+              <option value="Underqualified">Underqualified (Skills/Experience match)</option>
+              <option value="Overqualified">Overqualified</option>
+              <option value="Failed Interview / Assessment">Failed Interview / Assessment</option>
+              <option value="Salary Expectations">Salary expectations too high</option>
+              <option value="No Show / Unreachable">No show or unreachable</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-on-surface mb-1">Process Description &amp; Feedback
+              Notes</label>
+            <textarea name="process_notes" rows="3"
+              class="w-full text-xs border border-outline-variant rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-error text-on-surface leading-relaxed"
+              placeholder="Provide constructive feedback or internal documentation for this status decision..."></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 border-t pt-4 mt-6">
+          <button type="button" onclick="closeConfirmRejectModal()"
+            class="px-4 py-2 border border-outline text-on-surface rounded text-sm hover:bg-slate-50 transition-colors font-semibold">Cancel</button>
+          <button type="submit"
+            class="px-4 py-2 bg-error text-white rounded text-sm hover:opacity-90 font-bold transition-opacity">Reject
+            Candidate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mark Candidate Unresponsive Modal -->
+  <div id="markUnresponsiveModal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden animate-fade-in p-4">
+    <div class="bg-white border border-outline-variant rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b border-outline-variant/60 pb-3 mb-4">
+        <h3 class="font-bold text-base text-amber-900 flex items-center gap-2">
+          <span class="material-symbols-outlined text-amber-600 text-[24px]">phone_disabled</span>
+          Candidate No Longer Contacted
+        </h3>
+        <button type="button" onclick="closeMarkUnresponsiveModal()"
+          class="material-symbols-outlined text-outline hover:text-on-surface text-lg">close</button>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="mark_unresponsive">
+        <input type="hidden" name="referral_id" id="unresponsiveReferralId">
+
+        <div class="space-y-4">
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed">
+            Marking <span id="unresponsiveCandidateName" class="font-bold text-amber-950"></span> as unresponsive will
+            update their pipeline status to <strong>No Response from Applicant</strong>, record contact attempts in the
+            audit trail, and release the job vacancy slot.
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-1">Unresponsive Reason
+              *</label>
+            <select name="unresponsive_reason" required
+              class="w-full text-xs border border-outline-variant rounded-lg px-3 py-2.5 bg-white font-body-sm outline-none focus:ring-2 focus:ring-amber-500 text-on-surface">
+              <option value="Candidate Unreachable via Phone and Email">Candidate Unreachable via Phone and Email
+              </option>
+              <option value="No Response to Multiple Interview Invitations">No Response to Multiple Interview
+                Invitations</option>
+              <option value="No Longer Responding After Job Offer">No Longer Responding After Job Offer</option>
+              <option value="Contact Number Disconnected or Invalid">Contact Number Disconnected or Invalid</option>
+              <option value="Candidate Ghosted Onboarding Process">Candidate Ghosted Onboarding Process</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-1">Contact Attempts &amp;
+              Description *</label>
+            <textarea name="process_notes" required rows="3"
+              class="w-full text-xs border border-outline-variant rounded-lg p-3 outline-none focus:ring-2 focus:ring-amber-500 text-on-surface leading-relaxed"
+              placeholder="e.g. Called candidate twice on phone (no answer) and sent followup email. No communication received after 72 hours. Slot released."></textarea>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 border-t border-outline-variant/60 pt-4 mt-6">
+          <button type="button" onclick="closeMarkUnresponsiveModal()"
+            class="px-4 py-2 border border-outline-variant text-on-surface rounded-lg text-xs font-semibold hover:bg-slate-50 transition-colors">Cancel</button>
+          <button type="submit"
+            class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-sm">person_off</span>
+            <span>Update Status &amp; Release Slot</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Automated Applicant Score Card Modal -->
+  <div id="scorecardModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] hidden items-center justify-center p-3 sm:p-6" onclick="if (event.target === this) closeScorecardModal()">
+    <div class="bg-slate-100 rounded-2xl w-full max-w-5xl max-h-[92vh] shadow-2xl overflow-hidden flex flex-col">
+      <div class="bg-white border-b border-slate-200 px-5 py-3 flex items-center justify-between gap-3 shrink-0">
+        <div class="min-w-0">
+          <h3 class="text-sm font-extrabold text-slate-900">Applicant Score Card</h3>
+          <p id="scorecardModalName" class="text-[11px] text-slate-500 truncate"></p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button type="button" onclick="closeScorecardModal()" class="material-symbols-outlined text-slate-500 hover:text-slate-900 p-1.5 rounded-lg hover:bg-slate-100">close</button>
+        </div>
+      </div>
+      <div id="scorecardModalBody" class="overflow-y-auto custom-scrollbar">
+        <div class="flex items-center justify-center py-24 text-slate-500 text-xs font-semibold">
+          <span class="material-symbols-outlined animate-spin mr-2">progress_activity</span> Loading score card…
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technical Screening Scorecard Modal -->
+  <div id="screeningModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white border border-outline-variant rounded-2xl max-w-2xl w-full shadow-2xl max-h-[90vh] overflow-y-auto custom-scrollbar">
+      <div class="px-6 py-4 border-b border-outline-variant flex items-start justify-between gap-4">
+        <div>
+          <h3 class="text-base font-extrabold text-on-surface">Technical Screening Scorecard</h3>
+          <p class="text-xs text-on-surface-variant mt-0.5">Candidate: <span id="screeningCandidateName" class="font-bold text-on-surface"></span></p>
+        </div>
+        <button type="button" onclick="closeScreeningModal()" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface">close</button>
+      </div>
+      <form id="screeningForm" method="POST" action="">
+        {% csrf_token %}
+        <div class="p-6 space-y-4">
+          <p class="text-xs text-on-surface-variant leading-relaxed">Rate each area from <strong>0 (none)</strong> to <strong>4 (expert)</strong>. The weighted score updates automatically and is saved on the candidate's referral.</p>
+          <div class="space-y-3">
+            {% for key, label, weight in screening_criteria %}
+            <div class="flex items-center gap-3">
+              <div class="flex-1 min-w-0">
+                <label class="block text-xs font-bold text-on-surface" for="score_{{ key }}">{{ label }}</label>
+                <span class="text-[10px] font-semibold text-on-surface-variant">{{ weight }}% weight</span>
+              </div>
+              <select id="score_{{ key }}" name="{{ key }}" data-weight="{{ weight }}"
+                class="screening-score w-28 bg-surface-container-low border border-outline-variant rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:border-secondary focus:outline-none">
+                <option value="0">0 · None</option>
+                <option value="1">1 · Basic</option>
+                <option value="2">2 · Working</option>
+                <option value="3">3 · Strong</option>
+                <option value="4">4 · Expert</option>
+              </select>
+            </div>
+            {% endfor %}
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-on-surface mb-1" for="screeningNotes">Notes / Evidence</label>
+            <textarea id="screeningNotes" name="notes" rows="3" placeholder="Portfolio, assessment result, interview evidence..."
+              class="w-full bg-surface-container-low border border-outline-variant rounded-xl px-3 py-2 text-xs leading-relaxed focus:border-secondary focus:outline-none resize-y"></textarea>
+          </div>
+          <div class="flex items-center justify-between rounded-xl bg-surface-container-low border border-outline-variant px-4 py-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Weighted Score</span>
+            <span id="screeningTotal" class="text-2xl font-black text-secondary">0%</span>
+          </div>
+        </div>
+        <div class="px-6 py-4 border-t border-outline-variant flex justify-end gap-2">
+          <button type="button" onclick="closeScreeningModal()" class="px-4 py-2 border border-outline-variant rounded-lg text-xs font-bold hover:bg-surface-container-low transition-colors">Cancel</button>
+          <button type="submit" class="px-5 py-2 bg-secondary text-white rounded-lg text-xs font-bold hover:bg-secondary-hover transition-colors shadow-sm">Save Evaluation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    async function openScorecardModal(url, name) {
+      const modal = document.getElementById('scorecardModal');
+      const body = document.getElementById('scorecardModalBody');
+      const nameEl = document.getElementById('scorecardModalName');
+      if (!modal || !body) return;
+
+      if (nameEl) nameEl.textContent = name || '';
+      body.innerHTML = '<div class="flex items-center justify-center py-24 text-slate-500 text-xs font-semibold"><span class="material-symbols-outlined animate-spin mr-2">progress_activity</span> Loading score card…</div>';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      try {
+        const response = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+        if (!response.ok) throw new Error('Unable to load score card.');
+        const html = await response.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const main = doc.querySelector('main');
+        body.innerHTML = main ? main.innerHTML : '<p class="p-8 text-center text-sm text-slate-500">Score card content was not found.</p>';
+      } catch (error) {
+        body.innerHTML = '<div class="p-10 text-center"><span class="material-symbols-outlined text-4xl text-amber-500">error</span><p class="mt-2 text-sm font-semibold text-slate-700">Could not load the score card.</p><p class="text-xs text-slate-500 mt-1">Please close this window and try again.</p></div>';
+      }
+    }
+
+    function closeScorecardModal() {
+      const modal = document.getElementById('scorecardModal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      const body = document.getElementById('scorecardModalBody');
+      if (body) body.innerHTML = '';
+    }
+
+    function updateScreeningTotal() {
+      let total = 0;
+      document.querySelectorAll('.screening-score').forEach(function (select) {
+        const weight = parseFloat(select.dataset.weight || '0');
+        const value = parseInt(select.value || '0', 10);
+        total += (value / 4) * weight;
+      });
+      const output = document.getElementById('screeningTotal');
+      if (output) output.textContent = Math.round(total) + '%';
+    }
+
+    function openScreeningModal(button) {
+      const modal = document.getElementById('screeningModal');
+      const form = document.getElementById('screeningForm');
+      if (!modal || !form) return;
+
+      form.action = button.dataset.url;
+      document.getElementById('screeningCandidateName').textContent = button.dataset.name || '';
+
+      let scores = {};
+      try {
+        scores = JSON.parse(button.dataset.evaluation || '{}') || {};
+      } catch (error) {
+        scores = {};
+      }
+      document.querySelectorAll('.screening-score').forEach(function (select) {
+        const value = scores[select.name];
+        select.value = value !== undefined && value !== null ? String(value) : '0';
+      });
+
+      const notes = document.getElementById('screeningNotes');
+      if (notes) notes.value = button.dataset.notes || '';
+
+      updateScreeningTotal();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeScreeningModal() {
+      const modal = document.getElementById('screeningModal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.screening-score').forEach(function (select) {
+        select.addEventListener('change', updateScreeningTotal);
+      });
+      document.querySelectorAll('.screening-eval-btn').forEach(function (button) {
+        button.addEventListener('click', function () {
+          openScreeningModal(button);
+        });
+      });
+      document.querySelectorAll('.scorecard-btn').forEach(function (button) {
+        button.addEventListener('click', function () {
+          openScorecardModal(button.dataset.scorecardUrl, button.dataset.scorecardName);
+        });
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeScorecardModal();
+      });
+    });
+
+    // VIEW SWITCHING (Kanban vs Table List)
+    let currentTrackerView = localStorage.getItem('skillup_tracker_view') || 'board';
+
+    function switchTrackerView(mode) {
+      currentTrackerView = mode;
+      localStorage.setItem('skillup_tracker_view', mode);
+
+      const boardView = document.getElementById('kanbanBoardView');
+      const tableView = document.getElementById('candidateTableView');
+      const boardBtn = document.getElementById('boardViewToggleBtn');
+      const tableBtn = document.getElementById('tableViewToggleBtn');
+
+      if (!boardView || !tableView) return;
+
+      if (mode === 'table') {
+        boardView.classList.add('hidden');
+        tableView.classList.remove('hidden');
+        if (tableBtn) {
+          tableBtn.classList.remove('text-on-surface-variant');
+          tableBtn.classList.add('bg-secondary', 'text-white', 'shadow-sm');
+        }
+        if (boardBtn) {
+          boardBtn.classList.remove('bg-secondary', 'text-white', 'shadow-sm');
+          boardBtn.classList.add('text-on-surface-variant');
+        }
+      } else {
+        tableView.classList.add('hidden');
+        boardView.classList.remove('hidden');
+        if (boardBtn) {
+          boardBtn.classList.remove('text-on-surface-variant');
+          boardBtn.classList.add('bg-secondary', 'text-white', 'shadow-sm');
+        }
+        if (tableBtn) {
+          tableBtn.classList.remove('bg-secondary', 'text-white', 'shadow-sm');
+          tableBtn.classList.add('text-on-surface-variant');
+        }
+      }
+      if (typeof applyCandidateFilters === 'function') {
+        applyCandidateFilters();
+      }
+    }
+
+    // TABLE STAGE TAB FILTERING
+    let selectedTableStage = 'all';
+    function filterTableStage(stage) {
+      selectedTableStage = stage;
+
+      // Update tab active classes
+      document.querySelectorAll('.table-stage-tab').forEach(tab => {
+        if (tab.dataset.stage === stage) {
+          tab.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+          tab.classList.add('bg-secondary', 'text-white', 'shadow-sm');
+        } else {
+          tab.classList.remove('bg-secondary', 'text-white', 'shadow-sm');
+          tab.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+        }
+      });
+
+      if (typeof applyCandidateFilters === 'function') {
+        applyCandidateFilters();
+      }
+    }
+
+    function openConfirmInterviewModal(referralId, candidateName) {
+      document.getElementById('interviewReferralId').value = referralId;
+      document.getElementById('interviewCandidateName').textContent = candidateName;
+      document.getElementById('confirmInterviewModal').classList.remove('hidden');
+    }
+    function closeConfirmInterviewModal() {
+      document.getElementById('confirmInterviewModal').classList.add('hidden');
+    }
+
+    function openUpdateInterviewStageModal(referralId, candidateName, currentStage, currentMode, notes) {
+      document.getElementById('stageReferralId').value = referralId;
+      document.getElementById('stageCandidateName').textContent = candidateName;
+      if (currentStage && document.getElementById('stageSelectInput')) {
+        document.getElementById('stageSelectInput').value = currentStage;
+      }
+      if (currentMode && document.getElementById('stageModeInput')) {
+        document.getElementById('stageModeInput').value = currentMode;
+      }
+      if (notes && document.getElementById('stageNotesInput')) {
+        document.getElementById('stageNotesInput').value = notes;
+      }
+      document.getElementById('updateInterviewStageModal').classList.remove('hidden');
+    }
+    function closeUpdateInterviewStageModal() {
+      document.getElementById('updateInterviewStageModal').classList.add('hidden');
+    }
+
+    function openMarkUnresponsiveModal(referralId, candidateName) {
+      document.getElementById('unresponsiveReferralId').value = referralId;
+      document.getElementById('unresponsiveCandidateName').textContent = candidateName;
+      document.getElementById('markUnresponsiveModal').classList.remove('hidden');
+    }
+
+    function closeMarkUnresponsiveModal() {
+      document.getElementById('markUnresponsiveModal').classList.add('hidden');
+    }
+
+    function openConfirmRejectModal(referralId, candidateName) {
+      document.getElementById('rejectReferralId').value = referralId;
+      document.getElementById('rejectCandidateName').textContent = candidateName;
+      document.getElementById('confirmRejectModal').classList.remove('hidden');
+    }
+    function closeConfirmRejectModal() {
+      document.getElementById('confirmRejectModal').classList.add('hidden');
+    }
+
+    function openOfferAcceptanceModal(referralId, jobTitle, candidateName) {
+      document.getElementById('offerReferralId').value = referralId;
+      document.getElementById('offerJobTitle').value = jobTitle;
+      document.getElementById('offerCandidateName').value = candidateName;
+      document.getElementById('offerAcceptanceModal').classList.remove('hidden');
+    }
+    function closeOfferAcceptanceModal() {
+      document.getElementById('offerAcceptanceModal').classList.add('hidden');
+    }
+
+    function openLogReportingModal(referralId, jobTitle, candidateName) {
+      document.getElementById('reportingReferralId').value = referralId;
+      document.getElementById('reportingCandidateName').value = candidateName + " - " + jobTitle;
+      document.getElementById('logReportingModal').classList.remove('hidden');
+      toggleStartDateField();
+    }
+    function closeLogReportingModal() {
+      document.getElementById('logReportingModal').classList.add('hidden');
+    }
+    function toggleStartDateField() {
+      const selectVal = document.getElementById('reportedForWorkSelect').value;
+      const input = document.getElementById('actualStartDateInput');
+      if (selectVal === 'Yes') {
+        document.getElementById('startDateField').classList.remove('hidden');
+        input.required = true;
+      } else {
+        document.getElementById('startDateField').classList.add('hidden');
+        input.required = false;
+      }
+    }
+
+    function openProbationReviewModal(referralId, jobTitle, candidateName) {
+      document.getElementById('probationReferralId').value = referralId;
+      document.getElementById('probationCandidateName').value = candidateName + " - " + jobTitle;
+      document.getElementById('probationReviewModal').classList.remove('hidden');
+      toggleProbationFields();
+    }
+    function closeProbationReviewModal() {
+      document.getElementById('probationReviewModal').classList.add('hidden');
+    }
+    function toggleProbationFields() {
+      const val = document.getElementById('probationOutcomeSelect').value;
+      const extField = document.getElementById('probationExtField');
+      const reasonField = document.getElementById('separationReasonField');
+
+      extField.classList.add('hidden');
+      document.getElementById('probationExtDate').required = false;
+      reasonField.classList.add('hidden');
+      document.getElementById('separationReasonSelect').required = false;
+
+      if (val === 'Extended') {
+        extField.classList.remove('hidden');
+        document.getElementById('probationExtDate').required = true;
+      } else if (val === 'Separated') {
+        reasonField.classList.remove('hidden');
+        document.getElementById('separationReasonSelect').required = true;
+      }
+    }
+
+    function openEmployerEvaluationModal(referralId, jobTitle, candidateName) {
+      document.getElementById('evalReferralId').value = referralId;
+      document.getElementById('evalCandidateName').value = candidateName + " - " + jobTitle;
+      document.getElementById('employerEvaluationModal').classList.remove('hidden');
+    }
+    function closeEmployerEvaluationModal() {
+      document.getElementById('employerEvaluationModal').classList.add('hidden');
+    }
+
+    // CANDIDATE INSPECT MODAL LOGIC
+    document.querySelectorAll('.inspect-candidate-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const data = {
+          id: btn.dataset.id,
+          referralId: btn.dataset.referralId,
+          name: btn.dataset.name,
+          email: btn.dataset.email,
+          phone: btn.dataset.phone,
+          location: btn.dataset.location,
+          job: btn.dataset.job,
+          status: btn.dataset.status,
+          stage: btn.dataset.stage,
+          match: btn.dataset.match,
+          skills: btn.dataset.skills,
+          education: btn.dataset.education,
+          experience: btn.dataset.experience,
+          certifications: btn.dataset.certifications,
+          profileUrl: btn.dataset.profileUrl
+        };
+        openCandidateInspectModal(data);
+      });
+    });
+
+    function openCandidateInspectModal(data) {
+      document.getElementById('inspectName').textContent = data.name;
+      document.getElementById('inspectJob').textContent = data.job;
+      document.getElementById('inspectEmail').textContent = data.email;
+      document.getElementById('inspectPhone').textContent = data.phone;
+      document.getElementById('inspectLocation').textContent = data.location;
+      document.getElementById('inspectSkills').textContent = data.skills;
+      document.getElementById('inspectExperience').textContent = data.experience;
+      document.getElementById('inspectEducation').textContent = data.education;
+      document.getElementById('inspectCertifications').textContent = data.certifications;
+      document.getElementById('inspectMatchBadge').textContent = data.match + '% Match';
+
+      const initials = data.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'C';
+      document.getElementById('inspectAvatar').textContent = initials;
+      document.getElementById('inspectFullProfileLink').href = data.profileUrl;
+
+      // Action buttons in modal
+      document.getElementById('inspectInterviewBtn').onclick = () => {
+        closeCandidateInspectModal();
+        openConfirmInterviewModal(data.referralId, data.name);
+      };
+      document.getElementById('inspectOfferBtn').onclick = () => {
+        closeCandidateInspectModal();
+        openOfferAcceptanceModal(data.referralId, data.job, data.name);
+      };
+      const unrespBtn = document.getElementById('inspectUnresponsiveBtn');
+      if (unrespBtn) {
+        unrespBtn.onclick = () => {
+          closeCandidateInspectModal();
+          openMarkUnresponsiveModal(data.referralId, data.name);
+        };
+      }
+      document.getElementById('inspectRejectBtn').onclick = () => {
+        closeCandidateInspectModal();
+        openConfirmRejectModal(data.referralId, data.name);
+      };
+
+      document.getElementById('candidateInspectModal').classList.remove('hidden');
+    }
+
+    function closeCandidateInspectModal() {
+      document.getElementById('candidateInspectModal').classList.add('hidden');
+    }
+
+    // GLOBAL FILTER & SORT FUNCTION (Works across both Kanban and Table View)
+    function applyCandidateFilters() {
+      const searchInput = document.getElementById('boardSearchInput');
+      const jobFilter = document.getElementById('boardJobFilter');
+      const dateFilter = document.getElementById('boardDateFilter');
+
+      const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+      const selectedJob = jobFilter ? jobFilter.value : '';
+      const selectedDate = dateFilter ? dateFilter.value : 'newest';
+
+      // Update header dynamically
+      const headerTitle = document.getElementById('pipelineHeaderTitle');
+      if (headerTitle) {
+        if (selectedJob) {
+          headerTitle.textContent = selectedJob + ' Pipeline';
+        } else {
+          headerTitle.textContent = '{{ profile.company_name|default:"Enterprise"|escapejs }} Candidate Pipeline';
+        }
+      }
+
+      // Calculate reference time for relative date filtering
+      let maxTimestamp = 0;
+      document.querySelectorAll('.table-candidate-row, .candidate-card').forEach(el => {
+        const ts = parseInt(el.dataset.timestamp || '0', 10);
+        if (ts > maxTimestamp) maxTimestamp = ts;
+      });
+      const nowSec = Math.floor(Date.now() / 1000);
+      const refTime = Math.max(nowSec, maxTimestamp);
+      const sevenDaysSec = 7 * 86400;
+      const thirtyDaysSec = 30 * 86400;
+
+      function matchesDate(ts) {
+        if (!ts) return true;
+        const ageSec = refTime - ts;
+        if (selectedDate === 'last_7_days') {
+          return ageSec >= 0 && ageSec <= sevenDaysSec;
+        } else if (selectedDate === 'last_30_days') {
+          return ageSec >= 0 && ageSec <= thirtyDaysSec;
+        } else if (selectedDate === 'older_30_days') {
+          return ageSec > thirtyDaysSec;
+        }
+        return true; // 'newest' and 'oldest' sort all
+      }
+
+      // 1. Sort & Filter Kanban Columns
+      let totalVisibleKanban = 0;
+      const columns = document.querySelectorAll('.pipeline-column');
+      columns.forEach(col => {
+        const colContainer = col.querySelector('.overflow-y-auto');
+        if (colContainer) {
+          const colCards = Array.from(colContainer.querySelectorAll('.candidate-card'));
+
+          // Sort cards in column by date
+          colCards.sort((a, b) => {
+            const tsA = parseInt(a.dataset.timestamp || '0', 10);
+            const tsB = parseInt(b.dataset.timestamp || '0', 10);
+            if (selectedDate === 'oldest') {
+              return tsA - tsB;
+            }
+            return tsB - tsA; // Default: newest first
+          });
+          colCards.forEach(card => colContainer.appendChild(card));
+
+          let visibleCount = 0;
+          colCards.forEach(card => {
+            const name = card.dataset.name || (card.querySelector('a.font-bold') ? card.querySelector('a.font-bold').textContent.toLowerCase() : '');
+            const job = card.dataset.jobExact || (card.querySelector('.text-xs span.font-semibold') ? card.querySelector('.text-xs span.font-semibold').textContent.trim() : '');
+            const ts = parseInt(card.dataset.timestamp || '0', 10);
+
+            const matchesQuery = !query || name.includes(query) || job.toLowerCase().includes(query);
+            const matchesJob = !selectedJob || job === selectedJob;
+            const matchesTime = matchesDate(ts);
+
+            if (matchesQuery && matchesJob && matchesTime) {
+              card.classList.remove('hidden');
+              visibleCount++;
+              totalVisibleKanban++;
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+
+          const badge = col.querySelector('.bg-surface-container-high');
+          if (badge) {
+            badge.textContent = visibleCount;
+          }
+        }
+      });
+
+      // 2. Sort & Filter Table Rows
+      const stageCounts = {
+        'all': 0,
+        'Applied': 0,
+        'Interviewing': 0,
+        'Offered': 0,
+        'Hired': 0,
+        'Closed': 0
+      };
+
+      let visibleInTableCount = 0;
+      const tableBody = document.getElementById('candidateTableListBody');
+      if (tableBody) {
+        const tableRows = Array.from(tableBody.querySelectorAll('.table-candidate-row'));
+
+        // Sort table rows by date
+        tableRows.sort((a, b) => {
+          const tsA = parseInt(a.dataset.timestamp || '0', 10);
+          const tsB = parseInt(b.dataset.timestamp || '0', 10);
+          if (selectedDate === 'oldest') {
+            return tsA - tsB;
+          }
+          return tsB - tsA; // Default: newest first
+        });
+        tableRows.forEach(row => tableBody.appendChild(row));
+
+        tableRows.forEach(row => {
+          const name = row.dataset.name || '';
+          const job = row.dataset.job || '';
+          const jobExact = row.dataset.jobExact || '';
+          const stage = row.dataset.stage || '';
+          const ts = parseInt(row.dataset.timestamp || '0', 10);
+
+          const matchesQuery = !query || name.includes(query) || job.includes(query);
+          const matchesJob = !selectedJob || jobExact === selectedJob;
+          const matchesTime = matchesDate(ts);
+
+          if (matchesQuery && matchesJob && matchesTime) {
+            stageCounts['all']++;
+            if (stageCounts.hasOwnProperty(stage)) {
+              stageCounts[stage]++;
+            }
+
+            const matchesStage = selectedTableStage === 'all' || stage === selectedTableStage;
+            if (matchesStage) {
+              row.classList.remove('hidden');
+              visibleInTableCount++;
+            } else {
+              row.classList.add('hidden');
+            }
+          } else {
+            row.classList.add('hidden');
+          }
+        });
+      }
+
+      // Update Navigation Tab Badges Dynamically
+      const tabAll = document.getElementById('tabCount-all');
+      if (tabAll) tabAll.textContent = stageCounts['all'];
+      const tabApplied = document.getElementById('tabCount-Applied');
+      if (tabApplied) tabApplied.textContent = stageCounts['Applied'];
+      const tabInterviewing = document.getElementById('tabCount-Interviewing');
+      if (tabInterviewing) tabInterviewing.textContent = stageCounts['Interviewing'];
+      const tabOffered = document.getElementById('tabCount-Offered');
+      if (tabOffered) tabOffered.textContent = stageCounts['Offered'];
+      const tabHired = document.getElementById('tabCount-Hired');
+      if (tabHired) tabHired.textContent = stageCounts['Hired'];
+      const tabClosed = document.getElementById('tabCount-Closed');
+      if (tabClosed) tabClosed.textContent = stageCounts['Closed'];
+
+      // Show empty state row if no candidates match in the selected tab/job
+      const emptyRow = document.getElementById('tableEmptyRow');
+      if (emptyRow) {
+        if (visibleInTableCount === 0) {
+          emptyRow.classList.remove('hidden');
+          const emptyMsg = document.getElementById('tableEmptyMsg');
+          if (emptyMsg) {
+            let filterDesc = [];
+            if (selectedJob) filterDesc.push(selectedJob);
+            if (selectedDate === 'last_7_days') filterDesc.push('Past 7 Days');
+            if (selectedDate === 'last_30_days') filterDesc.push('Past 30 Days');
+            if (selectedDate === 'older_30_days') filterDesc.push('> 30 Days Old');
+
+            const descStr = filterDesc.length > 0 ? ` (${filterDesc.join(', ')})` : '';
+            if (selectedTableStage !== 'all') {
+              emptyMsg.textContent = `No candidates in "${selectedTableStage}" stage${descStr}.`;
+            } else {
+              emptyMsg.textContent = `No candidates found for the selected filter criteria${descStr}.`;
+            }
+          }
+        } else {
+          emptyRow.classList.add('hidden');
+        }
+      }
+
+      const matchesCountEl = document.getElementById('pipelineMatchesCount');
+      if (matchesCountEl) {
+        matchesCountEl.textContent = (stageCounts['all']) + ' Candidate Referrals';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Restore view mode
+      switchTrackerView(currentTrackerView);
+
+      const searchInput = document.getElementById('boardSearchInput');
+      const jobFilter = document.getElementById('boardJobFilter');
+      const dateFilter = document.getElementById('boardDateFilter');
+      const cards = document.querySelectorAll('.candidate-card');
+
+      // Populate unique job dropdown
+      const jobTitles = new Set();
+      document.querySelectorAll('.candidate-card, .table-candidate-row').forEach(el => {
+        const jobTitle = el.dataset.jobExact || (el.querySelector('.text-xs span.font-bold') ? el.querySelector('.text-xs span.font-bold').textContent.trim() : '');
+        if (jobTitle && jobTitle.trim()) {
+          jobTitles.add(jobTitle.trim());
+        }
+      });
+      jobTitles.forEach(title => {
+        const opt = document.createElement('option');
+        opt.value = title;
+        opt.textContent = title;
+        jobFilter.appendChild(opt);
+      });
+
+      if (searchInput) searchInput.addEventListener('input', applyCandidateFilters);
+      if (jobFilter) jobFilter.addEventListener('change', applyCandidateFilters);
+      if (dateFilter) dateFilter.addEventListener('change', applyCandidateFilters);
+
+      // Initial filter/sort on load
+      applyCandidateFilters();
+    });
+
+    function exportPipelineExcel() {
+      const jobFilterVal = document.getElementById('boardJobFilter').value;
+      const searchVal = document.getElementById('boardSearchInput').value.trim();
+      const dateVal = document.getElementById('boardDateFilter') ? document.getElementById('boardDateFilter').value : 'newest';
+
+      const urlParams = new URLSearchParams();
+      urlParams.set('export', 'excel');
+      if (jobFilterVal) urlParams.set('job_title', jobFilterVal);
+      if (searchVal) urlParams.set('search', searchVal);
+      if (dateVal) urlParams.set('date_filter', dateVal);
+      window.location.href = window.location.pathname + '?' + urlParams.toString();
+    }
+  </script>
+</body>
+
+</html>

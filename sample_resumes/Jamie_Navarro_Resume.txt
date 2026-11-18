@@ -1,0 +1,21 @@
+JAMIE L. NAVARRO
+================
+Aspiring Web Developer | BS Information Technology Graduate
+Bocaue, Bulacan  |  +63 918 555 0177  |  jamie.navarro@example.com
+github.com/jamienavarro  |  jamienavarro.dev
+
+PROFESSIONAL SUMMARY
+Recent BS Information Technology graduate seeking an entry-level web development role. Completed a 480-hour internship building responsive interfaces with HTML, CSS, JavaScript, and React.
+
+CORE SKILLS
+HTML5, CSS3, JavaScript, React, Tailwind CSS, Git, Python, SQL, Communication, Problem Solving
+
+WORK EXPERIENCE
+Front-End Developer Intern - Bocaue Digital Services (June 2025 - December 2025)
+Converted 9 Figma screens into responsive React components, fixed accessibility issues, and wrote reusable CSS utilities.
+
+EDUCATION
+BS Information Technology - Bulacan State University (2021 - 2025)
+
+CERTIFICATIONS
+Computer Systems Servicing NC II - TESDA (2025)

@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Skill Gaps & Talent Monitoring | SKILLUP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "secondary": "#0051d5",
+        "secondary-hover": "#0041ab",
+        "inverse-surface": "#213145",
+        "on-primary-fixed-variant": "#3f465c",
+        "outline-variant": "#c6c6cd",
+        "primary-fixed": "#dae2fd",
+        "on-error": "#ffffff",
+        "surface-container": "#e5eeff",
+        "on-tertiary": "#ffffff",
+        "surface-tint": "#565e74",
+        "on-tertiary-fixed-variant": "#005236",
+        "surface-container-low": "#eff4ff",
+        "on-surface": "#0b1c30",
+        "on-secondary-fixed-variant": "#003ea8",
+        "surface-bright": "#f8f9ff",
+        "tertiary-fixed": "#6ffbbe",
+        "on-primary-container": "#7c839b",
+        "primary-fixed-dim": "#bec6e0",
+        "outline": "#76777d",
+        "on-secondary-fixed": "#00174b",
+        "on-secondary": "#ffffff",
+        "surface-container-highest": "#d3e4fe",
+        "tertiary-container": "#002113",
+        "primary-container": "#131b2e",
+        "tertiary": "#000000",
+        "on-secondary-container": "#fefcff",
+        "surface-dim": "#cbdbf5",
+        "error": "#ba1a1a",
+        "on-primary": "#ffffff",
+        "tertiary-fixed-dim": "#4edea3",
+        "on-background": "#0b1c30",
+        "on-surface-variant": "#45464d",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#002113",
+        "inverse-on-surface": "#eaf1ff",
+        "background": "#f8f9ff",
+        "secondary-fixed": "#dbe1ff",
+        "primary": "#000000",
+        "secondary-container": "#316bf3",
+        "on-tertiary-container": "#009668",
+        "surface-variant": "#d3e4fe",
+        "surface-container-high": "#dce9ff",
+        "error-container": "#ffdad6",
+        "on-error-container": "#93000a",
+        "surface": "#f8f9ff",
+        "secondary-fixed-dim": "#b4c5ff",
+        "on-primary-fixed": "#131b2e",
+        "inverse-primary": "#bec6e0"
+      },
+      borderRadius: {
+        "DEFAULT": "0.125rem",
+        "lg": "0.375rem",
+        "xl": "0.75rem",
+        "2xl": "1rem",
+        "full": "0.75rem"
+      },
+      spacing: {
+        "gutter": "24px",
+        "margin-mobile": "16px",
+        "margin-desktop": "32px",
+        "container-max": "1440px",
+        "unit": "4px"
+      },
+      fontFamily: {
+        "body-md": ["Inter", "sans-serif"],
+        "headline-md": ["Inter", "sans-serif"],
+        "display-lg": ["Inter", "sans-serif"],
+        "body-lg": ["Inter", "sans-serif"],
+        "label-sm": ["Inter", "sans-serif"],
+        "body-sm": ["Inter", "sans-serif"],
+        "headline-lg": ["Inter", "sans-serif"],
+        "label-md": ["Inter", "sans-serif"],
+        "mono": ["JetBrains Mono", "monospace"]
+      },
+      fontSize: {
+        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+        "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background-color: #f8f9ff; font-family: 'Inter', sans-serif; }
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+}
+.custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+@media print {
+  body { background-color: #ffffff !important; }
+  aside, header, footer, .no-print { display: none !important; }
+  main { margin-left: 0 !important; padding: 0 !important; width: 100% !important; }
+  .shadow-sm, .shadow-md, .shadow-2xs, .shadow-xs { box-shadow: none !important; border: 1px solid #cbd5e1 !important; }
+}
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased">
+
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-desktop h-16 w-full no-print">
+  <div class="flex items-center gap-8">
+    <h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">SKILLUP</h1>
+  </div>
+  <div class="flex items-center gap-4">
+    <button onclick="openNotificationModal()" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80" title="Alerts & Notification Preferences">notifications</button>
+    <a href="{% url 'peso_profile_admin' %}" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80" title="Settings">settings</a>
+    <a href="{% url 'peso_profile_admin' %}" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-secondary/15 flex items-center justify-center font-bold text-xs text-secondary shrink-0 hover:ring-2 hover:ring-secondary transition-all" title="{{ request.user.get_full_name }}">
+      {% if request.user.profile.profile_picture %}
+        <img alt="{{ request.user.get_full_name }}" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+      {% else %}
+        {{ request.user.first_name|slice:":1"|upper }}{{ request.user.last_name|slice:":1"|upper|default:"P" }}
+      {% endif %}
+    </a>
+  </div>
+</header>
+
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 pt-20 bg-surface-container-lowest dark:bg-primary-container border-r border-outline-variant dark:border-outline hidden md:flex flex-col p-4 gap-2 z-40 no-print">
+  <div class="flex items-center gap-3 px-2 py-4 mb-4 border-b border-outline-variant/30">
+    {% if request.user.profile.profile_picture %}
+      <div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant shrink-0">
+        <img alt="Office Logo" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+      </div>
+    {% else %}
+      <div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-white font-black text-xl shrink-0">P</div>
+    {% endif %}
+    <div>
+      <h2 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider whitespace-nowrap">SKILLUP Portal</h2>
+      <p class="text-[10px] text-on-surface-variant opacity-70">Public Employment Service</p>
+    </div>
+  </div>
+
+  <nav class="flex-grow flex flex-col gap-1 overflow-y-auto custom-scrollbar">
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_dashboard_admin' %}">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span>Dashboard</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'applicant_monitoring_admin' %}">
+      <span class="material-symbols-outlined">groups</span>
+      <span>Talent Bench</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employer_management_admin' %}">
+      <span class="material-symbols-outlined">domain</span>
+      <span>Employers</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'vacancy_management_admin' %}">
+      <span class="material-symbols-outlined">work</span>
+      <span>Vacancies</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employment_tracking_admin' %}">
+      <span class="material-symbols-outlined">description</span>
+      <span>Reports</span>
+    </a>
+    
+    <!-- Active Nav Item -->
+    <a class="flex items-center gap-3 px-3 py-2 bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold rounded-lg scale-98 active:scale-95 duration-150 transition-all font-label-md text-label-md" href="{% url 'skill_monitoring_admin' %}">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+      <span>Skill Gaps</span>
+    </a>
+
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'training_monitoring_admin' %}">
+      <span class="material-symbols-outlined">school</span>
+      <span>Training Programs</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'job_matching_analytics_admin' %}">
+      <span class="material-symbols-outlined">monitoring</span>
+      <span>Analytics</span>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_profile_admin' %}">
+      <span class="material-symbols-outlined">settings</span>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+    <a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'logout' %}">
+      <span class="material-symbols-outlined">logout</span>
+      <span>Log Out</span>
+    </a>
+  </div>
+</aside>
+
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-20 min-h-screen">
+<div class="p-6 lg:p-8 max-w-[1600px] mx-auto space-y-6">
+
+  <!-- Flash Messages -->
+  {% if messages %}
+  <div class="space-y-2 no-print">
+    {% for message in messages %}
+      <div class="p-4 rounded-xl border flex items-center justify-between {% if message.tags == 'success' %}bg-green-50 border-green-200 text-green-800{% elif message.tags == 'error' %}bg-red-50 border-red-200 text-red-800{% else %}bg-blue-50 border-blue-200 text-blue-800{% endif %} shadow-xs">
+        <div class="flex items-center gap-2.5 font-medium text-sm">
+          <span class="material-symbols-outlined text-[20px]">{% if message.tags == 'success' %}check_circle{% else %}info{% endif %}</span>
+          <span>{{ message }}</span>
+        </div>
+        <button onclick="this.parentElement.remove()" class="opacity-60 hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-sm">close</span></button>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Skill Matching ML Model Status -->
+  <section class="bg-white border border-outline-variant/60 rounded-xl px-5 py-3 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-secondary text-[22px]">smart_toy</span>
+      <div>
+        <p class="text-xs font-extrabold text-on-surface">Skill Matching ML Model</p>
+        <p class="text-[11px] text-on-surface-variant">
+          {% if embedding_model.available %}
+            Embedding model cached ({{ embedding_model.count }} skills) · shadow calibration only
+          {% else %}
+            Embedding cache not built · curated transferable groups active
+          {% endif %}
+        </p>
+        <p class="text-[10px] text-on-surface-variant/80 mt-0.5">
+          {% if ml_model.active %}
+            Outcome model active · transferable weight {{ ml_model.transferable_weight }}/1.0{% if ml_model.forced %} · forced low-sample mode{% endif %}
+          {% else %}
+            Outcome calibration collecting data · {{ ml_model.samples }} labeled referrals
+          {% endif %}
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 text-[11px] font-semibold text-on-surface-variant">
+      <span>{{ ml_model.samples }} labeled outcome{{ ml_model.samples|pluralize }}</span>
+      {% if ml_model.accuracy is not None %}<span>· {{ ml_model.accuracy|floatformat:0 }}% accuracy</span>{% endif %}
+      <span class="px-2 py-0.5 rounded-full {% if ml_model.active %}bg-emerald-50 text-emerald-700 border border-emerald-200{% else %}bg-amber-50 text-amber-700 border border-amber-200{% endif %}">
+        {% if ml_model.active %}ACTIVE{% else %}FALLBACK{% endif %}
+      </span>
+    </div>
+  </section>
+
+  <!-- 1. Page Header Banner -->
+  <section class="bg-white border border-outline-variant/60 rounded-2xl p-6 lg:p-8 shadow-xs flex flex-col min-[1700px]:flex-row min-[1700px]:items-center justify-between gap-6">
+    <div class="space-y-1.5 max-w-3xl min-w-0 flex-1">
+      <h2 class="text-2xl lg:text-3xl font-extrabold text-on-surface tracking-tight">Skill Gaps & Competency Monitoring</h2>
+      <p class="text-xs lg:text-sm text-on-surface-variant leading-relaxed">
+        Real-time mapping of applicant proficiencies against active vacancy requirements. Identify surplus skill clusters, target acute labor deficits, and prioritize workforce capacity-building interventions.
+      </p>
+    </div>
+
+    <!-- Quick Action Buttons -->
+    <div class="flex flex-wrap items-center gap-2.5 w-full min-[1700px]:w-auto min-[1700px]:justify-end min-[1700px]:shrink-0">
+      <button type="button" onclick="openAiGeneratorModal('syllabus')" class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white px-4 py-2.5 rounded-xl text-xs hover:opacity-95 transition-all flex items-center gap-2 shadow-sm font-bold cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[18px] text-emerald-200">upload_file</span>
+        <span>Upload Syllabus (AI)</span>
+      </button>
+      <button type="button" onclick="openAiGeneratorModal('topic')" class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white px-4 py-2.5 rounded-xl text-xs hover:opacity-90 transition-all flex items-center gap-2 shadow-sm font-bold cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[18px] text-amber-300">auto_awesome</span>
+        <span>Generate with AI</span>
+      </button>
+      <button onclick="window.print()" class="px-3.5 py-2.5 rounded-xl border border-outline-variant/70 hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface text-xs font-bold transition-all flex items-center gap-2 shadow-2xs">
+        <span class="material-symbols-outlined text-[18px]">print</span>
+        <span>Print Report</span>
+      </button>
+      <a href="{% url 'export_analytics_csv' %}?report=gaps" class="px-3.5 py-2.5 rounded-xl border border-secondary/30 bg-secondary/5 hover:bg-secondary/10 text-secondary text-xs font-bold transition-all flex items-center gap-2 shadow-2xs" title="Export Skill Gap Dataset">
+        <span class="material-symbols-outlined text-[18px]">download</span>
+        <span>Export CSV</span>
+      </a>
+      <button onclick="openNotificationModal()" class="px-4 py-2.5 rounded-xl bg-secondary hover:bg-secondary-hover text-white text-xs font-bold transition-all flex items-center gap-2 shadow-sm">
+        <span class="material-symbols-outlined text-[18px]">tune</span>
+        <span>Alert Settings</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 2. Balanced 4-Card KPI Stats Grid -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- Card 1: Total Tracked Skills -->
+    <div class="bg-white border border-outline-variant/60 p-5 rounded-2xl shadow-xs hover:border-secondary/40 transition-all flex items-center justify-between group">
+      <div class="space-y-1">
+        <p class="text-[11px] font-bold text-outline uppercase tracking-wider">Tracked Skills</p>
+        <p class="text-2xl lg:text-3xl font-black text-secondary tracking-tight">{{ total_skills_count|default:"583" }}</p>
+        <p class="text-[11px] font-medium text-on-surface-variant flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Centralized Taxonomy
+        </p>
+      </div>
+      <div class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-2xl">hub</span>
+      </div>
+    </div>
+
+    <!-- Card 2: Critical Gaps Identified -->
+    <div class="bg-white border border-outline-variant/60 p-5 rounded-2xl shadow-xs hover:border-error/40 transition-all flex items-center justify-between group">
+      <div class="space-y-1">
+        <p class="text-[11px] font-bold text-outline uppercase tracking-wider">Critical Gaps</p>
+        <p class="text-2xl lg:text-3xl font-black text-error tracking-tight">{{ major_gaps_count|default:"76" }}</p>
+        <p class="text-[11px] font-medium text-error flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+          Demand &gt; Supply Deficit
+        </p>
+      </div>
+      <div class="w-12 h-12 rounded-xl bg-error-container text-error flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-2xl">warning</span>
+      </div>
+    </div>
+
+    <!-- Card 3: Surplus Talent Pools -->
+    <div class="bg-white border border-outline-variant/60 p-5 rounded-2xl shadow-xs hover:border-green-500/40 transition-all flex items-center justify-between group">
+      <div class="space-y-1">
+        <p class="text-[11px] font-bold text-outline uppercase tracking-wider">Surplus Clusters</p>
+        <p class="text-2xl lg:text-3xl font-black text-emerald-600 tracking-tight">{{ surplus_count|default:"38" }}</p>
+        <p class="text-[11px] font-medium text-emerald-700 flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          High-Bench Supply
+        </p>
+      </div>
+      <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-2xl">verified</span>
+      </div>
+    </div>
+
+    <!-- Card 4: Market Growth Trend -->
+    <div class="bg-white border border-outline-variant/60 p-5 rounded-2xl shadow-xs hover:border-teal-500/40 transition-all flex items-center justify-between group">
+      <div class="space-y-1">
+        <p class="text-[11px] font-bold text-outline uppercase tracking-wider">Growth Trend</p>
+        <p class="text-2xl lg:text-3xl font-black text-slate-800 tracking-tight">{{ growth_trend|default:"+14.2%" }}</p>
+        <p class="text-[11px] font-medium text-teal-700 flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
+          YoY Demand Velocity
+        </p>
+      </div>
+      <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 border border-teal-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-2xl">trending_up</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Domain Comparison Bar Chart (Calibrated & Proportional Layout) -->
+  <section class="bg-white border border-outline-variant/60 rounded-2xl p-6 lg:p-8 shadow-xs">
+    <!-- Chart Header & Legend -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-outline-variant/40">
+      <div>
+        <h3 class="text-lg lg:text-xl font-extrabold text-on-surface">Skill Landscape: Talent Bench vs. Market Demand</h3>
+        <p class="text-xs text-on-surface-variant mt-0.5">Comparative skill coverage across core domains (Normalized 0 – 100% saturation)</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 bg-surface-container-low px-4 py-2 rounded-xl border border-secondary/15 shrink-0">
+        <span class="flex items-center gap-2 text-xs font-bold text-secondary">
+          <span class="w-3.5 h-3.5 rounded-md bg-secondary shadow-2xs"></span>
+          Current Talent Bench
+        </span>
+        <span class="flex items-center gap-2 text-xs font-bold text-slate-600">
+          <span class="w-3.5 h-3.5 rounded-md bg-slate-400 shadow-2xs"></span>
+          Market Demand
+        </span>
+      </div>
+    </div>
+
+    <!-- Chart Body Container -->
+    <div class="pt-6">
+      <!-- Plotting Frame: Y-Axis + Bars Canvas -->
+      <div class="relative w-full flex">
+        <!-- Y-Axis Labels -->
+        <div class="w-10 h-64 flex flex-col justify-between text-right pr-2 select-none shrink-0 font-mono text-[10px] font-bold text-slate-400">
+          <span class="-mt-1.5">100%</span>
+          <span class="-mt-1.5">75%</span>
+          <span class="-mt-1.5">50%</span>
+          <span class="-mt-1.5">25%</span>
+          <span class="mb-0">0%</span>
+        </div>
+
+        <!-- Plot Box (Shared Coordinate System for Grid Lines and Bars) -->
+        <div class="relative flex-1 h-64">
+          <!-- Horizontal Guide Lines -->
+          <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+            <div class="border-b border-dashed border-slate-200 w-full"></div>
+            <div class="border-b border-dashed border-slate-200 w-full"></div>
+            <div class="border-b border-dashed border-slate-200 w-full"></div>
+            <div class="border-b border-dashed border-slate-200 w-full"></div>
+            <div class="border-b border-slate-300 w-full"></div>
+          </div>
+
+          <!-- Data Columns Container -->
+          <div class="absolute inset-0 flex items-end justify-between gap-2 md:gap-4 px-2 z-10">
+            {% for dom in domain_comparisons %}
+              <div class="flex-1 h-full flex flex-col justify-end items-center group relative">
+                <!-- Status Badge (Floating Above Bars) -->
+                <div class="mb-1.5 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all">
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold whitespace-nowrap shadow-2xs {% if dom.is_gap %}bg-red-50 text-error border border-error/20{% else %}bg-emerald-50 text-emerald-700 border border-emerald-200{% endif %}">
+                    {{ dom.status_text }}
+                  </span>
+                </div>
+
+                <!-- Hover Details Tooltip -->
+                <div class="absolute -top-12 z-30 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 bg-slate-900 text-white text-[11px] font-semibold py-1.5 px-3 rounded-lg shadow-xl whitespace-nowrap">
+                  <span>Talent: <strong class="text-blue-300">{{ dom.talent_pct }}%</strong> | Demand: <strong class="text-slate-300">{{ dom.demand_pct }}%</strong></span>
+                  <div class="w-2 h-2 bg-slate-900 rotate-45 mx-auto -mb-1 mt-0.5"></div>
+                </div>
+
+                <!-- Column Bars Pair Container (Direct percentage of h-64) -->
+                <div class="w-full flex items-end justify-center gap-1.5 md:gap-2.5 h-full">
+                  <!-- Talent Bar -->
+                  <div class="w-3.5 md:w-5 lg:w-7 bg-gradient-to-t from-blue-700 via-blue-600 to-blue-500 rounded-t-lg transition-all duration-500 relative flex flex-col justify-start items-center hover:brightness-110 cursor-pointer shadow-xs"
+                       style="--bar-height: {{ dom.talent_pct }}%; height: var(--bar-height);" 
+                       title="{{ dom.name }} - Talent Bench: {{ dom.talent_pct }}%">
+                    <span class="text-[9px] font-bold text-white mt-1 opacity-0 group-hover:opacity-100 transition-opacity select-none">{{ dom.talent_pct }}%</span>
+                  </div>
+
+                  <!-- Demand Bar -->
+                  <div class="w-3.5 md:w-5 lg:w-7 bg-gradient-to-t from-slate-500 to-slate-400 rounded-t-lg transition-all duration-500 relative flex flex-col justify-start items-center hover:brightness-110 cursor-pointer shadow-xs"
+                       style="--bar-height: {{ dom.demand_pct }}%; height: var(--bar-height);" 
+                       title="{{ dom.name }} - Market Demand: {{ dom.demand_pct }}%">
+                    <span class="text-[9px] font-bold text-white mt-1 opacity-0 group-hover:opacity-100 transition-opacity select-none">{{ dom.demand_pct }}%</span>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- X-Axis Domain Labels Row (Offset by Y-Axis width) -->
+      <div class="w-full flex pl-10 mt-3 pt-3 border-t border-slate-200">
+        <div class="w-full flex justify-between gap-2 md:gap-4 px-2">
+          {% for dom in domain_comparisons %}
+            <div class="flex-1 text-center">
+              <p class="text-[11px] md:text-xs font-bold text-on-surface line-clamp-2 leading-tight" title="{{ dom.name }}">
+                {{ dom.name }}
+              </p>
+              <div class="mt-1 flex items-center justify-center gap-1.5 text-[10px] font-semibold text-slate-500">
+                <span class="text-secondary font-bold">{{ dom.talent_pct }}%</span>
+                <span class="text-slate-300">/</span>
+                <span class="text-slate-600 font-bold">{{ dom.demand_pct }}%</span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Footer Caption -->
+    <div class="mt-4 pt-3 border-t border-outline-variant/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs text-on-surface-variant font-medium">
+      <span class="text-slate-500">Scale: 0 – 100% workforce saturation relative to registered vacancies and jobseekers.</span>
+      <span class="font-bold text-secondary flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        Live Calculated Metrics
+      </span>
+    </div>
+  </section>
+
+  <!-- 4. Two-Column Bento: Priority Intervention & Emerging Skills Intelligence -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Left Column: Priority Deficits & Fast-Track Pipeline (7 Cols) -->
+    <div class="lg:col-span-7 space-y-4">
+      <!-- Call to Action Banner -->
+      <div class="bg-gradient-to-r from-secondary to-blue-700 text-white rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+        <div class="space-y-1">
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-blue-200">Action Required</span>
+          <h4 class="text-lg font-bold text-white">Fast-Track Placement & Upskilling</h4>
+          <p class="text-xs text-blue-100 max-w-md">Address severe talent deficits by deploying certified short-courses or prioritizing talent referral.</p>
+        </div>
+        <a href="{% url 'applicant_monitoring_admin' %}" class="bg-white hover:bg-blue-50 text-secondary px-4 py-2.5 rounded-xl font-bold text-xs transition-all shadow-sm flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
+          <span>Talent Bench</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Critical Shortages Breakdown -->
+      <div class="bg-white border border-outline-variant/60 rounded-2xl p-6 shadow-xs space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-outline-variant/40">
+          <div>
+            <h4 class="text-sm font-bold text-on-surface uppercase tracking-wide">High Priority Shortages & Intervention Pathways</h4>
+            <p class="text-xs text-on-surface-variant mt-0.5">Vacancies requiring skills with the lowest candidate supply.</p>
+          </div>
+          <span class="text-[11px] font-bold text-secondary px-2.5 py-1 bg-secondary/10 rounded-full border border-secondary/20">
+            {{ critical_shortages|length }} Active Priorities
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {% for cs in critical_shortages %}
+            <div class="p-4 bg-surface-container-low/70 rounded-xl border border-outline-variant/50 flex flex-col justify-between gap-3 hover:border-secondary/40 transition-all">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="w-7 h-7 rounded-lg {% if forloop.first %}bg-error-container text-error{% else %}bg-secondary/15 text-secondary{% endif %} flex items-center justify-center font-bold text-xs shrink-0">
+                    <span class="material-symbols-outlined text-[16px]">{% if forloop.first %}warning{% else %}offline_bolt{% endif %}</span>
+                  </div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider {% if forloop.first %}text-error{% else %}text-secondary{% endif %}">
+                    {% if forloop.first %}Critical Deficit{% else %}High Demand{% endif %}
+                  </span>
+                </div>
+                <h5 class="text-xs font-bold text-on-surface leading-tight">{{ cs.name }}</h5>
+                <p class="text-[11px] text-on-surface-variant font-medium mt-1">
+                  <strong>{{ cs.total_demand }}</strong> Needed • <strong>{{ cs.total_supply }}</strong> Available
+                </p>
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-outline-variant/30">
+                <button type="button" onclick="openAiGeneratorModal('syllabus', '{{ cs.name|escapejs }}')" class="flex-1 min-w-[88px] py-1.5 bg-emerald-50 border border-emerald-300 hover:bg-emerald-100 text-emerald-800 rounded-lg text-[10px] font-bold transition-colors text-center shadow-2xs flex items-center justify-center gap-1 cursor-pointer whitespace-nowrap" title="Generate Course from Syllabus for {{ cs.name }}">
+                  <span class="material-symbols-outlined text-[13px]">upload_file</span>
+                  <span>Syllabus AI</span>
+                </button>
+                <button type="button" onclick="openAiGeneratorModal('topic', '{{ cs.name|escapejs }}')" class="flex-1 min-w-[88px] py-1.5 bg-white border border-outline-variant/70 hover:border-secondary text-secondary rounded-lg text-[10px] font-bold transition-colors text-center shadow-2xs flex items-center justify-center gap-1 cursor-pointer whitespace-nowrap" title="Generate AI Course for {{ cs.name }}">
+                  <span class="material-symbols-outlined text-[13px]">auto_awesome</span>
+                  <span>AI Course</span>
+                </button>
+                <a href="{% url 'vacancy_management_admin' %}?q={{ cs.name|urlencode }}" class="flex-1 min-w-[70px] py-1.5 px-2 bg-secondary text-white rounded-lg text-[10px] font-bold hover:bg-secondary-hover transition-colors text-center shadow-2xs whitespace-nowrap" title="View Vacancies">
+                  Jobs
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Emerging Skills & Recent Real-time Activity (5 Cols) -->
+    <div class="lg:col-span-5 space-y-4">
+      <!-- Emerging Skills Card -->
+      <div class="bg-white border border-outline-variant/60 rounded-2xl p-6 shadow-xs space-y-3.5">
+        <div class="flex items-center justify-between pb-3 border-b border-outline-variant/40">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]">rocket_launch</span>
+            <h4 class="text-sm font-bold text-on-surface uppercase tracking-wide">Emerging Market Competencies</h4>
+          </div>
+          <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">Fastest Growth</span>
+        </div>
+
+        <div class="space-y-3">
+          {% for em in emerging_skills %}
+            <div class="p-3 rounded-xl bg-surface-container-low/60 border border-outline-variant/40 space-y-1.5">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-bold text-on-surface">{{ em.title }}</p>
+                <span class="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">{{ em.growth }}</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant leading-tight">{{ em.desc }}</p>
+              <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-secondary h-full rounded-full" style="--bar-width: {{ em.width }}; width: var(--bar-width);"></div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Recent System Activities -->
+      <div class="bg-white border border-outline-variant/60 rounded-2xl p-5 shadow-xs space-y-3">
+        <h4 class="text-xs font-bold text-on-surface uppercase tracking-wide text-slate-500">Live System Intelligence</h4>
+        <div class="space-y-2.5">
+          {% for act in recent_activities %}
+            <div class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-surface-container-low/50 transition-colors">
+              <div class="w-7 h-7 rounded-lg {{ act.bg }} {{ act.color }} flex items-center justify-center shrink-0 mt-0.5">
+                <span class="material-symbols-outlined text-[16px]">{{ act.icon }}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <p class="text-xs font-bold text-on-surface truncate">{{ act.title }}</p>
+                  <span class="text-[10px] text-slate-400 font-medium shrink-0">{{ act.time }}</span>
+                </div>
+                <p class="text-[11px] text-on-surface-variant leading-tight mt-0.5">{{ act.desc }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Industry Distribution Table Section -->
+  <section class="bg-white border border-outline-variant/60 rounded-2xl overflow-hidden shadow-xs">
+    <div class="p-6 border-b border-outline-variant/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h3 class="text-lg font-extrabold text-on-surface">Skill Saturation by Industry Sector</h3>
+        <p class="text-xs text-on-surface-variant mt-0.5">Identified talent surplus and deficits segmented by economic sector.</p>
+      </div>
+      
+      <div class="flex flex-wrap items-center gap-3">
+        <!-- Search Input -->
+        <div class="relative min-w-[240px]">
+          <span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[18px]">search</span>
+          <input type="text" id="industryTableSearch" onkeyup="filterIndustryTable()" placeholder="Search industry or skill..." class="w-full pl-9 pr-4 py-2 bg-surface-container-low border border-outline-variant/60 rounded-xl text-xs text-on-surface placeholder:text-outline focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-all">
+        </div>
+
+        <!-- Industry Filter Dropdown -->
+        <select id="industryFilterSelect" name="industry" onchange="onIndustrySelectChange(this.value)" class="bg-surface-container-low border border-outline-variant/60 rounded-xl text-xs font-semibold text-on-surface py-2 px-3 focus:ring-2 focus:ring-secondary focus:border-secondary cursor-pointer">
+          {% for ind_opt in all_industries_list %}
+            <option value="{{ ind_opt }}" {% if selected_industry == ind_opt %}selected{% endif %}>{{ ind_opt }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse" id="industryDataTable">
+        <thead class="bg-surface-container-low/80 text-on-surface-variant font-bold text-xs uppercase tracking-wider border-b border-outline-variant/60">
+          <tr>
+            <th class="px-6 py-3.5">Industry Sector</th>
+            <th class="px-6 py-3.5">Primary Surplus Competencies</th>
+            <th class="px-6 py-3.5">Critical Skill Deficits</th>
+            <th class="px-6 py-3.5">Talent Supply Gauge</th>
+            <th class="px-6 py-3.5 text-right">Trend</th>
+            <th class="px-6 py-3.5 text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant/40 font-body-sm text-xs" id="industryTableBody">
+          {% for item in industry_data %}
+            <tr class="industry-row hover:bg-surface-container-low/40 transition-colors" data-industry="{{ item.industry|lower }}" data-skills="{{ item.surplus_skills|join:' '|lower }} {{ item.gap_skills|join:' '|lower }}">
+              <td class="px-6 py-4 font-bold text-on-surface">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                  <span>{{ item.industry }}</span>
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex flex-wrap gap-1.5">
+                  {% for ss in item.surplus_skills %}
+                    <span class="bg-blue-50 text-secondary px-2.5 py-1 rounded-md text-[11px] font-semibold border border-secondary/20">{{ ss }}</span>
+                  {% endfor %}
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex flex-wrap gap-1.5">
+                  {% for gs in item.gap_skills %}
+                    <span class="bg-red-50 text-error px-2.5 py-1 rounded-md text-[11px] font-bold border border-error/20 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[13px]">warning</span> {{ gs }}
+                    </span>
+                  {% endfor %}
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-28 bg-slate-100 h-2 rounded-full overflow-hidden border border-slate-200">
+                    <div class="bg-secondary h-full rounded-full" style="--bar-width: {{ item.progress_pct }}%; width: var(--bar-width);"></div>
+                  </div>
+                  <span class="font-mono text-xs font-bold text-on-surface">{{ item.talent_count }}</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-right font-extrabold {% if item.trend_positive %}text-emerald-600{% else %}text-error{% endif %}">
+                {{ item.trend }}
+              </td>
+              <td class="px-6 py-4 text-center">
+                <a href="{% url 'vacancy_management_admin' %}?q={{ item.category|default:item.industry|urlencode }}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white hover:bg-surface-container-low border border-outline-variant/70 text-secondary text-xs font-bold transition-all shadow-2xs hover:scale-105">
+                  <span>Vacancies</span>
+                  <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr id="emptyRow">
+              <td colspan="6" class="px-6 py-8 text-center text-on-surface-variant italic">
+                No matching industry sectors found for your search filter.
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<!-- Sticky Status Footer -->
+<footer class="mt-8 bg-white border-t border-outline-variant/60 px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 z-40 no-print">
+  <div class="flex gap-6 items-center">
+    <div class="flex items-center gap-2">
+      <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+      <span class="text-xs font-bold text-on-surface">PESO Talent Matching Engine</span>
+    </div>
+    <span class="text-xs font-medium text-slate-400">Database Sync: Active (SQLite/PostgreSQL)</span>
+  </div>
+  <div class="flex items-center gap-3">
+    <button onclick="window.print()" class="text-secondary font-bold text-xs px-3.5 py-2 rounded-xl border border-outline-variant/70 hover:bg-surface-container-low transition-colors flex items-center gap-1.5 shadow-2xs">
+      <span class="material-symbols-outlined text-[16px]">print</span> Print / PDF Export
+    </button>
+    <button onclick="openNotificationModal()" class="bg-secondary text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-secondary-hover transition-colors shadow-2xs flex items-center gap-1.5">
+      <span class="material-symbols-outlined text-[16px]">tune</span> Manage Notifications
+    </button>
+  </div>
+</footer>
+
+</main>
+
+<!-- Manage Notifications Modal -->
+<div id="notificationModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-outline-variant/60">
+    <div class="flex items-center justify-between pb-3 border-b border-outline-variant/60">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-secondary/15 text-secondary flex items-center justify-center">
+          <span class="material-symbols-outlined text-lg">notifications_active</span>
+        </div>
+        <h3 class="text-base font-bold text-on-surface">Skill Gap Alert Preferences</h3>
+      </div>
+      <button onclick="closeNotificationModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant">
+        <span class="material-symbols-outlined text-lg">close</span>
+      </button>
+    </div>
+
+    <form method="POST" action="{% url 'skill_monitoring_admin' %}" class="space-y-4">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="update_notifications">
+
+      <div>
+        <label class="block text-xs font-bold text-on-surface-variant uppercase mb-1.5">Deficit Alert Threshold</label>
+        <select name="threshold" class="w-full px-3 py-2 border border-outline-variant/70 rounded-xl text-sm bg-white focus:ring-2 focus:ring-secondary outline-none font-medium">
+          <option value="30">Alert when Skill Deficit exceeds 30%</option>
+          <option value="40" selected>Alert when Skill Deficit exceeds 40% (Recommended)</option>
+          <option value="50">Alert when Skill Deficit exceeds 50%</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-on-surface-variant uppercase mb-1.5">Email Digest Frequency</label>
+        <select name="digest_frequency" class="w-full px-3 py-2 border border-outline-variant/70 rounded-xl text-sm bg-white focus:ring-2 focus:ring-secondary outline-none font-medium">
+          <option value="daily">Daily Morning Labor Market Digest</option>
+          <option value="weekly" selected>Weekly PESO Summary (Every Monday)</option>
+          <option value="monthly">Monthly Policy Review</option>
+        </select>
+      </div>
+
+      <div class="space-y-2 pt-2 border-t border-outline-variant/40">
+        <label class="flex items-center gap-2 text-xs font-medium text-on-surface cursor-pointer">
+          <input type="checkbox" name="notify_training" checked class="rounded border-outline-variant text-secondary focus:ring-secondary">
+          <span>Auto-suggest training courses for deficits &gt; 35%</span>
+        </label>
+        <label class="flex items-center gap-2 text-xs font-medium text-on-surface cursor-pointer">
+          <input type="checkbox" name="notify_applicants" checked class="rounded border-outline-variant text-secondary focus:ring-secondary">
+          <span>Notify applicants when matching upskilling is deployed</span>
+        </label>
+      </div>
+
+      <div class="pt-3 border-t border-outline-variant/60 flex justify-end gap-2">
+        <button type="button" onclick="closeNotificationModal()" class="px-4 py-2 rounded-xl bg-surface-container text-on-surface font-bold text-xs">Cancel</button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-secondary text-white font-bold text-xs shadow-xs hover:bg-secondary-hover">Save Preferences</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- AI Program Generator & Syllabus Importer Modal -->
+<div id="aiGeneratorModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-white border border-outline-variant/80 rounded-2xl max-w-2xl w-full p-6 md:p-7 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto custom-scrollbar">
+    <!-- Modal Header -->
+    <div class="flex justify-between items-start pb-4 border-b border-outline-variant/60">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-700 text-white flex items-center justify-center shadow-xs shrink-0">
+          <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+        </div>
+        <div>
+          <h3 class="font-headline-md text-lg md:text-xl font-extrabold text-on-surface">AI Course Architect & Syllabus Engine</h3>
+          <p class="text-xs text-on-surface-variant mt-0.5">Upload a course syllabus or enter a topic to automatically build LMS modules, lessons, and exams.</p>
+        </div>
+      </div>
+      <button onclick="closeAiGeneratorModal()" class="p-1.5 rounded-xl hover:bg-surface-container-low text-outline">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Mode Tabs -->
+    <div class="flex rounded-xl bg-surface-container-low p-1 border border-outline-variant/60 gap-1" id="aiGenTabsHeader">
+      <button type="button" id="tabBtnSyllabus" onclick="switchAiGenTab('syllabus')" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 bg-white text-secondary shadow-xs">
+        <span class="material-symbols-outlined text-sm text-emerald-600">upload_file</span>
+        <span>Upload Course Syllabus</span>
+        <span class="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded font-extrabold uppercase">Fast</span>
+      </button>
+      <button type="button" id="tabBtnTopic" onclick="switchAiGenTab('topic')" class="flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface">
+        <span class="material-symbols-outlined text-sm text-purple-600">psychology</span>
+        <span>Generate from Topic Prompt</span>
+      </button>
+    </div>
+
+    <!-- Main Content Container -->
+    <div id="aiGenFormContainer">
+      <!-- TAB 1: SYLLABUS UPLOAD MODE -->
+      <div id="aiGenSyllabusTab" class="space-y-4">
+        <!-- Drag & Drop Zone -->
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1.5 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-emerald-600">description</span>
+              Syllabus Document (PDF, Word DOCX/DOC, TXT) *
+            </span>
+            <span class="text-[10px] text-on-surface-variant">Max 25MB</span>
+          </label>
+          <div id="syllabusDropzone" class="border-2 border-dashed border-outline-variant/80 hover:border-emerald-500 rounded-xl p-5 text-center cursor-pointer bg-slate-50 hover:bg-emerald-50/20 transition-all group relative">
+            <input type="file" id="aiGenSyllabusFile" accept=".pdf,.docx,.doc,.txt" onchange="handleSyllabusFileSelect(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+            <div id="syllabusDropzonePrompt" class="space-y-2">
+              <div class="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-2xl">cloud_upload</span>
+              </div>
+              <p class="text-xs font-bold text-on-surface">Drop syllabus file here or <span class="text-secondary underline">browse files</span></p>
+              <p class="text-[11px] text-on-surface-variant">Supports TESDA Training Regulations, university syllabi, and training outlines</p>
+            </div>
+            <!-- File selected badge -->
+            <div id="syllabusFileBadge" class="hidden items-center justify-between p-3 bg-emerald-50 border border-emerald-300 rounded-lg text-left">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="material-symbols-outlined text-emerald-700 text-xl shrink-0">task</span>
+                <div class="min-w-0">
+                  <p id="syllabusFileName" class="text-xs font-bold text-emerald-950 truncate"></p>
+                  <p id="syllabusFileSize" class="text-[10px] text-emerald-800"></p>
+                </div>
+              </div>
+              <button type="button" onclick="clearSyllabusFile(event)" class="p-1 hover:bg-emerald-200/50 rounded-md text-emerald-800 transition-colors z-20" title="Remove file">
+                <span class="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Or Paste Syllabus Text Toggle -->
+        <div>
+          <button type="button" onclick="togglePasteSyllabusText()" class="text-xs font-bold text-secondary hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm" id="pasteToggleIcon">expand_more</span>
+            <span id="pasteToggleLabel">Or paste syllabus text directly</span>
+          </button>
+          <div id="pasteTextContainer" class="hidden mt-2">
+            <textarea id="aiGenSyllabusText" rows="4" placeholder="Paste syllabus modules, competencies, topics, and course outline text here..." 
+                      class="w-full bg-slate-50 border border-outline-variant rounded-xl p-3 text-xs focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <!-- Optional Parameters Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+          <div>
+            <label for="aiGenSyllabusTitleOverride" class="block text-xs font-bold text-on-surface mb-1">Course Title Override <span class="font-normal text-[10px] text-on-surface-variant">(Optional)</span></label>
+            <input type="text" id="aiGenSyllabusTitleOverride" placeholder="Auto-detected from syllabus if blank" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+          <div>
+            <label for="aiGenSyllabusDuration" class="block text-xs font-bold text-on-surface mb-1">Estimated Duration Hours</label>
+            <input type="number" id="aiGenSyllabusDuration" placeholder="e.g. 40 (auto-detected if blank)" min="1" max="500" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3.5">
+          <div>
+            <label for="aiGenSyllabusSeatTime" class="block text-xs font-bold text-on-surface mb-1">Min. LMS Seat-Time (Mins)</label>
+            <input type="number" id="aiGenSyllabusSeatTime" value="60" min="1" max="1000" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+          <div>
+            <label for="aiGenSyllabusSlots" class="block text-xs font-bold text-on-surface mb-1">Available Slots</label>
+            <input type="number" id="aiGenSyllabusSlots" value="30" min="1" max="500" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Video Alignment Toggle -->
+        <label class="flex items-start gap-2.5 pt-1 cursor-pointer">
+          <input type="checkbox" id="aiGenSyllabusAttachVideos" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500">
+          <span class="text-xs text-on-surface leading-tight">
+            <strong>✨ Auto-align topic video tutorials:</strong> Automatically pair every syllabus unit and lesson with verified, topic-relevant vocational YouTube tutorials.
+          </span>
+        </label>
+
+        <!-- Information Callout -->
+        <div class="p-3 bg-emerald-50/80 border border-emerald-200 rounded-xl text-xs text-emerald-950 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-emerald-700 text-lg mt-0.5 shrink-0">verified</span>
+          <div class="leading-relaxed">
+            <span class="font-bold">Automated Course Generation from Syllabus:</span>
+            <p class="mt-0.5 text-emerald-900 text-[11px]">AI faithfully reads your document, extracts units of competency into multi-topic modules, generates milestone lessons with technical reading guides, aligns tutorial videos, and formulates an 8-question certification assessment exam.</p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="sticky bottom-0 z-10 bg-white pt-3 border-t border-outline-variant/70 flex justify-end gap-3">
+          <button type="button" onclick="closeAiGeneratorModal()" class="px-5 py-2.5 border border-outline-variant rounded-xl text-xs font-bold hover:bg-surface-container-low cursor-pointer">Cancel</button>
+          <button type="button" onclick="submitAiSyllabusGeneration()" id="aiGenSyllabusSubmitBtn" class="px-6 py-2.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white rounded-xl text-xs font-bold hover:opacity-95 shadow-xs flex items-center gap-2 cursor-pointer active:scale-95 transition-all">
+            <span class="material-symbols-outlined text-sm text-emerald-200">auto_awesome</span>
+            <span>Generate Course from Syllabus</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 2: TOPIC PROMPT GENERATION MODE -->
+      <div id="aiGenTopicTab" class="hidden space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="aiGenTopic" class="block text-xs font-bold text-on-surface mb-1.5">Course Topic or In-Demand Skill *</label>
+            <input type="text" id="aiGenTopic" placeholder="e.g. Shielded Metal Arc Welding NC-II, Data Analytics, Solar Installation" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3.5 py-2.5 text-xs focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none">
+          </div>
+
+          <div>
+            <label for="aiGenSkills" class="block text-xs font-bold text-on-surface mb-1.5">Target Competencies (Comma separated)</label>
+            <input type="text" id="aiGenSkills" placeholder="e.g. SMAW, Metal Cutting, Safety Standards" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3.5 py-2.5 text-xs focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label for="aiGenTrainingNeeds" class="block text-xs font-bold text-on-surface mb-1.5">
+            What training is needed?
+            <span class="font-normal text-[10px] text-on-surface-variant">(Optional — describe the gap, target roles, equipment, or outcomes)</span>
+          </label>
+          <textarea id="aiGenTrainingNeeds" rows="3"
+                    placeholder="e.g. New hires need hands-on training in SMAW welding, PPE compliance, and weld inspection for structural steel fabrication. Focus on shop safety and NC II assessment readiness."
+                    class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3.5 py-2.5 text-xs leading-relaxed focus:border-secondary focus:ring-1 focus:ring-secondary focus:outline-none resize-y"></textarea>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3.5">
+          <div>
+            <label for="aiGenDuration" class="block text-xs font-bold text-on-surface mb-1.5">Duration (Hours)</label>
+            <input type="number" id="aiGenDuration" value="40" min="1" max="500" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+          <div>
+            <label for="aiGenSeatTime" class="block text-xs font-bold text-on-surface mb-1.5">Min. Seat-Time (Mins)</label>
+            <input type="number" id="aiGenSeatTime" value="60" min="1" max="1000" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+          <div>
+            <label for="aiGenSlots" class="block text-xs font-bold text-on-surface mb-1.5">Slots</label>
+            <input type="number" id="aiGenSlots" value="30" min="1" max="500" 
+                   class="w-full bg-slate-50 border border-outline-variant rounded-xl px-3 py-2 text-xs focus:border-secondary focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Curriculum Scale & Depth Selection -->
+        <div class="p-3.5 bg-surface-container-low border border-outline-variant/70 rounded-xl space-y-3">
+          <div class="flex items-center justify-between">
+            <label for="aiGenScalePreset" class="block text-xs font-bold text-on-surface flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-secondary">view_timeline</span>
+              Curriculum Depth & Module Structure
+            </label>
+            <span class="text-[10px] font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">Recommended: 10 Modules</span>
+          </div>
+
+          <select id="aiGenScalePreset" onchange="onScalePresetChange(this.value)" class="w-full bg-white border border-outline-variant rounded-xl px-3 py-2 text-xs font-semibold focus:border-secondary focus:outline-none">
+            <option value="10_10" selected>🌟 Extensive Masterclass (10 Modules, 100 Milestone Lessons)</option>
+            <option value="8_8">📘 In-Depth Certification (8 Modules, 64 Milestone Lessons)</option>
+            <option value="5_6">🛠️ Standard Vocational Track (5 Modules, 30 Lessons)</option>
+            <option value="custom">⚙️ Custom Module & Lesson Count...</option>
+          </select>
+
+          <div id="customScaleContainer" class="hidden grid-cols-2 gap-3 pt-1">
+            <div>
+              <label for="aiGenNumModules" class="block text-[11px] font-bold text-on-surface-variant mb-1">Number of Modules (3 - 12):</label>
+              <input type="number" id="aiGenNumModules" value="10" min="3" max="12" class="w-full bg-white border border-outline-variant rounded-xl px-3 py-1.5 text-xs focus:border-secondary focus:outline-none">
+            </div>
+            <div>
+              <label for="aiGenLessonsPerModule" class="block text-[11px] font-bold text-on-surface-variant mb-1">Lessons per Module (2 - 15):</label>
+              <input type="number" id="aiGenLessonsPerModule" value="10" min="2" max="15" class="w-full bg-white border border-outline-variant rounded-xl px-3 py-1.5 text-xs focus:border-secondary focus:outline-none">
+            </div>
+          </div>
+
+          <!-- Video Alignment Toggle -->
+          <label class="flex items-start gap-2.5 pt-1.5 cursor-pointer">
+            <input type="checkbox" id="aiGenAttachVideos" checked class="mt-0.5 rounded text-secondary focus:ring-secondary">
+            <span class="text-xs text-on-surface leading-tight">
+              <strong>✨ Auto-align topic video tutorials:</strong> Automatically attach verified, topic-relevant YouTube video tutorials for every module and video milestone.
+            </span>
+          </label>
+        </div>
+
+        <div class="p-3.5 bg-purple-50/80 border border-purple-200 rounded-xl text-xs text-purple-900 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-purple-700 text-lg mt-0.5 shrink-0">psychology</span>
+          <div>
+            <span class="font-bold">What will be auto-generated by AI:</span>
+            <p class="mt-0.5 text-purple-800 text-[11px] leading-relaxed">Full syllabus, course overview, up to 10 comprehensive modules with 100 practical milestones, topic-aligned YouTube tutorials, standard operating guides, and candidate certification exam questions.</p>
+          </div>
+        </div>
+
+        <div class="sticky bottom-0 z-10 bg-white pt-4 border-t border-outline-variant/70 flex justify-end gap-3">
+          <button type="button" onclick="closeAiGeneratorModal()" class="px-5 py-2.5 border border-outline-variant rounded-xl text-xs font-bold hover:bg-surface-container-low cursor-pointer">Cancel</button>
+          <button type="button" onclick="submitAiTrainingGeneration()" id="aiGenSubmitBtn" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl text-xs font-bold hover:opacity-95 shadow-xs flex items-center gap-2 cursor-pointer">
+            <span class="material-symbols-outlined text-sm">auto_awesome</span>
+            <span>Generate with AI</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="aiGenLoadingContainer" class="hidden py-10 text-center space-y-4">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-emerald-100 to-teal-100 border-3 border-emerald-600 border-t-transparent animate-spin mx-auto flex items-center justify-center shadow-inner">
+        <span class="material-symbols-outlined text-emerald-700 text-2xl animate-pulse">auto_awesome</span>
+      </div>
+      <div>
+        <h4 class="font-bold text-on-surface text-base" id="aiGenLoadingTitle">AI is Analyzing Syllabus & Building Course...</h4>
+        <p id="aiGenStepText" class="text-xs text-on-surface-variant mt-1.5 font-medium transition-all">Extracting text and units of competency from syllabus...</p>
+      </div>
+      <div class="w-56 mx-auto bg-surface-container rounded-full h-2 overflow-hidden shadow-inner">
+        <div id="aiGenProgressBar" class="h-full bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-600 animate-pulse w-3/4 rounded-full transition-all duration-500"></div>
+      </div>
+      <p class="text-[11px] text-outline italic">Please do not close this window while AI structures modules and certification exams.</p>
+    </div>
+
+    <!-- Success State Card -->
+    <div id="aiGenSuccessContainer" class="hidden py-6 text-center space-y-5">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 border-2 border-emerald-500 text-emerald-700 flex items-center justify-center mx-auto shadow-md">
+        <span class="material-symbols-outlined text-3xl font-bold">check_circle</span>
+      </div>
+      <div>
+        <h4 class="font-extrabold text-on-surface text-lg md:text-xl">Course Successfully Created & Published!</h4>
+        <p id="aiGenSuccessTitle" class="text-sm font-bold text-secondary mt-1"></p>
+        <p id="aiGenSuccessMessage" class="text-xs text-on-surface-variant mt-1 max-w-md mx-auto"></p>
+      </div>
+
+      <!-- Quick Metrics Summary -->
+      <div class="grid grid-cols-3 gap-3 max-w-md mx-auto p-3.5 bg-surface-container-low rounded-xl border border-outline-variant/60">
+        <div class="text-center">
+          <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Modules</span>
+          <span id="aiGenSuccessModules" class="text-lg font-black text-on-surface"></span>
+        </div>
+        <div class="text-center border-x border-outline-variant/50">
+          <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Lessons</span>
+          <span id="aiGenSuccessLessons" class="text-lg font-black text-on-surface"></span>
+        </div>
+        <div class="text-center">
+          <span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider block">Exam Qs</span>
+          <span id="aiGenSuccessExam" class="text-lg font-black text-emerald-600">8+</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="pt-3 border-t border-outline-variant/60 flex items-center justify-center gap-3">
+        <button type="button" onclick="closeAiGeneratorModal(); window.location.reload();" class="px-5 py-2.5 border border-outline-variant rounded-xl text-xs font-bold hover:bg-surface-container-low transition-colors">Done</button>
+        <a id="aiGenSuccessBuilderLink" href="#" class="px-6 py-2.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white rounded-xl text-xs font-bold hover:opacity-95 shadow-xs flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">edit_document</span>
+          <span>Open Curriculum Builder</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Interactive Client-side Scripting -->
+<script>
+let selectedSyllabusFile = null;
+let aiStepInterval = null;
+
+function openAiGeneratorModal(tab = 'syllabus', prefillTopic = '') {
+  const modal = document.getElementById('aiGeneratorModal');
+  if (!modal) return;
+
+  document.getElementById('aiGenFormContainer').classList.remove('hidden');
+  document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+  document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+  document.getElementById('aiGenSuccessContainer').classList.add('hidden');
+
+  if (prefillTopic) {
+    const topicInput = document.getElementById('aiGenTopic');
+    const skillsInput = document.getElementById('aiGenSkills');
+    const titleOverrideInput = document.getElementById('aiGenSyllabusTitleOverride');
+    if (topicInput) topicInput.value = prefillTopic;
+    if (skillsInput) skillsInput.value = prefillTopic;
+    if (titleOverrideInput) titleOverrideInput.value = prefillTopic + ' Certification Training';
+  }
+
+  switchAiGenTab(tab);
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeAiGeneratorModal() {
+  const modal = document.getElementById('aiGeneratorModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+  if (aiStepInterval) {
+    clearInterval(aiStepInterval);
+    aiStepInterval = null;
+  }
+}
+
+function switchAiGenTab(tab) {
+  const tabSyllabusBtn = document.getElementById('tabBtnSyllabus');
+  const tabTopicBtn = document.getElementById('tabBtnTopic');
+  const syllabusTab = document.getElementById('aiGenSyllabusTab');
+  const topicTab = document.getElementById('aiGenTopicTab');
+
+  if (tab === 'syllabus') {
+    tabSyllabusBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 bg-white text-secondary shadow-xs';
+    tabTopicBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface';
+    syllabusTab.classList.remove('hidden');
+    topicTab.classList.add('hidden');
+  } else {
+    tabTopicBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 bg-white text-secondary shadow-xs';
+    tabSyllabusBtn.className = 'flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 text-on-surface-variant hover:text-on-surface';
+    topicTab.classList.remove('hidden');
+    syllabusTab.classList.add('hidden');
+  }
+}
+
+function handleSyllabusFileSelect(event) {
+  const file = event.target.files && event.target.files[0];
+  if (file) {
+    setSyllabusFile(file);
+  }
+}
+
+function setSyllabusFile(file) {
+  selectedSyllabusFile = file;
+  const prompt = document.getElementById('syllabusDropzonePrompt');
+  const badge = document.getElementById('syllabusFileBadge');
+  const nameEl = document.getElementById('syllabusFileName');
+  const sizeEl = document.getElementById('syllabusFileSize');
+
+  if (nameEl) nameEl.textContent = file.name;
+  if (sizeEl) {
+    const sizeKb = Math.round(file.size / 1024);
+    sizeEl.textContent = sizeKb > 1024 ? `${(sizeKb / 1024).toFixed(1)} MB` : `${sizeKb} KB`;
+  }
+
+  if (prompt) prompt.classList.add('hidden');
+  if (badge) {
+    badge.classList.remove('hidden');
+    badge.classList.add('flex');
+  }
+}
+
+function clearSyllabusFile(event) {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  selectedSyllabusFile = null;
+  const fileInput = document.getElementById('aiGenSyllabusFile');
+  if (fileInput) fileInput.value = '';
+
+  const prompt = document.getElementById('syllabusDropzonePrompt');
+  const badge = document.getElementById('syllabusFileBadge');
+  if (prompt) prompt.classList.remove('hidden');
+  if (badge) {
+    badge.classList.add('hidden');
+    badge.classList.remove('flex');
+  }
+}
+
+function togglePasteSyllabusText() {
+  const container = document.getElementById('pasteTextContainer');
+  const icon = document.getElementById('pasteToggleIcon');
+  const label = document.getElementById('pasteToggleLabel');
+  if (!container) return;
+
+  const isHidden = container.classList.contains('hidden');
+  if (isHidden) {
+    container.classList.remove('hidden');
+    if (icon) icon.textContent = 'expand_less';
+    if (label) label.textContent = 'Hide pasted syllabus text area';
+    document.getElementById('aiGenSyllabusText')?.focus();
+  } else {
+    container.classList.add('hidden');
+    if (icon) icon.textContent = 'expand_more';
+    if (label) label.textContent = 'Or paste syllabus text directly';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const dropzone = document.getElementById('syllabusDropzone');
+  if (dropzone) {
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('border-emerald-600', 'bg-emerald-50/40');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('border-emerald-600', 'bg-emerald-50/40');
+      }, false);
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const file = dt.files && dt.files[0];
+      if (file) {
+        const fileInput = document.getElementById('aiGenSyllabusFile');
+        if (fileInput) fileInput.files = dt.files;
+        setSyllabusFile(file);
+      }
+    }, false);
+  }
+});
+
+function startAiStepRotator(steps, titleText) {
+  const stepEl = document.getElementById('aiGenStepText');
+  const titleEl = document.getElementById('aiGenLoadingTitle');
+  if (titleEl && titleText) titleEl.textContent = titleText;
+
+  let stepIdx = 0;
+  if (stepEl && steps.length > 0) stepEl.textContent = steps[0];
+
+  if (aiStepInterval) clearInterval(aiStepInterval);
+  aiStepInterval = setInterval(() => {
+    stepIdx = (stepIdx + 1) % steps.length;
+    if (stepEl) {
+      stepEl.style.opacity = '0';
+      setTimeout(() => {
+        stepEl.textContent = steps[stepIdx];
+        stepEl.style.opacity = '1';
+      }, 200);
+    }
+  }, 2500);
+}
+
+function submitAiSyllabusGeneration() {
+  const fileInput = document.getElementById('aiGenSyllabusFile');
+  const file = selectedSyllabusFile || (fileInput && fileInput.files ? fileInput.files[0] : null);
+  const text = (document.getElementById('aiGenSyllabusText')?.value || '').trim();
+
+  if (!file && (!text || text.length < 20)) {
+    alert('Please upload a course syllabus document (PDF, Word DOCX/DOC, TXT) or paste syllabus text.');
+    return;
+  }
+
+  const titleOverride = (document.getElementById('aiGenSyllabusTitleOverride')?.value || '').trim();
+  const duration = document.getElementById('aiGenSyllabusDuration')?.value || '';
+  const seatTime = document.getElementById('aiGenSyllabusSeatTime')?.value || '60';
+  const slots = document.getElementById('aiGenSyllabusSlots')?.value || '30';
+  const attachVideos = document.getElementById('aiGenSyllabusAttachVideos')?.checked ?? true;
+
+  const formData = new FormData();
+  if (file) {
+    formData.append('syllabus_file', file);
+  }
+  if (text) {
+    formData.append('syllabus_text', text);
+  }
+  if (titleOverride) {
+    formData.append('override_title', titleOverride);
+  }
+  if (duration) {
+    formData.append('duration_hours', duration);
+  }
+  formData.append('required_seat_time_mins', seatTime);
+  formData.append('slots', slots);
+  formData.append('attach_videos', attachVideos ? 'true' : 'false');
+
+  document.getElementById('aiGenFormContainer').classList.add('hidden');
+  document.getElementById('aiGenTabsHeader').classList.add('hidden');
+  document.getElementById('aiGenLoadingContainer').classList.remove('hidden');
+
+  const steps = [
+    "📄 Extracting text and units of competency from syllabus...",
+    "🧠 AI analyzing learning outcomes and structuring progressive modules...",
+    "🎬 Aligning vocational tutorial videos and hands-on demonstrations...",
+    "✍️ Crafting comprehensive certification exam questions...",
+    "🚀 Compiling interactive LMS course & publishing to registry..."
+  ];
+  startAiStepRotator(steps, "AI is Analyzing Syllabus & Building Course...");
+
+  fetch("{% url 'peso_ai_generate_from_syllabus' %}", {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': '{{ csrf_token }}'
+    },
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (aiStepInterval) clearInterval(aiStepInterval);
+
+    if (data.success) {
+      document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+      const successContainer = document.getElementById('aiGenSuccessContainer');
+      successContainer.classList.remove('hidden');
+
+      document.getElementById('aiGenSuccessTitle').textContent = data.title;
+      document.getElementById('aiGenSuccessMessage').textContent = data.message;
+      document.getElementById('aiGenSuccessModules').textContent = data.modules_count || 'Multi';
+      document.getElementById('aiGenSuccessLessons').textContent = data.lessons_count || 'Comprehensive';
+      document.getElementById('aiGenSuccessBuilderLink').href = data.curriculum_url || data.redirect_url;
+    } else {
+      alert(data.error || 'Failed to generate course from syllabus.');
+      document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+      document.getElementById('aiGenFormContainer').classList.remove('hidden');
+      document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+    }
+  })
+  .catch(err => {
+    if (aiStepInterval) clearInterval(aiStepInterval);
+    alert('Error connecting to AI syllabus generator: ' + err.message);
+    document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+    document.getElementById('aiGenFormContainer').classList.remove('hidden');
+    document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+  });
+}
+
+function onScalePresetChange(val) {
+  const customContainer = document.getElementById('customScaleContainer');
+  const numModulesInput = document.getElementById('aiGenNumModules');
+  const lessonsInput = document.getElementById('aiGenLessonsPerModule');
+
+  if (val === 'custom') {
+    if (customContainer) {
+      customContainer.classList.remove('hidden');
+      customContainer.classList.add('grid');
+    }
+  } else {
+    if (customContainer) {
+      customContainer.classList.add('hidden');
+      customContainer.classList.remove('grid');
+    }
+    if (val === '10_10') {
+      if (numModulesInput) numModulesInput.value = 10;
+      if (lessonsInput) lessonsInput.value = 10;
+    } else if (val === '8_8') {
+      if (numModulesInput) numModulesInput.value = 8;
+      if (lessonsInput) lessonsInput.value = 8;
+    } else if (val === '5_6') {
+      if (numModulesInput) numModulesInput.value = 5;
+      if (lessonsInput) lessonsInput.value = 6;
+    }
+  }
+}
+
+function submitAiTrainingGeneration() {
+  const topic = (document.getElementById('aiGenTopic').value || '').trim();
+  const skills = (document.getElementById('aiGenSkills').value || '').trim();
+  const trainingNeeds = (document.getElementById('aiGenTrainingNeeds')?.value || '').trim();
+  const duration = document.getElementById('aiGenDuration').value || '40';
+  const seatTime = document.getElementById('aiGenSeatTime').value || '60';
+  const slots = document.getElementById('aiGenSlots').value || '30';
+  
+  const numModules = document.getElementById('aiGenNumModules') ? parseInt(document.getElementById('aiGenNumModules').value || '10') : 10;
+  const lessonsPerModule = document.getElementById('aiGenLessonsPerModule') ? parseInt(document.getElementById('aiGenLessonsPerModule').value || '10') : 10;
+  const attachVideos = document.getElementById('aiGenAttachVideos') ? document.getElementById('aiGenAttachVideos').checked : true;
+
+  if (!topic) {
+    alert('Please enter a course topic or in-demand vocational skill.');
+    return;
+  }
+
+  document.getElementById('aiGenFormContainer').classList.add('hidden');
+  document.getElementById('aiGenTabsHeader').classList.add('hidden');
+  document.getElementById('aiGenLoadingContainer').classList.remove('hidden');
+
+  const steps = [
+    "🧠 Generating comprehensive learning objectives and curriculum overview...",
+    "📚 Crafting structured modules and technical milestone lessons...",
+    "🎬 Aligning high-definition video tutorials from verified channels...",
+    "📝 Formulating standard operating procedures and reading material...",
+    "🎯 Synthesizing multiple-choice certification exam..."
+  ];
+  startAiStepRotator(steps, "AI is Structuring Training Curriculum...");
+
+  fetch("{% url 'peso_ai_generate_training' %}", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': '{{ csrf_token }}'
+    },
+    body: JSON.stringify({
+      topic: topic,
+      target_skills: skills,
+      training_needs: trainingNeeds,
+      duration_hours: parseInt(duration),
+      required_seat_time_mins: parseInt(seatTime),
+      slots: parseInt(slots),
+      num_modules: numModules,
+      lessons_per_module: lessonsPerModule,
+      attach_videos: attachVideos
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (aiStepInterval) clearInterval(aiStepInterval);
+
+    if (data.success) {
+      document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+      const successContainer = document.getElementById('aiGenSuccessContainer');
+      successContainer.classList.remove('hidden');
+
+      document.getElementById('aiGenSuccessTitle').textContent = data.title;
+      document.getElementById('aiGenSuccessMessage').textContent = data.message;
+      document.getElementById('aiGenSuccessModules').textContent = numModules;
+      document.getElementById('aiGenSuccessLessons').textContent = numModules * lessonsPerModule;
+      document.getElementById('aiGenSuccessBuilderLink').href = data.curriculum_url || data.redirect_url;
+    } else {
+      alert(data.error || 'Failed to generate training program.');
+      document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+      document.getElementById('aiGenFormContainer').classList.remove('hidden');
+      document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+    }
+  })
+  .catch(err => {
+    if (aiStepInterval) clearInterval(aiStepInterval);
+    alert('Error connecting to AI service: ' + err.message);
+    document.getElementById('aiGenLoadingContainer').classList.add('hidden');
+    document.getElementById('aiGenFormContainer').classList.remove('hidden');
+    document.getElementById('aiGenTabsHeader').classList.remove('hidden');
+  });
+}
+
+function filterIndustryTable() {
+  const query = document.getElementById('industryTableSearch').value.toLowerCase().trim();
+  const rows = document.querySelectorAll('#industryTableBody .industry-row');
+  let visibleCount = 0;
+
+  rows.forEach(row => {
+    const industry = row.getAttribute('data-industry') || '';
+    const skills = row.getAttribute('data-skills') || '';
+    const textContent = row.textContent.toLowerCase();
+
+    if (!query || industry.includes(query) || skills.includes(query) || textContent.includes(query)) {
+      row.style.display = '';
+      visibleCount++;
+    } else {
+      row.style.display = 'none';
+    }
+  });
+
+  const emptyRow = document.getElementById('emptyRow');
+  if (emptyRow) {
+    emptyRow.style.display = visibleCount === 0 ? '' : 'none';
+  }
+}
+
+function onIndustrySelectChange(selected) {
+  if (selected === 'All Industries') {
+    document.getElementById('industryTableSearch').value = '';
+    filterIndustryTable();
+  } else {
+    document.getElementById('industryTableSearch').value = selected;
+    filterIndustryTable();
+  }
+}
+
+function openNotificationModal() {
+  document.getElementById('notificationModal').classList.remove('hidden');
+}
+
+function closeNotificationModal() {
+  document.getElementById('notificationModal').classList.add('hidden');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeNotificationModal();
+  }
+});
+</script>
+
+</body>
+</html>

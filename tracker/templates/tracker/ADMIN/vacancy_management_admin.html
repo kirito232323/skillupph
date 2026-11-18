@@ -1,0 +1,489 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Vacancies | SKILLUP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#0051d5",
+                    "inverse-surface": "#213145",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "outline-variant": "#c6c6cd",
+                    "primary-fixed": "#dae2fd",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#565e74",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-container": "#7c839b",
+                    "primary-fixed-dim": "#bec6e0",
+                    "outline": "#76777d",
+                    "on-secondary-fixed": "#00174b",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-container": "#002113",
+                    "primary-container": "#131b2e",
+                    "tertiary": "#000000",
+                    "on-secondary-container": "#fefcff",
+                    "surface-dim": "#cbdbf5",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-background": "#0b1c30",
+                    "on-surface-variant": "#45464d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#002113",
+                    "inverse-on-surface": "#eaf1ff",
+                    "background": "#f8f9ff",
+                    "secondary-fixed": "#dbe1ff",
+                    "primary": "#000000",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#009668",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed": "#131b2e",
+                    "inverse-primary": "#bec6e0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .zebra-row:nth-child(even) { background-color: #f8f9ff; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .glass-effect { backdrop-filter: blur(8px); background-color: rgba(255, 255, 255, 0.8); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline flex items-center justify-between px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">SKILLUP</h1>
+</div>
+<div class="flex items-center gap-4">
+<a href="{% url 'admin_notifications' %}" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80" title="Notifications">notifications</a>
+<a href="{% url 'peso_profile_admin' %}" class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-80" title="Settings">settings</a>
+<a href="{% url 'peso_profile_admin' %}" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-secondary/15 flex items-center justify-center font-bold text-xs text-secondary shrink-0 hover:ring-2 hover:ring-secondary transition-all" title="{{ request.user.get_full_name }}">
+{% if request.user.profile.profile_picture %}
+<img alt="{{ request.user.get_full_name }}" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+{% else %}
+{{ request.user.first_name|slice:":1"|upper }}{{ request.user.last_name|slice:":1"|upper|default:"P" }}
+{% endif %}
+</a>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 pt-20 bg-surface-container-lowest dark:bg-primary-container border-r border-outline-variant dark:border-outline hidden md:flex flex-col p-4 gap-2 z-40">
+<div class="flex items-center gap-3 px-2 py-4 mb-4 border-b border-outline-variant/30">
+{% if request.user.profile.profile_picture %}
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant shrink-0">
+  <img alt="Office Logo" class="w-full h-full object-cover" src="{{ request.user.profile.profile_picture.url }}">
+</div>
+{% else %}
+<div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-white font-black text-xl shrink-0">P</div>
+{% endif %}
+<div>
+<h2 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider whitespace-nowrap">SKILLUP Portal</h2>
+<p class="text-[10px] text-on-surface-variant opacity-70">Public Employment Service</p>
+</div>
+</div>
+<nav class="flex-grow flex flex-col gap-1 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_dashboard_admin' %}">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'applicant_monitoring_admin' %}">
+<span class="material-symbols-outlined">groups</span>
+<span>Talent Bench</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employer_management_admin' %}">
+<span class="material-symbols-outlined">domain</span>
+<span>Employers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-surface-container dark:bg-secondary-container text-on-surface dark:text-on-secondary-container font-bold rounded-lg scale-98 active:scale-95 duration-150 transition-all font-label-md text-label-md" href="{% url 'vacancy_management_admin' %}">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+<span>Vacancies</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'employment_tracking_admin' %}">
+<span class="material-symbols-outlined">description</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'skill_monitoring_admin' %}">
+<span class="material-symbols-outlined">analytics</span>
+<span>Skill Gaps</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'training_monitoring_admin' %}">
+<span class="material-symbols-outlined">school</span>
+<span>Training Programs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'job_matching_analytics_admin' %}">
+<span class="material-symbols-outlined">monitoring</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant dark:text-on-primary-container opacity-70 hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-all rounded-lg scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'peso_profile_admin' %}">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant opacity-70 hover:bg-surface-container-high rounded-lg transition-all scale-98 active:scale-95 duration-150 font-label-md text-label-md" href="{% url 'logout' %}">
+<span class="material-symbols-outlined">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-20 min-h-screen">
+<div class="p-margin-desktop space-y-gutter">
+<!-- Page Header -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Vacancies</h2>
+<p class="text-on-surface-variant font-body-md max-w-2xl">Review, audit, and curate all job listings across the SKILLUP ecosystem. Maintain high standards for enterprise talent acquisition.</p>
+</div>
+<div class="flex gap-3 flex-wrap">
+<a href="{% url 'export_analytics_csv' %}?report=vacancies" class="px-5 py-2 border border-outline hover:border-secondary hover:text-secondary text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center gap-2 font-bold shadow-sm" title="Export Vacancy Directory CSV">
+<span class="material-symbols-outlined text-[18px]">download</span> Export CSV
+</a>
+<button onclick="focusVacancySearch()" class="px-5 py-2 bg-secondary text-white rounded-lg font-label-md text-label-md hover:bg-blue-700 transition-colors flex items-center gap-2 font-bold shadow-sm cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-white">search</span> <span class="text-white">Search Postings</span>
+</button>
+</div>
+</div>
+
+<!-- Quick Stats Bento -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-8">
+<!-- KPI 1: Total Vacancies -->
+<div class="bg-surface-container-lowest p-6 border border-outline-variant rounded-xl flex items-center justify-between shadow-sm">
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase mb-1">Total Active</p>
+<h3 class="text-headline-md font-bold font-headline-md text-on-surface">{{ total_vacancies }}</h3>
+<div class="flex items-center gap-1 text-secondary mt-2">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-sm font-bold">{{ open_vacancies }} Open Listings</span>
+</div>
+</div>
+<div class="p-3 bg-surface-container rounded-lg text-secondary">
+<span class="material-symbols-outlined text-[32px]">work</span>
+</div>
+</div>
+
+<!-- KPI 2: Open Slots -->
+<div class="bg-surface-container-lowest p-6 border border-outline-variant rounded-xl flex items-center justify-between shadow-sm">
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase mb-1">Available Slots</p>
+<h3 class="text-headline-md font-bold font-headline-md text-on-surface">{{ open_slots }}</h3>
+<p class="text-secondary font-label-sm mt-2 flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[16px]">groups</span>
+<span>Target Openings</span>
+</p>
+</div>
+<div class="p-3 bg-secondary/10 rounded-lg text-secondary">
+<span class="material-symbols-outlined text-[32px]">group_add</span>
+</div>
+</div>
+
+<!-- KPI 3: Hiring Employers -->
+<div class="bg-surface-container-lowest p-6 border border-outline-variant rounded-xl flex items-center justify-between shadow-sm">
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase mb-1">Active Employers</p>
+<h3 class="text-headline-md font-bold font-headline-md text-on-surface">{{ hiring_employers }}</h3>
+<div class="flex items-center gap-1 text-on-surface-variant mt-2">
+<span class="material-symbols-outlined text-[16px]">domain</span>
+<span class="font-label-sm">Partner Companies</span>
+</div>
+</div>
+<div class="p-3 bg-surface-container-highest rounded-lg text-on-surface">
+<span class="material-symbols-outlined text-[32px]">apartment</span>
+</div>
+</div>
+
+<!-- KPI 4: Referred Candidates -->
+<div class="bg-surface-container-lowest p-6 border border-outline-variant rounded-xl flex items-center justify-between shadow-sm">
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase mb-1">Referred Candidates</p>
+<h3 class="text-headline-md font-bold font-headline-md text-on-surface">{{ total_referrals }}</h3>
+<p class="text-secondary font-label-sm mt-2 font-bold">Endorsed to Vacancies</p>
+</div>
+<div class="p-3 bg-tertiary-fixed rounded-lg text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[32px]">assignment_turned_in</span>
+</div>
+</div>
+</div>
+
+<!-- Filter Bar -->
+<div class="bg-surface-container-lowest p-4 border border-outline-variant rounded-xl mb-6 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+<div class="flex flex-wrap items-center gap-3 flex-1">
+  <div class="flex-1 min-w-[280px] relative">
+    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+    <input id="vacancySearchInput" oninput="applyVacancyFilters()" class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary text-body-sm focus:outline-none" placeholder="Filter by role, employer, or location..." type="text">
+  </div>
+  
+  <select id="vacancyCategoryFilter" onchange="applyVacancyFilters()" class="border border-outline-variant rounded-lg px-3 py-2 text-body-sm bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-secondary focus:outline-none">
+    <option value="">Category: All</option>
+    {% for cat in categories %}
+      <option value="{{ cat|lower }}">{{ cat }}</option>
+    {% endfor %}
+  </select>
+
+  <select id="vacancyStatusFilter" onchange="applyVacancyFilters()" class="border border-outline-variant rounded-lg px-3 py-2 text-body-sm bg-surface-container-lowest text-on-surface focus:ring-2 focus:ring-secondary focus:outline-none">
+    <option value="">Status: All</option>
+    <option value="open">Open</option>
+    <option value="closed">Closed</option>
+    <option value="archived">Archived</option>
+  </select>
+
+  <button id="clearVacancyFiltersBtn" onclick="clearVacancyFilters()" class="text-secondary font-label-md text-label-md px-3 py-2 hover:bg-surface-container transition-colors rounded-lg font-bold">Clear Filters</button>
+</div>
+
+<div class="text-xs text-on-surface-variant font-medium">
+  Showing <strong id="visibleVacanciesCount" class="text-on-surface">{{ vacancies|length }}</strong> of {{ total_vacancies }} vacancies
+</div>
+</div>
+
+<!-- Vacancy Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+  Role &amp; Employer
+</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Salary Range</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Slots</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Date Posted</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant" id="vacanciesTableBody">
+{% for v in vacancies %}
+<tr class="zebra-row vacancy-item-row hover:bg-surface-container transition-colors group"
+    data-title="{{ v.title|lower }}"
+    data-employer="{{ v.employer.company_name|lower }}"
+    data-category="{{ v.category_display|lower }}"
+    data-location="{{ v.location|lower }}"
+    data-status="{{ v.status|lower }}">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center font-bold text-secondary text-sm">
+    {{ v.employer.company_name|slice:":1"|default:"E" }}
+</div>
+<div>
+<a href="{% url 'vacancy_detail_admin' v.id %}" class="hover:underline hover:text-secondary font-semibold font-body-md transition-colors text-on-surface block">{{ v.title }}</a>
+{% if v.employer %}
+<a href="{% url 'company_profile_detail' v.employer.id %}" class="text-on-surface-variant hover:text-secondary hover:underline text-xs block transition-colors">{{ v.employer.company_name }}</a>
+{% else %}
+<p class="text-on-surface-variant text-body-sm">{{ v.employer.company_name }}</p>
+{% endif %}
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 bg-surface-container-high rounded text-[11px] font-label-md uppercase tracking-wider text-on-surface-variant font-semibold">{{ v.category_display }}</span>
+</td>
+<td class="px-6 py-4 text-right">
+<p class="font-label-md text-label-md font-bold text-on-surface">{{ v.salary_range|default:"Competitive" }}</p>
+<p class="text-on-surface-variant text-[11px] font-label-sm">{{ v.location }}</p>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded text-xs font-bold bg-surface-container text-on-surface-variant border border-outline-variant/40">
+  {{ v.remaining_slots }}/{{ v.slots }}
+</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+{% if v.status == 'Open' %}
+<div class="w-2 h-2 rounded-full bg-green-600"></div>
+<span class="text-body-sm font-semibold text-green-800 dark:text-green-400">Open</span>
+{% elif v.status == 'Archived' %}
+<div class="w-2 h-2 rounded-full bg-slate-500"></div>
+<span class="text-body-sm font-semibold text-slate-600 dark:text-slate-400">Archived</span>
+{% else %}
+<div class="w-2 h-2 rounded-full bg-amber-600"></div>
+<span class="text-body-sm font-semibold text-amber-800 dark:text-amber-400">{{ v.status }}</span>
+{% endif %}
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-sm">{{ v.created_at|date:"M d, Y" }}</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<a href="{% url 'vacancy_detail_admin' v.id %}" class="p-1.5 hover:text-secondary hover:bg-secondary/10 rounded transition-colors" title="View Details">
+  <span class="material-symbols-outlined text-[20px]">visibility</span>
+</a>
+
+<!-- Toggle Open/Close -->
+<form method="POST" class="inline">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="toggle_status">
+  <input type="hidden" name="vacancy_id" value="{{ v.id }}">
+  <button type="submit" class="p-1.5 hover:text-secondary hover:bg-secondary/10 rounded transition-colors" title="Toggle Open / Closed">
+    <span class="material-symbols-outlined text-[20px]">{% if v.status == 'Open' %}toggle_on{% else %}toggle_off{% endif %}</span>
+  </button>
+</form>
+
+<!-- Archive / Unarchive Vacancy -->
+<form method="POST" class="inline">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="archive">
+  <input type="hidden" name="vacancy_id" value="{{ v.id }}">
+  <button type="submit" class="p-1.5 {% if v.status == 'Archived' %}hover:text-blue-600 hover:bg-blue-100 text-blue-600{% else %}hover:text-amber-600 hover:bg-amber-100{% endif %} rounded transition-colors" title="{% if v.status == 'Archived' %}Unarchive / Restore Vacancy{% else %}Archive Vacancy{% endif %}">
+    <span class="material-symbols-outlined text-[20px]">{% if v.status == 'Archived' %}unarchive{% else %}archive{% endif %}</span>
+  </button>
+</form>
+
+<!-- Delete Vacancy -->
+<form method="POST" class="inline" onsubmit="return confirm('Are you sure you want to permanently delete this vacancy?');">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="delete">
+  <input type="hidden" name="vacancy_id" value="{{ v.id }}">
+  <button type="submit" class="p-1.5 hover:text-error hover:bg-error/10 rounded transition-colors" title="Delete Vacancy">
+    <span class="material-symbols-outlined text-[20px]">delete</span>
+  </button>
+</form>
+</div>
+</td>
+</tr>
+{% empty %}
+<tr>
+<td colspan="7" class="px-6 py-10 text-center text-on-surface-variant italic">No vacancies found.</td>
+</tr>
+{% endfor %}
+<tr id="noMatchingVacanciesRow" class="hidden">
+  <td colspan="7" class="px-6 py-12 text-center text-on-surface-variant italic">
+    <span class="material-symbols-outlined text-3xl mb-1 text-outline block">work_off</span>
+    No job vacancies match your selected filters.
+  </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+
+<script>
+    function applyVacancyFilters() {
+        const searchVal = (document.getElementById('vacancySearchInput').value || '').toLowerCase().trim();
+        const catVal = (document.getElementById('vacancyCategoryFilter').value || '').toLowerCase();
+        const statusVal = (document.getElementById('vacancyStatusFilter').value || '').toLowerCase();
+
+        const rows = document.querySelectorAll('.vacancy-item-row');
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+            const title = row.dataset.title || '';
+            const employer = row.dataset.employer || '';
+            const category = row.dataset.category || '';
+            const location = row.dataset.location || '';
+            const status = row.dataset.status || '';
+
+            const matchesSearch = !searchVal || title.includes(searchVal) || employer.includes(searchVal) || location.includes(searchVal);
+            const matchesCat = !catVal || category.includes(catVal);
+            const matchesStatus = !statusVal || status === statusVal;
+
+            if (matchesSearch && matchesCat && matchesStatus) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        const countBadge = document.getElementById('visibleVacanciesCount');
+        if (countBadge) countBadge.textContent = visibleCount;
+
+        const emptyRow = document.getElementById('noMatchingVacanciesRow');
+        if (emptyRow) {
+            if (visibleCount === 0 && rows.length > 0) {
+                emptyRow.classList.remove('hidden');
+            } else {
+                emptyRow.classList.add('hidden');
+            }
+        }
+    }
+
+    function clearVacancyFilters() {
+        document.getElementById('vacancySearchInput').value = '';
+        document.getElementById('vacancyCategoryFilter').value = '';
+        document.getElementById('vacancyStatusFilter').value = '';
+        applyVacancyFilters();
+    }
+
+    function focusVacancySearch() {
+        const el = document.getElementById('vacancySearchInput');
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                el.focus();
+                el.classList.add('ring-4', 'ring-secondary/40', 'border-secondary');
+                setTimeout(() => {
+                    el.classList.remove('ring-4', 'ring-secondary/40');
+                }, 1500);
+            }, 300);
+        }
+    }
+</script>
+</body></html>

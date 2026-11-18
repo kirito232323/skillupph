@@ -1,0 +1,703 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Completion - {{ program.title }} | SKILLUP</title>
+    <!-- Google Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        :root {
+            --cert-gold: #c59b27;
+            --cert-gold-light: #f5e6be;
+            --cert-gold-dark: #997715;
+            --cert-navy: #0f172a;
+            --cert-blue: #1e3a8a;
+            --cert-teal: #0d9488;
+            --cert-bg: #fdfbf7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0b1120;
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 16px;
+        }
+
+        /* Top Action Bar */
+        .action-bar {
+            width: 100%;
+            max-width: 1020px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 24px;
+            border-radius: 14px;
+            color: #f8fafc;
+        }
+
+        .action-bar .brand-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            color: #60a5fa;
+        }
+
+        .action-bar .brand-badge i {
+            font-size: 18px;
+            color: #fbbf24;
+        }
+
+        .action-bar .actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f1f5f9;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+        }
+
+        /* Certificate Container */
+        .certificate-sheet {
+            width: 100%;
+            max-width: 1020px;
+            background: var(--cert-bg);
+            border-radius: 16px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(197, 155, 39, 0.3);
+            position: relative;
+            padding: 48px 56px;
+            overflow: hidden;
+            border: 14px solid #ffffff;
+            outline: 2px solid var(--cert-gold);
+        }
+
+        /* Decorative Background Elements */
+        .certificate-sheet::before {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 2px solid var(--cert-gold);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        .certificate-sheet::after {
+            content: '';
+            position: absolute;
+            inset: 18px;
+            border: 1px dashed rgba(197, 155, 39, 0.5);
+            border-radius: 6px;
+            pointer-events: none;
+        }
+
+        .corner-ornament {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-color: var(--cert-gold);
+            border-style: solid;
+            pointer-events: none;
+        }
+
+        .corner-tl { top: 22px; left: 22px; border-width: 4px 0 0 4px; }
+        .corner-tr { top: 22px; right: 22px; border-width: 4px 4px 0 0; }
+        .corner-bl { bottom: 22px; left: 22px; border-width: 0 0 4px 4px; }
+        .corner-br { bottom: 22px; right: 22px; border-width: 0 4px 4px 0; }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 110px;
+            font-weight: 900;
+            color: rgba(197, 155, 39, 0.04);
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            user-select: none;
+            pointer-events: none;
+            white-space: nowrap;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Certificate Content Header */
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(197, 155, 39, 0.3);
+            padding-bottom: 20px;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cert-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cert-emblem {
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, #1e3a8a, #0f172a);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fbbf24;
+            font-size: 26px;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+            border: 2px solid var(--cert-gold);
+        }
+
+        .cert-authority h4 {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--cert-navy);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+        }
+
+        .cert-authority p {
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .cert-code-tag {
+            text-align: right;
+        }
+
+        .cert-code-tag span {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .cert-code-tag strong {
+            font-size: 13px;
+            color: var(--cert-navy);
+            font-family: monospace;
+            background: var(--cert-gold-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(197, 155, 39, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        /* Certificate Body */
+        .cert-body {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cert-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--cert-navy);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .cert-subtitle {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .cert-subtitle::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cert-gold), transparent);
+            margin: 10px auto 0;
+        }
+
+        .cert-presented-to {
+            font-size: 13px;
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .recipient-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+            padding: 0 20px;
+        }
+
+        .recipient-name::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--cert-gold);
+        }
+
+        .cert-statement {
+            font-size: 14px;
+            color: #334155;
+            max-width: 720px;
+            margin: 18px auto 20px;
+            line-height: 1.6;
+        }
+
+        .course-highlight {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1e3a8a;
+            display: block;
+            margin: 8px 0;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.3px;
+        }
+
+        /* Skills Badges */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skill-pill {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #334155;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .skill-pill i {
+            color: var(--cert-teal);
+            font-size: 10px;
+        }
+
+        /* Centered QR Code */
+        .cert-qr-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            gap: 6px;
+        }
+
+        .cert-qr-center .qr-box {
+            width: 72px;
+            height: 72px;
+            background: #ffffff;
+            border: 1.5px solid var(--cert-gold);
+            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-qr-center .qr-box svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cert-qr-center .qr-verify-caption {
+            font-size: 10px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .cert-qr-center .qr-verify-caption a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .cert-qr-center .qr-verify-caption a:hover {
+            text-decoration: underline;
+        }
+
+        /* Certificate Footer: Seal & Metadata */
+        .cert-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(197, 155, 39, 0.25);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cert-footer-meta {
+            width: 240px;
+        }
+
+        .cert-footer-meta.text-left {
+            text-align: left;
+        }
+
+        .cert-footer-meta.text-right {
+            text-align: right;
+        }
+
+        .meta-label {
+            display: block;
+            font-size: 10px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            margin-bottom: 3px;
+        }
+
+        .meta-value {
+            font-size: 12px;
+            color: var(--cert-navy);
+            font-weight: 700;
+        }
+
+        /* Gold Medal Seal */
+        .official-seal-wrapper {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gold-seal {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #fef08a 0%, #ca8a04 70%, #854d0e 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(161, 98, 7, 0.4), inset 0 0 0 3px rgba(255, 255, 255, 0.6), inset 0 0 0 5px rgba(113, 63, 18, 0.4);
+            position: relative;
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .gold-seal i {
+            font-size: 26px;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .gold-seal span {
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .ribbon-container {
+            display: flex;
+            gap: 6px;
+            margin-top: -6px;
+        }
+
+        .ribbon {
+            width: 14px;
+            height: 24px;
+            background: #b45309;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+        }
+
+        /* Print Styling */
+        @media print {
+            body {
+                background: #ffffff !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .action-bar {
+                display: none !important;
+            }
+
+            .certificate-sheet {
+                box-shadow: none !important;
+                border: 8px solid #c59b27 !important;
+                outline: none !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                height: 100vh !important;
+                padding: 40px !important;
+                page-break-inside: avoid;
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Action Toolbar (Hidden during print) -->
+    <div class="action-bar">
+        <div class="brand-badge">
+            <i class="fa-solid fa-award"></i>
+            <span>SKILLUP Official Verified Credential</span>
+        </div>
+        <div class="actions">
+            <a href="{% url 'applicant_course_lms' enrollment.id %}" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Back to Course
+            </a>
+            <a href="{% url 'applicant_profile' %}" class="btn btn-secondary">
+                <i class="fa-solid fa-user-graduate"></i> My Profile & Credentials
+            </a>
+            <button id="downloadCertBtn" onclick="downloadCertificatePDF()" class="btn btn-primary">
+                <i class="fa-solid fa-download"></i> Download
+            </button>
+        </div>
+    </div>
+
+    <!-- Certificate Sheet -->
+    <div class="certificate-sheet" id="certificate">
+        <!-- Corner Ornaments -->
+        <div class="corner-ornament corner-tl"></div>
+        <div class="corner-ornament corner-tr"></div>
+        <div class="corner-ornament corner-bl"></div>
+        <div class="corner-ornament corner-br"></div>
+
+        <div class="watermark">SKILLUP CERTIFIED</div>
+
+        <!-- Header -->
+        <div class="cert-header">
+            <div class="cert-logo-group">
+                <div class="cert-emblem">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="cert-authority">
+                    <h4>Public Employment Service Office</h4>
+                    <p>National Skills & Workforce Development Authority &bull; SKILLUP LMS</p>
+                </div>
+            </div>
+
+            <div class="cert-code-tag">
+                <span>Verification Serial</span>
+                <strong>{{ certificate_code }}</strong>
+            </div>
+        </div>
+
+        <!-- Body -->
+        <div class="cert-body">
+            <h1 class="cert-main-title">Certificate of Completion</h1>
+            <p class="cert-subtitle">And Professional Skill Competency</p>
+
+
+
+            <p class="cert-presented-to">This is officially presented and awarded to</p>
+
+            <h2 class="recipient-name">
+                {% if applicant.user.get_full_name %}
+                    {{ applicant.user.get_full_name }}
+                {% else %}
+                    {{ applicant.user.username }}
+                {% endif %}
+            </h2>
+
+            <p class="cert-statement">
+                for having successfully met all educational standards, completed the rigorous curriculum modules, 
+                and demonstrated multi-domain mastery on the comprehensive capstone assessment for
+                <span class="course-highlight">{{ program.title }}</span>
+                offered under the auspices of <strong>{{ program.provider }}</strong> in partnership with the SKILLUP Technical Training Program.
+            </p>
+
+            <!-- Skills List -->
+            <div class="skills-container">
+                {% for skill in skills_list %}
+                    <span class="skill-pill"><i class="fa-solid fa-check-circle"></i> {{ skill }}</span>
+                {% empty %}
+                    <span class="skill-pill"><i class="fa-solid fa-check-circle"></i> General Technical Competency</span>
+                    <span class="skill-pill"><i class="fa-solid fa-check-circle"></i> Industry Standard Operations</span>
+                {% endfor %}
+            </div>
+
+            <!-- Duration & Seat Time Badges -->
+            <div style="display: flex; justify-content: center; gap: 12px; margin: 0 auto 16px; flex-wrap: wrap;">
+                <span style="background: rgba(30, 58, 138, 0.08); border: 1.5px solid rgba(30, 58, 138, 0.25); padding: 5px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700; color: #1e3a8a; display: inline-flex; align-items: center; gap: 6px;">
+                    <i class="fa-regular fa-clock" style="color: #2563eb;"></i> Program Duration: <strong>{{ program.duration }}</strong>
+                </span>
+                <span style="background: rgba(13, 148, 136, 0.08); border: 1.5px solid rgba(13, 148, 136, 0.25); padding: 5px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700; color: #0d9488; display: inline-flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-stopwatch" style="color: #0d9488;"></i> Certified Seat-Time: <strong>{{ enrollment.formatted_required_time }}</strong>
+                </span>
+                
+            </div>
+
+            <!-- Centered QR Code & Online Verification Link -->
+            <div class="cert-qr-center">
+                <div class="qr-box">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&amp;data={{ verify_url|urlencode }}" alt="Verification QR Code" style="width: 100%; height: 100%; object-fit: contain;"/>
+                </div>
+                <p class="qr-verify-caption">
+                    Scan or verify authenticity at: <a href="{{ verify_url }}" target="_blank">Verify Online</a> &bull; Serial: <strong>{{ certificate_code }}</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="cert-footer">
+            <div class="cert-footer-meta text-left">
+                <span class="meta-label">Date of Issuance</span>
+                <strong class="meta-value">{{ issue_date|date:"F d, Y" }}</strong>
+            </div>
+
+            <!-- Gold Medallion Seal -->
+            <div class="official-seal-wrapper">
+                <div class="gold-seal">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>VERIFIED</span>
+                </div>
+                <div class="ribbon-container">
+                    <div class="ribbon"></div>
+                    <div class="ribbon"></div>
+                </div>
+            </div>
+
+            <div class="cert-footer-meta text-right">
+                <span class="meta-label">Accreditation Authority</span>
+                <strong class="meta-value">{{ program.provider }} &bull; SKILLUP</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function downloadCertificatePDF() {
+        const btn = document.getElementById('downloadCertBtn');
+        const originalHtml = btn ? btn.innerHTML : '';
+        if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating PDF...';
+        }
+
+        const element = document.getElementById('certificate');
+        const opt = {
+            margin:       [4, 4, 4, 4],
+            filename:     'Certificate_{{ certificate_code }}.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true, letterRendering: true, logging: false },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        if (typeof html2pdf !== 'undefined') {
+            html2pdf().set(opt).from(element).save().then(() => {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = originalHtml;
+                }
+            }).catch(err => {
+                console.error('PDF error:', err);
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = originalHtml;
+                }
+            });
+        } else {
+            window.print();
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = originalHtml;
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('download') === '1' || params.get('download') === 'true') {
+            setTimeout(downloadCertificatePDF, 600);
+        }
+    });
+    </script>
+</body>
+</html>
